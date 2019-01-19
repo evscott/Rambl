@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "now-build": "ng build --prod"
+    "now-build": "ng build --prod",
+    "serve": "concurrently \"ng serve\" \"server/node_modules/.bin/ts-node-dev server/server.ts\""
   },
   "private": true,
   "dependencies": {
@@ -21,7 +22,9 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "^7.0.3",
+    "concurrently": "^4.1.0",
     "core-js": "^2.5.4",
+    "mysql": "^2.16.0",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
   },
