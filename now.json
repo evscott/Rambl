@@ -7,6 +7,13 @@
       "config": {
         "useBuildUtils": "@now/build-utils@canary"
       }
+    }, {
+      "src": "server/package.json",
+      "use": "@now/static-build",
+      "config": {
+        "useBuildUtils": "@now/build-utils@canary"
+      }
+    }
     }
   ],
   "routes": [

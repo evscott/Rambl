@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9be29050-1de8-404f-b57c-77a2d49e77ea" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/now.json" beforeDir="false" afterPath="$PROJECT_DIR$/now.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/dist/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -18,10 +18,11 @@
     <session id="1353304197">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.11" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -29,7 +30,7 @@
           <entry key="css" value="1" />
           <entry key="html" value="8" />
           <entry key="js" value="8" />
-          <entry key="json" value="26" />
+          <entry key="json" value="28" />
           <entry key="ts" value="32" />
           <entry key="ts-node-dev" value="1" />
           <entry key="yml" value="2" />
@@ -39,7 +40,7 @@
         <counts>
           <entry key="CSS" value="1" />
           <entry key="HTML" value="8" />
-          <entry key="JSON" value="17" />
+          <entry key="JSON" value="19" />
           <entry key="JavaScript" value="8" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="TypeScript" value="32" />
@@ -51,18 +52,18 @@
         <counts>
           <entry key="html" value="280" />
           <entry key="js" value="44" />
-          <entry key="json" value="389" />
+          <entry key="json" value="410" />
           <entry key="ts" value="2952" />
-          <entry key="txt" value="96" />
+          <entry key="txt" value="111" />
           <entry key="yml" value="37" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="280" />
-          <entry key="JSON" value="383" />
+          <entry key="JSON" value="404" />
           <entry key="JavaScript" value="44" />
-          <entry key="PLAIN_TEXT" value="96" />
+          <entry key="PLAIN_TEXT" value="111" />
           <entry key="TypeScript" value="2952" />
           <entry key="YAML" value="37" />
           <entry key="tsconfig" value="6" />
@@ -71,7 +72,7 @@
       <usages-collector id="statistics.vcs.git.usages">
         <counts>
           <entry key="git.branch.checkout.local" value="2" />
-          <entry key="git.branch.create.new" value="3" />
+          <entry key="git.branch.create.new" value="4" />
           <entry key="git.branch.delete.local" value="2" />
         </counts>
       </usages-collector>
@@ -86,54 +87,12 @@
     <favorites_list name="Trippy" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/now.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#58#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/server/routes.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/app.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/app.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/server.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
+              <caret line="18" column="13" lean-forward="true" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -145,7 +104,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ExamplePR" />
+        <entry key="$PROJECT_DIR$" value="BackendSetup" />
       </map>
     </option>
   </component>
@@ -154,7 +113,6 @@
       <list>
         <option value="$PROJECT_DIR$/.circleci/config.yml" />
         <option value="$PROJECT_DIR$/src/app/app.component.spec.ts" />
-        <option value="$PROJECT_DIR$/now.json" />
         <option value="$PROJECT_DIR$/src/shared/config/opsworks.js" />
         <option value="$PROJECT_DIR$/shared/config/opsworks.js" />
         <option value="$PROJECT_DIR$/server.js" />
@@ -168,6 +126,7 @@
         <option value="$PROJECT_DIR$/src/app/app.component.ts" />
         <option value="$PROJECT_DIR$/server/server.ts" />
         <option value="$PROJECT_DIR$/server/routes.ts" />
+        <option value="$PROJECT_DIR$/now.json" />
       </list>
     </option>
   </component>
@@ -192,14 +151,15 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-1920" />
     <option name="y" value="-480" />
-    <option name="width" value="1920" />
-    <option name="height" value="1057" />
+    <option name="width" value="1280" />
+    <option name="height" value="777" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -211,30 +171,23 @@
             <path>
               <item name="Trippy" type="b2602c69:ProjectViewProjectNode" />
               <item name="Trippy" type="462c0819:PsiDirectoryNode" />
+              <item name=".circleci" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Trippy" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Trippy" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Trippy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Trippy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Trippy" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Trippy" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547914087032" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547921574198" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
@@ -269,7 +222,8 @@
       <updated>1547836124332</updated>
       <workItem from="1547836126172" duration="368000" />
       <workItem from="1547910000059" duration="186000" />
-      <workItem from="1547910716359" duration="2395000" />
+      <workItem from="1547910716359" duration="3539000" />
+      <workItem from="1547921648196" duration="168000" />
     </task>
     <task id="LOCAL-00001" summary="Added circle.">
       <created>1547836271766</created>
@@ -320,17 +274,24 @@
       <option name="project" value="LOCAL" />
       <updated>1547913780901</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Example routes.">
+      <created>1547914095192</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1547914095192</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15952000" />
+    <option name="totallyTimeSpent" value="17264000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1920" y="-480" width="1920" height="1057" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49948186" visible="true" weight="0.12779553" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49948186" visible="true" weight="0.15548456" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
@@ -345,7 +306,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32642487" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.23108809" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="10" />
@@ -408,7 +369,8 @@
     <MESSAGE value="Example pr, with updated Zeit alis" />
     <MESSAGE value="Example pr with updated Zeit alias." />
     <MESSAGE value="Skeleton of back-end server with examples of functionality." />
-    <option name="LAST_COMMIT_MESSAGE" value="Skeleton of back-end server with examples of functionality." />
+    <MESSAGE value="Example routes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Example routes." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.circleci/config.yml">
@@ -439,13 +401,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/now.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -497,6 +452,13 @@
     <entry file="file://$PROJECT_DIR$/src/app/app.component.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/server/server.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="24" lean-forward="true" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/app.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -511,30 +473,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/server.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/routes.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/app.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/now.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="13" lean-forward="true" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
         </state>
       </provider>
     </entry>
