@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "server/package.json",
+      "src": "package.json",
       "use": "@now/static-build",
       "config": {
         "useBuildUtils": "@now/build-utils@canary"
