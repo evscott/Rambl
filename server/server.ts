@@ -20,7 +20,8 @@ const connection = mysql.createConnection({
   host     : process.env.RDS_HOSTNAME || 'trippydatabase.cnioslqsy5gc.us-west-2.rds.amazonaws.com',
   user     : process.env.RDS_USERNAME || 'escott07',
   password : process.env.RDS_PASSWORD || 'password12yu',
-  port     : process.env.RDS_PORT || '3306'
+  port     : process.env.RDS_PORT || '3306',
+  database : process.env.RDS_DATABASE || 'trippydatabase'
 });
 
 app.use(express.json());
@@ -35,11 +36,16 @@ connection.connect(function(err) {
     console.error('Database connection failed: ' + err.stack);
     return;
   }
-  else {
-    console.log('Connected to database.');
-  }
+  // Successfully connected
+  console.log('Connected to database.');
 
+  // Test query
+  connection.query("SELECT * FROM Persons", function (err, result, fields) {
+    if (err) throw err;
+    console.log(result);
+  });
+
+  // End connection
+  connection.end();
 });
-
-connection.end();
 
