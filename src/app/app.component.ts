@@ -7,12 +7,15 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  messages = this.http.get<any[]>('http://localhost:4201/users');
+  private message;
 
   constructor(public http: HttpClient) {}
 
-  post() {
-    const response = this.http.post('http://localhost:4201/users', {query: 'SELECT * FROM Persons'}).subscribe(next => console.log(next));
-    console.log(response);
+  async post() {
+    const response = this.http.post('http://localhost:4201/users', {query: 'SELECT * FROM Persons'}).subscribe(res => {
+      console.log('Response', res);
+      this.message = res.valueOf();
+    });
+    console.log(this.message);
   }
 }
