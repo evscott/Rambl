@@ -21,4 +21,4 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(routes);
 
-app.listen(4201, '0.0.0.0', () => { console.log('Listening on port 4201...'); });
+app.listen(4201, () => { console.log('Listening on port 4201...'); });
