@@ -18,5 +18,8 @@
       "src": ".*",
       "dest": "/index.html"
     }
+  ],
+  "alias": [
+    "trippy"
   ]
 }
