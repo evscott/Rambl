@@ -3,3 +3,7 @@
 <button (click)="post()">
   Post
 </button>
+
+<div *ngFor="let message of messages | async">
+  {{ message.message }}
+</div>
