@@ -1,12 +1,19 @@
 import * as express from 'express';
 const app = express.Router();
+const db = require('./Config.ts').mysql_pool;
+
+db.getConnection((err, connection) => {
+    if (err) {
+        console.error('Database connection failed: ' + err.stack);
+    }
+
+    console.log('Connected to database.');
+
+    connection.release();
+});
+
+// Test get & post
+app.get('/users', (req, res) => res.send([]));
+app.post('/users', (req, res) => res.send({body: req.body}));
 
 export { app as routes };
-
-//app.get('/',(req, res) => res.send([{'message': 'Hello World'}]));
-//app.get('/users', (req, res) => res.send([]));
-//app.post('/users', (req, res) => res.send({body: req.body}));
-app.post('/users', (req, res) => {
-    let q1 = req.body.var1;
-    res.send(q1);
-});
