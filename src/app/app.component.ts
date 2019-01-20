@@ -7,18 +7,18 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  private message;
-  private input = '';
+  message;
+  input = '';
 
   constructor(public http: HttpClient) {}
 
-  private onKey(event: any) {
+  onKey(event: any) {
       this.input = event.target.value;
   }
 
-  private async post() {
+  async post() {
 
-    //Input should be == 'SELECT * FROM Persons'
+      //Input should be == 'SELECT * FROM Persons'
       if(this.input !== 'SELECT * FROM Persons') return;
 
       const response = this.http.post('http://localhost:4201/users', {query: this.input}).subscribe(res => {
