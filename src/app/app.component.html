@@ -1,10 +1,17 @@
 <router-outlet></router-outlet>
 
-<div *ngFor="let message of messages | async">
-  {{ message.message }}
-</div>
-
+<input (keyup)="onKey($event)">
 
 <button (click)="post()">
   Post
 </button>
+<div *ngIf="message">
+  <span *ngFor="let person of message.body">
+    <h3>PERSON!</h3>
+    <p> 'PersonID': {{ person.PersonID }} </p>
+    <p> 'LastName': {{ person.LastName }} </p>
+    <p> 'FirstName': {{ person.FirstName }} </p>
+    <p> 'Address': {{ person.Address }} </p>
+    <p> 'City': {{ person.City }} </p>
+  </span>
+</div>

@@ -7,11 +7,25 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  messages = this.http.get<any[]>('http://localhost:4201');
+  private message;
+  private input = '';
 
   constructor(public http: HttpClient) {}
 
-  post() {
-    const response = this.http.post('http://localhost:4201/users', {username: 'Eliot', password: 'Scott'}).subscribe(next => console.log(next));
+  private onKey(event: any) {
+    this.input = event.target.value;
+  }
+
+  private async post() {
+
+    //Input should be == 'SELECT * FROM Persons'
+      if(this.input !== 'SELECT * FROM Persons') return;
+    const response = this.http.post('http://localhost:4201/users', {query: this.input}).subscribe(res => {
+      console.log('Response', res);
+      this.message = res.valueOf();
+    });
+
+    console.log(this.message);
+    this.input = '';
   }
 }
