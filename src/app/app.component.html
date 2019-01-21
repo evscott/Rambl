@@ -5,11 +5,13 @@
 <button (click)="post()">
   Post
 </button>
-
 <div *ngIf="message">
-  <p> 'PersonID': {{ message.body[0].PersonID }} </p>
-  <p> 'LastName': {{ message.body[0].LastName }} </p>
-  <p> 'FirstName': {{ message.body[0].FirstName }} </p>
-  <p> 'Address': {{ message.body[0].Address }} </p>
-  <p> 'City': {{ message.body[0].City }} </p>
+  <span *ngFor="let person of message.body">
+    <h3>PERSON!</h3>
+    <p> 'PersonID': {{ person.PersonID }} </p>
+    <p> 'LastName': {{ person.LastName }} </p>
+    <p> 'FirstName': {{ person.FirstName }} </p>
+    <p> 'Address': {{ person.Address }} </p>
+    <p> 'City': {{ person.City }} </p>
+  </span>
 </div>
