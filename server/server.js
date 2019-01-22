@@ -30,7 +30,7 @@ con.connect(function(err) {
     console.log('Connected to database.');
 });
 
-app.post('/users', (req, res) => {
+app.post('/', (req, res) => {
     db.query('SELECT * FROM Persons', function (err, result, fields) {
         if (err) throw err;
         console.log(result);
