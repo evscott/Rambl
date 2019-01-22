@@ -3,19 +3,21 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server/server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "now-build": "ng build --prod",
-    "serve": "concurrently \"ng serve\" \"server/node_modules/.bin/ts-node-dev server/server.ts\""
+    "serve": "ng serve",
+    "postinstall": "ng build --aot --prod"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "~7.0.0",
+    "@angular/cli": "~7.0.5",
     "@angular/common": "~7.0.0",
     "@angular/compiler": "~7.0.0",
+    "@angular/compiler-cli": "~7.0.0",
     "@angular/core": "~7.0.0",
     "@angular/forms": "~7.0.0",
     "@angular/http": "~7.0.0",
@@ -24,14 +26,13 @@
     "@angular/router": "^7.0.3",
     "concurrently": "^4.1.0",
     "core-js": "^2.5.4",
+    "express": "^4.16.4",
     "mysql": "^2.16.0",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.12.2",
-    "@angular/cli": "~7.0.5",
-    "@angular/compiler-cli": "~7.0.0",
     "@angular/language-service": "~7.0.0",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
