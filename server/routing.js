@@ -17,4 +17,4 @@ db.getConnection((err, connection) => {
     connection.release();
 });
 
-export { app as routes };
+export { app as routing };
