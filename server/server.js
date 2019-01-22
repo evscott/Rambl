@@ -15,7 +15,7 @@ const port = process.env.PORT || 3000;
 app.set('port', port);
 
 const server = http.createServer(app);
-server.listen(port, () => console.log('Listening on port ' + port));
+server.listen(port, () => console.log(`Listening on ${ port }`));
 
 const con = mysql.createConnection({
     host     : process.env.RDS_HOSTNAME || 'trippydatabase.cnioslqsy5gc.us-west-2.rds.amazonaws.com',
@@ -29,3 +29,13 @@ con.connect(function(err) {
     if (err) console.error('Database connection failed: ' + err.stack);
     console.log('Connected to database.');
 });
+
+app.post('/users', (req, res) => {
+    db.query('SELECT * FROM Persons', function (err, result, fields) {
+        if (err) throw err;
+        console.log(result);
+        res.send({body: result})
+    });
+});
+
+connection.release();
