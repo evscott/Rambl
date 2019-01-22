@@ -13,6 +13,7 @@ export class AppComponent {
   constructor(public http: HttpClient) {}
 
   post() {
+    console.log('URL is...' + this.baseUrl);
     const response = this.http.post(this.baseUrl, {username: 'Eliot', password: 'Scott'}).subscribe(next => console.log(next));
   }
 }
