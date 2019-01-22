@@ -50,7 +50,6 @@ app.post('/', (req, res) => {
         }
         console.log(result);
         res.send({body: result})
-        con.end();
     });
 });
 
