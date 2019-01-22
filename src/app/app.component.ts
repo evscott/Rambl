@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from "../environments/environment";
 
 @Component({
   selector: 'app-root',
@@ -8,12 +7,10 @@ import { environment } from "../environments/environment";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  baseUrl = environment.baseUrl;
 
   constructor(public http: HttpClient) {}
 
   post() {
-    console.log('URL is...' + this.baseUrl);
-    const response = this.http.post(this.baseUrl, {username: 'Eliot', password: 'Scott'}).subscribe(next => console.log(next));
+    const response = this.http.post('https://trippy123.herokuapp.com/', {username: 'Eliot', password: 'Scott'}).subscribe(next => console.log(next));
   }
 }
