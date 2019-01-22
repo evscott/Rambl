@@ -1,10 +1,5 @@
 <router-outlet></router-outlet>
 
-<div *ngFor="let message of messages | async">
-  {{ message.message }}
-</div>
-
-
 <button (click)="post()">
   Post
 </button>
