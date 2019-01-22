@@ -11,6 +11,6 @@ export class AppComponent {
   constructor(public http: HttpClient) {}
 
   post() {
-    //const response = this.http.post('http://localhost:4201/users', {username: 'Eliot', password: 'Scott'}).subscribe(next => console.log(next));
+    const response = this.http.post('http://localhost:4201', {username: 'Eliot', password: 'Scott'}).subscribe(next => console.log(next));
   }
 }

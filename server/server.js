@@ -6,12 +6,25 @@ const mysql = require('mysql');
 const app = express();
 
 app.use(express.static(path.join(__dirname, '../dist')));
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Methods', 'OPTIONS, POST, PUT, GET, DELETE');
+
+    if('OPTIONS' == req.method) {
+        res.sendStatus(200);
+    } else {
+        console.log(`${req.ip} ${req.method} ${req.url}`);
+        next();
+    }
+});
+app.use(express.json());
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '../dist/index.html'));
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4201;
 app.set('port', port);
 
 const server = http.createServer(app);
@@ -31,11 +44,15 @@ con.connect(function(err) {
 });
 
 app.post('/', (req, res) => {
-    db.query('SELECT * FROM Persons', function (err, result, fields) {
-        if (err) throw err;
+    con.query('SELECT * FROM Persons', function (err, result) {
+        if(err) {
+            console.log('Error', err);
+        }
         console.log(result);
         res.send({body: result})
     });
 });
 
-connection.release();
+app.post('/', (req, res) => {
+    res.send([{'message': 'Hello World'}]);
+});
