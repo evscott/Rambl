@@ -1,34 +1,36 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+// Angular components
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { RouterModule } from "@angular/router";
+import { HttpClientModule } from "@angular/common/http";
 
-import { AppComponent } from './app.component';
-import { HomeViewComponent } from './components/home-view/home-view.component';
-import { AboutViewComponent } from './components/about-view/about-view.component';
+// Graphical components
+import { HomeViewComponent } from "./components/home-view/home-view.component";
+import { AboutViewComponent } from "./components/about-view/about-view.component";
 
-import { HttpClientModule} from '@angular/common/http';
+// Service components
+import { AppComponent } from "./app.component";
+import TrippyApiService from "./shared/core/TrippyApi.service";
+import TrippyApiBaseService from "./shared/core/TrippyApiBase.service";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeViewComponent,
-    AboutViewComponent
-  ],
+  declarations: [AppComponent, HomeViewComponent, AboutViewComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
       {
-        path: '',
-        pathMatch: 'full',
+        path: "",
+        pathMatch: "full",
         component: HomeViewComponent
-      }, {
-        path: 'about',
+      },
+      {
+        path: "about",
         component: AboutViewComponent
       }
     ])
   ],
-  providers: [],
+  providers: [{ provide: TrippyApiBaseService, useClass: TrippyApiService }],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
