@@ -14,3 +14,4 @@ jobs:
         paths:
         - "node_modules"
     - run: yarn test --watch=false
+    - run: yarn lint
