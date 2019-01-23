@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server/server.js",
+    "start": "node api/server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -13,7 +13,6 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~7.0.0",
     "@angular/cli": "~7.0.5",
     "@angular/common": "~7.0.0",
     "@angular/compiler": "~7.0.0",
@@ -24,10 +23,13 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "^7.0.3",
+    "@angularnpm/animations": "~7.0.0",
     "concurrently": "^4.1.0",
     "core-js": "^2.5.4",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "mysql": "^2.16.0",
+    "restful": "^0.4.5",
     "rxjs": "~6.3.3",
     "zone.js": "~0.8.26"
   },
