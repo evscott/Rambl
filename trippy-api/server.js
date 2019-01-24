@@ -12,10 +12,7 @@ app.route('/*', function(req,res) {
     res.redirect(__dirname + '/../dist/index.html')
 })
 
-console.log(__dirname + '/../dist/index.html');
-
 app.get('/api/allusers', API.allUsers);
-//app.get('/users', (req, res) => res.send([{'message':'test'}]));
 
 app.listen(process.env.PORT || 4201, () => {
   console.log('Listening on port 4201...');
