@@ -5,3 +5,12 @@
 <button (click)="post()">
   Post
 </button>
+
+<div *ngFor="let person of people">
+  <h3> Person </h3>
+  <p> 'PersonID': {{ person.PersonID }} </p>
+  <p> 'LastName': {{ person.LastName }} </p>
+  <p> 'FirstName': {{ person.FirstName }} </p>
+  <p> 'Address': {{ person.Address }} </p>
+  <p> 'City': {{ person.City }} </p>
+</div>

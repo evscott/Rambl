@@ -10,8 +10,6 @@ import { AboutViewComponent } from "./components/about-view/about-view.component
 
 // Service components
 import { AppComponent } from "./app.component";
-import TrippyApiService from "./shared/core/TrippyApi.service";
-import TrippyApiBaseService from "./shared/core/TrippyApiBase.service";
 
 @NgModule({
   declarations: [AppComponent, HomeViewComponent, AboutViewComponent],
@@ -30,7 +28,7 @@ import TrippyApiBaseService from "./shared/core/TrippyApiBase.service";
       }
     ])
   ],
-  providers: [{ provide: TrippyApiBaseService, useClass: TrippyApiService }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

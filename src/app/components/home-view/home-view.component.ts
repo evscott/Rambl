@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import TrippyApiBase from "../../shared/core/TrippyApiBase.service";
+import { TrippyApiService } from "../../shared/core/trippy-api.service";
 
 @Component({
   selector: "app-home-view",
@@ -7,12 +7,14 @@ import TrippyApiBase from "../../shared/core/TrippyApiBase.service";
   styleUrls: ["./home-view.component.css"]
 })
 export class HomeViewComponent implements OnInit {
+  people;
 
-  constructor(private api: TrippyApiBase) {}
+  constructor(public api: TrippyApiService) {}
 
   ngOnInit() {}
 
-  post() {
-    this.api.sendQuery('SELECT * FROM Persons');
+  async post() {
+      this.people = await this.api.getAllUsers();
+      console.log(this.people);
   }
 }
