@@ -8,9 +8,9 @@ app.use(express.static(path.join(__dirname, '/../dist')));
 app.use(express.json());
 app.use(Configs.AccessControl);
 
-app.route('/*', function(req,res) {
-    res.redirect(__dirname + '/../dist/index.html')
-})
+app.route('/*', function(req, res) {
+  res.redirect(__dirname + '/../dist/index.html');
+});
 
 app.get('/api/allusers', API.allUsers);
 
