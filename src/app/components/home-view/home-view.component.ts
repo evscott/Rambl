@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { TrippyApiService } from "../../shared/core/trippy-api.service";
+import { Component, OnInit } from '@angular/core';
+import { TrippyApiService } from '../../shared/core/trippy-api.service';
 
 @Component({
-  selector: "app-home-view",
-  templateUrl: "./home-view.component.html",
-  styleUrls: ["./home-view.component.css"]
+  selector: 'app-home-view',
+  templateUrl: './home-view.component.html',
+  styleUrls: ['./home-view.component.css']
 })
 export class HomeViewComponent implements OnInit {
   people;
@@ -14,7 +14,7 @@ export class HomeViewComponent implements OnInit {
   ngOnInit() {}
 
   async post() {
-      this.people = await this.api.getAllUsers();
-      console.log(this.people);
+    this.people = await this.api.getAllUsers();
+    console.log(this.people);
   }
 }
