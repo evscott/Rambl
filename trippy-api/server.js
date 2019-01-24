@@ -8,7 +8,7 @@ app.use(express.static(path.join(__dirname, '../dist')));
 app.use(express.json());
 app.use(Configs.AccessControl);
 
-app.get('*', (req, res) => res.sendFile(path.join(__dirname + '../dist/index.html')));
+//app.get('*', (req, res) => res.sendFile(path.join(__dirname + '../dist/index.html')));
 app.get('/api/allusers', API.allUsers);
 
 app.listen(process.env.PORT || 4201, () => { console.log('Listening on port 4201...'); });
