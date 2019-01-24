@@ -12,6 +12,8 @@ app.get('*', (req, res) =>
   res.sendFile(path.join(__dirname + '/../dist/index.html'))
 );
 
+console.log(__dirname + '/../dist/index.html');
+
 app.get('/api/allusers', API.allUsers);
 //app.get('/users', (req, res) => res.send([{'message':'test'}]));
 
