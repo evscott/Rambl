@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "trippy": {
+    "Trippy": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -79,18 +79,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "now-angular-app:build"
+            "browserTarget": "Trippy:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "now-angular-app:build:production"
+              "browserTarget": "Trippy:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "now-angular-app:build"
+            "browserTarget": "Trippy:build"
           }
         },
         "test": {
@@ -124,7 +124,7 @@
         }
       }
     },
-    "now-angular-app-e2e": {
+    "Trippy-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -133,11 +133,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "now-angular-app:serve"
+            "devServerTarget": "Trippy:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "now-angular-app:serve:production"
+              "devServerTarget": "Trippy:serve:production"
             }
           }
         },
@@ -153,5 +153,5 @@
       }
     }
   },
-  "defaultProject": "now-angular-app"
+  "defaultProject": "Trippy"
 }
