@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "now-angular-app": {
+    "trippy": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
