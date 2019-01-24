@@ -4,13 +4,13 @@ const path = require('path');
 const Configs = require('./Configs');
 const API = require('./controller/api');
 
-app.use(express.static(path.join(__dirname, '../dist')));
+app.use(express.static(path.join(__dirname, '/../dist')));
 app.use(express.json());
 app.use(Configs.AccessControl);
 
-app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname + '/../dist/index.html'))
-);
+app.route('/*', function(req,res) {
+    res.redirect(__dirname + '/../dist/index.html')
+})
 
 console.log(__dirname + '/../dist/index.html');
 
