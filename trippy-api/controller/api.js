@@ -1,4 +1,4 @@
-const db = require("../model/database");
+const db = require('../model/database');
 const pool = db.getPool();
 
 const API = {
