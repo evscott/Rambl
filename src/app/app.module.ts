@@ -3,19 +3,35 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
-// Graphical components
-import { HomeViewComponent } from './components/home-view/home-view.component';
-import { AboutViewComponent } from './components/about-view/about-view.component';
+// Redux components
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './store/login/auth.effects';
+import { reducers } from './store/login/auth.state';
 
 // Service components
 import { AppComponent } from './app.component';
+import { AuthService } from './services/auth.service';
+
+// App components
+import { HomeViewComponent } from './components/home-view/home-view.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { LogInComponent } from './components/log-in/log-in.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeViewComponent, AboutViewComponent],
+  declarations: [
+    AppComponent,
+    HomeViewComponent,
+    LogInComponent,
+    SignUpComponent
+  ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpClientModule,
+    StoreModule.forRoot(reducers, {}),
     RouterModule.forRoot([
       {
         path: '',
@@ -23,12 +39,16 @@ import { AppComponent } from './app.component';
         component: HomeViewComponent
       },
       {
-        path: 'about',
-        component: AboutViewComponent
+        path: 'log-in',
+        component: LogInComponent
+      },
+      {
+        path: 'sign-up',
+        component: SignUpComponent
       }
     ])
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -13,6 +13,10 @@ app.route('/*', function(req, res) {
 });
 
 app.get('/api/allusers', API.allUsers);
+app.get('/ping', API.ping);
+app.post('/register', API.register);
+app.post('/login', API.login);
+app.get('/status', API.getStatus)
 
 app.listen(process.env.PORT || 4201, () => {
   console.log('Listening on port 4201...');

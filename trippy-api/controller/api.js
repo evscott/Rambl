@@ -9,6 +9,18 @@ const API = {
         con.release();
       });
     });
+  },
+  ping(req, res) {
+    res.get([{ ping: 'ping' }]);
+  },
+  register(req, res) {
+    res.post([{ register: 'register' }]);
+  },
+  login(req, res) {
+    res.post([{ login: 'login' }]);
+  },
+  getStatus(req, res) {
+    res.get([{ status: 'status' }]);
   }
 };
 
