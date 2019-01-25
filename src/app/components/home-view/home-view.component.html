@@ -1,16 +1,8 @@
-<p>
-  home-view works!
-</p>
-
-<button (click)="post()">
-  Post
-</button>
-
-<div *ngFor="let person of people">
-  <h3> Person </h3>
-  <p> 'PersonID': {{ person.PersonID }} </p>
-  <p> 'LastName': {{ person.LastName }} </p>
-  <p> 'FirstName': {{ person.FirstName }} </p>
-  <p> 'Address': {{ person.Address }} </p>
-  <p> 'City': {{ person.City }} </p>
+<div class="row">
+  <div class="col-md-4">
+    <h1>Trippy</h1>
+    <hr><br>
+    <a [routerLink]="['/log-in']" class="btn btn-primary">Log in</a>
+    <a [routerLink]="['/sign-up']" class="btn btn-primary">Sign up</a>
+  </div>
 </div>

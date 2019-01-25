@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TrippyApiService } from '../../shared/core/trippy-api.service';
 
 @Component({
   selector: 'app-home-view',
@@ -9,12 +8,7 @@ import { TrippyApiService } from '../../shared/core/trippy-api.service';
 export class HomeViewComponent implements OnInit {
   people;
 
-  constructor(public api: TrippyApiService) {}
+  constructor() {}
 
   ngOnInit() {}
-
-  async post() {
-    this.people = await this.api.getAllUsers();
-    console.log(this.people);
-  }
 }
