@@ -5,12 +5,6 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
-// Redux components
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { AuthEffects } from './store/login/auth.effects';
-import { reducers } from './store/login/auth.state';
-
 // Service components
 import { AppComponent } from './app.component';
 import { AuthService } from './services/auth.service';
@@ -31,7 +25,6 @@ import { LogInComponent } from './components/log-in/log-in.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    StoreModule.forRoot(reducers, {}),
     RouterModule.forRoot([
       {
         path: '',
