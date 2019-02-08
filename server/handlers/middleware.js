@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const Configs = require('../Config');
+const Config = require('../Config');
 
 let checkToken = (req, res, next) => {
   // Express headers are auto converted to lowercase
@@ -11,8 +11,8 @@ let checkToken = (req, res, next) => {
     // Determine if jwt token is legit
     let legit = jwt.verify(
       token,
-      Configs.publicKey,
-      Configs.verifyOptions,
+      Config.publicKey,
+      Config.verifyOptions,
       (err, decoded) => {
         if (err) {
           return res.json({
