@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { User } from '../../models/user';
-import { AuthState } from '../../store/login/auth.state';
-import { LogIn } from '../../store/login/auth.actions';
 
 @Component({
   selector: 'app-log-in',
@@ -13,7 +11,7 @@ import { LogIn } from '../../store/login/auth.actions';
 export class LogInComponent implements OnInit {
   user: User = new User();
 
-  constructor(private store: Store<AuthState>) {}
+  constructor() {}
 
   ngOnInit() {}
 
@@ -22,6 +20,6 @@ export class LogInComponent implements OnInit {
       email: this.user.email,
       password: this.user.password
     };
-    this.store.dispatch(new LogIn(payload));
+    console.log(payload);
   }
 }
