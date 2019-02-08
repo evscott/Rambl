@@ -7,7 +7,6 @@ const databaseHandler = require('./databaseHandler');
 let signup = async (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
-
   // Attempt signup with unique username, return success notification.
   try {
     databaseHandler.signup(username, password).then(success => {
