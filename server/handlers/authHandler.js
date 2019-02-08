@@ -39,7 +39,7 @@ let signup = async (req, res) => {
     res.json({
       success: false,
       message: 'Sign up unsuccessful. This may be network related.',
-      token, null
+      token: null
     });
   }
 };
