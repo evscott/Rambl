@@ -1,6 +1,6 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const Configs = require('../Config');
+const Config = require('../Config');
 const databaseHandler = require('./databaseHandler');
 
 // Query database handler with signup request.
@@ -14,8 +14,8 @@ let signup = async (req, res) => {
         // Retrieve json web token
         let token = jwt.sign(
           { username: username, password: password },
-          Configs.privateKey,
-          Configs.signOptions
+          Config.privateKey,
+          Config.signOptions
         );
 
         // Signup success.
@@ -56,8 +56,8 @@ let login = async (req, res) => {
           // Retrieve json web token
           let token = jwt.sign(
             { username: username, password: password },
-            Configs.privateKey,
-            Configs.signOptions
+            Config.privateKey,
+            Config.signOptions
           );
 
           // Login success.
