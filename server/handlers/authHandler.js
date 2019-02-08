@@ -11,16 +11,25 @@ let signup = async (req, res) => {
   try {
     databaseHandler.signup(username, password).then(success => {
       if (success) {
+        // Retrieve json web token
+        let token = jwt.sign(
+          { username: username, password: password },
+          Configs.privateKey,
+          Configs.signOptions
+        );
+
         // Signup success.
         res.json({
           success: true,
-          message: 'Sign up successful!'
+          message: 'Sign up successful!',
+          token: token
         });
       } else {
         // Signup unsuccessful - username potentially already taken.
         res.json({
           success: false,
-          message: 'Sign up unsuccessful.'
+          message: 'Sign up unsuccessful.',
+          token: null
         });
       }
     });
@@ -29,7 +38,8 @@ let signup = async (req, res) => {
     console.err(err);
     res.json({
       success: false,
-      message: 'Sign up unsuccessful. This may be network related.'
+      message: 'Sign up unsuccessful. This may be network related.',
+      token, null
     });
   }
 };
@@ -43,12 +53,13 @@ let login = async (req, res) => {
     databaseHandler.login(username, password).then(success => {
       if (username && password) {
         if (success) {
-          // Retrieve json web token if login successful.
+          // Retrieve json web token
           let token = jwt.sign(
-            { username: username },
+            { username: username, password: password },
             Configs.privateKey,
             Configs.signOptions
           );
+
           // Login success.
           res.json({
             success: true,
@@ -59,14 +70,16 @@ let login = async (req, res) => {
           // Credential authentication failure.
           res.json({
             success: false,
-            message: 'Incorrect username or password.'
+            message: 'Incorrect username or password.',
+            token: null
           });
         }
       } else {
         // Ambiguous authentication failure.
         res.json({
           success: false,
-          message: 'Authentication failed! Please check the request.'
+          message: 'Authentication failed! Please check the request.',
+          token: null
         });
       }
     });

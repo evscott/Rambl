@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { User } from '../../models/user';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-log-in',
@@ -11,15 +12,11 @@ import { User } from '../../models/user';
 export class LogInComponent implements OnInit {
   user: User = new User();
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {}
 
-  onSubmit(): void {
-    const payload = {
-      username: this.user.username,
-      password: this.user.password
-    };
-    console.log(payload);
+  onSubmit() {
+    this.authService.logIn(this.user.username, this.user.password);
   }
 }

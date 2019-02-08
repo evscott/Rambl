@@ -15,12 +15,6 @@ export class SignUpComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit(): void {
-    console.log(this.user);
-    this.authService
-      .signUp(this.user.username, this.user.password)
-      .toPromise()
-      .then(p => {
-        console.log(p);
-      });
+    this.authService.signUp(this.user.username, this.user.password);
   }
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { environment } from '../../environments/environment';
+import { LoginResponse } from '../models/login-response';
 
 @Injectable()
 export class AuthService {
@@ -14,13 +15,35 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  logIn(username: string, password: string): Observable<any> {
+  logIn(username: string, password: string): Promise<any> {
     const url = `${this.BASE_URL}/login`;
-    return this.http.post<User>(url, { username, password });
+    return this.http
+      .post<LoginResponse>(url, { username, password })
+      .toPromise()
+      .then(p => {
+        if (p.success) {
+          localStorage.setItem('token', p.token);
+        }
+      });
   }
 
-  signUp(username: string, password: string): Observable<User> {
+  signUp(username: string, password: string): Promise<any> {
     const url = `${this.BASE_URL}/signup`;
-    return this.http.post<User>(url, { username, password });
+    return this.http
+      .post<LoginResponse>(url, { username, password })
+      .toPromise()
+      .then(p => {
+        if (p.success) {
+          localStorage.setItem('token', p.token);
+        }
+      });
+  }
+
+  signOut(): boolean {
+    if (localStorage.getItem('token')) {
+      localStorage.removeItem('token');
+      return true;
+    }
+    return false;
   }
 }
