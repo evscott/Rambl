@@ -28,7 +28,7 @@ let signup = async (req, res) => {
         // Signup unsuccessful - username potentially already taken.
         res.json({
           success: false,
-          message: 'Sign up unsuccessful.',
+          message: 'Sign up unsuccessful. Username or password already taken.',
           token: null
         });
       }

@@ -22,6 +22,7 @@ export class AuthService {
         if (p.success) {
           localStorage.setItem('token', p.token);
         }
+        console.log(p);
       });
   }
 
@@ -34,6 +35,7 @@ export class AuthService {
         if (p.success) {
           localStorage.setItem('token', p.token);
         }
+        console.log(p);
       });
   }
 
