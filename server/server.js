@@ -16,7 +16,7 @@ app.route('/*', (req, res) => {
   res.redirect(__dirname + '/../dist/index.html');
 });
 app.use(express.static(path.join(__dirname, '/../dist')));
-app.use(express.json()); //
+app.use(express.json());
 app.use(bodyParser.json());
 app.use(Config.AccessControl);
 app.use('/', authRoutes);
