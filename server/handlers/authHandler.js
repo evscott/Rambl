@@ -13,8 +13,7 @@ let signup = async (req, res) => {
       if (success) {
         // Retrieve json web token
 
-        let test = jwt.sign({"payload":"some payload"}, "shhh");
-        console.log("Test jwt sign", test);
+        console.log("PRIVATE KEY ", Config.privateKey);
 
         let token = jwt.sign(
           { username: username, password: password },
