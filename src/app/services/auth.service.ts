@@ -15,33 +15,12 @@ export class AuthService {
 
   logIn(username: string, password: string) {
     const url = `${this.BASE_URL}/login`;
-    this.http
-      .post<LoginResponse>(url, { username, password })
-      .toPromise()
-      .then(p => {
-        if (p.success) {
-          localStorage.setItem('token', p.token);
-        }
-        console.log(p);
-      });
+    this.http.post<LoginResponse>(url, { username, password });
   }
 
   signUp(username: string, password: string) {
     const url = `${this.BASE_URL}/signup`;
-    console.log('Beginning signup within angular');
-    localStorage.setItem('token', 'blah');
-    console.log(localStorage.getItem('token'));
-    this.http
-      .post<LoginResponse>(url, { username, password })
-      .toPromise()
-      .then(p => {
-        if (p.success) {
-          localStorage.setItem('token', p.token);
-        }
-        console.log('Within signup promise');
-        console.log(p);
-      });
-    console.log('Ending signup within angular');
+    this.http.post<LoginResponse>(url, { username, password });
   }
 
   signOut(): boolean {
