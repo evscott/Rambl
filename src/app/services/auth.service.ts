@@ -28,6 +28,7 @@ export class AuthService {
 
   signUp(username: string, password: string): Promise<any> {
     const url = `${this.BASE_URL}/signup`;
+    console.log('Beginning signup within angular');
     return this.http
       .post<LoginResponse>(url, { username, password })
       .toPromise()
@@ -35,8 +36,10 @@ export class AuthService {
         if (p.success) {
           localStorage.setItem('token', p.token);
         }
+        console.log('Within signup promise');
         console.log(p);
       });
+    console.log('Ending signup within angular');
   }
 
   signOut(): boolean {
