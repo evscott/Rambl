@@ -42,7 +42,7 @@ export class AuthService {
             });
     } catch (err) {
       console.log('What is up here!!');
-      console.err(err);
+      console.log(err);
     }
   }
 
