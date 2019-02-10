@@ -25,8 +25,6 @@ export class AuthService {
                 }
                 console.log(p);
             });
-        console.log('In angular');
-        console.log(this.getToken());
     } catch (err) {
         console.log(err);
     }
