@@ -17,7 +17,7 @@ const Config = {
       'Access-Control-Allow-Methods',
       'GET, POST, OPTIONS, PUT, PATCH, DELETE'
     );
-    res.header('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, content-type, x-access-token');
     res.header('Access-Control-Allow-Credentials', true);
     if ('OPTIONS' == req.method) {
       res.sendStatus(200);
