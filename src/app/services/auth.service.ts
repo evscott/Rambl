@@ -13,9 +13,9 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  logIn(username: string, password: string): Promise<any> {
+  logIn(username: string, password: string) {
     const url = `${this.BASE_URL}/login`;
-    return this.http
+    this.http
       .post<LoginResponse>(url, { username, password })
       .toPromise()
       .then(p => {
@@ -26,10 +26,12 @@ export class AuthService {
       });
   }
 
-  signUp(username: string, password: string): Promise<any> {
+  signUp(username: string, password: string) {
     const url = `${this.BASE_URL}/signup`;
     console.log('Beginning signup within angular');
-    return this.http
+    localStorage.setItem('token', 'blah');
+    console.log(localStorage.getItem('token'));
+    this.http
       .post<LoginResponse>(url, { username, password })
       .toPromise()
       .then(p => {
