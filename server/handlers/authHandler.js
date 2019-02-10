@@ -12,6 +12,7 @@ let signup = async (req, res) => {
   // Attempt signup with unique username, return success notification.
   try {
     databaseHandler.signup(username, password).then(success => {
+      console.log(`Hooked up with database: ${success}`);
       if (success) {
         // Retrieve json web token
         let token = jwt.sign(
