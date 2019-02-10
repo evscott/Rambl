@@ -20,6 +20,8 @@ let checkToken = (req, res, next) => {
           });
         } else {
           req.decoded = decoded;
+          // TODO authentication of decoded username/password
+
           next();
         }
       }

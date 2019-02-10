@@ -15,9 +15,8 @@ export class AuthService {
 
   getHeader(): HttpHeaders {
     let headers: HttpHeaders = new HttpHeaders();
-    headers = headers.append('Accept', 'application/json');
     headers = headers.append('x-access-token', this.getToken());
-    return headers
+    return headers;
   }
 
   logIn(username: string, password: string) {
