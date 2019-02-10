@@ -15,17 +15,21 @@ export class AuthService {
 
   logIn(username: string, password: string) {
     const url = `${this.BASE_URL}/login`;
-    this.http
-      .post<any>(url, { username, password })
-      .toPromise()
-      .then(p => {
-        if (p.success) {
-          localStorage.setItem('token', p.token);
-        }
-        console.log(p);
-      });
-      console.log('In angular');
-      console.log(this.getToken());
+    try {
+        this.http
+            .post<any>(url, {username, password})
+            .toPromise()
+            .then(p => {
+                if (p.success) {
+                    localStorage.setItem('token', p.token);
+                }
+                console.log(p);
+            });
+        console.log('In angular');
+        console.log(this.getToken());
+    } catch (err) {
+        console.log(err);
+    }
   }
 
   signUp(username: string, password: string) {
@@ -41,8 +45,7 @@ export class AuthService {
                 console.log(p);
             });
     } catch (err) {
-      console.log('What is up here!!');
-      console.log(err);
+        console.log(err);
     }
   }
 
