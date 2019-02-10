@@ -18,16 +18,12 @@ let signup = async (req, res) => {
           Config.signOptions
         );
 
-        console.log('authHandler line 21');
-
         // Signup success.
         res.json({
           success: true,
           message: 'Sign up successful!',
           token: token
         });
-
-          console.log('authHandler line 30');
       } else {
         // Signup unsuccessful - username potentially already taken.
         res.json({
