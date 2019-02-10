@@ -16,7 +16,7 @@ export class AuthService {
   logIn(username: string, password: string) {
     const url = `${this.BASE_URL}/login`;
     this.http
-      .post<LoginResponse>(url, { username, password })
+      .post<any>(url, { username, password })
       .toPromise()
       .then(p => {
         if (p.success) {
@@ -32,7 +32,7 @@ export class AuthService {
     const url = `${this.BASE_URL}/signup`;
     try {
         this.http
-            .post<LoginResponse>(url, {username, password})
+            .post<any>(url, {username, password})
             .toPromise()
             .then(p => {
                 if (p.success) {
