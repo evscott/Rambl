@@ -6,6 +6,7 @@ let signup = async (username, password) => {
   let signupQuery = `INSERT IGNORE INTO person (username, password) VALUES ("${username}", "${password}")`;
   return new Promise((resolve, reject) => {
     pool.query(signupQuery, (err, res) => {
+      console.log('Database sign up: ', res);
       if (err) reject(err);
       else if (res.affectedRows > 0) resolve(true);
       else resolve(false);
@@ -18,6 +19,7 @@ let login = async (username, password) => {
   let loginQuery = `SELECT * FROM person WHERE username="${username}" AND password="${password}"`;
   return new Promise((resolve, reject) => {
     pool.query(loginQuery, (err, res) => {
+      console.log('Database login: ', res);
       if (err) reject(err);
       else if (res.length > 0) resolve(true);
       else resolve(false);

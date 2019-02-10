@@ -11,12 +11,16 @@ let signup = async (req, res) => {
   try {
     databaseHandler.signup(username, password).then(success => {
       if (success) {
+        console.log('Signup success: ' + success);
+
         // Retrieve json web token
         let token = jwt.sign(
           { username: username, password: password },
           Config.privateKey,
           Config.signOptions
         );
+
+        console.log('Signup token: ' + token);
 
         // Signup success.
         res.json({
@@ -53,12 +57,16 @@ let login = async (req, res) => {
     databaseHandler.login(username, password).then(success => {
       if (username && password) {
         if (success) {
-          // Retrieve json web token
+          console.log('Login success: ' + success);
+
+            // Retrieve json web token
           let token = jwt.sign(
             { username: username, password: password },
             Config.privateKey,
             Config.signOptions
           );
+
+          console.log('Login token: ' + token);
 
           // Login success.
           res.json({
