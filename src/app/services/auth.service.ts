@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { LoginResponse } from '../models/login-response';
@@ -11,6 +11,13 @@ export class AuthService {
 
   getToken(): string {
     return localStorage.getItem('token');
+  }
+
+  getHeader(): HttpHeaders {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('Accept', 'application/json');
+    headers = headers.append('x-access-token', this.getToken());
+    return headers
   }
 
   logIn(username: string, password: string) {
