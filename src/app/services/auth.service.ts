@@ -30,15 +30,20 @@ export class AuthService {
 
   signUp(username: string, password: string) {
     const url = `${this.BASE_URL}/signup`;
-    this.http
-      .post<LoginResponse>(url, { username, password })
-      .toPromise()
-      .then(p => {
-        if (p.success) {
-          localStorage.setItem('token', p.token);
-        }
-        console.log(p);
-      });
+    try {
+        this.http
+            .post<LoginResponse>(url, {username, password})
+            .toPromise()
+            .then(p => {
+                if (p.success) {
+                    localStorage.setItem('token', p.token);
+                }
+                console.log(p);
+            });
+    } catch (err) {
+      console.log('What is up here!!');
+      console.err(err);
+    }
   }
 
   signOut(): boolean {
