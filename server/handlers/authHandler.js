@@ -11,15 +11,12 @@ let signup = async (req, res) => {
   try {
     databaseHandler.signup(username, password).then(success => {
       if (success) {
-        // Retrieve json web token
-
-        let token = jwt.sign({"payload":"some payload"}, "shhh");
-
-        // let token = jwt.sign(
-        //   { username: username, password: password },
-        //   Config.privateKey,
-        //   Config.signOptions
-        // );
+        console.log(Config.privateKey);
+        let token = jwt.sign(
+          { username: username, password: password },
+          Config.privateKey,
+          Config.signOptions
+        );
 
         // Signup success.
         res.json({
