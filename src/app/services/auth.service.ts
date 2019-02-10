@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { LoginResponse } from '../models/login-response';
+import { AuthResponse } from '../models/auth-response';
 
 @Injectable()
 export class AuthService {
@@ -23,13 +23,13 @@ export class AuthService {
     const url = `${this.BASE_URL}/login`;
     try {
       this.http
-        .post<any>(url, { username, password })
+        .post<AuthResponse>(url, { username, password })
         .toPromise()
         .then(p => {
           if (p.success) {
             localStorage.setItem('token', p.token);
           }
-          console.log(p);
+          console.log(p.message);
         });
     } catch (err) {
       console.log(err);
@@ -40,13 +40,13 @@ export class AuthService {
     const url = `${this.BASE_URL}/signup`;
     try {
       this.http
-        .post<any>(url, { username, password })
+        .post<AuthResponse>(url, { username, password })
         .toPromise()
         .then(p => {
           if (p.success) {
             localStorage.setItem('token', p.token);
           }
-          console.log(p);
+          console.log(p.message);
         });
     } catch (err) {
       console.log(err);
