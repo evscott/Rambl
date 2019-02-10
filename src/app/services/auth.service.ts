@@ -13,30 +13,38 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  logIn(username: string, password: string): Promise<any> {
+  logIn(username: string, password: string) {
     const url = `${this.BASE_URL}/login`;
-    return this.http
-      .post<LoginResponse>(url, { username, password })
-      .toPromise()
-      .then(p => {
-        if (p.success) {
-          localStorage.setItem('token', p.token);
-        }
-        console.log(p);
-      });
+    try {
+      this.http
+        .post<any>(url, { username, password })
+        .toPromise()
+        .then(p => {
+          if (p.success) {
+            localStorage.setItem('token', p.token);
+          }
+          console.log(p);
+        });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  signUp(username: string, password: string): Promise<any> {
+  signUp(username: string, password: string) {
     const url = `${this.BASE_URL}/signup`;
-    return this.http
-      .post<LoginResponse>(url, { username, password })
-      .toPromise()
-      .then(p => {
-        if (p.success) {
-          localStorage.setItem('token', p.token);
-        }
-        console.log(p);
-      });
+    try {
+      this.http
+        .post<any>(url, { username, password })
+        .toPromise()
+        .then(p => {
+          if (p.success) {
+            localStorage.setItem('token', p.token);
+          }
+          console.log(p);
+        });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   signOut(): boolean {

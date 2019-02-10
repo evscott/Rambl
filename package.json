@@ -1,6 +1,10 @@
 {
   "name": "Rambl",
   "version": "0.0.0",
+  "engines": {
+    "node": "11.7.0",
+    "npm": "6.7.0"
+  },
   "scripts": {
     "ng": "ng",
     "start": "node server/server.js",
