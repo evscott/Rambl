@@ -1,47 +1,21 @@
 const db = require('../model/database');
 const pool = db.getPool();
+const databaseHandler = require('./databaseHandler');
 
-// Get user info handler
+/**
+ * Gets the user info from the database and gives
+ * it back to the user using the res object. Note that
+ * the user info is found in an array within the "result"
+ * key of the JSON, and there is just one element in that
+ * array.
+ * @param req the request
+ * @param res the resource to give the response
+ * @returns {Promise<void>} the promise indicating success
+ */
 let getUserInfo = async (req, res) => {
-  const username = pool.escape(req.body.username); // Get username from url
+  const username = pool.escape(req.body.username); // Get username from body
   const query = `SELECT * FROM person WHERE username = ${username};`; // TODO: add the query
-
-  try {
-    pool.query(query, (err, queryres) => {
-      // If failure accessing db, failure
-      if (err) {
-        res.json({
-          success: false,
-          message: 'Get user info failed. Database failure.',
-          result: {}
-        });
-      }
-      // If no entry in database, failure
-      else if (queryres.length == 0) {
-        res.json({
-          success: false,
-          message:
-            'Get user info failed. Username was not found in the database, despite the token being valid.',
-          result: {}
-        });
-      }
-      // If found, success
-      else {
-        res.json({
-          success: true,
-          message: 'Get user info successful!',
-          result: queryres[0]
-        });
-      }
-    });
-  } catch (err) {
-    // Ambiguous failure
-    console.err(err);
-    res.json({
-      success: false,
-      message: 'Get user info unsuccessful. This may be network related.'
-    });
-  }
+  return databaseHandler.queryDatabase(res, query, 'Get user info');
 };
 
 module.exports = {
