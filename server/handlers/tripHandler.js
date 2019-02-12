@@ -36,7 +36,7 @@ let addTrip = async (req, res) => {
 let updateTrip = async (req, res) => {
   const username = pool.escape(req.body.username); // Get username from body
   const requestedTrip = req.params['tname'];
-  console.log(requestedTrip); // TODO: remove this
+  console.log(requestedTrip);
   const query = `SELECT * FROM person WHERE username = ${username};`; // TODO: add the query
   return databaseHandler.queryDatabaseBoolean(res, query, 'Update trip');
 };
@@ -50,7 +50,7 @@ let updateTrip = async (req, res) => {
 let deleteTrip = async (req, res) => {
   const username = pool.escape(req.body.username); // Get username from body
   const requestedTrip = req.params['tname'];
-  console.log(requestedTrip); // TODO: remove this
+  console.log(requestedTrip);
   const query = `SELECT * FROM person WHERE username = ${username};`; // TODO: add the query
   return databaseHandler.queryDatabaseBoolean(res, query, 'Delete trip');
 };
