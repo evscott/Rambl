@@ -5,14 +5,16 @@ const databaseHandler = require('./databaseHandler');
 
 // Query database handler with signup request.
 let signup = async (req, res) => {
-  let username = req.body.username;
+  let email = req.body.email;
   let password = req.body.password;
+  let fName = req.body.f_name;
+  let lName = req.body.l_name;
   // Attempt signup with unique username, return success notification.
   try {
-    databaseHandler.signup(username, password).then(success => {
+    databaseHandler.signup(email, password, fName, lName).then(success => {
       if (success) {
         let token = jwt.sign(
-          { username: username, password: password },
+          { email: email, password: password },
           Config.privateKey,
           Config.signOptions
         );
@@ -45,16 +47,16 @@ let signup = async (req, res) => {
 
 // Query database handler with login request
 let login = async (req, res) => {
-  let username = req.body.username;
+  let email = req.body.email;
   let password = req.body.password;
   // Check if username and password exist, return success notification
   try {
-    databaseHandler.login(username, password).then(success => {
-      if (username && password) {
+    databaseHandler.login(email, password).then(success => {
+      if (email && password) {
         if (success) {
           // Retrieve json web token
           let token = jwt.sign(
-            { username: username, password: password },
+            { email: email, password: password },
             Config.privateKey,
             Config.signOptions
           );
