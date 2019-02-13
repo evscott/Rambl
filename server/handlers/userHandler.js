@@ -13,8 +13,8 @@ const databaseHandler = require('./databaseHandler');
  * @returns {Promise<void>} the promise indicating success
  */
 let getUserInfo = async (req, res) => {
-  const username = pool.escape(req.body.username); // Get username from body
-  const query = `SELECT * FROM person WHERE username = ${username};`; // TODO: add the query
+  const email = pool.escape(req.body.email); // Get username from body
+  const query = `SELECT * FROM users WHERE email = ${email};`;
   return databaseHandler.queryDatabase(res, query, 'Get user info');
 };
 
