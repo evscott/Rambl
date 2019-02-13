@@ -9,6 +9,7 @@ let signup = async (req, res) => {
   let password = req.body.password;
   let fName = req.body.f_name;
   let lName = req.body.l_name;
+  
   // Attempt signup with unique username, return success notification.
   try {
     databaseHandler.signup(email, password, fName, lName).then(success => {
@@ -49,6 +50,7 @@ let signup = async (req, res) => {
 let login = async (req, res) => {
   let email = req.body.email;
   let password = req.body.password;
+
   // Check if username and password exist, return success notification
   try {
     databaseHandler.login(email, password).then(success => {
