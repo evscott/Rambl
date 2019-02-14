@@ -108,7 +108,8 @@ let queryDatabaseBoolean = async (res, query, operationString) => {
           // If found, success
           res.json({
             success: true,
-            message: operationString + ' successful!'
+            message: operationString + ' successful!',
+            result: sqlRes.insertId
           });
           resolve(true);
         } else {

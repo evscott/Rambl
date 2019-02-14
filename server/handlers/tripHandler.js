@@ -11,7 +11,11 @@ const databaseHandler = require('./databaseHandler');
  */
 let getTrips = async (req, res) => {
   const email = pool.escape(req.body.email); // Get email from body
-  const query = `SELECT * FROM users WHERE email = ${email};`; // TODO: add the query
+  const query = `SELECT user_id, trip_id, name, dscript
+                  FROM trips
+                  WHERE user_id =
+                    (SELECT user_id FROM users
+                    WHERE email = ${email});`;
   return databaseHandler.queryDatabase(res, query, 'Get trips');
 };
 
@@ -22,8 +26,16 @@ let getTrips = async (req, res) => {
  * @returns {Promise<void>} the promise indicating success
  */
 let addTrip = async (req, res) => {
-  const email = pool.escape(req.body.email); // Get username from body
-  const query = `SELECT * FROM users WHERE email = ${email};`; // TODO: add the query
+  const email = pool.escape(req.body.email); // Get email from body
+  const tripName = pool.escape(req.body.name); // Get trip's name from body
+  const description = pool.escape(req.body.dscript); // Get trip's description from body
+  const query = `INSERT INTO trips (user_id, name, dscript)
+                  VALUES (
+                    (SELECT user_id FROM users
+                    WHERE email = ${email}),
+                    ${tripName},
+                    ${description}
+                  )`;
   return databaseHandler.queryDatabaseBoolean(res, query, 'Add trip');
 };
 
@@ -34,10 +46,12 @@ let addTrip = async (req, res) => {
  * @returns {Promise<void>} the promise indicating success
  */
 let updateTrip = async (req, res) => {
-  const email = pool.escape(req.body.email); // Get username from body
-  const requestedTrip = req.params['tid'];
-  console.log(requestedTrip);
-  const query = `SELECT * FROM users WHERE email = ${email};`; // TODO: add the query
+  const tripName = pool.escape(req.body.name); // Get trip's name from body
+  const description = pool.escape(req.body.dscript); // Get trip's description from body
+  const tripId = req.params['tid'];
+  const query = `UPDATE trips
+                  SET dscript = ${description}, name = ${tripName}
+                  WHERE trip_id = ${tripId}`;
   return databaseHandler.queryDatabaseBoolean(res, query, 'Update trip');
 };
 
@@ -49,9 +63,8 @@ let updateTrip = async (req, res) => {
  */
 let deleteTrip = async (req, res) => {
   const email = pool.escape(req.body.email); // Get username from body
-  const requestedTrip = req.params['tid'];
-  console.log(requestedTrip);
-  const query = `SELECT * FROM users WHERE email = ${email};`; // TODO: add the query
+  const tripId = req.params['tid'];
+  const query = `DELETE FROM trips WHERE trip_id = ${tripId}`;
   return databaseHandler.queryDatabaseBoolean(res, query, 'Delete trip');
 };
 
