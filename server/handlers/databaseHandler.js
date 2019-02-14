@@ -31,15 +31,16 @@ let login = async (email, password) => {
  * @param res object allowing sending json back to the user
  * which is making the request to the Node server
  * @param query the SQL query
+ * @param params the parameters in the SQL query
  * @param operationString the string representing the operation
  * being performed, which is used for explaining what results of
  * the operation are.
  * @returns {Promise<void>} the promise indicating success/failure
  */
-let queryDatabase = async (res, query, operationString) => {
+let queryDatabase = async (res, query, params, operationString) => {
   return new Promise((resolve, reject) => {
     try {
-      pool.query(query, (err, sqlRes) => {
+      pool.query(query, params, (err, sqlRes) => {
         if (err) {
           // If failure accessing db, failure
           res.json({
@@ -88,15 +89,19 @@ let queryDatabase = async (res, query, operationString) => {
  * @param res object allowing sending json back to the user
  * which is making the request to the Node server
  * @param query the SQL query
+ * @param params the parameters in the SQL query
  * @param operationString the string representing the operation
  * being performed, which is used for explaining what results of
  * the operation are.
  * @returns {Promise<void>} the promise indicating success/failure
  */
-let queryDatabaseBoolean = async (res, query, operationString) => {
+let queryDatabaseBoolean = async (res, query, params, operationString) => {
   return new Promise((resolve, reject) => {
     try {
-      pool.query(query, (err, sqlRes) => {
+      // Using the params puts parameters into the SQL query whenever
+      // there is a ? in the query. It escapes these to prevent SQL
+      // injection.
+      pool.query(query, params, (err, sqlRes) => {
         if (err) {
           // If failure accessing db, failure
           res.json({
@@ -111,6 +116,8 @@ let queryDatabaseBoolean = async (res, query, operationString) => {
             message: operationString + ' successful!',
             result: sqlRes.insertId
           });
+          // Note that it returns the insertId, which is 0 unless an actual
+          // insert was performed. Consider refactoring this.
           resolve(true);
         } else {
           // If no entry in db, failure
