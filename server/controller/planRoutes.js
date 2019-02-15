@@ -4,9 +4,9 @@ const middleware = require('../middleware');
 const planHandler = require('../handlers/planHandler');
 
 // All the routes for trips
-router.get('/get', middleware.checkToken, planHandler.getPlans);
-router.post('/add', middleware.checkToken, planHandler.addPlan);
-router.put('/update', middleware.checkToken, planHandler.updatePlan);
-router.delete('/delete', middleware.checkToken, planHandler.deletePlan);
+router.get('/', middleware.checkToken, planHandler.getPlans);
+router.post('/', middleware.checkToken, planHandler.addPlan);
+router.put('/', middleware.checkToken, planHandler.updatePlan);
+router.delete('/', middleware.checkToken, planHandler.deletePlan);
 
 module.exports = router;

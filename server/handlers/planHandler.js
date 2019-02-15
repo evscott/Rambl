@@ -24,9 +24,10 @@ let getPlans = async (req, res) => {
  * @returns {Promise<void>} the promise indicating success
  */
 let addPlan = async (req, res) => {
+  console.log(req.body);
   const query = `INSERT INTO plans (trip_id, cost, check_in, begin_time, 
                   end_time, loc, dscript, completed, priority)
-                  VALUES ?, ?, ?, ?, ?, ?, ?, ?, ?`;
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
   const params = [
     req.body.trip_id,
     req.body.cost,
@@ -38,6 +39,7 @@ let addPlan = async (req, res) => {
     req.body.completed,
     req.body.priority
   ];
+
   return databaseHandler.queryDatabaseBoolean(res, query, params, 'Add plan');
 };
 

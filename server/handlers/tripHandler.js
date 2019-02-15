@@ -43,7 +43,7 @@ let updateTrip = async (req, res) => {
   const query = `UPDATE trips
                   SET name = ?, dscript = ?
                   WHERE trip_id = ?`;
-  const params = [req.body.name, req.body.dscript, req.params['tid']];
+  const params = [req.body.name, req.body.dscript, req.body.trip_id];
   return databaseHandler.queryDatabaseBoolean(
     res,
     query,
@@ -60,7 +60,7 @@ let updateTrip = async (req, res) => {
  */
 let deleteTrip = async (req, res) => {
   const query = `DELETE FROM trips WHERE trip_id = ?`;
-  const params = [req.params['tid']];
+  const params = [req.body.trip_id];
   return databaseHandler.queryDatabaseBoolean(
     res,
     query,
