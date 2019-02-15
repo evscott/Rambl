@@ -4,10 +4,10 @@ const Config = require('../Config');
 const databaseHandler = require('./databaseHandler');
 
 /**
- * TODO
- * @param req
- * @param res
- * @returns {Promise<void>}
+ * Signs a user up using their email, password, first name, and last name.
+ * @param req the request.
+ * @param res the resource to give the response
+ * @returns {Promise<void>} the promise indicating success
  */
 let signup = async (req, res) => {
   let email = req.body.email;
@@ -52,10 +52,10 @@ let signup = async (req, res) => {
 };
 
 /**
- * TODO
- * @param req
- * @param res
- * @returns {Promise<void>}
+ * Logs a user in using their email and password.
+ * @param req the request
+ * @param res the response
+ * @returns {Promise<void>} the promise indicating success
  */
 let login = async (req, res) => {
   let email = req.body.email;
