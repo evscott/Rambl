@@ -34,5 +34,4 @@ app.use('/plan', planRoutes); // Plan routes
 app.use('/accom', accomRoutes); // Accommodation routes
 app.use('/tran', tranRoutes); // Transportation routes
 
-
 app.listen(port, () => console.log(`Listening on port: ${port}...`));
