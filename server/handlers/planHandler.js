@@ -8,12 +8,12 @@ const databaseHandler = require('./databaseHandler');
  * @returns {Promise<void>} the promise indicating success
  */
 let getPlans = async (req, res) => {
-  const query = `SELECT user_id, trip_id, name, dscript
-                  FROM trips
-                  WHERE user_id =
-                    (SELECT user_id FROM users
-                    WHERE email = ?)`;
-  const params = [req.body.email];
+  const query = `SELECT *
+                  FROM plans
+                  WHERE trip_id IN
+                    (SELECT trip_id FROM trips
+                    WHERE user_id = ?)`;
+  const params = [req.body.user_id];
   return databaseHandler.queryDatabase(res, query, params, 'Get plans');
 };
 
@@ -24,12 +24,12 @@ let getPlans = async (req, res) => {
  * @returns {Promise<void>} the promise indicating success
  */
 let addPlan = async (req, res) => {
-  const query = `INSERT INTO trips (user_id, name, dscript)
-                  VALUES (
-                    (SELECT user_id FROM users
-                    WHERE email = ?), ?, ?
-                  )`;
-  const params = [req.body.email, req.body.name, req.body.dscript];
+  const query = `INSERT INTO plans (trip_id, cost, check_in, begin_time, 
+                  end_time, loc, dscript, completed, priority)
+                  VALUES ?, ?, ?, ?, ?, ?, ?, ?, ?`;
+  const params = [req.body.trip_id, req.body.cost, req.body.check_in,
+    req.body.begin_time, req.body.end_time, req.body.loc, req.body.dscript,
+    req.body.completed, req.body.priority];
   return databaseHandler.queryDatabaseBoolean(res, query, params,'Add plan');
 };
 
@@ -40,10 +40,13 @@ let addPlan = async (req, res) => {
  * @returns {Promise<void>} the promise indicating success
  */
 let updatePlan = async (req, res) => {
-  const query = `UPDATE trips
-                  SET name = ?, dscript = ?
-                  WHERE trip_id = ?`;
-  const params = [req.body.name, req.body.dscript, req.params['tid']];
+  const query = `UPDATE plans 
+                  SET cost=?, check_in=?, begin_time=?, end_time=?, loc=?, 
+                  dscript=?, completed=?, priority=?
+                  WHERE trip_id=? AND e_id=?;`;
+  const params = [req.body.cost, req.body.check_in, req.body.begin_time,
+    req.body.end_time, req.body.loc, req.body.dscript, req.body.completed,
+    req.body.priority, req.body.trip_id, req.body.e_id];
   return databaseHandler.queryDatabaseBoolean(res, query, params, 'Update plan');
 };
 
@@ -54,8 +57,8 @@ let updatePlan = async (req, res) => {
  * @returns {Promise<void>} the promise indicating success
  */
 let deletePlan = async (req, res) => {
-  const query = `DELETE FROM trips WHERE trip_id = ?`;
-  const params = [req.params['tid']];
+  const query = `DELETE FROM plans WHERE trip_id = ? AND e_id=?`;
+  const params = [req.body.trip_id, req.body.e_id];
   return databaseHandler.queryDatabaseBoolean(res, query, params, 'Delete plan');
 };
 
