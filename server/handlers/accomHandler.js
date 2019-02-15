@@ -14,7 +14,7 @@ let getAccoms = async (req, res) => {
                     (SELECT trip_id FROM trips
                     WHERE user_id = ?)`;
   const params = [req.body.user_id];
-  return databaseHandler.queryDatabase(res, query, params, 'Get accoms');
+  return databaseHandler.queryDatabase(res, query, params, 'Get accommodations');
 };
 
 /**
@@ -40,7 +40,7 @@ let addAccom = async (req, res) => {
     req.body.priority
   ];
 
-  return databaseHandler.queryDatabaseBoolean(res, query, params, 'Add plan');
+  return databaseHandler.queryDatabaseBoolean(res, query, params, 'Add accommodation');
 };
 
 /**
@@ -70,7 +70,7 @@ let updateAccom = async (req, res) => {
     res,
     query,
     params,
-    'Update plan'
+    'Update accommodation'
   );
 };
 
@@ -87,7 +87,7 @@ let deleteAccom = async (req, res) => {
     res,
     query,
     params,
-    'Delete plan'
+    'Delete accommodation'
   );
 };
 

@@ -46,7 +46,7 @@ let addTransportation = async (req, res) => {
     req.body.method
   ];
 
-  return databaseHandler.queryDatabaseBoolean(res, query, params, 'Add plan');
+  return databaseHandler.queryDatabaseBoolean(res, query, params, 'Add transportation');
 };
 
 /**
@@ -93,7 +93,7 @@ let deleteTransportation = async (req, res) => {
     res,
     query,
     params,
-    'Delete plan'
+    'Delete transportation'
   );
 };
 
