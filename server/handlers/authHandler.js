@@ -96,15 +96,7 @@ let login = async (req, res) => {
   }
 };
 
-let index = (req, res) => {
-  res.json({
-    success: true,
-    message: 'Index page'
-  });
-};
-
 module.exports = {
   login: login,
-  signup: signup,
-  index: index
+  signup: signup
 };
