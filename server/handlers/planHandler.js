@@ -1,7 +1,7 @@
 const databaseHandler = require('./databaseHandler');
 
 /**
- * Gets the information for all trips and gives it back to
+ * Gets the information for all plans and gives it back to
  * the user using the res object.
  * @param req the request
  * @param res the resource to give the response

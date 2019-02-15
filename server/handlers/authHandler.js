@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const Config = require('../Config');
 const databaseHandler = require('./databaseHandler');
 
-// Query database handler with signup request.
+
 let signup = async (req, res) => {
   let email = req.body.email;
   let password = req.body.password;

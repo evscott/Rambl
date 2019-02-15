@@ -1,7 +1,7 @@
 const databaseHandler = require('./databaseHandler');
 
 /**
- * Gets the information for all trips and gives it back to
+ * Gets the information for all transportation and gives it back to
  * the user using the res object.
  * @param req the request
  * @param res the resource to give the response
@@ -23,7 +23,7 @@ let getTransportations = async (req, res) => {
 };
 
 /**
- * Adds a new plan to the database.
+ * Adds a new transportation to the database.
  * @param req the request
  * @param res the resource to give the response
  * @returns {Promise<void>} the promise indicating success
@@ -50,7 +50,7 @@ let addTransportation = async (req, res) => {
 };
 
 /**
- * Updates a pre-existing plan from the database.
+ * Updates a pre-existing transportation from the database.
  * @param req the request
  * @param res the resource to give the response
  * @returns {Promise<void>} the promise indicating success
@@ -81,7 +81,7 @@ let updateTransportation = async (req, res) => {
 };
 
 /**
- * Deletes a pre-existing plan from the database.
+ * Deletes a pre-existing transportation from the database.
  * @param req the request
  * @param res the resource to give the response
  * @returns {Promise<void>} the promise indicating success
