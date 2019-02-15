@@ -30,7 +30,7 @@ let addTrip = async (req, res) => {
                     WHERE email = ?), ?, ?
                   )`;
   const params = [req.body.email, req.body.name, req.body.dscript];
-  return databaseHandler.queryDatabaseBoolean(res, query, params,'Add trip');
+  return databaseHandler.queryDatabaseBoolean(res, query, params, 'Add trip');
 };
 
 /**
@@ -44,7 +44,12 @@ let updateTrip = async (req, res) => {
                   SET name = ?, dscript = ?
                   WHERE trip_id = ?`;
   const params = [req.body.name, req.body.dscript, req.params['tid']];
-  return databaseHandler.queryDatabaseBoolean(res, query, params, 'Update trip');
+  return databaseHandler.queryDatabaseBoolean(
+    res,
+    query,
+    params,
+    'Update trip'
+  );
 };
 
 /**
@@ -56,7 +61,12 @@ let updateTrip = async (req, res) => {
 let deleteTrip = async (req, res) => {
   const query = `DELETE FROM trips WHERE trip_id = ?`;
   const params = [req.params['tid']];
-  return databaseHandler.queryDatabaseBoolean(res, query, params, 'Delete trip');
+  return databaseHandler.queryDatabaseBoolean(
+    res,
+    query,
+    params,
+    'Delete trip'
+  );
 };
 
 module.exports = {

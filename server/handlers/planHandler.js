@@ -27,10 +27,18 @@ let addPlan = async (req, res) => {
   const query = `INSERT INTO plans (trip_id, cost, check_in, begin_time, 
                   end_time, loc, dscript, completed, priority)
                   VALUES ?, ?, ?, ?, ?, ?, ?, ?, ?`;
-  const params = [req.body.trip_id, req.body.cost, req.body.check_in,
-    req.body.begin_time, req.body.end_time, req.body.loc, req.body.dscript,
-    req.body.completed, req.body.priority];
-  return databaseHandler.queryDatabaseBoolean(res, query, params,'Add plan');
+  const params = [
+    req.body.trip_id,
+    req.body.cost,
+    req.body.check_in,
+    req.body.begin_time,
+    req.body.end_time,
+    req.body.loc,
+    req.body.dscript,
+    req.body.completed,
+    req.body.priority
+  ];
+  return databaseHandler.queryDatabaseBoolean(res, query, params, 'Add plan');
 };
 
 /**
@@ -44,10 +52,24 @@ let updatePlan = async (req, res) => {
                   SET cost=?, check_in=?, begin_time=?, end_time=?, loc=?, 
                   dscript=?, completed=?, priority=?
                   WHERE trip_id=? AND e_id=?;`;
-  const params = [req.body.cost, req.body.check_in, req.body.begin_time,
-    req.body.end_time, req.body.loc, req.body.dscript, req.body.completed,
-    req.body.priority, req.body.trip_id, req.body.e_id];
-  return databaseHandler.queryDatabaseBoolean(res, query, params, 'Update plan');
+  const params = [
+    req.body.cost,
+    req.body.check_in,
+    req.body.begin_time,
+    req.body.end_time,
+    req.body.loc,
+    req.body.dscript,
+    req.body.completed,
+    req.body.priority,
+    req.body.trip_id,
+    req.body.e_id
+  ];
+  return databaseHandler.queryDatabaseBoolean(
+    res,
+    query,
+    params,
+    'Update plan'
+  );
 };
 
 /**
@@ -59,7 +81,12 @@ let updatePlan = async (req, res) => {
 let deletePlan = async (req, res) => {
   const query = `DELETE FROM plans WHERE trip_id = ? AND e_id=?`;
   const params = [req.body.trip_id, req.body.e_id];
-  return databaseHandler.queryDatabaseBoolean(res, query, params, 'Delete plan');
+  return databaseHandler.queryDatabaseBoolean(
+    res,
+    query,
+    params,
+    'Delete plan'
+  );
 };
 
 module.exports = {
