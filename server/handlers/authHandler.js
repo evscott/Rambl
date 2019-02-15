@@ -3,7 +3,12 @@ const jwt = require('jsonwebtoken');
 const Config = require('../Config');
 const databaseHandler = require('./databaseHandler');
 
-
+/**
+ * TODO
+ * @param req
+ * @param res
+ * @returns {Promise<void>}
+ */
 let signup = async (req, res) => {
   let email = req.body.email;
   let password = req.body.password;
@@ -46,7 +51,12 @@ let signup = async (req, res) => {
   }
 };
 
-// Query database handler with login request
+/**
+ * TODO
+ * @param req
+ * @param res
+ * @returns {Promise<void>}
+ */
 let login = async (req, res) => {
   let email = req.body.email;
   let password = req.body.password;
@@ -97,6 +107,6 @@ let login = async (req, res) => {
 };
 
 module.exports = {
-  login: login,
-  signup: signup
+  signup: signup,
+  login: login
 };

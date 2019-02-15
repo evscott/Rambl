@@ -3,12 +3,17 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
-const authRoutes = require('./controller/authRoutes');
-const tripRoutes = require('./controller/tripRoutes');
-const planRoutes = require('./controller/planRoutes')
 const Config = require('./Config');
 const port = process.env.PORT || 4201;
 
+// Routes
+const accomRoutes = require('./controller/accomRoutes');
+const authRoutes = require('./controller/authRoutes');
+const planRoutes = require('./controller/planRoutes')
+const tranRoutes = require('./controller/tranRoutes');
+const tripRoutes = require('./controller/tripRoutes');
+
+// App configuration
 app.use(
   bodyParser.urlencoded({
     extended: true
@@ -21,7 +26,13 @@ app.use(express.static(path.join(__dirname, '/../dist')));
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(Config.AccessControl);
-app.use('/', authRoutes);
-app.use('/trip', tripRoutes);
-app.use('/plan', planRoutes);
+
+// App route configuration
+app.use('/', authRoutes); // Authentication routes
+app.use('/trip', tripRoutes); // Trip routes
+app.use('/plan', planRoutes); // Plan routes
+app.use('/accom', accomRoutes); // Accommodation routes
+app.use('/tran', tranRoutes); // Transportation routes
+
+
 app.listen(port, () => console.log(`Listening on port: ${port}...`));

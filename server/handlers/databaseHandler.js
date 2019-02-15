@@ -1,7 +1,14 @@
 const db = require('../model/database');
 const pool = db.getPool();
 
-// Sign up handler. Query database with signup request
+/**
+ * TODO
+ * @param email
+ * @param password
+ * @param fName
+ * @param lName
+ * @returns {Promise<*>}
+ */
 let signup = async (email, password, fName, lName) => {
   let signupQuery = `INSERT IGNORE INTO users (email, password, f_name, l_name) VALUES ("${email}", "${password}", "${fName}", "${lName}")`;
   return new Promise((resolve, reject) => {
@@ -13,7 +20,12 @@ let signup = async (email, password, fName, lName) => {
   });
 };
 
-// Sign in handler. Query database with login request
+/**
+ * TODO
+ * @param email
+ * @param password
+ * @returns {Promise<*>}
+ */
 let login = async (email, password) => {
   let loginQuery = `SELECT * FROM users WHERE email="${email}" AND password="${password}"`;
   return new Promise((resolve, reject) => {
