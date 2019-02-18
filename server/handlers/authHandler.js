@@ -3,7 +3,12 @@ const jwt = require('jsonwebtoken');
 const Config = require('../Config');
 const databaseHandler = require('./databaseHandler');
 
-// Query database handler with signup request.
+/**
+ * Signs a user up using their email, password, first name, and last name.
+ * @param req the request.
+ * @param res the resource to give the response
+ * @returns {Promise<void>} the promise indicating success
+ */
 let signup = async (req, res) => {
   let email = req.body.email;
   let password = req.body.password;
@@ -46,7 +51,12 @@ let signup = async (req, res) => {
   }
 };
 
-// Query database handler with login request
+/**
+ * Logs a user in using their email and password.
+ * @param req the request
+ * @param res the response
+ * @returns {Promise<void>} the promise indicating success
+ */
 let login = async (req, res) => {
   let email = req.body.email;
   let password = req.body.password;
@@ -96,15 +106,7 @@ let login = async (req, res) => {
   }
 };
 
-let index = (req, res) => {
-  res.json({
-    success: true,
-    message: 'Index page'
-  });
-};
-
 module.exports = {
-  login: login,
   signup: signup,
-  index: index
+  login: login
 };

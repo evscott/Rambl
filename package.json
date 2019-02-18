@@ -8,19 +8,18 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "concurrently \"npm run server\" \"npm start\"",
-    "heroku-prebuild": "rm -rf node_modules && npm install"
+    "dev": "concurrently \"npm run server\" \"npm start\""
   },
   "dependencies": {
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1",
-    "react-scripts": "2.1.5",
     "bootstrap": "^3.4.0",
     "concurrently": "^4.1.0",
     "custom-env": "^1.0.0",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
-    "mysql": "^2.16.0"
+    "mysql": "^2.16.0",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "react-scripts": "2.1.5"
   },
   "devDependencies": {
     "prettier": "^1.16.4"
