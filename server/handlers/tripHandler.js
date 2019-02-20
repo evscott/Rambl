@@ -31,7 +31,7 @@ let addTrip = async (req, res) => {
                      FROM users
                      WHERE email = ?), ?, ?
                     )`;
-  const params = ["Billybob", "React trip", "Bogus"]; //[req.body.email, req.body.name, req.body.dscript];
+  const params = [req.body.email, req.body.name, req.body.dscript];
   return databaseHandler.queryDatabaseBoolean(res, query, params, 'Add trip');
 };
 
