@@ -24,12 +24,14 @@ let getTrips = async (req, res) => {
  * @returns {Promise<void>} the promise indicating success
  */
 let addTrip = async (req, res) => {
+  console.log(req.body);
   const query = `INSERT INTO trips (user_id, name, dscript)
                   VALUES (
-                    (SELECT user_id FROM users
-                    WHERE email = ?), ?, ?
-                  )`;
-  const params = [req.body.email, req.body.name, req.body.dscript];
+                    (SELECT MAX(user_id) 
+                     FROM users
+                     WHERE email = ?), ?, ?
+                    )`;
+  const params = ["Billybob", "React trip", "Bogus"]; //[req.body.email, req.body.name, req.body.dscript];
   return databaseHandler.queryDatabaseBoolean(res, query, params, 'Add trip');
 };
 
