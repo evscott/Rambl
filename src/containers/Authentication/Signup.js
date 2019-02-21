@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signup } from '../../redux/actions/authActions';
 
-const Signup = ({ dispatch }) => {
-  let email, password, f_name, l_name;
-  return (
-    <div>
+class Signup extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    let email, password, f_name, l_name;
+    const { dispatch } = this.props;
+    return (
       <form
         onSubmit={e => {
           dispatch(
@@ -24,8 +29,8 @@ const Signup = ({ dispatch }) => {
         <input ref={node => (l_name = node)} />
         <button> Submit!</button>
       </form>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default connect()(Signup);

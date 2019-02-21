@@ -12,8 +12,8 @@ class App extends Component {
           <p>
             [In Development]
           </p>
+          <Root>document.getElementById("root")</Root>
         </header>
-        <Root>document.getElementById("root")</Root>
       </div>
     );
   }

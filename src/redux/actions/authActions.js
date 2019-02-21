@@ -9,14 +9,14 @@ export const LOGIN = 'LOGIN';
 export const LOGIN_REQUEST = 'REQUEST_LOGIN';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGOUT_REQUEST = "LOGOUT_REQUEST";
-export const LOGOUT_FAILURE = "LOGOUT_FAILURE";
+export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
+export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
 function requestSignup(user) {
   return {
     type: SIGNUP_REQUEST,
-    user: null,
+    user: user,
     receivedAt: Date.now()
   };
 }
@@ -40,7 +40,7 @@ function signupFailure() {
 function requestLogin(user) {
   return {
     type: LOGIN_REQUEST,
-    user: null,
+    user: user,
     receivedAt: Date.now()
   };
 }
@@ -100,7 +100,8 @@ export function signup(user) {
         if (json.success === false) dispatch(signupFailure());
         else {
           localStorage.setItem('token', json.token);
-          dispatch(signupSuccess(user, json))};
+          dispatch(signupSuccess(user, json));
+        }
       });
   };
 }
@@ -120,7 +121,10 @@ export function login(user) {
         if (json.success === false) dispatch(loginFailure());
         else {
           localStorage.setItem('token', json.token);
-          dispatch(loginSuccess(user, json))};
+          console.log('Stored item!');
+          console.log(localStorage.getItem('token'));
+          dispatch(loginSuccess(user, json));
+        }
       });
   };
 }
@@ -129,11 +133,11 @@ export function logout() {
   return dispatch => {
     dispatch(requestLogout());
     let token = localStorage.get('token');
-    if(!token) {
+    if (!token) {
       dispatch(logoutFailure());
     } else {
       localStorage.removeItem('token');
       dispatch(logoutSuccess());
     }
-  }
+  };
 }

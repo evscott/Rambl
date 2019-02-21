@@ -9,7 +9,7 @@ export default class Root extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Signup></Signup>
+        <Signup />
       </Provider>
     );
   }
