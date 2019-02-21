@@ -1,28 +1,42 @@
 import { combineReducers } from 'redux';
-import { SIGNUP, REQUEST_SIGNUP, SIGNUP_SUCCESS } from '../actions/authActions';
+import {
+  SIGNUP,
+  SIGNUP_REQUEST,
+  SIGNUP_SUCCESS,
+  SIGNUP_FAILURE,
+  LOGIN,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGOUT,
+  LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILURE
+} from '../actions/authActions';
 
-function authentication(
+function signup(
   state = {
     isFetching: false,
-    user: []
+    user: [],
+    lastUpdated: null
   },
   action
 ) {
   switch (action.type) {
-    case INVALIDATE_SUBREDDIT:
+    case SIGNUP_REQUEST:
       return Object.assign({}, state, {
-        didInvalidate: true
+        isFetching: true
       });
-    case REQUEST_POSTS:
-      return Object.assign({}, state, {
-        isFetching: true,
-        didInvalidate: false
-      });
-    case RECEIVE_POSTS:
+    case SIGNUP_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
-        didInvalidate: false,
-        items: action.posts,
+        user: null,
+        lastUpdated: action.receivedAt
+      });
+    case SIGNUP_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        user: action.user,
         lastUpdated: action.receivedAt
       });
     default:
@@ -30,13 +44,88 @@ function authentication(
   }
 }
 
-function postsBySubreddit(state = {}, action) {
+function login(
+  state = {
+    isFetching: false,
+    user: [],
+    lastUpdated: null
+  },
+  action
+) {
   switch (action.type) {
-    case INVALIDATE_SUBREDDIT:
-    case RECEIVE_POSTS:
-    case REQUEST_POSTS:
+    case LOGIN_REQUEST:
       return Object.assign({}, state, {
-        [action.subreddit]: posts(state[action.subreddit], action)
+        isFetching: true
+      });
+    case LOGIN_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        user: null,
+        lastUpdated: action.receivedAt
+      });
+    case LOGIN_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        user: action.user,
+        lastUpdated: action.receivedAt
+      });
+    default:
+      return state;
+  }
+}
+
+function logout(
+  state = {
+    isFetching: false,
+    user: [],
+    lastUpdated: null
+  },
+  action
+) {
+  switch (action.type) {
+    case LOGOUT_REQUEST:
+      return Object.assign({}, state, {
+        isFetching: false,
+        user: null,
+        lastUpdated: action.receivedAt
+      });
+    case LOGOUT_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        user: null,
+        lastUpdated: action.receivedAt
+      });
+    case LOGOUT_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        user: null,
+        lastUpdated: action.receivedAt
+      });
+    default:
+      return state;
+  }
+}
+
+function authenticate(
+  state = {
+    isFetching: false,
+    user: [],
+    lastUpdated: null
+  },
+  action
+) {
+  switch (action.type) {
+    case SIGNUP:
+      return Object.assign({}, state, {
+        [action.user]: signup(state[action.user], action)
+      });
+    case LOGIN:
+      return Object.assign({}, state, {
+        [action.user]: login(state[action.user], action)
+      });
+    case LOGOUT:
+      return Object.assign({}, state, {
+        [action.user]: logout(state[action.user], action)
       });
     default:
       return state;
@@ -44,8 +133,7 @@ function postsBySubreddit(state = {}, action) {
 }
 
 const authReducer = combineReducers({
-  postsBySubreddit,
-  selectedSubreddit
+  authenticate
 });
 
 export default authReducer;
