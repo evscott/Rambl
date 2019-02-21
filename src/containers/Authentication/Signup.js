@@ -23,6 +23,7 @@ class Signup extends Component {
           );
         }}
       >
+        Signup:
         <input ref={node => (email = node)} />
         <input ref={node => (password = node)} />
         <input ref={node => (f_name = node)} />
