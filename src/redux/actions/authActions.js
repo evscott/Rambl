@@ -99,7 +99,7 @@ export function signup(user) {
       .then(json => {
         if (json.success === false) dispatch(signupFailure());
         else {
-          localStorage.store('token', json.token);
+          localStorage.setItem('token', json.token);
           dispatch(signupSuccess(user, json))};
       });
   };
@@ -119,7 +119,7 @@ export function login(user) {
       .then(json => {
         if (json.success === false) dispatch(loginFailure());
         else {
-          localStorage.store('token', json.token);
+          localStorage.setItem('token', json.token);
           dispatch(loginSuccess(user, json))};
       });
   };
