@@ -14,11 +14,18 @@ let signup = async (req, res) => {
   let password = req.body.password;
   let fName = req.body.f_name;
   let lName = req.body.l_name;
-  
+
   // Attempt signup with unique username, return success notification.
   try {
-    databaseHandler.signup(email, password, fName, lName).then(success => {
-      if (success) {
+    databaseHandler.signup(email, password, fName, lName).then(response => {
+      if (response === null) {
+        // Signup unsuccessful - username potentially already taken.
+        res.json({
+          success: false,
+          message: 'Sign up unsuccessful. Username or password already taken.',
+          token: null
+        });
+      } else {
         let token = jwt.sign(
           { email: email, password: password },
           Config.privateKey,
@@ -29,14 +36,8 @@ let signup = async (req, res) => {
         res.json({
           success: true,
           message: 'Sign up successful!',
-          token: token
-        });
-      } else {
-        // Signup unsuccessful - username potentially already taken.
-        res.json({
-          success: false,
-          message: 'Sign up unsuccessful. Username or password already taken.',
-          token: null
+          token: token,
+          user: response
         });
       }
     });
@@ -63,36 +64,28 @@ let login = async (req, res) => {
 
   // Check if username and password exist, return success notification
   try {
-    databaseHandler.login(email, password).then(success => {
-      if (email && password) {
-        if (success) {
-          // Retrieve json web token
-          let token = jwt.sign(
-            { email: email, password: password },
-            Config.privateKey,
-            Config.signOptions
-          );
-
-          // Login success.
-          res.json({
-            success: true,
-            message: 'Authentication successful!',
-            token: token
-          });
-        } else {
-          // Credential authentication failure.
-          res.json({
-            success: false,
-            message: 'Incorrect username or password.',
-            token: null
-          });
-        }
-      } else {
-        // Ambiguous authentication failure.
+    databaseHandler.login(email, password).then(response => {
+      if (response === null) {
+        // Credential authentication failure.
         res.json({
           success: false,
-          message: 'Authentication failed! Please check the request.',
+          message: 'Incorrect username or password.',
           token: null
+        });
+      } else {
+        // Retrieve json web token
+        let token = jwt.sign(
+          { email: email, password: password },
+          Config.privateKey,
+          Config.signOptions
+        );
+
+        // Login success.
+        res.json({
+          success: true,
+          message: 'Authentication successful!',
+          token: token,
+          user: response
         });
       }
     });

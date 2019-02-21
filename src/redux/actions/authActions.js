@@ -6,25 +6,24 @@ export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
 export const LOGOUT = 'LOGOUT';
 export const LOGIN = 'LOGIN';
-export const LOGIN_REQUEST = 'REQUEST_LOGIN';
+export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 
-function requestSignup(user) {
+function requestSignup() {
   return {
     type: SIGNUP_REQUEST,
-    user: user,
     receivedAt: Date.now()
   };
 }
 
-function signupSuccess(user, json) {
+function signupSuccess(user) {
   return {
     type: SIGNUP_SUCCESS,
-    user: json,
+    user: user,
     receivedAt: Date.now()
   };
 }
@@ -32,23 +31,21 @@ function signupSuccess(user, json) {
 function signupFailure() {
   return {
     type: SIGNUP_FAILURE,
-    user: null,
     receivedAt: Date.now()
   };
 }
 
-function requestLogin(user) {
+function requestLogin() {
   return {
     type: LOGIN_REQUEST,
-    user: user,
     receivedAt: Date.now()
   };
 }
 
-function loginSuccess(user, json) {
+function loginSuccess(user) {
   return {
     type: LOGIN_SUCCESS,
-    user: json,
+    user: user,
     receivedAt: Date.now()
   };
 }
@@ -56,7 +53,6 @@ function loginSuccess(user, json) {
 function loginFailure() {
   return {
     type: LOGIN_FAILURE,
-    user: null,
     receivedAt: Date.now()
   };
 }
@@ -64,7 +60,6 @@ function loginFailure() {
 function requestLogout() {
   return {
     type: LOGOUT_REQUEST,
-    user: null,
     receivedAt: Date.now()
   };
 }
@@ -80,7 +75,6 @@ function logoutSuccess() {
 function logoutFailure() {
   return {
     type: LOGOUT_FAILURE,
-    user: null,
     receivedAt: Date.now()
   };
 }
@@ -100,7 +94,7 @@ export function signup(user) {
         if (json.success === false) dispatch(signupFailure());
         else {
           localStorage.setItem('token', json.token);
-          dispatch(signupSuccess(user, json));
+          dispatch(signupSuccess(json.user));
         }
       });
   };
@@ -108,7 +102,7 @@ export function signup(user) {
 
 export function login(user) {
   return dispatch => {
-    dispatch(requestLogin(user)); // Signup request process has begun...
+    dispatch(requestLogin(user)); // login request process has begun...
     return fetch('http://localhost:4201/login', {
       headers: {
         'Content-Type': 'application/json'
@@ -121,9 +115,7 @@ export function login(user) {
         if (json.success === false) dispatch(loginFailure());
         else {
           localStorage.setItem('token', json.token);
-          console.log('Stored item!');
-          console.log(localStorage.getItem('token'));
-          dispatch(loginSuccess(user, json));
+          dispatch(loginSuccess(json.user));
         }
       });
   };

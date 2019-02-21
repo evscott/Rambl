@@ -9,7 +9,7 @@ class Signup extends Component {
 
   render() {
     let email, password, f_name, l_name;
-    const { dispatch } = this.props;
+    const dispatch = this.props.dispatch;
     return (
       <form
         onSubmit={e => {

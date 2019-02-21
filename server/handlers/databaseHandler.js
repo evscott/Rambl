@@ -15,8 +15,8 @@ let signup = async (email, password, fName, lName) => {
   return new Promise((resolve, reject) => {
     pool.query(signupQuery, (err, res) => {
       if (err) reject(err);
-      else if (res.affectedRows > 0) resolve(true);
-      else resolve(false);
+      else if (res.affectedRows > 0) resolve(res[0]); // return user info
+      else resolve(null);
     });
   });
 };
@@ -33,8 +33,9 @@ let login = async (email, password) => {
   return new Promise((resolve, reject) => {
     pool.query(loginQuery, (err, res) => {
       if (err) reject(err);
-      else if (res.length > 0) resolve(true);
-      else resolve(false);
+      else if (res.length > 0) {
+        resolve(res[0]); // return user info
+      } else resolve(null);
     });
   });
 };
