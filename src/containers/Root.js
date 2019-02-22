@@ -11,14 +11,13 @@ export default class Root extends Component {
 
     store.dispatch(
       login({
-        email: 'Root',
-        password: 'Root'
+        email: 'bob',
+        password: 'bob'
       })
     );
   }
 
   render() {
-    const email = store.getState().email;
     return (
       <Provider store={store}>
       </Provider>
