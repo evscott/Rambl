@@ -82,6 +82,12 @@ function authenticate(
         isFetching: true,
         lastUpdated: action.receivedAt,
       };
+    case RECEIVE_USER_INFO_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        lastUpdated: action.receivedAt,
+      };
     case RECEIVE_USER_INFO_SUCCESS:
       return {
         ...state,
