@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
-const Config = require('./Config');
+const Config = require('./shared/Config');
 const port = process.env.PORT || 4201;
 
 // Routes

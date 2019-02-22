@@ -1,7 +1,8 @@
 const db = require('../model/database');
 const jwt = require('jsonwebtoken');
 const databaseHandler = require('./databaseHandler');
-const Config = require('../Config');
+const Config = require('../shared/Config');
+const jwtDecoder = require('../shared/jwtDecoder');
 
 /**
  * Gets the user info from the database and gives
@@ -15,25 +16,10 @@ const Config = require('../Config');
  */
 let getInfo = async (req, res) => {
   let token = req.headers['x-access-token'];
-  let email;
-  jwt.verify(
-    token,
-    Config.publicKey,
-    Config.verifyOptions,
-    (err, decoded) => {
-      if (err) {
-        return res.json({
-          success: false,
-          message: 'Token is not valid'
-        });
-      } else {
-        email = decoded.email;
-        const params = [email = decoded.email];
-        const query = `SELECT * FROM users WHERE email = ?;`;
-        return databaseHandler.queryDatabase(res, query, params, 'Get user info');
-      }
-    }
-  );
+  let email = jwtDecoder(token);
+  const params = [email];
+  const query = `SELECT * FROM users WHERE email = ?;`;
+  return databaseHandler.queryDatabase(res, query, params, 'Get user info');
 };
 
 module.exports = {
