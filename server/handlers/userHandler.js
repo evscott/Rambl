@@ -1,6 +1,7 @@
 const db = require('../model/database');
-const pool = db.getPool();
+const jwt = require('jsonwebtoken');
 const databaseHandler = require('./databaseHandler');
+const Config = require('../Config');
 
 /**
  * Gets the user info from the database and gives
@@ -12,12 +13,29 @@ const databaseHandler = require('./databaseHandler');
  * @param res the resource to give the response
  * @returns {Promise<void>} the promise indicating success
  */
-let getUserInfo = async (req, res) => {
-  const email = pool.escape(req.body.email); // Get username from body
-  const query = `SELECT * FROM users WHERE email = ${email};`;
-  return databaseHandler.queryDatabase(res, query, 'Get user info');
+let getInfo = async (req, res) => {
+  let token = req.headers['x-access-token'];
+  let email;
+  jwt.verify(
+    token,
+    Config.publicKey,
+    Config.verifyOptions,
+    (err, decoded) => {
+      if (err) {
+        return res.json({
+          success: false,
+          message: 'Token is not valid'
+        });
+      } else {
+        email = decoded.email;
+        const params = [email = decoded.email];
+        const query = `SELECT * FROM users WHERE email = ?;`;
+        return databaseHandler.queryDatabase(res, query, params, 'Get user info');
+      }
+    }
+  );
 };
 
 module.exports = {
-  getUserInfo: getUserInfo
+  getInfo: getInfo
 };

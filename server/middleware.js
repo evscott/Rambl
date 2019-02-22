@@ -3,10 +3,8 @@ const Config = require('./Config');
 
 let checkToken = (req, res, next) => {
   // Express headers are auto converted to lowercase
-  let token = req.headers['x-access-token'] || req.headers['authorization'];
+  let token = req.headers['x-access-token'];
   if (token) {
-    // Remove Bearer from string if detected
-    if (token.startsWith('Bearer ')) token = token.slice(7, token.length);
     // Determine if jwt token is legit
     jwt.verify(
       token,

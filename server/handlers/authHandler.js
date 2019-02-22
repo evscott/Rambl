@@ -17,8 +17,8 @@ let signup = async (req, res) => {
 
   // Attempt signup with unique username, return success notification.
   try {
-    databaseHandler.signup(email, password, fName, lName).then(response => {
-      if (response === null) {
+    databaseHandler.signup(email, password, fName, lName).then(success => {
+      if (success === false) {
         // Signup unsuccessful - username potentially already taken.
         res.json({
           success: false,
@@ -27,7 +27,7 @@ let signup = async (req, res) => {
         });
       } else {
         let token = jwt.sign(
-          { email: email, password: password },
+          { email: email },
           Config.privateKey,
           Config.signOptions
         );
@@ -36,8 +36,7 @@ let signup = async (req, res) => {
         res.json({
           success: true,
           message: 'Sign up successful!',
-          token: token,
-          user: response
+          token: token
         });
       }
     });
@@ -64,8 +63,8 @@ let login = async (req, res) => {
 
   // Check if username and password exist, return success notification
   try {
-    databaseHandler.login(email, password).then(response => {
-      if (response === null) {
+    databaseHandler.login(email, password).then(success => {
+      if (success === false) {
         // Credential authentication failure.
         res.json({
           success: false,
@@ -84,8 +83,7 @@ let login = async (req, res) => {
         res.json({
           success: true,
           message: 'Authentication successful!',
-          token: token,
-          user: response
+          token: token
         });
       }
     });

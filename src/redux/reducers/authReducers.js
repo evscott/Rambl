@@ -1,24 +1,24 @@
 import { combineReducers } from 'redux';
 import {
-  SIGNUP,
   SIGNUP_REQUEST,
   SIGNUP_SUCCESS,
   SIGNUP_FAILURE,
-  LOGIN,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  LOGOUT,
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
-  LOGOUT_FAILURE
+  LOGOUT_FAILURE,
+  REQUEST_USER_INFO,
+  RECEIVE_USER_INFO
 } from '../actions/authActions';
 
-function signup(
+function authenticate(
   state = {
     isFetching: false,
     user: [],
-    lastUpdated: null
+    lastUpdated: null,
+    isAuthenticated: false,
   },
   action
 ) {
@@ -30,29 +30,13 @@ function signup(
     case SIGNUP_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
-        user: null,
         lastUpdated: action.receivedAt
       });
     case SIGNUP_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
-        user: action.user,
         lastUpdated: action.receivedAt
       });
-    default:
-      return state;
-  }
-}
-
-function login(
-  state = {
-    isFetching: false,
-    user: [],
-    lastUpdated: null
-  },
-  action
-) {
-  switch (action.type) {
     case LOGIN_REQUEST:
       return Object.assign({}, state, {
         isFetching: true
@@ -60,73 +44,38 @@ function login(
     case LOGIN_FAILURE:
       return Object.assign({}, state, {
         isFetching: false,
-        user: null,
-        lastUpdated: action.receivedAt
+        lastUpdated: action.receivedAt,
       });
     case LOGIN_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
-        user: action.user,
-        lastUpdated: action.receivedAt
+        lastUpdated: action.receivedAt,
+        isAuthenticated: action.isAuthenticated
       });
-    default:
-      return state;
-  }
-}
-
-function logout(
-  state = {
-    isFetching: false,
-    user: [],
-    lastUpdated: null
-  },
-  action
-) {
-  switch (action.type) {
     case LOGOUT_REQUEST:
       return Object.assign({}, state, {
-        isFetching: false,
-        user: null,
         lastUpdated: action.receivedAt
       });
     case LOGOUT_FAILURE:
       return Object.assign({}, state, {
-        isFetching: false,
-        user: null,
         lastUpdated: action.receivedAt
       });
     case LOGOUT_SUCCESS:
       return Object.assign({}, state, {
-        isFetching: false,
         user: null,
-        lastUpdated: action.receivedAt
+        lastUpdated: action.receivedAt,
+        isAuthenticated: false
       });
-    default:
-      return state;
-  }
-}
-
-function authenticate(
-  state = {
-    isFetching: false,
-    user: [],
-    lastUpdated: null
-  },
-  action
-) {
-  switch (action.type) {
-    case SIGNUP:
+    case REQUEST_USER_INFO:
       return Object.assign({}, state, {
-        [action.user]: signup(state[action.user], action)
+        lastUpdated: action.receivedAt,
       });
-    case LOGIN:
-      return Object.assign({}, state, {
-        [action.user]: login(state[action.user], action)
-      });
-    case LOGOUT:
-      return Object.assign({}, state, {
-        [action.user]: logout(state[action.user], action)
-      });
+    case RECEIVE_USER_INFO:
+      return {
+        ...state,
+        user: action.user,
+        lastUpdated: action.receivedAt,
+      };
     default:
       return state;
   }

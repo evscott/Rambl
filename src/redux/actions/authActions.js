@@ -1,17 +1,16 @@
 import fetch from 'cross-fetch';
 
-export const SIGNUP = 'SIGN_UP';
 export const SIGNUP_REQUEST = 'REQUEST_SIGNUP';
 export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
-export const LOGOUT = 'LOGOUT';
-export const LOGIN = 'LOGIN';
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const REQUEST_USER_INFO = 'REQUEST_USER_INFO';
+export const RECEIVE_USER_INFO = 'RECEIVE_USER_INFO';
 
 function requestSignup() {
   return {
@@ -24,7 +23,8 @@ function signupSuccess(user) {
   return {
     type: SIGNUP_SUCCESS,
     user: user,
-    receivedAt: Date.now()
+    receivedAt: Date.now(),
+    isAuthenticated: true
   };
 }
 
@@ -46,7 +46,8 @@ function loginSuccess(user) {
   return {
     type: LOGIN_SUCCESS,
     user: user,
-    receivedAt: Date.now()
+    receivedAt: Date.now(),
+    isAuthenticated: true
   };
 }
 
@@ -68,7 +69,8 @@ function logoutSuccess() {
   return {
     type: LOGOUT_SUCCESS,
     user: null,
-    receivedAt: Date.now()
+    receivedAt: Date.now(),
+    isAuthenticated: false
   };
 }
 
@@ -79,6 +81,40 @@ function logoutFailure() {
   };
 }
 
+function requestUserInfo() {
+  return {
+    type: REQUEST_USER_INFO,
+    receivedAt: Date.now()
+  };
+}
+
+function receiveUserInfo(user) {
+  return {
+    type: RECEIVE_USER_INFO,
+    user: user,
+    receivedAt: Date.now()
+  };
+}
+
+// TODO should fetching token be handled with a separate success/failure action?
+export function fetchUserInfo() {
+  return dispatch => {
+    dispatch(requestUserInfo());
+    return fetch('http://localhost:4201/user/getinfo', {
+      headers: {
+        'Content-Type': 'application/json',
+        'x-access-token': localStorage.getItem('token')
+      },
+      method: 'get'
+    })
+      .then(response => response.json())
+      .then(json => dispatch(receiveUserInfo(json)));
+  };
+}
+
+/** Exported functions **/
+
+// TODO should this be exported? -- E
 export function signup(user) {
   return dispatch => {
     dispatch(requestSignup(user)); // Signup request process has begun...
@@ -100,6 +136,7 @@ export function signup(user) {
   };
 }
 
+// TODO should this be exported? -- E
 export function login(user) {
   return dispatch => {
     dispatch(requestLogin(user)); // login request process has begun...
@@ -116,11 +153,15 @@ export function login(user) {
         else {
           localStorage.setItem('token', json.token);
           dispatch(loginSuccess(json.user));
+          // TODO this should be handled differently...
+          // TODO though, this should occur AFTER loginSuccess
+          dispatch(fetchUserInfo());
         }
       });
   };
 }
 
+// TODO should this be exported? -- E
 export function logout() {
   return dispatch => {
     dispatch(requestLogout());
@@ -133,3 +174,4 @@ export function logout() {
     }
   };
 }
+

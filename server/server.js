@@ -12,6 +12,7 @@ const authRoutes = require('./controller/authRoutes');
 const planRoutes = require('./controller/planRoutes')
 const tranRoutes = require('./controller/tranRoutes');
 const tripRoutes = require('./controller/tripRoutes');
+const userRoutes = require('./controller/userRoutes');
 
 // App configuration
 app.use(
@@ -33,5 +34,6 @@ app.use('/trip', tripRoutes); // Trip routes
 app.use('/plan', planRoutes); // Plan routes
 app.use('/accom', accomRoutes); // Accommodation routes
 app.use('/tran', tranRoutes); // Transportation routes
+app.use('/user', userRoutes); // User routes
 
 app.listen(port, () => console.log(`Listening on port: ${port}...`));
