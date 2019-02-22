@@ -42,10 +42,9 @@ function requestLogin() {
   };
 }
 
-function loginSuccess(user) {
+function loginSuccess() {
   return {
     type: LOGIN_SUCCESS,
-    user: user,
     receivedAt: Date.now(),
     isAuthenticated: true
   };
@@ -97,7 +96,7 @@ function receiveUserInfo(user) {
 }
 
 // TODO should fetching token be handled with a separate success/failure action?
-export function fetchUserInfo() {
+function fetchUserInfo() {
   return dispatch => {
     dispatch(requestUserInfo());
     return fetch('http://localhost:4201/user/getinfo', {
@@ -113,8 +112,6 @@ export function fetchUserInfo() {
 }
 
 /** Exported functions **/
-
-// TODO should this be exported? -- E
 export function signup(user) {
   return dispatch => {
     dispatch(requestSignup(user)); // Signup request process has begun...
@@ -136,7 +133,6 @@ export function signup(user) {
   };
 }
 
-// TODO should this be exported? -- E
 export function login(user) {
   return dispatch => {
     dispatch(requestLogin(user)); // login request process has begun...
@@ -152,16 +148,14 @@ export function login(user) {
         if (json.success === false) dispatch(loginFailure());
         else {
           localStorage.setItem('token', json.token);
-          dispatch(loginSuccess(json.user));
-          // TODO this should be handled differently...
-          // TODO though, this should occur AFTER loginSuccess
+          dispatch(loginSuccess());
+          // TODO this maybe should be handled differently... TBD
           dispatch(fetchUserInfo());
         }
       });
   };
 }
 
-// TODO should this be exported? -- E
 export function logout() {
   return dispatch => {
     dispatch(requestLogout());

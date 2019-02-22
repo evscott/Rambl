@@ -24,52 +24,62 @@ function authenticate(
 ) {
   switch (action.type) {
     case SIGNUP_REQUEST:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: true
-      });
+      };
     case SIGNUP_FAILURE:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
         lastUpdated: action.receivedAt
-      });
+      };
     case SIGNUP_SUCCESS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
         lastUpdated: action.receivedAt
-      });
+      };
     case LOGIN_REQUEST:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: true
-      });
+      };
     case LOGIN_FAILURE:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
         lastUpdated: action.receivedAt,
-      });
+      };
     case LOGIN_SUCCESS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isFetching: false,
         lastUpdated: action.receivedAt,
         isAuthenticated: action.isAuthenticated
-      });
+      };
     case LOGOUT_REQUEST:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         lastUpdated: action.receivedAt
-      });
+      };
     case LOGOUT_FAILURE:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         lastUpdated: action.receivedAt
-      });
+      };
     case LOGOUT_SUCCESS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         user: null,
         lastUpdated: action.receivedAt,
         isAuthenticated: false
-      });
+      };
     case REQUEST_USER_INFO:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         lastUpdated: action.receivedAt,
-      });
+      };
     case RECEIVE_USER_INFO:
       return {
         ...state,
