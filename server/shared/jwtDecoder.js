@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const Config = require('./Config');
+const Config = require('../Config');
 
 let decodeToken = (token) => {
   return jwt.verify(

@@ -1,7 +1,7 @@
 const db = require('../model/database');
 const jwt = require('jsonwebtoken');
 const databaseHandler = require('./databaseHandler');
-const Config = require('../shared/Config');
+const Config = require('../Config');
 const jwtDecoder = require('../shared/jwtDecoder');
 
 /**

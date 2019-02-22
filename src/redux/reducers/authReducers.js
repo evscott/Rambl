@@ -10,7 +10,8 @@ import {
   LOGOUT_SUCCESS,
   LOGOUT_FAILURE,
   REQUEST_USER_INFO,
-  RECEIVE_USER_INFO
+  RECEIVE_USER_INFO_SUCCESS,
+  RECEIVE_USER_INFO_FAILURE
 } from '../actions/authActions';
 
 function authenticate(
@@ -78,11 +79,13 @@ function authenticate(
     case REQUEST_USER_INFO:
       return {
         ...state,
+        isFetching: true,
         lastUpdated: action.receivedAt,
       };
-    case RECEIVE_USER_INFO:
+    case RECEIVE_USER_INFO_SUCCESS:
       return {
         ...state,
+        isFetching: false,
         user: action.user,
         lastUpdated: action.receivedAt,
       };

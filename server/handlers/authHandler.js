@@ -1,6 +1,6 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const Config = require('../shared/Config');
+const Config = require('../Config');
 const databaseHandler = require('./databaseHandler');
 
 /**

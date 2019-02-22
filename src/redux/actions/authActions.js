@@ -10,7 +10,8 @@ export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const REQUEST_USER_INFO = 'REQUEST_USER_INFO';
-export const RECEIVE_USER_INFO = 'RECEIVE_USER_INFO';
+export const RECEIVE_USER_INFO_FAILURE = 'RECEIVE_USER_INFO_FAILURE';
+export const RECEIVE_USER_INFO_SUCCESS = 'RECEIVE_USER_INFO_SUCCESS';
 
 function requestSignup() {
   return {
@@ -19,10 +20,9 @@ function requestSignup() {
   };
 }
 
-function signupSuccess(user) {
+function signupSuccess() {
   return {
     type: SIGNUP_SUCCESS,
-    user: user,
     receivedAt: Date.now(),
     isAuthenticated: true
   };
@@ -87,10 +87,19 @@ function requestUserInfo() {
   };
 }
 
-function receiveUserInfo(user) {
+function receiveUserInfoSuccess(user) {
   return {
-    type: RECEIVE_USER_INFO,
+    isFetching: false,
+    type: RECEIVE_USER_INFO_SUCCESS,
     user: user,
+    receivedAt: Date.now()
+  };
+}
+
+function receiveUserInfoFailure() {
+  return {
+    isFetching: false,
+    type: RECEIVE_USER_INFO_FAILURE,
     receivedAt: Date.now()
   };
 }
@@ -107,7 +116,10 @@ function fetchUserInfo() {
       method: 'get'
     })
       .then(response => response.json())
-      .then(json => dispatch(receiveUserInfo(json)));
+      .then(json => {
+        if(json.length === 0) dispatch(receiveUserInfoFailure());
+        else dispatch(receiveUserInfoSuccess(json));
+      });
   };
 }
 
@@ -127,7 +139,9 @@ export function signup(user) {
         if (json.success === false) dispatch(signupFailure());
         else {
           localStorage.setItem('token', json.token);
-          dispatch(signupSuccess(json.user));
+          dispatch(signupSuccess());
+          // TODO this maybe should be handled differently... TBD
+          dispatch(fetchUserInfo());
         }
       });
   };
@@ -168,4 +182,3 @@ export function logout() {
     }
   };
 }
-
