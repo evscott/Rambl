@@ -11,7 +11,7 @@
     "dev": "concurrently \"npm run server\" \"npm start\""
   },
   "dependencies": {
-    "bootstrap": "^3.4.0",
+    "bootstrap": ">=3.4.1",
     "concurrently": "^4.1.0",
     "cross-fetch": "^3.0.1",
     "custom-env": "^1.0.0",
