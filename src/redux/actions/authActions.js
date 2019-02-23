@@ -9,105 +9,122 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
-export const REQUEST_USER_INFO = 'REQUEST_USER_INFO';
-export const RECEIVE_USER_INFO_FAILURE = 'RECEIVE_USER_INFO_FAILURE';
-export const RECEIVE_USER_INFO_SUCCESS = 'RECEIVE_USER_INFO_SUCCESS';
+export const GET_USER_INFO_REQUEST = 'GET_USER_INFO_REQUEST';
+export const GET_USER_INFO_FAILURE = 'GET_USER_INFO_FAILURE';
+export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS';
 
 function requestSignup() {
   return {
     type: SIGNUP_REQUEST,
-    receivedAt: Date.now()
-  };
-}
-
-function signupSuccess() {
-  return {
-    type: SIGNUP_SUCCESS,
-    receivedAt: Date.now(),
-    isAuthenticated: true
+    lastUpdated: Date.now(),
+    isFetching: true
   };
 }
 
 function signupFailure() {
   return {
     type: SIGNUP_FAILURE,
-    receivedAt: Date.now()
+    lastUpdated: Date.now(),
+    isFetching: false
+  };
+}
+
+function signupSuccess() {
+  return {
+    type: SIGNUP_SUCCESS,
+    lastUpdated: Date.now(),
+    isAuthenticated: true,
+    isFetching: true,
   };
 }
 
 function requestLogin() {
   return {
     type: LOGIN_REQUEST,
-    receivedAt: Date.now()
-  };
-}
-
-function loginSuccess() {
-  return {
-    type: LOGIN_SUCCESS,
-    receivedAt: Date.now(),
-    isAuthenticated: true
+    lastUpdated: Date.now(),
+    isFetching: true
   };
 }
 
 function loginFailure() {
   return {
     type: LOGIN_FAILURE,
-    receivedAt: Date.now()
+    lastUpdated: Date.now(),
+    isFetching: true
+  };
+}
+
+function loginSuccess() {
+  return {
+    type: LOGIN_SUCCESS,
+    lastUpdated: Date.now(),
+    isAuthenticated: true,
+    isFetching: false,
   };
 }
 
 function requestLogout() {
   return {
     type: LOGOUT_REQUEST,
-    receivedAt: Date.now()
-  };
-}
-
-function logoutSuccess() {
-  return {
-    type: LOGOUT_SUCCESS,
-    user: null,
-    receivedAt: Date.now(),
-    isAuthenticated: false
+    lastUpdated: Date.now()
   };
 }
 
 function logoutFailure() {
   return {
     type: LOGOUT_FAILURE,
-    receivedAt: Date.now()
+    lastUpdated: Date.now()
   };
 }
 
-function requestUserInfo() {
+function logoutSuccess() {
   return {
-    type: REQUEST_USER_INFO,
-    receivedAt: Date.now()
+    type: LOGOUT_SUCCESS,
+    lastUpdated: Date.now(),
+    isAuthenticated: false,
+    user: null
   };
 }
 
-function receiveUserInfoSuccess(user) {
+function getUserInfoRequest() {
   return {
+    type: GET_USER_INFO_REQUEST,
+    lastUpdated: Date.now(),
+    isFetching: true
+  };
+}
+
+function getUserInfoFailure() {
+  return {
+    type: GET_USER_INFO_FAILURE,
+    lastUpdated: Date.now(),
     isFetching: false,
-    type: RECEIVE_USER_INFO_SUCCESS,
+  };
+}
+
+function getUserInfoSuccess(user) {
+  return {
+    type: GET_USER_INFO_SUCCESS,
+    lastUpdated: Date.now(),
+    isFetching: false,
     user: user,
-    receivedAt: Date.now()
   };
 }
 
-function receiveUserInfoFailure() {
-  return {
-    isFetching: false,
-    type: RECEIVE_USER_INFO_FAILURE,
-    receivedAt: Date.now()
-  };
-}
+/**************************** Logical functions ****************************/
 
-// TODO should fetching token be handled with a separate success/failure action?
-function fetchUserInfo() {
+/**
+ * Performs an http GET user info request to server.
+ * Dispatches getUserInfoRequest to indicate the beginning of a getInfo process.
+ * Dispatches getUserInfoFailure to indicate the end of a failed getInfo process.
+ * Dispatches getUserInfoSuccess to indicate the end of a successful getInfo process.
+ * If getUserInfo process succeeds, a user object is received and passed into
+ * getUserInfoSuccess to be stored into state.
+ * @returns {function(*): Promise<Response | never>} dispatch results.
+ */
+function getUserInfo() {
   return dispatch => {
-    dispatch(requestUserInfo());
+    dispatch(getUserInfoRequest());
     return fetch('http://localhost:4201/user/getinfo', {
       headers: {
         'Content-Type': 'application/json',
@@ -117,13 +134,22 @@ function fetchUserInfo() {
     })
       .then(response => response.json())
       .then(json => {
-        if(json.length === 0) dispatch(receiveUserInfoFailure());
-        else dispatch(receiveUserInfoSuccess(json));
+        if (json.length === 0) dispatch(getUserInfoFailure());
+        else dispatch(getUserInfoSuccess(json));
       });
   };
 }
 
-/** Exported functions **/
+/**
+ * Performs an http POST signup request to server.
+ * Dispatches requestSignup to indicate the beginning of a signup process.
+ * Dispatches signupFailure to indicate the end of a failed signup process.
+ * Dispatches signupSuccess to indicate the end of a successful signup process.
+ * If signup process succeeds, a json web token is received and stored into
+ * users local storage and getUserInfo is dispatched.
+ * @param user object containing email, password, f_name, l_name.
+ * @returns {function(*): Promise<Response | never>} dispatch results.
+ */
 export function signup(user) {
   return dispatch => {
     dispatch(requestSignup(user)); // Signup request process has begun...
@@ -140,13 +166,22 @@ export function signup(user) {
         else {
           localStorage.setItem('token', json.token);
           dispatch(signupSuccess());
-          // TODO this maybe should be handled differently... TBD
-          dispatch(fetchUserInfo());
+          dispatch(getUserInfo());
         }
       });
   };
 }
 
+/**
+ * Performs an http POST login request to server.
+ * Dispatches requestLogin to indicate the beginning of a login process.
+ * Dispatches loginFailure to indicate the end of a failed login process.
+ * Dispatches loginSuccess to indicate the end of a successful login process.
+ * If login process succeeds, a json web token is received and stored into
+ * users local storage and getUserInfo is dispatched.
+ * @param user object containing email, password.
+ * @returns {function(*): Promise<Response | never>} dispatch results.
+ */
 export function login(user) {
   return dispatch => {
     dispatch(requestLogin(user)); // login request process has begun...
@@ -163,13 +198,19 @@ export function login(user) {
         else {
           localStorage.setItem('token', json.token);
           dispatch(loginSuccess());
-          // TODO this maybe should be handled differently... TBD
-          dispatch(fetchUserInfo());
+          dispatch(getUserInfo());
         }
       });
   };
 }
 
+/**
+ * "Logs" the user out by removing json web token from local storage if exists.
+ * Dispatches requestLogout to indicate beginning of logout process.
+ * Dispatches logoutFailure to indicate the end of a failed logout process.
+ * Dispatches logoutSuccess to indicate the end of a successful logout process.
+ * @returns {Function} dispatch results.
+ */
 export function logout() {
   return dispatch => {
     dispatch(requestLogout());

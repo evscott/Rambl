@@ -1,31 +1,33 @@
 const jwt = require('jsonwebtoken');
 const Config = require('../Config');
 
-let checkToken = (req, res, next) => {
-  // Express headers are auto converted to lowercase
-  let token = req.headers['x-access-token'];
+/**
+ * Checks whether user token is present and is valid.
+ * @param request containing json web token in header.
+ * @param response json object indicating failure if encountered.
+ * @param next if token is present and valid.
+ * @returns {*} json response object if token not found or invalid.
+ */
+let checkToken = (request, response, next) => {
+  let token = request.headers['x-access-token'];
   if (token) {
-    // Determine if jwt token is legit
     jwt.verify(
       token,
       Config.publicKey,
       Config.verifyOptions,
-      (err, decoded) => {
+      (err) => {
         if (err) {
-          return res.json({
+          return response.json({
             success: false,
             message: 'Token is not valid'
           });
         } else {
-          req.decoded = decoded;
-          // TODO authentication of decoded username/password
-
           next();
         }
       }
     );
   } else {
-    return res.json({
+    return response.json({
       success: false,
       message: 'Auth token is not supplied'
     });

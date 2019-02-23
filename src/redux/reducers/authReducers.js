@@ -1,107 +1,109 @@
 import { combineReducers } from 'redux';
 import {
   SIGNUP_REQUEST,
-  SIGNUP_SUCCESS,
   SIGNUP_FAILURE,
+  SIGNUP_SUCCESS,
   LOGIN_REQUEST,
-  LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  LOGIN_SUCCESS,
   LOGOUT_REQUEST,
-  LOGOUT_SUCCESS,
   LOGOUT_FAILURE,
-  REQUEST_USER_INFO,
-  RECEIVE_USER_INFO_SUCCESS,
-  RECEIVE_USER_INFO_FAILURE
+  LOGOUT_SUCCESS,
+  GET_USER_INFO_REQUEST,
+  GET_USER_INFO_FAILURE,
+  GET_USER_INFO_SUCCESS
 } from '../actions/authActions';
 
-function authenticate(
-  state = {
-    isFetching: false,
-    user: [],
-    lastUpdated: null,
-    isAuthenticated: false,
-  },
-  action
-) {
+const initialState = {
+  lastUpdated: null,
+  isAuthenticated: false,
+  isFetching: false,
+  user: [],
+};
+
+function authenticate(state = initialState, action) {
   switch (action.type) {
     case SIGNUP_REQUEST:
       return {
         ...state,
-        isFetching: true
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching
       };
     case SIGNUP_FAILURE:
       return {
         ...state,
-        isFetching: false,
-        lastUpdated: action.receivedAt
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
       };
     case SIGNUP_SUCCESS:
       return {
         ...state,
-        isFetching: false,
-        lastUpdated: action.receivedAt
+        lastUpdated: action.lastUpdated,
+        isAuthenticated: action.isAuthenticated,
+        isFetching: action.isFetching,
       };
     case LOGIN_REQUEST:
       return {
         ...state,
-        isFetching: true
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching
       };
     case LOGIN_FAILURE:
       return {
         ...state,
-        isFetching: false,
-        lastUpdated: action.receivedAt,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
       };
     case LOGIN_SUCCESS:
       return {
         ...state,
-        isFetching: false,
-        lastUpdated: action.receivedAt,
-        isAuthenticated: action.isAuthenticated
+        lastUpdated: action.lastUpdated,
+        isAuthenticated: action.isAuthenticated,
+        isFetching: action.isFetching,
       };
     case LOGOUT_REQUEST:
       return {
         ...state,
-        lastUpdated: action.receivedAt
+        lastUpdated: action.lastUpdated
       };
     case LOGOUT_FAILURE:
       return {
         ...state,
-        lastUpdated: action.receivedAt
+        lastUpdated: action.lastUpdated
       };
     case LOGOUT_SUCCESS:
       return {
         ...state,
-        user: null,
-        lastUpdated: action.receivedAt,
-        isAuthenticated: false
-      };
-    case REQUEST_USER_INFO:
-      return {
-        ...state,
-        isFetching: true,
-        lastUpdated: action.receivedAt,
-      };
-    case RECEIVE_USER_INFO_FAILURE:
-      return {
-        ...state,
-        isFetching: false,
-        lastUpdated: action.receivedAt,
-      };
-    case RECEIVE_USER_INFO_SUCCESS:
-      return {
-        ...state,
-        isFetching: false,
+        lastUpdated: action.lastUpdated,
+        isAuthenticated: action.isAuthenticated,
         user: action.user,
-        lastUpdated: action.receivedAt,
+      };
+    case GET_USER_INFO_REQUEST:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching
+      };
+    case GET_USER_INFO_FAILURE:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+      };
+    case GET_USER_INFO_SUCCESS:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        user: action.user,
       };
     default:
       return state;
   }
 }
 
-const authReducer = combineReducers({
+const rootReducer = combineReducers({
   authenticate
 });
 
-export default authReducer;
+export default rootReducer;
