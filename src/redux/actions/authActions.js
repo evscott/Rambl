@@ -205,7 +205,8 @@ export function login(user) {
 }
 
 /**
- * "Logs" the user out by removing json web token from local storage if exists.
+ * Performs a "logout" operation by removing json web token from local storage
+ * if one exists.
  * Dispatches requestLogout to indicate beginning of logout process.
  * Dispatches logoutFailure to indicate the end of a failed logout process.
  * Dispatches logoutSuccess to indicate the end of a successful logout process.
