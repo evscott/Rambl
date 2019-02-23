@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const middleware = require('../middleware');
+const middleware = require('../shared/middleware');
 const planHandler = require('../handlers/planHandler');
 
 // All the routes for plans
