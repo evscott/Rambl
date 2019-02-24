@@ -155,6 +155,14 @@ let queryDatabaseBoolean = async (res, query, params, operationString) => {
   });
 };
 
+/**
+ * Generic database query handler that queries silently without
+ * sending the results to res like in the other database handlers.
+ * It returns the sql's result.
+ * @param query the SQL query.
+ * @param params the parameters in the SQL query.
+ * @returns {Promise<*>}
+ */
 let queryDatabaseSilent = async (query, params) => {
   return new Promise((resolve, reject) => {
     try {

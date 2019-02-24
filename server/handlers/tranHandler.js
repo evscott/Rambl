@@ -64,9 +64,8 @@ let updateTransportation = async (req, res) => {
   const query = `UPDATE transportation 
                   SET cost=?, begin_time=?, end_time=?, loc=?, loc_end=?, 
                   dscript=?, completed=?, priority=?, method=?
-                  WHERE trip_id=? AND e_id=?;`;
+                  WHERE trip_id=? AND e_id=?`;
   const params = [
-    req.body.trip_id,
     req.body.cost,
     req.body.begin_time,
     req.body.end_time,
@@ -75,7 +74,9 @@ let updateTransportation = async (req, res) => {
     req.body.dscript,
     req.body.completed,
     req.body.priority,
-    req.body.method
+    req.body.method,
+    req.body.trip_id,
+    req.body.e_id
   ];
   return databaseHandler.queryDatabaseBoolean(
     res,

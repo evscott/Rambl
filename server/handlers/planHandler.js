@@ -36,13 +36,12 @@ let getPlans = async (req, res) => {
  */
 let addPlan = async (req, res) => {
   console.log(req.body);
-  const query = `INSERT INTO plans (trip_id, cost, check_in, begin_time, 
+  const query = `INSERT INTO plans (trip_id, cost, begin_time, 
                   end_time, loc, dscript, completed, priority)
-                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
   const params = [
     req.body.trip_id,
     req.body.cost,
-    req.body.check_in,
     req.body.begin_time,
     req.body.end_time,
     req.body.loc,
@@ -67,12 +66,11 @@ let addPlan = async (req, res) => {
  */
 let updatePlan = async (req, res) => {
   const query = `UPDATE plans 
-                  SET cost=?, check_in=?, begin_time=?, end_time=?, loc=?, 
+                  SET cost=?, begin_time=?, end_time=?, loc=?, 
                   dscript=?, completed=?, priority=?
-                  WHERE trip_id=? AND e_id=?;`;
+                  WHERE trip_id=? AND e_id=?`;
   const params = [
     req.body.cost,
-    req.body.check_in,
     req.body.begin_time,
     req.body.end_time,
     req.body.loc,
