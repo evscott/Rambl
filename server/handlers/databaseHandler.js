@@ -155,9 +155,29 @@ let queryDatabaseBoolean = async (res, query, params, operationString) => {
   });
 };
 
+let queryDatabaseSilent = async (query, params) => {
+  return new Promise((resolve, reject) => {
+    try {
+      pool.query(query, params, (err, sqlRes) => {
+        if (err) {
+          // If failure accessing db, failure
+          reject(err);
+        } else {
+          resolve(sqlRes);
+        }
+      });
+    } catch (err) {
+      // Ambiguous failure
+      console.err(err);
+      reject(err);
+    }
+  });
+};
+
 module.exports = {
   signup: signup,
   login: login,
   queryDatabase: queryDatabase,
-  queryDatabaseBoolean: queryDatabaseBoolean
+  queryDatabaseBoolean: queryDatabaseBoolean,
+  queryDatabaseSilent: queryDatabaseSilent
 };
