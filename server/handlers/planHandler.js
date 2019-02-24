@@ -1,4 +1,5 @@
 const databaseHandler = require('./databaseHandler');
+const jwtDecoder = require('../shared/jwtDecoder');
 
 /**
  * Gets the information for all plans and gives it back to
@@ -8,13 +9,23 @@ const databaseHandler = require('./databaseHandler');
  * @returns {Promise<void>} the promise indicating success
  */
 let getPlans = async (req, res) => {
+  let token = req.headers['x-access-token'];
+  let email = jwtDecoder(token);
+  const params = [email];
   const query = `SELECT *
                   FROM plans
                   WHERE trip_id IN
                     (SELECT trip_id FROM trips
-                    WHERE user_id = ?)`;
-  const params = [req.body.user_id];
-  return databaseHandler.queryDatabase(res, query, params, 'Get plans');
+                    WHERE user_id =
+                      (SELECT user_id FROM users
+                      WHERE email = ?))`;
+
+  return databaseHandler.queryDatabase(
+    res,
+    query,
+    params,
+    'Get plans'
+  );
 };
 
 /**
@@ -40,7 +51,12 @@ let addPlan = async (req, res) => {
     req.body.priority
   ];
 
-  return databaseHandler.queryDatabaseBoolean(res, query, params, 'Add plan');
+  return databaseHandler.queryDatabaseBoolean(
+    res,
+    query,
+    params,
+    'Add plan'
+  );
 };
 
 /**
