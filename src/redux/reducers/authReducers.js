@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import {
   SIGNUP_REQUEST,
   SIGNUP_FAILURE,
@@ -18,10 +17,10 @@ const initialState = {
   lastUpdated: null,
   isAuthenticated: false,
   isFetching: false,
-  user: [],
+  user: null,
 };
 
-function authenticate(state = initialState, action) {
+export function authReducer(state = initialState, action) {
   switch (action.type) {
     case SIGNUP_REQUEST:
       return {
@@ -101,9 +100,3 @@ function authenticate(state = initialState, action) {
       return state;
   }
 }
-
-const rootReducer = combineReducers({
-  authenticate
-});
-
-export default rootReducer;
