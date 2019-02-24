@@ -12,8 +12,8 @@ export default class Root extends Component {
 
     store.dispatch(
       login({
-        email: 'Root',
-        password: 'Root'
+        email: 'graeme@gmail.com',
+        password: 'password'
       })
     );
 

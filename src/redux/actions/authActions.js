@@ -152,7 +152,7 @@ function getUserInfo() {
  */
 export function signup(user) {
   return dispatch => {
-    dispatch(requestSignup(user)); // Signup request process has begun...
+    dispatch(requestSignup()); // Signup request process has begun...
     return fetch('http://localhost:4201/signup', {
       headers: {
         'Content-Type': 'application/json'
@@ -184,7 +184,7 @@ export function signup(user) {
  */
 export function login(user) {
   return dispatch => {
-    dispatch(requestLogin(user)); // login request process has begun...
+    dispatch(requestLogin()); // login request process has begun...
     return fetch('http://localhost:4201/login', {
       headers: {
         'Content-Type': 'application/json'
