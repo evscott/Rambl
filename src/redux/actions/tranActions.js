@@ -145,12 +145,13 @@ function getTranInfoFailure() {
   };
 }
 
-function getTranInfoSuccess() {
+function getTranInfoSuccess(trans) {
   return {
     type: GET_TRAN_INFO_SUCCESS,
     lastUpdated: Date.now(),
     isFetching: false,
-    isSynced: true
+    isSynced: true,
+    trans: trans
   };
 }
 
@@ -180,14 +181,13 @@ function getTranInfo(e_id) {
       .then(json => {
         if (json.length === 0) dispatch(getTranInfoFailure());
         else {
-          // TODO fix this --- breaks sync up
           // Push newly added tran to state tran list
-          // let trans = getState().masterReducer.trans.trans;
-          // let trip_id = json.result[0].trip_id;
-          // let e_id = json.result[0].e_id;
-          // if(trans[trip_id] === undefined) trans[trip_id] = {};
-          // trans[trip_id][e_id] = json.result[0];
-          //dispatch(getTranInfoSuccess(trans));
+          let trans = getState().masterReducer.trans.trans;
+          let trip_id = json.result[0].trip_id;
+          let e_id = json.result[0].e_id;
+          if(trans[trip_id] === undefined) trans[trip_id] = {};
+          trans[trip_id][e_id] = json.result[0];
+          dispatch(getTranInfoSuccess(trans));
         }
       });
   };
@@ -319,9 +319,9 @@ export function deleteTran(tran) {
       .then(json => {
         if (json.success === false) dispatch(deleteTranFailure());
         else {
-          // Filter out deleted tran from state tran list
+          // Deleted tran from state tran list
           let trans = getState().masterReducer.trans.trans;
-          trans = trans.filter(t => t.e_id !== tran.e_id);
+          delete trans[tran.trip_id][tran.e_id];
           dispatch(deleteTranSuccess(trans));
         }
       });
