@@ -10,7 +10,10 @@ import {
   UPDATE_TRIP_SUCCESS,
   DELETE_TRIP_REQUEST,
   DELETE_TRIP_FAILURE,
-  DELETE_TRIP_SUCCESS
+  DELETE_TRIP_SUCCESS,
+  GET_TRIP_INFO_REQUEST,
+  GET_TRIP_INFO_FAILURE,
+  GET_TRIP_INFO_SUCCESS
 } from '../actions/tripActions';
 
 const initialState = {
@@ -63,8 +66,7 @@ export function tripReducer(state = initialState, action) {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
-        isSynced: action.isSynced,
-        trips: action.trips
+        isSynced: action.isSynced
       }
     case UPDATE_TRIP_REQUEST:
       return {
@@ -85,8 +87,7 @@ export function tripReducer(state = initialState, action) {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
-        isSynced: action.isSynced,
-        trips: action.trips
+        isSynced: action.isSynced
       }
     case DELETE_TRIP_REQUEST:
       return {
@@ -110,6 +111,28 @@ export function tripReducer(state = initialState, action) {
         isSynced: action.isSynced,
         trips: action.trips
       }
+    case GET_TRIP_INFO_REQUEST:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced,
+      };
+    case GET_TRIP_INFO_FAILURE:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced,
+      };
+    case GET_TRIP_INFO_SUCCESS:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced,
+        trips: action.trips
+      };
     default:
       return state
   }

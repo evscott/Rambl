@@ -135,7 +135,7 @@ function getUserInfo() {
       .then(response => response.json())
       .then(json => {
         if (json.length === 0) dispatch(getUserInfoFailure());
-        else dispatch(getUserInfoSuccess(json));
+        else dispatch(getUserInfoSuccess(json.result));
       });
   };
 }

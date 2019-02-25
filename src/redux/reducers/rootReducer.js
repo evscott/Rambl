@@ -12,6 +12,17 @@ const initialState = {
 export function masterReducer(state = initialState, action) {
   switch (action.type) {
     case TripActions.GET_TRIPS_REQUEST:
+    case TripActions.GET_TRIPS_FAILURE:
+    case TripActions.GET_TRIPS_SUCCESS:
+    case TripActions.ADD_TRIP_REQUEST:
+    case TripActions.ADD_TRIP_FAILURE:
+    case TripActions.ADD_TRIP_SUCCESS:
+    case TripActions.UPDATE_TRIP_REQUEST:
+    case TripActions.UPDATE_TRIP_FAILURE:
+    case TripActions.UPDATE_TRIP_SUCCESS:
+    case TripActions.DELETE_TRIP_REQUEST:
+    case TripActions.DELETE_TRIP_FAILURE:
+    case TripActions.DELETE_TRIP_SUCCESS:
       return {
         ...state,
         trips: tripReducer(state.trips, action)
