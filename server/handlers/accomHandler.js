@@ -23,7 +23,33 @@ let getAccoms = async (req, res) => {
     res,
     query,
     params,
-    'Get accommodations'
+    'Get all accommodations'
+  );
+};
+
+/**
+ * Gets the information for a specific accommodations and gives it back to
+ * the user using the res object.
+ * @param req the request
+ * @param res the resource to give the response
+ * @returns {Promise<void>} the promise indicating success
+ */
+let getAccom = async (req, res) => {
+  let token = req.headers['x-access-token'];
+  let email = jwtDecoder(token);
+  const query = `SELECT *
+                FROM accoms
+                WHERE trip_id IN
+                  (SELECT trip_id FROM trips
+                  WHERE e_id = ? AND user_id =
+                    (SELECT user_id FROM users
+                    WHERE email = ?))`;
+  const params = [req.body.e_id, email];
+  return databaseHandler.queryDatabase(
+    res,
+    query,
+    params,
+    'Get a accommodation'
   );
 };
 
@@ -108,6 +134,7 @@ let deleteAccom = async (req, res) => {
 
 module.exports = {
   getAccoms: getAccoms,
+  getAccom: getAccom,
   addAccom: addAccom,
   updateAccom: updateAccom,
   deleteAccom: deleteAccom

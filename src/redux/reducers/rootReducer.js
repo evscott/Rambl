@@ -1,19 +1,21 @@
 import { combineReducers } from 'redux';
-import { authReducer } from './authReducers';
-import { tripReducer } from './tripReducers';
-import { tranReducer } from './tranReducer';
+import { authReducer } from './authReducer';
+import { tripReducer } from './tripReducer';
 import { planReducer } from './planReducer';
+import { tranReducer } from './tranReducer';
+import { accomReducer } from './accomReducer';
 import * as AuthActions from '../actions/authActions';
 import * as TripActions from '../actions/tripActions';
-import * as TranActions from '../actions/tranActions';
 import * as PlanActions from '../actions/planActions';
+import * as TranActions from '../actions/tranActions';
+import * as AccomActions from '../actions/accomActions';
 
 const initialState = {
   user: {
     lastUpdated: null,
     isAuthenticated: false,
     isFetching: false,
-    user: null,
+    user: null
   },
   trips: {
     lastUpdated: null,
@@ -32,8 +34,14 @@ const initialState = {
     isFetching: false,
     isSynced: false,
     trans: []
+  },
+  accoms: {
+    lastUpdated: null,
+    isFetching: false,
+    isSynced: false,
+    accoms: []
   }
-}
+};
 
 export function masterReducer(state = initialState, action) {
   switch (action.type) {
@@ -109,6 +117,25 @@ export function masterReducer(state = initialState, action) {
       return {
         ...state,
         trans: tranReducer(state.trans, action)
+      };
+    case AccomActions.GET_ACCOMS_REQUEST:
+    case AccomActions.GET_ACCOMS_FAILURE:
+    case AccomActions.GET_ACCOMS_SUCCESS:
+    case AccomActions.ADD_ACCOM_REQUEST:
+    case AccomActions.ADD_ACCOM_FAILURE:
+    case AccomActions.ADD_ACCOM_SUCCESS:
+    case AccomActions.UPDATE_ACCOM_REQUEST:
+    case AccomActions.UPDATE_ACCOM_FAILURE:
+    case AccomActions.UPDATE_ACCOM_SUCCESS:
+    case AccomActions.DELETE_ACCOM_REQUEST:
+    case AccomActions.DELETE_ACCOM_FAILURE:
+    case AccomActions.DELETE_ACCOM_SUCCESS:
+    case AccomActions.GET_ACCOM_INFO_REQUEST:
+    case AccomActions.GET_ACCOM_INFO_FAILURE:
+    case AccomActions.GET_ACCOM_INFO_SUCCESS:
+      return {
+        ...state,
+        accoms: accomReducer(state.accoms, action)
       };
     default:
       return state;
