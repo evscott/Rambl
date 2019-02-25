@@ -4,9 +4,8 @@ import './Login.css';
 class Login extends Component {
   constructor(props) {
     super(props);
-    console.log('HEYO');
     // logout, to reset status
-    props.onLogout();
+    this.props.onLogout();
 
     this.state = {
       email: '',
@@ -26,40 +25,33 @@ class Login extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.setState({ submitted: true });
-    const { email, password } = this.state;
-    if (email && password) {
-      this.props.onLogin({email, password});
+
+    // If not blank, we attempt login
+    if (this.state.email && this.state.password) {
+      this.props.onLogin(this.state);
     }
   }
 
   render() {
-    const { username, password, submitted } = this.state;
+    const { email, password, submitted } = this.state;
     return (
       <div className="col-md-6 col-md-offset-3">
         <h2>Login</h2>
         <form name="form" onSubmit={this.handleSubmit}>
-          <div
-            className={
-              'form-group' + (submitted && !username ? ' has-error' : '')
-            }
-          >
-            <label htmlFor="username">Username</label>
+          <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
+            <label htmlFor="email">Email</label>
             <input
               type="text"
               className="form-control"
-              name="username"
-              value={username}
+              name="email"
+              value={email}
               onChange={this.handleChange}
             />
-            {submitted && !username && (
-              <div className="help-block">Username is required</div>
+            {submitted && !email && (
+              <div className="help-block">Email is required</div>
             )}
           </div>
-          <div
-            className={
-              'form-group' + (submitted && !password ? ' has-error' : '')
-            }
-          >
+          <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -73,7 +65,7 @@ class Login extends Component {
             )}
           </div>
           <div className="form-group">
-            <button className="btn btn-primary">Login</button>
+            <button className="btn btn-primary" type="submit">Login</button>
           </div>
         </form>
       </div>

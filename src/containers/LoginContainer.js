@@ -2,14 +2,14 @@ import { connect } from 'react-redux';
 import { Login } from '../components/Login';
 import { login, logout } from '../redux/actions/authActions';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = () => {
   return {};
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = () => {
   return {
     onLogin: user => {
-      login();
+      login(user);
     },
     onLogout: () => {
       logout();
