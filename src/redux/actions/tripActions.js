@@ -182,7 +182,7 @@ function getTripInfo(trip_id) {
         else {
           // Push newly added trip to state trip list
           let trips = getState().masterReducer.trips.trips;
-          trips.push(json.result[0]);
+          trips[json.result[0].trip_id] = json.result[0];
           dispatch(getTripInfoSuccess(trips));
         }
       });
@@ -211,7 +211,11 @@ export function getTrips() {
       .then(response => response.json())
       .then(json => {
         if (json.success === false) dispatch(getTripsFailure());
-        else dispatch(getTripsSuccess(json.result));
+        else {
+          let trips = [];
+          json.result.forEach(t => (trips[t.trip_id] = t));
+          dispatch(getTripsSuccess(trips));
+        }
       });
   };
 }
@@ -274,9 +278,9 @@ export function updateTrip(trip) {
       .then(json => {
         if (json.success === false) dispatch(updateTripFailure());
         else {
-          // Filter out outdated trip, fetch updated trip
+          // Remove outdated trip, fetch updated trip
           let trips = getState().masterReducer.trips.trips;
-          trip = trips.filter(t => t.trip_id !== trip.trip_id);
+          delete trips[trip.trip_id];
           dispatch(updateTripSuccess());
           dispatch(getTripInfo(trip.trip_id));
         }
@@ -309,9 +313,9 @@ export function deleteTrip(trip) {
       .then(json => {
         if (json.success === false) dispatch(deleteTripFailure());
         else {
-          // Filter out deleted trip from state trip list
+          // Remove deleted trip from state trip list
           let trips = getState().masterReducer.trips.trips;
-          trips = trips.filter(t => t.trip_id !== trip.trip_id);
+          delete trips[trip.trip_id];
           dispatch(deleteTripSuccess(trips));
         }
       });
