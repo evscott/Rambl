@@ -17,7 +17,7 @@ let getTrips = async (req, res) => {
                     (SELECT user_id FROM users
                     WHERE email = ?)`;
   const params = [email];
-  return databaseHandler.queryDatabase(res, query, params, 'Get trips');
+  return databaseHandler.queryDatabase(res, query, params, 'Get all trips');
 };
 
 /**
@@ -37,7 +37,7 @@ let getTrip = async (req, res) => {
                     (SELECT user_id FROM users
                     WHERE email = ?)`;
   const params = [req.body.trip_id, email];
-  return databaseHandler.queryDatabase(res, query, params, 'Get trips');
+  return databaseHandler.queryDatabase(res, query, params, 'Get a trip');
 };
 
 /**
