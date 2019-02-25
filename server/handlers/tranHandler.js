@@ -19,12 +19,16 @@ let getTransportations = async (req, res) => {
                       (SELECT user_id FROM users
                       WHERE email = ?))`;
   const params = [email];
-  return databaseHandler.queryDatabase(res, query, params,'Get transportation');
+  return databaseHandler.queryDatabase(
+    res,
+    query,
+    params,
+    'Get all transportation'
+  );
 };
 
-
 /**
- * Gets the information for all transportation and gives it back to
+ * Gets the information for a specific transportation and gives it back to
  * the user using the res object.
  * @param req the request
  * @param res the resource to give the response
@@ -41,7 +45,12 @@ let getTransportation = async (req, res) => {
                       (SELECT user_id FROM users
                       WHERE email = ?))`;
   const params = [req.body.e_id, email];
-  return databaseHandler.queryDatabase(res, query, params,'Get transportation');
+  return databaseHandler.queryDatabase(
+    res,
+    query,
+    params,
+    'Get a transportation'
+  );
 };
 
 /**

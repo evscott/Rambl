@@ -20,12 +20,28 @@ let getPlans = async (req, res) => {
                       (SELECT user_id FROM users
                       WHERE email = ?))`;
 
-  return databaseHandler.queryDatabase(
-    res,
-    query,
-    params,
-    'Get plans'
-  );
+  return databaseHandler.queryDatabase(res, query, params, 'Get all plans');
+};
+
+/**
+ * Gets the information for a specific plan and gives it back to
+ * the user using the res object.
+ * @param req the request
+ * @param res the resource to give the response
+ * @returns {Promise<void>} the promise indicating success
+ */
+let getPlan = async (req, res) => {
+  let token = req.headers['x-access-token'];
+  let email = jwtDecoder(token);
+  const query = `SELECT *
+                 FROM plans
+                 WHERE e_id = ? AND trip_id IN
+                       (SELECT trip_id FROM trips
+                        WHERE user_id =
+                              (SELECT user_id FROM users
+                               WHERE email = ?))`;
+  const params = [req.body.e_id, email];
+  return databaseHandler.queryDatabase(res, query, params, 'Get a plan');
 };
 
 /**
@@ -50,12 +66,7 @@ let addPlan = async (req, res) => {
     req.body.priority
   ];
 
-  return databaseHandler.queryDatabaseBoolean(
-    res,
-    query,
-    params,
-    'Add plan'
-  );
+  return databaseHandler.queryDatabaseBoolean(res, query, params, 'Add plan');
 };
 
 /**
@@ -107,6 +118,7 @@ let deletePlan = async (req, res) => {
 
 module.exports = {
   getPlans: getPlans,
+  getPlan: getPlan,
   addPlan: addPlan,
   updatePlan: updatePlan,
   deletePlan: deletePlan
