@@ -1,20 +1,4 @@
-import {
-  GET_TRIPS_REQUEST,
-  GET_TRIPS_FAILURE,
-  GET_TRIPS_SUCCESS,
-  ADD_TRIP_REQUEST,
-  ADD_TRIP_FAILURE,
-  ADD_TRIP_SUCCESS,
-  UPDATE_TRIP_REQUEST,
-  UPDATE_TRIP_FAILURE,
-  UPDATE_TRIP_SUCCESS,
-  DELETE_TRIP_REQUEST,
-  DELETE_TRIP_FAILURE,
-  DELETE_TRIP_SUCCESS,
-  GET_TRIP_INFO_REQUEST,
-  GET_TRIP_INFO_FAILURE,
-  GET_TRIP_INFO_SUCCESS
-} from '../actions/tripActions';
+import * as tripActions from '../actions/tripActions';
 
 const initialState = {
   lastUpdated: null,
@@ -25,21 +9,21 @@ const initialState = {
 
 export function tripReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_TRIPS_REQUEST:
+    case tripActions.GET_TRIPS_REQUEST:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced
       }
-    case GET_TRIPS_FAILURE:
+    case tripActions.GET_TRIPS_FAILURE:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
       }
-    case GET_TRIPS_SUCCESS:
+    case tripActions.GET_TRIPS_SUCCESS:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
@@ -47,63 +31,63 @@ export function tripReducer(state = initialState, action) {
         isSynced: action.isSynced,
         trips: action.trips
       }
-    case ADD_TRIP_REQUEST:
+    case tripActions.ADD_TRIP_REQUEST:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced
       }
-    case ADD_TRIP_FAILURE:
+    case tripActions.ADD_TRIP_FAILURE:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
       }
-    case ADD_TRIP_SUCCESS:
+    case tripActions.ADD_TRIP_SUCCESS:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced
       }
-    case UPDATE_TRIP_REQUEST:
+    case tripActions.UPDATE_TRIP_REQUEST:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced
       }
-    case UPDATE_TRIP_FAILURE:
+    case tripActions.UPDATE_TRIP_FAILURE:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
       }
-    case UPDATE_TRIP_SUCCESS:
+    case tripActions.UPDATE_TRIP_SUCCESS:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced
       }
-    case DELETE_TRIP_REQUEST:
+    case tripActions.DELETE_TRIP_REQUEST:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced
       }
-    case DELETE_TRIP_FAILURE:
+    case tripActions.DELETE_TRIP_FAILURE:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
       }
-    case DELETE_TRIP_SUCCESS:
+    case tripActions.DELETE_TRIP_SUCCESS:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
@@ -111,21 +95,21 @@ export function tripReducer(state = initialState, action) {
         isSynced: action.isSynced,
         trips: action.trips
       }
-    case GET_TRIP_INFO_REQUEST:
+    case tripActions.GET_TRIP_INFO_REQUEST:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
       };
-    case GET_TRIP_INFO_FAILURE:
+    case tripActions.GET_TRIP_INFO_FAILURE:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
       };
-    case GET_TRIP_INFO_SUCCESS:
+    case tripActions.GET_TRIP_INFO_SUCCESS:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
