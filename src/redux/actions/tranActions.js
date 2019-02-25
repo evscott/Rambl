@@ -284,9 +284,9 @@ export function updateTran(tran) {
       .then(json => {
         if (json.success === false) dispatch(updateTranFailure());
         else {
-          // Filter out outdated tran, fetch updated tran
+          // Delete outdated tran, fetch updated tran
           let trans = getState().masterReducer.trans.trans;
-          tran = trans.filter(t => t.e_id !== tran.e_id);
+          delete trans[tran.trip_id][tran.e_id];
           dispatch(updateTranSuccess());
           dispatch(getTranInfo(tran.e_id));
         }
