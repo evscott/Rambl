@@ -49,7 +49,6 @@ let getTrip = async (req, res) => {
 let addTrip = async (req, res) => {
   let token = req.headers['x-access-token'];
   let email = jwtDecoder(token);
-  console.log(req.body);
   const query = `INSERT INTO trips (user_id, name, dscript)
                   VALUES (
                     (SELECT MAX(user_id) 
