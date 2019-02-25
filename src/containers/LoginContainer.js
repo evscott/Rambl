@@ -2,8 +2,11 @@ import { connect } from 'react-redux';
 import { Login } from '../components/Login';
 import { login, logout } from '../redux/actions/authActions';
 
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = (state) => {
+  console.log(state.authenticate.isAuthenticated);
+  return {
+    isAuthenticated: state.authenticate.isAuthenticated
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
