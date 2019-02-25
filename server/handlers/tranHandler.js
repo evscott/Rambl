@@ -22,6 +22,28 @@ let getTransportations = async (req, res) => {
   return databaseHandler.queryDatabase(res, query, params,'Get transportation');
 };
 
+
+/**
+ * Gets the information for all transportation and gives it back to
+ * the user using the res object.
+ * @param req the request
+ * @param res the resource to give the response
+ * @returns {Promise<void>} the promise indicating success
+ */
+let getTransportation = async (req, res) => {
+  let token = req.headers['x-access-token'];
+  let email = jwtDecoder(token);
+  const query = `SELECT *
+                  FROM transportation
+                  WHERE e_id = ? AND trip_id IN
+                    (SELECT trip_id FROM trips
+                    WHERE user_id =
+                      (SELECT user_id FROM users
+                      WHERE email = ?))`;
+  const params = [req.body.e_id, email];
+  return databaseHandler.queryDatabase(res, query, params,'Get transportation');
+};
+
 /**
  * Adds a new transportation to the database.
  * @param req the request
@@ -105,6 +127,7 @@ let deleteTransportation = async (req, res) => {
 
 module.exports = {
   getTransportations: getTransportations,
+  getTransportation: getTransportation,
   addTransportation: addTransportation,
   updateTransportation: updateTransportation,
   deleteTransportation: deleteTransportation

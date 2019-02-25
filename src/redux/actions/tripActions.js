@@ -286,7 +286,7 @@ export function updateTrip(trip) {
 
 /**
  * Performs an http DELETE deleteTrip request to server.
- * Dispatches deleteTrip to indicate the beginning of an deleteTrip process.
+ * Dispatches deleteTrip to indicate the beginning of a deleteTrip process.
  * Dispatches deleteTripFailure to indicate the end of a failed deleteTrip process.
  * Dispatches deleteTripSuccess to indicate the end of a successful deleteTrip process.
  * If deleteTrip process succeeds, the deleted trip is filtered out of the
