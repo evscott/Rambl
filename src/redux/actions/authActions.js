@@ -215,7 +215,7 @@ export function login(user) {
 export function logout() {
   return dispatch => {
     dispatch(requestLogout());
-    let token = localStorage.get('token');
+    let token = localStorage.getItem('token');
     if (!token) {
       dispatch(logoutFailure());
     } else {
