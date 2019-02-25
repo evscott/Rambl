@@ -155,9 +155,37 @@ let queryDatabaseBoolean = async (res, query, params, operationString) => {
   });
 };
 
+/**
+ * Generic database query handler that queries silently without
+ * sending the results to res like in the other database handlers.
+ * It returns the sql's result.
+ * @param query the SQL query.
+ * @param params the parameters in the SQL query.
+ * @returns {Promise<*>}
+ */
+let queryDatabaseSilent = async (query, params) => {
+  return new Promise((resolve, reject) => {
+    try {
+      pool.query(query, params, (err, sqlRes) => {
+        if (err) {
+          // If failure accessing db, failure
+          reject(err);
+        } else {
+          resolve(sqlRes);
+        }
+      });
+    } catch (err) {
+      // Ambiguous failure
+      console.err(err);
+      reject(err);
+    }
+  });
+};
+
 module.exports = {
   signup: signup,
   login: login,
   queryDatabase: queryDatabase,
-  queryDatabaseBoolean: queryDatabaseBoolean
+  queryDatabaseBoolean: queryDatabaseBoolean,
+  queryDatabaseSilent: queryDatabaseSilent
 };

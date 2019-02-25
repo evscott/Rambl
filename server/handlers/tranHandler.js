@@ -1,4 +1,5 @@
 const databaseHandler = require('./databaseHandler');
+const jwtDecoder = require('../shared/jwtDecoder');
 
 /**
  * Gets the information for all transportation and gives it back to
@@ -8,18 +9,17 @@ const databaseHandler = require('./databaseHandler');
  * @returns {Promise<void>} the promise indicating success
  */
 let getTransportations = async (req, res) => {
+  let token = req.headers['x-access-token'];
+  let email = jwtDecoder(token);
   const query = `SELECT *
                   FROM transportation
                   WHERE trip_id IN
                     (SELECT trip_id FROM trips
-                    WHERE user_id = ?)`;
-  const params = [req.body.user_id];
-  return databaseHandler.queryDatabase(
-    res,
-    query,
-    params,
-    'Get transportation'
-  );
+                    WHERE user_id =
+                      (SELECT user_id FROM users
+                      WHERE email = ?))`;
+  const params = [email];
+  return databaseHandler.queryDatabase(res, query, params,'Get transportation');
 };
 
 /**
@@ -46,7 +46,12 @@ let addTransportation = async (req, res) => {
     req.body.method
   ];
 
-  return databaseHandler.queryDatabaseBoolean(res, query, params, 'Add transportation');
+  return databaseHandler.queryDatabaseBoolean(
+    res,
+    query,
+    params,
+    'Add transportation'
+  );
 };
 
 /**
@@ -59,9 +64,8 @@ let updateTransportation = async (req, res) => {
   const query = `UPDATE transportation 
                   SET cost=?, begin_time=?, end_time=?, loc=?, loc_end=?, 
                   dscript=?, completed=?, priority=?, method=?
-                  WHERE trip_id=? AND e_id=?;`;
+                  WHERE trip_id=? AND e_id=?`;
   const params = [
-    req.body.trip_id,
     req.body.cost,
     req.body.begin_time,
     req.body.end_time,
@@ -70,7 +74,9 @@ let updateTransportation = async (req, res) => {
     req.body.dscript,
     req.body.completed,
     req.body.priority,
-    req.body.method
+    req.body.method,
+    req.body.trip_id,
+    req.body.e_id
   ];
   return databaseHandler.queryDatabaseBoolean(
     res,

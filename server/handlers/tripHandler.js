@@ -1,4 +1,5 @@
 const databaseHandler = require('./databaseHandler');
+const jwtDecoder = require('../shared/jwtDecoder');
 
 /**
  * Gets the information for all trips and gives it back to
@@ -8,12 +9,14 @@ const databaseHandler = require('./databaseHandler');
  * @returns {Promise<void>} the promise indicating success
  */
 let getTrips = async (req, res) => {
+  let token = req.headers['x-access-token'];
+  let email = jwtDecoder(token);
   const query = `SELECT user_id, trip_id, name, dscript
                   FROM trips
                   WHERE user_id =
                     (SELECT user_id FROM users
                     WHERE email = ?)`;
-  const params = [req.body.email];
+  const params = [email];
   return databaseHandler.queryDatabase(res, query, params, 'Get trips');
 };
 
@@ -24,6 +27,8 @@ let getTrips = async (req, res) => {
  * @returns {Promise<void>} the promise indicating success
  */
 let addTrip = async (req, res) => {
+  let token = req.headers['x-access-token'];
+  let email = jwtDecoder(token);
   console.log(req.body);
   const query = `INSERT INTO trips (user_id, name, dscript)
                   VALUES (
@@ -31,7 +36,7 @@ let addTrip = async (req, res) => {
                      FROM users
                      WHERE email = ?), ?, ?
                     )`;
-  const params = [req.body.email, req.body.name, req.body.dscript];
+  const params = [email, req.body.name, req.body.dscript];
   return databaseHandler.queryDatabaseBoolean(res, query, params, 'Add trip');
 };
 
