@@ -2,9 +2,11 @@ import { combineReducers } from 'redux';
 import { authReducer } from './authReducers';
 import { tripReducer } from './tripReducers';
 import { tranReducer } from './tranReducer';
+import { planReducer } from './planReducer';
 import * as AuthActions from '../actions/authActions';
 import * as TripActions from '../actions/tripActions';
 import * as TranActions from '../actions/tranActions';
+import * as PlanActions from '../actions/planActions';
 
 const initialState = {
   user: {
@@ -19,13 +21,19 @@ const initialState = {
     isSynced: false,
     trips: []
   },
+  plans: {
+    lastUpdated: null,
+    isFetching: false,
+    isSynced: false,
+    plans: []
+  },
   trans: {
     lastUpdated: null,
     isFetching: false,
     isSynced: false,
     trans: []
   }
-};
+}
 
 export function masterReducer(state = initialState, action) {
   switch (action.type) {
@@ -63,6 +71,25 @@ export function masterReducer(state = initialState, action) {
       return {
         ...state,
         trips: tripReducer(state.trips, action)
+      };
+    case PlanActions.GET_PLANS_REQUEST:
+    case PlanActions.GET_PLANS_FAILURE:
+    case PlanActions.GET_PLANS_SUCCESS:
+    case PlanActions.ADD_PLAN_REQUEST:
+    case PlanActions.ADD_PLAN_FAILURE:
+    case PlanActions.ADD_PLAN_SUCCESS:
+    case PlanActions.UPDATE_PLAN_REQUEST:
+    case PlanActions.UPDATE_PLAN_FAILURE:
+    case PlanActions.UPDATE_PLAN_SUCCESS:
+    case PlanActions.DELETE_PLAN_REQUEST:
+    case PlanActions.DELETE_PLAN_FAILURE:
+    case PlanActions.DELETE_PLAN_SUCCESS:
+    case PlanActions.GET_PLAN_INFO_REQUEST:
+    case PlanActions.GET_PLAN_INFO_FAILURE:
+    case PlanActions.GET_PLAN_INFO_SUCCESS:
+      return {
+        ...state,
+        plans: planReducer(state.plans, action)
       };
     case TranActions.GET_TRANS_REQUEST:
     case TranActions.GET_TRANS_FAILURE:
