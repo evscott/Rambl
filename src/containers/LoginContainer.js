@@ -6,13 +6,14 @@ const mapStateToProps = () => {
   return {};
 };
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onLogin: user => {
-      login(user);
+      console.log('Clicked onLogin button');
+      dispatch(login(user));
     },
     onLogout: () => {
-      logout();
+      dispatch(logout());
     }
   };
 };
