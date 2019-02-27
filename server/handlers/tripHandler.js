@@ -14,8 +14,8 @@ let getTrips = async (req, res) => {
   const query = `SELECT user_id, trip_id, name, dscript
                  FROM trips
                  WHERE user_id =
-                       (SELECT user_id FROM users
-                        WHERE email = ?)`;
+                    (SELECT user_id FROM users
+                    WHERE email = ?)`;
   const params = [email];
   return databaseHandler.queryDatabase(res, query, params, 'Get trips');
 };

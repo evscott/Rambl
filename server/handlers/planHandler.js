@@ -36,10 +36,10 @@ let getPlan = async (req, res) => {
   const query = `SELECT *
                  FROM plans
                  WHERE e_id = ? AND trip_id IN
-                       (SELECT trip_id FROM trips
-                        WHERE user_id =
-                              (SELECT user_id FROM users
-                               WHERE email = ?))`;
+                   (SELECT trip_id FROM trips
+                   WHERE user_id =
+                     (SELECT user_id FROM users
+                     WHERE email = ?))`;
   const params = [req.params.e_id, email];
   return databaseHandler.queryDatabase(res, query, params, 'Get a plan');
 };
