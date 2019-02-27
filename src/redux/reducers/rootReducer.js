@@ -5,39 +5,6 @@ import { planReducer } from './planReducer';
 import { tranReducer } from './tranReducer';
 import { accomReducer } from './accomReducer';
 
-const initialState = {
-  user: {
-    lastUpdated: null,
-    isAuthenticated: false,
-    isFetching: false,
-    user: null
-  },
-  trips: {
-    lastUpdated: null,
-    isFetching: false,
-    isSynced: false,
-    trips: []
-  },
-  plans: {
-    lastUpdated: null,
-    isFetching: false,
-    isSynced: false,
-    plans: []
-  },
-  trans: {
-    lastUpdated: null,
-    isFetching: false,
-    isSynced: false,
-    trans: []
-  },
-  accoms: {
-    lastUpdated: null,
-    isFetching: false,
-    isSynced: false,
-    accoms: []
-  }
-};
-
 const rootReducer = combineReducers({
   user: authReducer,
   trips: tripReducer,
