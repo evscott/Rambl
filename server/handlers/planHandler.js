@@ -35,7 +35,7 @@ let getPlan = async (req, res) => {
   let email = jwtDecoder(token);
   const query = `SELECT *
                  FROM plans
-                 WHERE e_id = ? AND trip_id IN
+                 WHERE (e_id = ?) AND trip_id IN
                    (SELECT trip_id FROM trips
                    WHERE user_id =
                      (SELECT user_id FROM users
