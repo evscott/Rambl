@@ -3,16 +3,19 @@ import { Login } from '../components/Login';
 import { login, logout } from '../redux/actions/authActions';
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    isAuthenticated: state.authenticate.isAuthenticated,
+    isFetching: state.authenticate.isFetching
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     onLogin: user => {
-      login();
+      dispatch(login(user));
     },
     onLogout: () => {
-      logout();
+      dispatch(logout());
     }
   };
 };

@@ -11,6 +11,14 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Oswald", sans-serif;
 }
 
+h1 {
+  font-size: 80px;
+}
+
+h2 {
+  font-size: 60px;
+}
+
 select.form-control,
 textarea.form-control,
 input.form-control {
@@ -25,3 +33,5 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+

@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
+import {Link, Redirect} from "react-router-dom";
+import { FormInput} from "./FormInput";
 import './Login.css';
 
-class Login extends Component {
+export class Login extends Component {
   constructor(props) {
     super(props);
-    console.log('HEYO');
     // logout, to reset status
-    props.onLogout();
+    this.props.onLogout();
 
     this.state = {
-      email: '',
-      password: '',
-      submitted: false
+      email: '', // Holds the email
+      password: '', // Holds the password
+      attemptedSubmit: false // Tells us if they clicked submit
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -19,66 +20,62 @@ class Login extends Component {
   }
 
   handleChange(e) {
+    // Get the input's "name" attribute and its
+    // "value" attribute, puts both into the state.
     const { name, value } = e.target;
-    this.setState({ [name]: value });
+    this.setState({ [name]: value }); // Square brackets are important for syntax
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({ submitted: true });
-    const { email, password } = this.state;
-    if (email && password) {
-      this.props.onLogin({email, password});
+    this.setState({ attemptedSubmit: true });
+    // If not blank, we attempt login
+    if (this.state.email && this.state.password) {
+      this.props.onLogin(this.state);
     }
   }
 
   render() {
-    const { username, password, submitted } = this.state;
-    return (
-      <div className="col-md-6 col-md-offset-3">
-        <h2>Login</h2>
-        <form name="form" onSubmit={this.handleSubmit}>
-          <div
-            className={
-              'form-group' + (submitted && !username ? ' has-error' : '')
-            }
-          >
-            <label htmlFor="username">Username</label>
-            <input
+    if(this.props.isAuthenticated) {
+      // Redirect if authenticated
+      return <Redirect to="/dashboard" />;
+    } else {
+
+      // Div for when there is an error when submitting
+      // Only shown if not fetching from server and already attempted to submit
+      let errorDiv = ( this.state.attemptedSubmit && !this.props.isFetching ? (
+          <div className="alert alert-danger">Login failed with the provided username and password.</div>
+        ) : '');
+
+      return (
+        <div className="col-md-6 col-md-offset-3">
+          <h2>Login</h2>
+          <form name="form" onSubmit={this.handleSubmit}>
+            {errorDiv}
+            <FormInput
+              name="email"
+              displayName="Email"
               type="text"
-              className="form-control"
-              name="username"
-              value={username}
-              onChange={this.handleChange}
+              handleChange={this.handleChange}
+              error={this.state.attemptedSubmit}
+              value={this.state.email}
             />
-            {submitted && !username && (
-              <div className="help-block">Username is required</div>
-            )}
-          </div>
-          <div
-            className={
-              'form-group' + (submitted && !password ? ' has-error' : '')
-            }
-          >
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              className="form-control"
+            <FormInput
               name="password"
-              value={password}
-              onChange={this.handleChange}
+              displayName="Password"
+              type="password"
+              handleChange={this.handleChange}
+              error={this.state.attemptedSubmit}
+              value={this.state.password}
             />
-            {submitted && !password && (
-              <div className="help-block">Password is required</div>
-            )}
-          </div>
-          <div className="form-group">
-            <button className="btn btn-primary">Login</button>
-          </div>
-        </form>
-      </div>
-    );
+            <div className="btn-toolbar">
+              <Link to="/" className="btn btn-default">Back</Link>
+              <button className="btn btn-primary pull-right" type="submit">Login</button>
+              <Link to="/signup" className="btn btn-default pull-right">Sign Up</Link>
+            </div>
+          </form>
+        </div>
+      );
+    }
   }
 }
-
-export { Login };
