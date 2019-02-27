@@ -1,139 +1,148 @@
-import {
-  GET_TRIPS_REQUEST,
-  GET_TRIPS_FAILURE,
-  GET_TRIPS_SUCCESS,
-  ADD_TRIP_REQUEST,
-  ADD_TRIP_FAILURE,
-  ADD_TRIP_SUCCESS,
-  UPDATE_TRIP_REQUEST,
-  UPDATE_TRIP_FAILURE,
-  UPDATE_TRIP_SUCCESS,
-  DELETE_TRIP_REQUEST,
-  DELETE_TRIP_FAILURE,
-  DELETE_TRIP_SUCCESS,
-  GET_TRIP_INFO_REQUEST,
-  GET_TRIP_INFO_FAILURE,
-  GET_TRIP_INFO_SUCCESS
-} from '../actions/tripActions';
+import { filterArray } from '../../shared/filterArray';
+import { updateArray } from '../../shared/updateArray';
+import * as TripActions from '../actions/tripActions';
 
 const initialState = {
   lastUpdated: null,
   isFetching: false,
   isSynced: false,
-  trip: []
+  trips: []
 };
 
 export function tripReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_TRIPS_REQUEST:
+    case TripActions.GET_TRIPS_FROM_DB_REQUEST:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced
-      }
-    case GET_TRIPS_FAILURE:
-      return {
-        ...state,
-        lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
-        isSynced: action.isSynced,
-      }
-    case GET_TRIPS_SUCCESS:
-      return {
-        ...state,
-        lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
-        isSynced: action.isSynced,
-        trips: action.trips
-      }
-    case ADD_TRIP_REQUEST:
-      return {
-        ...state,
-        lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
-        isSynced: action.isSynced
-      }
-    case ADD_TRIP_FAILURE:
-      return {
-        ...state,
-        lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
-        isSynced: action.isSynced,
-      }
-    case ADD_TRIP_SUCCESS:
-      return {
-        ...state,
-        lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
-        isSynced: action.isSynced
-      }
-    case UPDATE_TRIP_REQUEST:
-      return {
-        ...state,
-        lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
-        isSynced: action.isSynced
-      }
-    case UPDATE_TRIP_FAILURE:
-      return {
-        ...state,
-        lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
-        isSynced: action.isSynced,
-      }
-    case UPDATE_TRIP_SUCCESS:
-      return {
-        ...state,
-        lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
-        isSynced: action.isSynced
-      }
-    case DELETE_TRIP_REQUEST:
-      return {
-        ...state,
-        lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
-        isSynced: action.isSynced
-      }
-    case DELETE_TRIP_FAILURE:
-      return {
-        ...state,
-        lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
-        isSynced: action.isSynced,
-      }
-    case DELETE_TRIP_SUCCESS:
-      return {
-        ...state,
-        lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
-        isSynced: action.isSynced,
-        trips: action.trips
-      }
-    case GET_TRIP_INFO_REQUEST:
-      return {
-        ...state,
-        lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
-        isSynced: action.isSynced,
       };
-    case GET_TRIP_INFO_FAILURE:
+    case TripActions.GET_TRIPS_FROM_DB_FAILURE:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
-        isSynced: action.isSynced,
+        isSynced: action.isSynced
       };
-    case GET_TRIP_INFO_SUCCESS:
+    case TripActions.GET_TRIPS_FROM_DB_SUCCESS:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
         trips: action.trips
+      };
+    case TripActions.ADD_TRIP_TO_DB_REQUEST:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced
+      };
+    case TripActions.ADD_TRIP_TO_DB_FAILURE:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced
+      };
+    case TripActions.ADD_TRIP_TO_DB_SUCCESS:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced
+      };
+    case TripActions.ADD_TRIP_TO_STATE:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced,
+        trips: updateArray(
+          state.trips,
+          action.tripToAdd.trip_id,
+          action.tripToAdd.e_id,
+          action.tripToAdd
+        )
+      };
+    case TripActions.UPDATE_TRIP_IN_DB_REQUEST:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced
+      };
+    case TripActions.UPDATE_TRIP_IN_DB_FAILURE:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced
+      };
+    case TripActions.UPDATE_TRIP_IN_DB_SUCCESS:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced
+      };
+    case TripActions.DELETE_TRIP_IN_DB_REQUEST:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced
+      };
+    case TripActions.DELETE_TRIP_IN_DB_FAILURE:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced
+      };
+    case TripActions.DELETE_TRIP_IN_DB_SUCCESS:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced
+      };
+    case TripActions.DELETE_TRIP_IN_STATE:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced,
+        trips: filterArray(
+          state.trips,
+          action.tripToDelete.trip_id,
+          action.tripToDelete.e_id
+        )
+      };
+    case TripActions.GET_TRIP_INFO_FROM_DB_REQUEST:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced
+      };
+    case TripActions.GET_TRIP_INFO_FROM_DB_FAILURE:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced
+      };
+    case TripActions.GET_TRIP_INFO_FROM_DB_SUCCESS:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced
       };
     default:
-      return state
+      return state;
   }
 }

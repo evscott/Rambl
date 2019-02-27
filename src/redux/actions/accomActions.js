@@ -148,7 +148,7 @@ function deleteAccomInState(accomToDelete) {
   };
 }
 
-function getAccomInfoRequest() {
+function getAccomInfoFromDbRequest() {
   return {
     type: GET_ACCOM_INFO_FROM_DB_REQUEST,
     lastUpdated: Date.now(),
@@ -157,7 +157,7 @@ function getAccomInfoRequest() {
   };
 }
 
-function getAccomInfoFailure() {
+function getAccomInfoFromDbFailure() {
   return {
     type: GET_ACCOM_INFO_FROM_DB_FAILURE,
     lastUpdated: Date.now(),
@@ -166,7 +166,7 @@ function getAccomInfoFailure() {
   };
 }
 
-function getAccomInfoSuccess() {
+function getAccomInfoFromDbSuccess() {
   return {
     type: GET_ACCOM_INFO_FROM_DB_SUCCESS,
     lastUpdated: Date.now(),
@@ -179,16 +179,16 @@ function getAccomInfoSuccess() {
 
 /**
  * Performs an http POST get accom info request to server.
- * Dispatches getUserInfoRequest to indicate the beginning of a getAccomInfo process.
- * Dispatches getAccomInfoFailure to indicate the end of a failed getAccomInfo process.
- * Dispatches getAccomSuccess to indicate the end of a successful getAccomInfo process.
- * If getAccomInfo process succeeds, a accom list object is received and passed into
- * getAccomInfoSuccess to be stored into state.
+ * Dispatches getUserInfoRequest to indicate the beginning of a getAccomInfoFromDb process.
+ * Dispatches getAccomInfoFromDbFailure to indicate the end of a failed getAccomInfoFromDb process.
+ * Dispatches getAccomSuccess to indicate the end of a successful getAccomInfoFromDb process.
+ * If getAccomInfoFromDb process succeeds, a accom list object is received and passed into
+ * getAccomInfoFromDbSuccess to be stored into state.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
-function getAccomInfo(e_id) {
+function getAccomInfoFromDb(e_id) {
   return dispatch => {
-    dispatch(getAccomInfoRequest());
+    dispatch(getAccomInfoFromDbRequest());
     return fetch('http://localhost:4201/accom/get', {
       headers: {
         'Content-Type': 'application/json',
@@ -199,9 +199,9 @@ function getAccomInfo(e_id) {
     })
       .then(response => response.json())
       .then(json => {
-        if (json.length === 0) dispatch(getAccomInfoFailure());
+        if (json.length === 0) dispatch(getAccomInfoFromDbFailure());
         else {
-          dispatch(getAccomInfoSuccess());
+          dispatch(getAccomInfoFromDbSuccess());
           dispatch(addAccomToState(json.result[0]));
         }
       });
@@ -247,7 +247,7 @@ export function getAccomsFromDb() {
  * Dispatches addAccomToDb to indicate the beginning of an addAccomToDb process.
  * Dispatches addAccomToDbFailure to indicate the end of a failed addAccomToDb process.
  * Dispatches addAccomToDbSuccess to indicate the end of a successful addAccomToDb process.
- * If addAccomToDb process succeeds, getAccomInfo is dispatched using the returned
+ * If addAccomToDb process succeeds, getAccomInfoFromDb is dispatched using the returned
  * e_id of the newly added accom.
  * @param accom object containing email, name, and dscript.
  * @returns {function(*): Promise<Response | never>} dispatch results.
@@ -268,7 +268,7 @@ export function addAccomToDb(accom) {
         if (json.success === false) dispatch(addAccomToDbFailure());
         else {
           dispatch(addAccomToDbSuccess());
-          dispatch(getAccomInfo(json.result));
+          dispatch(getAccomInfoFromDb(json.result));
         }
       });
   };
@@ -280,7 +280,7 @@ export function addAccomToDb(accom) {
  * Dispatches updateAccomInDbFailure to indicate the end of a failed updateAccomInDb process.
  * Dispatches updateAccomInDbSuccess to indicate the end of a successful updateAccomInDb process.
  * If updateAccomInDb process succeeds, the outdated accom is filtered out of the state list
- * and getAccomInfo is dispatched using the e_id of the updated accom.
+ * and getAccomInfoFromDb is dispatched using the e_id of the updated accom.
  * @param accom object containing name, dscript, e_id.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
@@ -300,7 +300,7 @@ export function updateAccomInDb(accom) {
         if (json.success === false) dispatch(updateAccomInDbFailure());
         else {
           dispatch(updateAccomInDbSuccess());
-          dispatch(getAccomInfo(accom.e_id));
+          dispatch(getAccomInfoFromDb(accom.e_id));
         }
       });
   };

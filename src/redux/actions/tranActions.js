@@ -148,7 +148,7 @@ function deleteTranInState(tranToDelete) {
   };
 }
 
-function getTranInfoRequest() {
+function getTranInfoFromDbRequest() {
   return {
     type: GET_TRAN_INFO_FROM_DB_REQUEST,
     lastUpdated: Date.now(),
@@ -157,7 +157,7 @@ function getTranInfoRequest() {
   };
 }
 
-function getTranInfoFailure() {
+function getTranInfoFromDbFailure() {
   return {
     type: GET_TRAN_INFO_FROM_DB_FAILURE,
     lastUpdated: Date.now(),
@@ -166,7 +166,7 @@ function getTranInfoFailure() {
   };
 }
 
-function getTranInfoSuccess() {
+function getTranInfoFromDbSuccess() {
   return {
     type: GET_TRAN_INFO_FROM_DB_SUCCESS,
     lastUpdated: Date.now(),
@@ -179,16 +179,16 @@ function getTranInfoSuccess() {
 
 /**
  * Performs an http POST get tran info request to server.
- * Dispatches getUserInfoRequest to indicate the beginning of a getTranInfo process.
- * Dispatches getTranInfoFailure to indicate the end of a failed getTranInfo process.
- * Dispatches getTranSuccess to indicate the end of a successful getTranInfo process.
- * If getTranInfo process succeeds, a tran list object is received and passed into
- * getTranInfoSuccess to be stored into state.
+ * Dispatches getUserInfoRequest to indicate the beginning of a getTranInfoFromDb process.
+ * Dispatches getTranInfoFromDbFailure to indicate the end of a failed getTranInfoFromDb process.
+ * Dispatches getTranSuccess to indicate the end of a successful getTranInfoFromDb process.
+ * If getTranInfoFromDb process succeeds, a tran list object is received and passed into
+ * getTranInfoFromDbSuccess to be stored into state.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
-function getTranInfo(e_id) {
+function getTranInfoFromDb(e_id) {
   return dispatch => {
-    dispatch(getTranInfoRequest());
+    dispatch(getTranInfoFromDbRequest());
     return fetch('http://localhost:4201/tran/get', {
       headers: {
         'Content-Type': 'application/json',
@@ -199,9 +199,9 @@ function getTranInfo(e_id) {
     })
       .then(response => response.json())
       .then(json => {
-        if (json.length === 0) dispatch(getTranInfoFailure());
+        if (json.length === 0) dispatch(getTranInfoFromDbFailure());
         else {
-          dispatch(getTranInfoSuccess());
+          dispatch(getTranInfoFromDbSuccess());
           dispatch(addTranToState(json.result[0]));
         }
       });
@@ -247,7 +247,7 @@ export function getTransFromDb() {
  * Dispatches addTranToDb to indicate the beginning of an addTranToDb process.
  * Dispatches addTranToDbFailure to indicate the end of a failed addTranToDb process.
  * Dispatches addTranToDbSuccess to indicate the end of a successful addTranToDb process.
- * If addTranToDb process succeeds, getTranInfo is dispatched using the returned
+ * If addTranToDb process succeeds, getTranInfoFromDb is dispatched using the returned
  * e_id of the newly added tran.
  * @param tran object containing email, name, and dscript.
  * @returns {function(*): Promise<Response | never>} dispatch results.
@@ -268,7 +268,7 @@ export function addTranToDb(tran) {
         if (json.success === false) dispatch(addTranToDbFailure());
         else {
           dispatch(addTranToDbSuccess());
-          dispatch(getTranInfo(json.result));
+          dispatch(getTranInfoFromDb(json.result));
         }
       });
   };
@@ -280,7 +280,7 @@ export function addTranToDb(tran) {
  * Dispatches updateTranInDbFailure to indicate the end of a failed updateTranInDb process.
  * Dispatches updateTranInDbSuccess to indicate the end of a successful updateTranInDb process.
  * If updateTranInDb process succeeds, the outdated tran is filtered out of the state list
- * and getTranInfo is dispatched using the e_id of the updated tran.
+ * and getTranInfoFromDb is dispatched using the e_id of the updated tran.
  * @param tran object containing name, dscript, e_id.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
@@ -300,7 +300,7 @@ export function updateTranInDb(tran) {
         if (json.success === false) dispatch(updateTranInDbFailure());
         else {
           dispatch(updateTranInDbSuccess());
-          dispatch(getTranInfo(tran.e_id));
+          dispatch(getTranInfoFromDb(tran.e_id));
         }
       });
   };

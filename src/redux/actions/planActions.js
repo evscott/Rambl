@@ -148,7 +148,7 @@ function deletePlanInState(planToDelete) {
   };
 }
 
-function getPlanInfoRequest() {
+function getPlanInfoFromDbRequest() {
   return {
     type: GET_PLAN_INFO_FROM_DB_REQUEST,
     lastUpdated: Date.now(),
@@ -157,7 +157,7 @@ function getPlanInfoRequest() {
   };
 }
 
-function getPlanInfoFailure() {
+function getPlanInfoFromDbFailure() {
   return {
     type: GET_PLAN_INFO_FROM_DB_FAILURE,
     lastUpdated: Date.now(),
@@ -166,7 +166,7 @@ function getPlanInfoFailure() {
   };
 }
 
-function getPlanInfoSuccess() {
+function getPlanInfoFromDbSuccess() {
   return {
     type: GET_PLAN_INFO_FROM_DB_SUCCESS,
     lastUpdated: Date.now(),
@@ -179,16 +179,16 @@ function getPlanInfoSuccess() {
 
 /**
  * Performs an http POST get plan info request to server.
- * Dispatches getUserInfoRequest to indicate the beginning of a getPlanInfo process.
- * Dispatches getPlanInfoFailure to indicate the end of a failed getPlanInfo process.
- * Dispatches getPlanSuccess to indicate the end of a successful getPlanInfo process.
- * If getPlanInfo process succeeds, a plan list object is received and passed into
- * getPlanInfoSuccess to be stored into state.
+ * Dispatches getUserInfoRequest to indicate the beginning of a getPlanInfoFromDb process.
+ * Dispatches getPlanInfoFromDbFailure to indicate the end of a failed getPlanInfoFromDb process.
+ * Dispatches getPlanSuccess to indicate the end of a successful getPlanInfoFromDb process.
+ * If getPlanInfoFromDb process succeeds, a plan list object is received and passed into
+ * getPlanInfoFromDbSuccess to be stored into state.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
-function getPlanInfo(e_id) {
+function getPlanInfoFromDb(e_id) {
   return dispatch => {
-    dispatch(getPlanInfoRequest());
+    dispatch(getPlanInfoFromDbRequest());
     return fetch('http://localhost:4201/plan/get', {
       headers: {
         'Content-Type': 'application/json',
@@ -199,9 +199,9 @@ function getPlanInfo(e_id) {
     })
       .then(response => response.json())
       .then(json => {
-        if (json.length === 0) dispatch(getPlanInfoFailure());
+        if (json.length === 0) dispatch(getPlanInfoFromDbFailure());
         else {
-          dispatch(getPlanInfoSuccess());
+          dispatch(getPlanInfoFromDbSuccess());
           dispatch(addPlanToState(json.result[0]));
         }
       });
@@ -247,7 +247,7 @@ export function getPlansFromDb() {
  * Dispatches addPlanToDb to indicate the beginning of an addPlanToDb process.
  * Dispatches addPlanToDbFailure to indicate the end of a failed addPlanToDb process.
  * Dispatches addPlanToDbSuccess to indicate the end of a successful addPlanToDb process.
- * If addPlanToDb process succeeds, getPlanInfo is dispatched using the returned
+ * If addPlanToDb process succeeds, getPlanInfoFromDb is dispatched using the returned
  * e_id of the newly added plan.
  * @param plan object containing email, name, and dscript.
  * @returns {function(*): Promise<Response | never>} dispatch results.
@@ -268,7 +268,7 @@ export function addPlanToDb(plan) {
         if (json.success === false) dispatch(addPlanToDbFailure());
         else {
           dispatch(addPlanToDbSuccess());
-          dispatch(getPlanInfo(json.result));
+          dispatch(getPlanInfoFromDb(json.result));
         }
       });
   };
@@ -280,7 +280,7 @@ export function addPlanToDb(plan) {
  * Dispatches updatePlanInDbFailure to indicate the end of a failed updatePlanInDb process.
  * Dispatches updatePlanInDbSuccess to indicate the end of a successful updatePlanInDb process.
  * If updatePlanInDb process succeeds, the outdated plan is filtered out of the state list
- * and getPlanInfo is dispatched using the e_id of the updated plan.
+ * and getPlanInfoFromDb is dispatched using the e_id of the updated plan.
  * @param plan object containing name, dscript, e_id.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
@@ -300,7 +300,7 @@ export function updatePlanInDb(plan) {
         if (json.success === false) dispatch(updatePlanInDbFailure());
         else {
           dispatch(updatePlanInDbSuccess());
-          dispatch(getPlanInfo(plan.e_id));
+          dispatch(getPlanInfoFromDb(plan.e_id));
         }
       });
   };

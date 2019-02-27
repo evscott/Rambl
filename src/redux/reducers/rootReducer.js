@@ -61,21 +61,23 @@ export function masterReducer(state = initialState, action) {
         ...state,
         user: authReducer(state.user, action)
       };
-    case TripActions.GET_TRIPS_REQUEST:
-    case TripActions.GET_TRIPS_FAILURE:
-    case TripActions.GET_TRIPS_SUCCESS:
-    case TripActions.ADD_TRIP_REQUEST:
-    case TripActions.ADD_TRIP_FAILURE:
-    case TripActions.ADD_TRIP_SUCCESS:
-    case TripActions.UPDATE_TRIP_REQUEST:
-    case TripActions.UPDATE_TRIP_FAILURE:
-    case TripActions.UPDATE_TRIP_SUCCESS:
-    case TripActions.DELETE_TRIP_REQUEST:
-    case TripActions.DELETE_TRIP_FAILURE:
-    case TripActions.DELETE_TRIP_SUCCESS:
-    case TripActions.GET_TRIP_INFO_REQUEST:
-    case TripActions.GET_TRIP_INFO_FAILURE:
-    case TripActions.GET_TRIP_INFO_SUCCESS:
+    case TripActions.GET_TRIPS_FROM_DB_REQUEST:
+    case TripActions.GET_TRIPS_FROM_DB_FAILURE:
+    case TripActions.GET_TRIPS_FROM_DB_SUCCESS:
+    case TripActions.ADD_TRIP_TO_DB_REQUEST:
+    case TripActions.ADD_TRIP_TO_DB_FAILURE:
+    case TripActions.ADD_TRIP_TO_DB_SUCCESS:
+    case TripActions.ADD_TRIP_TO_STATE:
+    case TripActions.UPDATE_TRIP_IN_DB_REQUEST:
+    case TripActions.UPDATE_TRIP_IN_DB_FAILURE:
+    case TripActions.UPDATE_TRIP_IN_DB_SUCCESS:
+    case TripActions.DELETE_TRIP_IN_DB_REQUEST:
+    case TripActions.DELETE_TRIP_IN_DB_FAILURE:
+    case TripActions.DELETE_TRIP_IN_DB_SUCCESS:
+    case TripActions.DELETE_TRIP_IN_STATE:
+    case TripActions.GET_TRIP_INFO_FROM_DB_REQUEST:
+    case TripActions.GET_TRIP_INFO_FROM_DB_FAILURE:
+    case TripActions.GET_TRIP_INFO_FROM_DB_SUCCESS:
       return {
         ...state,
         trips: tripReducer(state.trips, action)
