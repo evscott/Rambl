@@ -140,7 +140,7 @@ function deletePlanInDbSuccess() {
 
 function deletePlanInState(planToDelete) {
   return {
-    type: DELETE_PLAN_IN_DB_SUCCESS,
+    type: DELETE_PLAN_IN_STATE,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: true,
@@ -178,7 +178,7 @@ function getPlanInfoFromDbSuccess() {
 /**************************** Logical functions ****************************/
 
 /**
- * Performs an http POST get plan info request to server.
+ * Performs a dynamic http GET plan info request to server.
  * Dispatches getUserInfoRequest to indicate the beginning of a getPlanInfoFromDb process.
  * Dispatches getPlanInfoFromDbFailure to indicate the end of a failed getPlanInfoFromDb process.
  * Dispatches getPlanSuccess to indicate the end of a successful getPlanInfoFromDb process.
@@ -189,13 +189,12 @@ function getPlanInfoFromDbSuccess() {
 function getPlanInfoFromDb(e_id) {
   return dispatch => {
     dispatch(getPlanInfoFromDbRequest());
-    return fetch('http://localhost:4201/plan/get', {
+    return fetch(`http://localhost:4201/plan/get/${e_id}`, {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
       },
-      method: 'post',
-      body: JSON.stringify({ e_id: e_id })
+      method: 'get'
     })
       .then(response => response.json())
       .then(json => {

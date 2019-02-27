@@ -140,7 +140,7 @@ function deleteAccomInDbSuccess() {
 
 function deleteAccomInState(accomToDelete) {
   return {
-    type: DELETE_ACCOM_IN_DB_SUCCESS,
+    type: DELETE_ACCOM_IN_STATE,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: true,
@@ -178,7 +178,7 @@ function getAccomInfoFromDbSuccess() {
 /**************************** Logical functions ****************************/
 
 /**
- * Performs an http POST get accom info request to server.
+ * Performs a dynamic GET accom info request to server.
  * Dispatches getUserInfoRequest to indicate the beginning of a getAccomInfoFromDb process.
  * Dispatches getAccomInfoFromDbFailure to indicate the end of a failed getAccomInfoFromDb process.
  * Dispatches getAccomSuccess to indicate the end of a successful getAccomInfoFromDb process.
@@ -189,13 +189,12 @@ function getAccomInfoFromDbSuccess() {
 function getAccomInfoFromDb(e_id) {
   return dispatch => {
     dispatch(getAccomInfoFromDbRequest());
-    return fetch('http://localhost:4201/accom/get', {
+    return fetch(`http://localhost:4201/accom/get/${e_id}`, {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
       },
-      method: 'post',
-      body: JSON.stringify({ e_id: e_id })
+      method: 'get'
     })
       .then(response => response.json())
       .then(json => {

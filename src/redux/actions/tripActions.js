@@ -75,7 +75,7 @@ function addTripToDbSuccess() {
 
 function addTripToState(tripToAdd) {
   return {
-    type: ADD_TRIP_TO_DB_SUCCESS,
+    type: ADD_TRIP_TO_STATE,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: true,
@@ -140,7 +140,7 @@ function deleteTripInDbSuccess() {
 
 function deleteTripInState(tripToDelete) {
   return {
-    type: DELETE_TRIP_IN_DB_SUCCESS,
+    type: DELETE_TRIP_IN_STATE,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: true,
@@ -178,7 +178,7 @@ function getTripInfoFromDbSuccess() {
 /**************************** Logical functions ****************************/
 
 /**
- * Performs an http POST get trip info request to server.
+ * Performs a dynamic http GET trip info request to server.
  * Dispatches getUserInfoRequest to indicate the beginning of a getTripInfoFromDb process.
  * Dispatches getTripInfoFromDbFailure to indicate the end of a failed getTripInfoFromDb process.
  * Dispatches getTripSuccess to indicate the end of a successful getTripInfoFromDb process.
@@ -189,13 +189,12 @@ function getTripInfoFromDbSuccess() {
 function getTripInfoFromDb(trip_id) {
   return dispatch => {
     dispatch(getTripInfoFromDbRequest());
-    return fetch('http://localhost:4201/trip/get', {
+    return fetch(`http://localhost:4201/trip/get/${trip_id}`, {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
       },
-      method: 'post',
-      body: JSON.stringify({ trip_id: trip_id })
+      method: 'get'
     })
       .then(response => response.json())
       .then(json => {

@@ -1,5 +1,5 @@
-import { filterArray } from '../../shared/filterArray';
-import { updateArray } from '../../shared/updateArray';
+import { filterSingleDimensionalArray } from '../../shared/filterArray';
+import { updateSingleDimensionalArray } from '../../shared/updateArray';
 import * as TripActions from '../actions/tripActions';
 
 const initialState = {
@@ -60,10 +60,9 @@ export function tripReducer(state = initialState, action) {
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
-        trips: updateArray(
+        trips: updateSingleDimensionalArray(
           state.trips,
           action.tripToAdd.trip_id,
-          action.tripToAdd.e_id,
           action.tripToAdd
         )
       };
@@ -115,7 +114,7 @@ export function tripReducer(state = initialState, action) {
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
-        trips: filterArray(
+        trips: filterSingleDimensionalArray(
           state.trips,
           action.tripToDelete.trip_id,
           action.tripToDelete.e_id

@@ -140,7 +140,7 @@ function deleteTranInDbSuccess() {
 
 function deleteTranInState(tranToDelete) {
   return {
-    type: DELETE_TRAN_IN_DB_SUCCESS,
+    type: DELETE_TRAN_IN_STATE,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: true,
@@ -178,7 +178,7 @@ function getTranInfoFromDbSuccess() {
 /**************************** Logical functions ****************************/
 
 /**
- * Performs an http POST get tran info request to server.
+ * Performs a dynamic http GET tran info request to server.
  * Dispatches getUserInfoRequest to indicate the beginning of a getTranInfoFromDb process.
  * Dispatches getTranInfoFromDbFailure to indicate the end of a failed getTranInfoFromDb process.
  * Dispatches getTranSuccess to indicate the end of a successful getTranInfoFromDb process.
@@ -189,13 +189,12 @@ function getTranInfoFromDbSuccess() {
 function getTranInfoFromDb(e_id) {
   return dispatch => {
     dispatch(getTranInfoFromDbRequest());
-    return fetch('http://localhost:4201/tran/get', {
+    return fetch(`http://localhost:4201/tran/get/${e_id}`, {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
       },
-      method: 'post',
-      body: JSON.stringify({ e_id: e_id })
+      method: 'get'
     })
       .then(response => response.json())
       .then(json => {

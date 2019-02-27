@@ -36,7 +36,7 @@ let getTrip = async (req, res) => {
                   AND user_id =
                     (SELECT user_id FROM users
                     WHERE email = ?)`;
-  const params = [req.body.trip_id, email];
+  const params = [req.params.trip_id, email];
   return databaseHandler.queryDatabase(res, query, params, 'Get trips');
 };
 

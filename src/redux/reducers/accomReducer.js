@@ -1,5 +1,5 @@
-import { filterArray } from '../../shared/filterArray';
-import { updateArray } from '../../shared/updateArray';
+import { filterMultiDimensionalArray } from '../../shared/filterArray';
+import { updateMultiDimensionalArray } from '../../shared/updateArray';
 import * as AccomActions from '../actions/accomActions';
 
 const initialState = {
@@ -60,7 +60,7 @@ export function accomReducer(state = initialState, action) {
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
-        accoms: updateArray(
+        accoms: updateMultiDimensionalArray(
           state.accoms,
           action.accomToAdd.trip_id,
           action.accomToAdd.e_id,
@@ -115,7 +115,7 @@ export function accomReducer(state = initialState, action) {
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
-        accoms: filterArray(
+        accoms: filterMultiDimensionalArray(
           state.accoms,
           action.accomToDelete.trip_id,
           action.accomToDelete.e_id

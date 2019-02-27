@@ -40,7 +40,7 @@ let getPlan = async (req, res) => {
                         WHERE user_id =
                               (SELECT user_id FROM users
                                WHERE email = ?))`;
-  const params = [req.body.e_id, email];
+  const params = [req.params.e_id, email];
   return databaseHandler.queryDatabase(res, query, params, 'Get a plan');
 };
 

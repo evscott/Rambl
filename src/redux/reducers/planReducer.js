@@ -1,5 +1,5 @@
-import { filterArray } from '../../shared/filterArray';
-import { updateArray } from '../../shared/updateArray';
+import { filterMultiDimensionalArray } from '../../shared/filterArray';
+import { updateMultiDimensionalArray } from '../../shared/updateArray';
 import * as PlanActions from '../actions/planActions';
 
 const initialState = {
@@ -60,7 +60,7 @@ export function planReducer(state = initialState, action) {
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
-        plans: updateArray(
+        plans: updateMultiDimensionalArray(
           state.plans,
           action.planToAdd.trip_id,
           action.planToAdd.e_id,
@@ -115,7 +115,7 @@ export function planReducer(state = initialState, action) {
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
-        plans: filterArray(
+        plans: filterMultiDimensionalArray(
           state.plans,
           action.planToDelete.trip_id,
           action.planToDelete.e_id
