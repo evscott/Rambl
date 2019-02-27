@@ -5,10 +5,10 @@ import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import Reducer from './redux/reducers/authReducers';
+import Reducer from './redux/reducers/authReducer';
+import configureStore from './redux/store/configureStore.js';
 
-const store = createStore(Reducer);
+const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
