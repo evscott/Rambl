@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import { FormInput} from "./FormInput";
 import './Login.css';
 
@@ -68,8 +68,10 @@ export class Login extends Component {
               error={this.state.attemptedSubmit}
               value={this.state.password}
             />
-            <div className="form-group">
-              <button className="btn btn-primary" type="submit">Login</button>
+            <div className="btn-toolbar">
+              <Link to="/" className="btn btn-default">Back</Link>
+              <button className="btn btn-primary pull-right" type="submit">Login</button>
+              <Link to="/signup" className="btn btn-default pull-right">Sign Up</Link>
             </div>
           </form>
         </div>

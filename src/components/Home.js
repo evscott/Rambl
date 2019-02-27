@@ -9,9 +9,11 @@ export default class Home extends Component {
         <div className="lander">
           <h1>Rambl</h1>
           <p>Welcome to Rambl. Your future is here.</p>
-          <Link to="/signup" className="btn btn-link"><button>Sign Up</button></Link>
-          <Link to="/login" className="btn btn-link"><button>Log In</button></Link>
-          <Link to="/about" className="btn btn-link"><button>About Rambl</button></Link>
+          <div className="btn-group">
+            <Link to="/about" className="btn btn-default">About Rambl</Link>
+            <Link to="/signup" className="btn btn-default">Sign Up</Link>
+            <Link to="/login" className="btn btn-primary">Log In</Link>
+          </div>
         </div>
       </div>
     );
