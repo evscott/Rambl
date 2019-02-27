@@ -1,42 +1,44 @@
 import fetch from 'cross-fetch';
 
-export const GET_ACCOMS_REQUEST = 'GET_ACCOMS_REQUEST';
-export const GET_ACCOMS_FAILURE = 'GET_ACCOMS_FAILURE';
-export const GET_ACCOMS_SUCCESS = 'GET_ACCOMS_SUCCESS';
-export const ADD_ACCOM_REQUEST = 'ADD_ACCOM_REQUEST';
-export const ADD_ACCOM_FAILURE = 'ADD_ACCOM_FAILURE';
-export const ADD_ACCOM_SUCCESS = 'ADD_ACCOM_SUCCESS';
-export const UPDATE_ACCOM_REQUEST = 'UPDATE_ACCOM_REQUEST';
-export const UPDATE_ACCOM_FAILURE = 'UPDATE_ACCOM_FAILURE';
-export const UPDATE_ACCOM_SUCCESS = 'UPDATE_ACCOM_SUCCESS';
-export const DELETE_ACCOM_REQUEST = 'DELETE_ACCOM_REQUEST';
-export const DELETE_ACCOM_FAILURE = 'DELETE_ACCOM_FAILURE';
-export const DELETE_ACCOM_SUCCESS = 'DELETE_ACCOM_SUCCESS';
-export const GET_ACCOM_INFO_REQUEST = 'GET_ACCOM_INFO_REQUEST';
-export const GET_ACCOM_INFO_FAILURE = 'GET_ACCOM_INFO_FAILURE';
-export const GET_ACCOM_INFO_SUCCESS = 'GET_ACCOM_INFO_SUCCESS';
+export const GET_ACCOMS_FROM_DB_REQUEST = 'GET_ACCOMS_FROM_DB_REQUEST';
+export const GET_ACCOMS_FROM_DB_FAILURE = 'GET_ACCOMS_FROM_DB_FAILURE';
+export const GET_ACCOMS_FROM_DB_SUCCESS = 'GET_ACCOMS_FROM_DB_SUCCESS';
+export const ADD_ACCOM_TO_DB_REQUEST = 'ADD_ACCOM_TO_DB_REQUEST';
+export const ADD_ACCOM_TO_DB_FAILURE = 'ADD_ACCOM_TO_DB_FAILURE';
+export const ADD_ACCOM_TO_DB_SUCCESS = 'ADD_ACCOM_TO_DB_SUCCESS';
+export const ADD_ACCOM_TO_STATE = 'ADD_ACCOM_TO_STATE';
+export const UPDATE_ACCOM_IN_DB_REQUEST = 'UPDATE_ACCOM_IN_DB_REQUEST';
+export const UPDATE_ACCOM_IN_DB_FAILURE = 'UPDATE_ACCOM_IN_DB_FAILURE';
+export const UPDATE_ACCOM_IN_DB_SUCCESS = 'UPDATE_ACCOM_IN_DB_SUCCESS';
+export const DELETE_ACCOM_IN_DB_REQUEST = 'DELETE_ACCOM_IN_DB_REQUEST';
+export const DELETE_ACCOM_IN_DB_FAILURE = 'DELETE_ACCOM_IN_DB_FAILURE';
+export const DELETE_ACCOM_IN_DB_SUCCESS = 'DELETE_ACCOM_IN_DB_SUCCESS';
+export const DELETE_ACCOM_IN_STATE = 'DELETE_ACCOM_IN_STATE';
+export const GET_ACCOM_INFO_FROM_DB_REQUEST = 'GET_ACCOM_INFO_FROM_DB_REQUEST';
+export const GET_ACCOM_INFO_FROM_DB_FAILURE = 'GET_ACCOM_INFO_FROM_DB_FAILURE';
+export const GET_ACCOM_INFO_FROM_DB_SUCCESS = 'GET_ACCOM_INFO_FROM_DB_SUCCESS';
 
-function getAccomsRequest() {
+function getAccomsFromDbRequest() {
   return {
-    type: GET_ACCOMS_REQUEST,
+    type: GET_ACCOMS_FROM_DB_REQUEST,
     lastUpdated: Date.now(),
     isFetching: true,
     isSynced: false
   };
 }
 
-function getAccomsFailure() {
+function getAccomsFromDbFailure() {
   return {
-    type: GET_ACCOMS_FAILURE,
+    type: GET_ACCOMS_FROM_DB_FAILURE,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: false
   };
 }
 
-function getAccomsSuccess(accoms) {
+function getAccomsFromDbSuccess(accoms) {
   return {
-    type: GET_ACCOMS_SUCCESS,
+    type: GET_ACCOMS_FROM_DB_SUCCESS,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: true,
@@ -44,54 +46,64 @@ function getAccomsSuccess(accoms) {
   };
 }
 
-function addAccomRequest() {
+function addAccomToDbRequest() {
   return {
-    type: ADD_ACCOM_REQUEST,
+    type: ADD_ACCOM_TO_DB_REQUEST,
     lastUpdated: Date.now(),
     isFetching: true,
     isSynced: false
   };
 }
 
-function addAccomFailure() {
+function addAccomToDbFailure() {
   return {
-    type: ADD_ACCOM_FAILURE,
+    type: ADD_ACCOM_TO_DB_FAILURE,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: false
   };
 }
 
-function addAccomSuccess() {
+function addAccomToDbSuccess() {
   return {
-    type: ADD_ACCOM_SUCCESS,
+    type: ADD_ACCOM_TO_DB_SUCCESS,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: true
   };
 }
 
-function updateAccomRequest() {
+function addAccomToState(accomToAdd) {
   return {
-    type: UPDATE_ACCOM_REQUEST,
+    type: ADD_ACCOM_TO_STATE,
+    lastUpdated: Date.now(),
+    isFetching: false,
+    isSynced: true,
+    accomToAdd: accomToAdd
+  };
+}
+
+function updateAccomInDbRequest() {
+  return {
+    type: UPDATE_ACCOM_IN_DB_REQUEST,
     lastUpdated: Date.now(),
     isFetching: true,
     isSynced: false
   };
 }
 
-function updateAccomFailure() {
+function updateAccomInDbFailure() {
   return {
-    type: UPDATE_ACCOM_FAILURE,
+    type: UPDATE_ACCOM_IN_DB_FAILURE,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: false
   };
 }
 
-function updateAccomSuccess(accoms) {
+function updateAccomInDbSuccess(accoms) {
   return {
-    type: UPDATE_ACCOM_SUCCESS,
+    type: UPDATE_ACCOM_IN_DB_SUCCESS,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: true,
@@ -99,37 +111,46 @@ function updateAccomSuccess(accoms) {
   };
 }
 
-function deleteAccomRequest() {
+function deleteAccomInDbRequest() {
   return {
-    type: DELETE_ACCOM_REQUEST,
+    type: DELETE_ACCOM_IN_DB_REQUEST,
     lastUpdated: Date.now(),
     isFetching: true,
     isSynced: false
   };
 }
 
-function deleteAccomFailure() {
+function deleteAccomInDbFailure() {
   return {
-    type: DELETE_ACCOM_FAILURE,
+    type: DELETE_ACCOM_IN_DB_FAILURE,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: false
   };
 }
 
-function deleteAccomSuccess(accoms) {
+function deleteAccomInDbSuccess() {
   return {
-    type: DELETE_ACCOM_SUCCESS,
+    type: DELETE_ACCOM_IN_DB_SUCCESS,
+    lastUpdated: Date.now(),
+    isFetching: false,
+    isSynced: true
+  };
+}
+
+function deleteAccomInState(accomToDelete) {
+  return {
+    type: DELETE_ACCOM_IN_DB_SUCCESS,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: true,
-    accoms: accoms
+    accomToDelete: accomToDelete
   };
 }
 
 function getAccomInfoRequest() {
   return {
-    type: GET_ACCOM_INFO_REQUEST,
+    type: GET_ACCOM_INFO_FROM_DB_REQUEST,
     lastUpdated: Date.now(),
     isFetching: true,
     isSynced: false
@@ -138,20 +159,19 @@ function getAccomInfoRequest() {
 
 function getAccomInfoFailure() {
   return {
-    type: GET_ACCOM_INFO_FAILURE,
+    type: GET_ACCOM_INFO_FROM_DB_FAILURE,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: false
   };
 }
 
-function getAccomInfoSuccess(accoms) {
+function getAccomInfoSuccess() {
   return {
-    type: GET_ACCOM_INFO_SUCCESS,
+    type: GET_ACCOM_INFO_FROM_DB_SUCCESS,
     lastUpdated: Date.now(),
     isFetching: false,
-    isSynced: true,
-    accoms: accoms
+    isSynced: true
   };
 }
 
@@ -167,7 +187,7 @@ function getAccomInfoSuccess(accoms) {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 function getAccomInfo(e_id) {
-  return (dispatch, getState) => {
+  return dispatch => {
     dispatch(getAccomInfoRequest());
     return fetch('http://localhost:4201/accom/get', {
       headers: {
@@ -181,13 +201,8 @@ function getAccomInfo(e_id) {
       .then(json => {
         if (json.length === 0) dispatch(getAccomInfoFailure());
         else {
-          // Push newly added accom to state accom list
-          let accoms = getState().masterReducer.accoms.accoms;
-          let trip_id = json.result[0].trip_id;
-          let e_id = json.result[0].e_id;
-          if (accoms[trip_id] === undefined) accoms[trip_id] = {};
-          accoms[trip_id][e_id] = json.result[0];
-          dispatch(getAccomInfoSuccess(accoms));
+          dispatch(getAccomInfoSuccess());
+          dispatch(addAccomToState(json.result[0]));
         }
       });
   };
@@ -195,16 +210,16 @@ function getAccomInfo(e_id) {
 
 /**
  * Performs an http GET accoms request to server.
- * Dispatches getAccoms to indicate the beginning of a getAccoms process.
- * Dispatches getAccomsFailure to indicate the end of a failed getAccoms process.
- * Dispatches getAccomsSuccess to indicate the end of a successful getAccoms process.
- * If getAccoms process succeeds, a accoms object is received and passed into
- * getAccomsSuccess to be stored into state.
+ * Dispatches getAccomsFromDb to indicate the beginning of a getAccomsFromDb process.
+ * Dispatches getAccomsFromDbFailure to indicate the end of a failed getAccomsFromDb process.
+ * Dispatches getAccomsFromDbSuccess to indicate the end of a successful getAccomsFromDb process.
+ * If getAccomsFromDb process succeeds, a accoms object is received and passed into
+ * getAccomsFromDbSuccess to be stored into state.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
-export function getAccoms() {
+export function getAccomsFromDb() {
   return dispatch => {
-    dispatch(getAccomsRequest()); // Get accoms request process has begun...
+    dispatch(getAccomsFromDbRequest()); // Get accoms request process has begun...
     return fetch('http://localhost:4201/accom/get', {
       headers: {
         'Content-Type': 'application/json',
@@ -214,32 +229,32 @@ export function getAccoms() {
     })
       .then(response => response.json())
       .then(json => {
-        if (json.success === false) dispatch(getAccomsFailure());
+        if (json.success === false) dispatch(getAccomsFromDbFailure());
         else {
           let accoms = [];
           json.result.forEach(t => {
             if (accoms[t.trip_id] === undefined) accoms[t.trip_id] = {};
             accoms[t.trip_id][t.e_id] = t;
           });
-          dispatch(getAccomsSuccess(accoms));
+          dispatch(getAccomsFromDbSuccess(accoms));
         }
       });
   };
 }
 
 /**
- * Performs an http POST addAccom request to server.
- * Dispatches addAccom to indicate the beginning of an addAccom process.
- * Dispatches addAccomFailure to indicate the end of a failed addAccom process.
- * Dispatches addAccomSuccess to indicate the end of a successful addAccom process.
- * If addAccom process succeeds, getAccomInfo is dispatched using the returned
+ * Performs an http POST addAccomToDb request to server.
+ * Dispatches addAccomToDb to indicate the beginning of an addAccomToDb process.
+ * Dispatches addAccomToDbFailure to indicate the end of a failed addAccomToDb process.
+ * Dispatches addAccomToDbSuccess to indicate the end of a successful addAccomToDb process.
+ * If addAccomToDb process succeeds, getAccomInfo is dispatched using the returned
  * e_id of the newly added accom.
  * @param accom object containing email, name, and dscript.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
-export function addAccom(accom) {
+export function addAccomToDb(accom) {
   return dispatch => {
-    dispatch(addAccomRequest()); // Add accom request process has begun...
+    dispatch(addAccomToDbRequest()); // Add accom request process has begun...
     return fetch('http://localhost:4201/accom/add', {
       headers: {
         'Content-Type': 'application/json',
@@ -250,28 +265,28 @@ export function addAccom(accom) {
     })
       .then(response => response.json())
       .then(json => {
-        if (json.success === false) dispatch(addAccomFailure());
+        if (json.success === false) dispatch(addAccomToDbFailure());
         else {
-          dispatch(addAccomSuccess());
-          dispatch(getAccomInfo(json.result)); // Fetch added accom
+          dispatch(addAccomToDbSuccess());
+          dispatch(getAccomInfo(json.result));
         }
       });
   };
 }
 
 /**
- * Performs an http PUT updateAccom request to server.
- * Dispatches updateAccom to indicate the beginning of an updateAccom process.
- * Dispatches updateAccomFailure to indicate the end of a failed updateAccom process.
- * Dispatches updateAccomSuccess to indicate the end of a successful updateAccom process.
- * If updateAccom process succeeds, the outdated accom is filtered out of the state list
+ * Performs an http PUT updateAccomInDb request to server.
+ * Dispatches updateAccomInDb to indicate the beginning of an updateAccomInDb process.
+ * Dispatches updateAccomInDbFailure to indicate the end of a failed updateAccomInDb process.
+ * Dispatches updateAccomInDbSuccess to indicate the end of a successful updateAccomInDb process.
+ * If updateAccomInDb process succeeds, the outdated accom is filtered out of the state list
  * and getAccomInfo is dispatched using the e_id of the updated accom.
  * @param accom object containing name, dscript, e_id.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
-export function updateAccom(accom) {
-  return (dispatch, getState) => {
-    dispatch(updateAccomRequest()); // Update accom request process has begun...
+export function updateAccomInDb(accom) {
+  return dispatch => {
+    dispatch(updateAccomInDbRequest()); // Update accom request process has begun...
     return fetch('http://localhost:4201/accom/update', {
       headers: {
         'Content-Type': 'application/json',
@@ -282,12 +297,9 @@ export function updateAccom(accom) {
     })
       .then(response => response.json())
       .then(json => {
-        if (json.success === false) dispatch(updateAccomFailure());
+        if (json.success === false) dispatch(updateAccomInDbFailure());
         else {
-          // Delete outdated accom, fetch updated accom
-          let accoms = getState().masterReducer.accoms.accoms;
-          delete accoms[accom.trip_id][accom.e_id];
-          dispatch(updateAccomSuccess());
+          dispatch(updateAccomInDbSuccess());
           dispatch(getAccomInfo(accom.e_id));
         }
       });
@@ -295,18 +307,18 @@ export function updateAccom(accom) {
 }
 
 /**
- * Performs an http DELETE deleteAccom request to server.
- * Dispatches deleteAccom to indicate the beginning of a deleteAccom process.
- * Dispatches deleteAccomFailure to indicate the end of a failed deleteAccom process.
- * Dispatches deleteAccomSuccess to indicate the end of a successful deleteAccom process.
- * If deleteAccom process succeeds, the deleted accom is filtered out of the
+ * Performs an http DELETE deleteAccomInDb request to server.
+ * Dispatches deleteAccomInDb to indicate the beginning of a deleteAccomInDb process.
+ * Dispatches deleteAccomInDbFailure to indicate the end of a failed deleteAccomInDb process.
+ * Dispatches deleteAccomInDbSuccess to indicate the end of a successful deleteAccomInDb process.
+ * If deleteAccomInDb process succeeds, the deleted accom is filtered out of the
  * state accom list.
  * @param accom object containing name, dscript, e_id.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
-export function deleteAccom(accom) {
-  return (dispatch, getState) => {
-    dispatch(deleteAccomRequest()); // Delete accom request process has begun...
+export function deleteAccomInDb(accom) {
+  return dispatch => {
+    dispatch(deleteAccomInDbRequest()); // Delete accom request process has begun...
     return fetch('http://localhost:4201/accom/delete', {
       headers: {
         'Content-Type': 'application/json',
@@ -317,12 +329,10 @@ export function deleteAccom(accom) {
     })
       .then(response => response.json())
       .then(json => {
-        if (json.success === false) dispatch(deleteAccomFailure());
+        if (json.success === false) dispatch(deleteAccomInDbFailure());
         else {
-          // Deleted accom from state accom list
-          let accoms = getState().masterReducer.accoms.accoms;
-          delete accoms[accom.trip_id][accom.e_id];
-          dispatch(deleteAccomSuccess(accoms));
+          dispatch(deleteAccomInDbSuccess());
+          dispatch(deleteAccomInState(accom));
         }
       });
   };

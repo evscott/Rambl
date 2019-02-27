@@ -122,21 +122,23 @@ export function masterReducer(state = initialState, action) {
         ...state,
         trans: tranReducer(state.trans, action)
       };
-    case AccomActions.GET_ACCOMS_REQUEST:
-    case AccomActions.GET_ACCOMS_FAILURE:
-    case AccomActions.GET_ACCOMS_SUCCESS:
-    case AccomActions.ADD_ACCOM_REQUEST:
-    case AccomActions.ADD_ACCOM_FAILURE:
-    case AccomActions.ADD_ACCOM_SUCCESS:
-    case AccomActions.UPDATE_ACCOM_REQUEST:
-    case AccomActions.UPDATE_ACCOM_FAILURE:
-    case AccomActions.UPDATE_ACCOM_SUCCESS:
-    case AccomActions.DELETE_ACCOM_REQUEST:
-    case AccomActions.DELETE_ACCOM_FAILURE:
-    case AccomActions.DELETE_ACCOM_SUCCESS:
-    case AccomActions.GET_ACCOM_INFO_REQUEST:
-    case AccomActions.GET_ACCOM_INFO_FAILURE:
-    case AccomActions.GET_ACCOM_INFO_SUCCESS:
+    case AccomActions.GET_ACCOMS_FROM_DB_REQUEST:
+    case AccomActions.GET_ACCOMS_FROM_DB_FAILURE:
+    case AccomActions.GET_ACCOMS_FROM_DB_SUCCESS:
+    case AccomActions.ADD_ACCOM_TO_DB_REQUEST:
+    case AccomActions.ADD_ACCOM_TO_DB_FAILURE:
+    case AccomActions.ADD_ACCOM_TO_DB_SUCCESS:
+    case AccomActions.ADD_ACCOM_TO_STATE:
+    case AccomActions.UPDATE_ACCOM_IN_DB_REQUEST:
+    case AccomActions.UPDATE_ACCOM_IN_DB_FAILURE:
+    case AccomActions.UPDATE_ACCOM_IN_DB_SUCCESS:
+    case AccomActions.DELETE_ACCOM_IN_DB_REQUEST:
+    case AccomActions.DELETE_ACCOM_IN_DB_FAILURE:
+    case AccomActions.DELETE_ACCOM_IN_DB_SUCCESS:
+    case AccomActions.DELETE_ACCOM_IN_STATE:
+    case AccomActions.GET_ACCOM_INFO_FROM_DB_REQUEST:
+    case AccomActions.GET_ACCOM_INFO_FROM_DB_FAILURE:
+    case AccomActions.GET_ACCOM_INFO_FROM_DB_SUCCESS:
       return {
         ...state,
         accoms: accomReducer(state.accoms, action)
