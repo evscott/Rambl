@@ -39,9 +39,9 @@ let getAccom = async (req, res) => {
   let email = jwtDecoder(token);
   const query = `SELECT *
                 FROM accoms
-                WHERE trip_id IN
+                WHERE (e_id = ?) AND trip_id IN
                   (SELECT trip_id FROM trips
-                  WHERE e_id = ? AND user_id =
+                  WHERE user_id =
                     (SELECT user_id FROM users
                     WHERE email = ?))`;
   const params = [req.params.e_id, email];
