@@ -1,42 +1,44 @@
 import fetch from 'cross-fetch';
 
-export const GET_PLANS_REQUEST = 'GET_PLANS_REQUEST';
-export const GET_PLANS_FAILURE = 'GET_PLANS_FAILURE';
-export const GET_PLANS_SUCCESS = 'GET_PLANS_SUCCESS';
-export const ADD_PLAN_REQUEST = 'ADD_PLAN_REQUEST';
-export const ADD_PLAN_FAILURE = 'ADD_PLAN_FAILURE';
-export const ADD_PLAN_SUCCESS = 'ADD_PLAN_SUCCESS';
-export const UPDATE_PLAN_REQUEST = 'UPDATE_PLAN_REQUEST';
-export const UPDATE_PLAN_FAILURE = 'UPDATE_PLAN_FAILURE';
-export const UPDATE_PLAN_SUCCESS = 'UPDATE_PLAN_SUCCESS';
-export const DELETE_PLAN_REQUEST = 'DELETE_PLAN_REQUEST';
-export const DELETE_PLAN_FAILURE = 'DELETE_PLAN_FAILURE';
-export const DELETE_PLAN_SUCCESS = 'DELETE_PLAN_SUCCESS';
-export const GET_PLAN_INFO_REQUEST = 'GET_PLAN_INFO_REQUEST';
-export const GET_PLAN_INFO_FAILURE = 'GET_PLAN_INFO_FAILURE';
-export const GET_PLAN_INFO_SUCCESS = 'GET_PLAN_INFO_SUCCESS';
+export const GET_PLANS_FROM_DB_REQUEST = 'GET_PLANS_FROM_DB_REQUEST';
+export const GET_PLANS_FROM_DB_FAILURE = 'GET_PLANS_FROM_DB_FAILURE';
+export const GET_PLANS_FROM_DB_SUCCESS = 'GET_PLANS_FROM_DB_SUCCESS';
+export const ADD_PLAN_TO_DB_REQUEST = 'ADD_PLAN_TO_DB_REQUEST';
+export const ADD_PLAN_TO_DB_FAILURE = 'ADD_PLAN_TO_DB_FAILURE';
+export const ADD_PLAN_TO_DB_SUCCESS = 'ADD_PLAN_TO_DB_SUCCESS';
+export const ADD_PLAN_TO_STATE = 'ADD_PLAN_TO_STATE';
+export const UPDATE_PLAN_IN_DB_REQUEST = 'UPDATE_PLAN_IN_DB_REQUEST';
+export const UPDATE_PLAN_IN_DB_FAILURE = 'UPDATE_PLAN_IN_DB_FAILURE';
+export const UPDATE_PLAN_IN_DB_SUCCESS = 'UPDATE_PLAN_IN_DB_SUCCESS';
+export const DELETE_PLAN_IN_DB_REQUEST = 'DELETE_PLAN_IN_DB_REQUEST';
+export const DELETE_PLAN_IN_DB_FAILURE = 'DELETE_PLAN_IN_DB_FAILURE';
+export const DELETE_PLAN_IN_DB_SUCCESS = 'DELETE_PLAN_IN_DB_SUCCESS';
+export const DELETE_PLAN_IN_STATE = 'DELETE_PLAN_IN_STATE';
+export const GET_PLAN_INFO_FROM_DB_REQUEST = 'GET_PLAN_INFO_FROM_DB_REQUEST';
+export const GET_PLAN_INFO_FROM_DB_FAILURE = 'GET_PLAN_INFO_FROM_DB_FAILURE';
+export const GET_PLAN_INFO_FROM_DB_SUCCESS = 'GET_PLAN_INFO_FROM_DB_SUCCESS';
 
-function getPlansRequest() {
+function getPlansFromDbRequest() {
   return {
-    type: GET_PLANS_REQUEST,
+    type: GET_PLANS_FROM_DB_REQUEST,
     lastUpdated: Date.now(),
     isFetching: true,
     isSynced: false
   };
 }
 
-function getPlansFailure() {
+function getPlansFromDbFailure() {
   return {
-    type: GET_PLANS_FAILURE,
+    type: GET_PLANS_FROM_DB_FAILURE,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: false
   };
 }
 
-function getPlansSuccess(plans) {
+function getPlansFromDbSuccess(plans) {
   return {
-    type: GET_PLANS_SUCCESS,
+    type: GET_PLANS_FROM_DB_SUCCESS,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: true,
@@ -44,54 +46,64 @@ function getPlansSuccess(plans) {
   };
 }
 
-function addPlanRequest() {
+function addPlanToDbRequest() {
   return {
-    type: ADD_PLAN_REQUEST,
+    type: ADD_PLAN_TO_DB_REQUEST,
     lastUpdated: Date.now(),
     isFetching: true,
     isSynced: false
   };
 }
 
-function addPlanFailure() {
+function addPlanToDbFailure() {
   return {
-    type: ADD_PLAN_FAILURE,
+    type: ADD_PLAN_TO_DB_FAILURE,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: false
   };
 }
 
-function addPlanSuccess() {
+function addPlanToDbSuccess() {
   return {
-    type: ADD_PLAN_SUCCESS,
+    type: ADD_PLAN_TO_DB_SUCCESS,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: true
   };
 }
 
-function updatePlanRequest() {
+function addPlanToState(planToAdd) {
   return {
-    type: UPDATE_PLAN_REQUEST,
+    type: ADD_PLAN_TO_STATE,
+    lastUpdated: Date.now(),
+    isFetching: false,
+    isSynced: true,
+    planToAdd: planToAdd
+  };
+}
+
+function updatePlanInDbRequest() {
+  return {
+    type: UPDATE_PLAN_IN_DB_REQUEST,
     lastUpdated: Date.now(),
     isFetching: true,
     isSynced: false
   };
 }
 
-function updatePlanFailure() {
+function updatePlanInDbFailure() {
   return {
-    type: UPDATE_PLAN_FAILURE,
+    type: UPDATE_PLAN_IN_DB_FAILURE,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: false
   };
 }
 
-function updatePlanSuccess(plans) {
+function updatePlanInDbSuccess(plans) {
   return {
-    type: UPDATE_PLAN_SUCCESS,
+    type: UPDATE_PLAN_IN_DB_SUCCESS,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: true,
@@ -99,37 +111,46 @@ function updatePlanSuccess(plans) {
   };
 }
 
-function deletePlanRequest() {
+function deletePlanInDbRequest() {
   return {
-    type: DELETE_PLAN_REQUEST,
+    type: DELETE_PLAN_IN_DB_REQUEST,
     lastUpdated: Date.now(),
     isFetching: true,
     isSynced: false
   };
 }
 
-function deletePlanFailure() {
+function deletePlanInDbFailure() {
   return {
-    type: DELETE_PLAN_FAILURE,
+    type: DELETE_PLAN_IN_DB_FAILURE,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: false
   };
 }
 
-function deletePlanSuccess(plans) {
+function deletePlanInDbSuccess() {
   return {
-    type: DELETE_PLAN_SUCCESS,
+    type: DELETE_PLAN_IN_DB_SUCCESS,
+    lastUpdated: Date.now(),
+    isFetching: false,
+    isSynced: true
+  };
+}
+
+function deletePlanInState(planToDelete) {
+  return {
+    type: DELETE_PLAN_IN_DB_SUCCESS,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: true,
-    plans: plans
+    planToDelete: planToDelete
   };
 }
 
 function getPlanInfoRequest() {
   return {
-    type: GET_PLAN_INFO_REQUEST,
+    type: GET_PLAN_INFO_FROM_DB_REQUEST,
     lastUpdated: Date.now(),
     isFetching: true,
     isSynced: false
@@ -138,20 +159,19 @@ function getPlanInfoRequest() {
 
 function getPlanInfoFailure() {
   return {
-    type: GET_PLAN_INFO_FAILURE,
+    type: GET_PLAN_INFO_FROM_DB_FAILURE,
     lastUpdated: Date.now(),
     isFetching: false,
     isSynced: false
   };
 }
 
-function getPlanInfoSuccess(plans) {
+function getPlanInfoSuccess() {
   return {
-    type: GET_PLAN_INFO_SUCCESS,
+    type: GET_PLAN_INFO_FROM_DB_SUCCESS,
     lastUpdated: Date.now(),
     isFetching: false,
-    isSynced: true,
-    plans: plans
+    isSynced: true
   };
 }
 
@@ -167,7 +187,7 @@ function getPlanInfoSuccess(plans) {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 function getPlanInfo(e_id) {
-  return (dispatch, getState) => {
+  return dispatch => {
     dispatch(getPlanInfoRequest());
     return fetch('http://localhost:4201/plan/get', {
       headers: {
@@ -181,13 +201,8 @@ function getPlanInfo(e_id) {
       .then(json => {
         if (json.length === 0) dispatch(getPlanInfoFailure());
         else {
-          // Push newly added plan to state plan list
-          let plans = getState().masterReducer.plans.plans;
-          let trip_id = json.result[0].trip_id;
-          let e_id = json.result[0].e_id;
-          if(plans[trip_id] === undefined) plans[trip_id] = {};
-          plans[trip_id][e_id] = json.result[0];
-          dispatch(getPlanInfoSuccess(plans));
+          dispatch(getPlanInfoSuccess());
+          dispatch(addPlanToState(json.result[0]));
         }
       });
   };
@@ -195,16 +210,16 @@ function getPlanInfo(e_id) {
 
 /**
  * Performs an http GET plans request to server.
- * Dispatches getPlans to indicate the beginning of a getPlans process.
- * Dispatches getPlansFailure to indicate the end of a failed getPlans process.
- * Dispatches getPlansSuccess to indicate the end of a successful getPlans process.
- * If getPlans process succeeds, a plans object is received and passed into
- * getPlansSuccess to be stored into state.
+ * Dispatches getPlansFromDb to indicate the beginning of a getPlansFromDb process.
+ * Dispatches getPlansFromDbFailure to indicate the end of a failed getPlansFromDb process.
+ * Dispatches getPlansFromDbSuccess to indicate the end of a successful getPlansFromDb process.
+ * If getPlansFromDb process succeeds, a plans object is received and passed into
+ * getPlansFromDbSuccess to be stored into state.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
-export function getPlans() {
+export function getPlansFromDb() {
   return dispatch => {
-    dispatch(getPlansRequest()); // Get plans request process has begun...
+    dispatch(getPlansFromDbRequest()); // Get plans request process has begun...
     return fetch('http://localhost:4201/plan/get', {
       headers: {
         'Content-Type': 'application/json',
@@ -214,32 +229,32 @@ export function getPlans() {
     })
       .then(response => response.json())
       .then(json => {
-        if (json.success === false) dispatch(getPlansFailure());
+        if (json.success === false) dispatch(getPlansFromDbFailure());
         else {
           let plans = [];
           json.result.forEach(t => {
             if (plans[t.trip_id] === undefined) plans[t.trip_id] = {};
             plans[t.trip_id][t.e_id] = t;
           });
-          dispatch(getPlansSuccess(plans));
+          dispatch(getPlansFromDbSuccess(plans));
         }
       });
   };
 }
 
 /**
- * Performs an http POST addPlan request to server.
- * Dispatches addPlan to indicate the beginning of an addPlan process.
- * Dispatches addPlanFailure to indicate the end of a failed addPlan process.
- * Dispatches addPlanSuccess to indicate the end of a successful addPlan process.
- * If addPlan process succeeds, getPlanInfo is dispatched using the returned
+ * Performs an http POST addPlanToDb request to server.
+ * Dispatches addPlanToDb to indicate the beginning of an addPlanToDb process.
+ * Dispatches addPlanToDbFailure to indicate the end of a failed addPlanToDb process.
+ * Dispatches addPlanToDbSuccess to indicate the end of a successful addPlanToDb process.
+ * If addPlanToDb process succeeds, getPlanInfo is dispatched using the returned
  * e_id of the newly added plan.
  * @param plan object containing email, name, and dscript.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
-export function addPlan(plan) {
+export function addPlanToDb(plan) {
   return dispatch => {
-    dispatch(addPlanRequest()); // Add plan request process has begun...
+    dispatch(addPlanToDbRequest()); // Add plan request process has begun...
     return fetch('http://localhost:4201/plan/add', {
       headers: {
         'Content-Type': 'application/json',
@@ -250,28 +265,28 @@ export function addPlan(plan) {
     })
       .then(response => response.json())
       .then(json => {
-        if (json.success === false) dispatch(addPlanFailure());
+        if (json.success === false) dispatch(addPlanToDbFailure());
         else {
-          dispatch(addPlanSuccess());
-          dispatch(getPlanInfo(json.result)); // Fetch added plan
+          dispatch(addPlanToDbSuccess());
+          dispatch(getPlanInfo(json.result));
         }
       });
   };
 }
 
 /**
- * Performs an http PUT updatePlan request to server.
- * Dispatches updatePlan to indicate the beginning of an updatePlan process.
- * Dispatches updatePlanFailure to indicate the end of a failed updatePlan process.
- * Dispatches updatePlanSuccess to indicate the end of a successful updatePlan process.
- * If updatePlan process succeeds, the outdated plan is filtered out of the state list
+ * Performs an http PUT updatePlanInDb request to server.
+ * Dispatches updatePlanInDb to indicate the beginning of an updatePlanInDb process.
+ * Dispatches updatePlanInDbFailure to indicate the end of a failed updatePlanInDb process.
+ * Dispatches updatePlanInDbSuccess to indicate the end of a successful updatePlanInDb process.
+ * If updatePlanInDb process succeeds, the outdated plan is filtered out of the state list
  * and getPlanInfo is dispatched using the e_id of the updated plan.
  * @param plan object containing name, dscript, e_id.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
-export function updatePlan(plan) {
-  return (dispatch, getState) => {
-    dispatch(updatePlanRequest()); // Update plan request process has begun...
+export function updatePlanInDb(plan) {
+  return dispatch => {
+    dispatch(updatePlanInDbRequest()); // Update plan request process has begun...
     return fetch('http://localhost:4201/plan/update', {
       headers: {
         'Content-Type': 'application/json',
@@ -282,12 +297,9 @@ export function updatePlan(plan) {
     })
       .then(response => response.json())
       .then(json => {
-        if (json.success === false) dispatch(updatePlanFailure());
+        if (json.success === false) dispatch(updatePlanInDbFailure());
         else {
-          // Delete outdated plan, fetch updated plan
-          let plans = getState().masterReducer.plans.plans;
-          delete plans[plan.trip_id][plan.e_id];
-          dispatch(updatePlanSuccess());
+          dispatch(updatePlanInDbSuccess());
           dispatch(getPlanInfo(plan.e_id));
         }
       });
@@ -295,18 +307,18 @@ export function updatePlan(plan) {
 }
 
 /**
- * Performs an http DELETE deletePlan request to server.
- * Dispatches deletePlan to indicate the beginning of a deletePlan process.
- * Dispatches deletePlanFailure to indicate the end of a failed deletePlan process.
- * Dispatches deletePlanSuccess to indicate the end of a successful deletePlan process.
- * If deletePlan process succeeds, the deleted plan is filtered out of the
+ * Performs an http DELETE deletePlanInDb request to server.
+ * Dispatches deletePlanInDb to indicate the beginning of a deletePlanInDb process.
+ * Dispatches deletePlanInDbFailure to indicate the end of a failed deletePlanInDb process.
+ * Dispatches deletePlanInDbSuccess to indicate the end of a successful deletePlanInDb process.
+ * If deletePlanInDb process succeeds, the deleted plan is filtered out of the
  * state plan list.
  * @param plan object containing name, dscript, e_id.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
-export function deletePlan(plan) {
-  return (dispatch, getState) => {
-    dispatch(deletePlanRequest()); // Delete plan request process has begun...
+export function deletePlanInDb(plan) {
+  return dispatch => {
+    dispatch(deletePlanInDbRequest()); // Delete plan request process has begun...
     return fetch('http://localhost:4201/plan/delete', {
       headers: {
         'Content-Type': 'application/json',
@@ -317,12 +329,10 @@ export function deletePlan(plan) {
     })
       .then(response => response.json())
       .then(json => {
-        if (json.success === false) dispatch(deletePlanFailure());
+        if (json.success === false) dispatch(deletePlanInDbFailure());
         else {
-          // Deleted plan from state plan list
-          let plans = getState().masterReducer.plans.plans;
-          delete plans[plan.trip_id][plan.e_id];
-          dispatch(deletePlanSuccess(plans));
+          dispatch(deletePlanInDbSuccess());
+          dispatch(deletePlanInState(plan));
         }
       });
   };

@@ -1,3 +1,5 @@
+import { filterArray } from '../../shared/filterArray';
+import { updateArray } from '../../shared/updateArray';
 import * as PlanActions from '../actions/planActions';
 
 const initialState = {
@@ -9,21 +11,21 @@ const initialState = {
 
 export function planReducer(state = initialState, action) {
   switch (action.type) {
-    case PlanActions.GET_PLANS_REQUEST:
+    case PlanActions.GET_PLANS_FROM_DB_REQUEST:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced
       };
-    case PlanActions.GET_PLANS_FAILURE:
+    case PlanActions.GET_PLANS_FROM_DB_FAILURE:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced
       };
-    case PlanActions.GET_PLANS_SUCCESS:
+    case PlanActions.GET_PLANS_FROM_DB_SUCCESS:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
@@ -31,91 +33,114 @@ export function planReducer(state = initialState, action) {
         isSynced: action.isSynced,
         plans: action.plans
       };
-    case PlanActions.ADD_PLAN_REQUEST:
+    case PlanActions.ADD_PLAN_TO_DB_REQUEST:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced
       };
-    case PlanActions.ADD_PLAN_FAILURE:
+    case PlanActions.ADD_PLAN_TO_DB_FAILURE:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced
       };
-    case PlanActions.ADD_PLAN_SUCCESS:
+    case PlanActions.ADD_PLAN_TO_DB_SUCCESS:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced
       };
-    case PlanActions.UPDATE_PLAN_REQUEST:
-      return {
-        ...state,
-        lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
-        isSynced: action.isSynced
-      };
-    case PlanActions.UPDATE_PLAN_FAILURE:
-      return {
-        ...state,
-        lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
-        isSynced: action.isSynced
-      };
-    case PlanActions.UPDATE_PLAN_SUCCESS:
-      return {
-        ...state,
-        lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
-        isSynced: action.isSynced
-      };
-    case PlanActions.DELETE_PLAN_REQUEST:
-      return {
-        ...state,
-        lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
-        isSynced: action.isSynced
-      };
-    case PlanActions.DELETE_PLAN_FAILURE:
-      return {
-        ...state,
-        lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
-        isSynced: action.isSynced
-      };
-    case PlanActions.DELETE_PLAN_SUCCESS:
+    case PlanActions.ADD_PLAN_TO_STATE:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
-        plans: action.plans
+        plans: updateArray(
+          state.plans,
+          action.planToAdd.trip_id,
+          action.planToAdd.e_id,
+          action.planToAdd
+        )
       };
-    case PlanActions.GET_PLAN_INFO_REQUEST:
+    case PlanActions.UPDATE_PLAN_IN_DB_REQUEST:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced
       };
-    case PlanActions.GET_PLAN_INFO_FAILURE:
+    case PlanActions.UPDATE_PLAN_IN_DB_FAILURE:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced
       };
-    case PlanActions.GET_PLAN_INFO_SUCCESS:
+    case PlanActions.UPDATE_PLAN_IN_DB_SUCCESS:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced
+      };
+    case PlanActions.DELETE_PLAN_IN_DB_REQUEST:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced
+      };
+    case PlanActions.DELETE_PLAN_IN_DB_FAILURE:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced
+      };
+    case PlanActions.DELETE_PLAN_IN_DB_SUCCESS:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced
+      };
+    case PlanActions.DELETE_PLAN_IN_STATE:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
-        plans: action.plans
+        plans: filterArray(
+          state.plans,
+          action.planToDelete.trip_id,
+          action.planToDelete.e_id
+        )
+      };
+    case PlanActions.GET_PLAN_INFO_FROM_DB_REQUEST:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced
+      };
+    case PlanActions.GET_PLAN_INFO_FROM_DB_FAILURE:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced
+      };
+    case PlanActions.GET_PLAN_INFO_FROM_DB_SUCCESS:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced
       };
     default:
       return state;

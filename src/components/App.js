@@ -4,6 +4,7 @@ import Routes from '../Routes';
 import { login } from '../redux/actions/authActions';
 import configureStore from '../redux/store/configureStore';
 import { addTranToDb, deleteTranInDb, getTransFromDb, updateTranInDb } from '../redux/actions/tranActions';
+import { getPlansFromDb, updatePlanInDb } from '../redux/actions/planActions';
 const store = configureStore();
 
 class App extends Component {
@@ -13,9 +14,9 @@ class App extends Component {
     // store.dispatch(getTrips());
     // store.dispatch(getAccoms());
     // store.dispatch(getPlans());
-    store.dispatch(getTransFromDb());
+    store.dispatch(getPlansFromDb());
     setTimeout(() => {
-      store.dispatch(updateTranInDb({trip_id: 86, e_id: 77, dscript: "Updating new stuff"}));
+      store.dispatch(updatePlanInDb({trip_id: 85, e_id: 11, dscript: "Updating new stuff"}));
     }, 5000);
   }
   render() {

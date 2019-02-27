@@ -80,21 +80,23 @@ export function masterReducer(state = initialState, action) {
         ...state,
         trips: tripReducer(state.trips, action)
       };
-    case PlanActions.GET_PLANS_REQUEST:
-    case PlanActions.GET_PLANS_FAILURE:
-    case PlanActions.GET_PLANS_SUCCESS:
-    case PlanActions.ADD_PLAN_REQUEST:
-    case PlanActions.ADD_PLAN_FAILURE:
-    case PlanActions.ADD_PLAN_SUCCESS:
-    case PlanActions.UPDATE_PLAN_REQUEST:
-    case PlanActions.UPDATE_PLAN_FAILURE:
-    case PlanActions.UPDATE_PLAN_SUCCESS:
-    case PlanActions.DELETE_PLAN_REQUEST:
-    case PlanActions.DELETE_PLAN_FAILURE:
-    case PlanActions.DELETE_PLAN_SUCCESS:
-    case PlanActions.GET_PLAN_INFO_REQUEST:
-    case PlanActions.GET_PLAN_INFO_FAILURE:
-    case PlanActions.GET_PLAN_INFO_SUCCESS:
+    case PlanActions.GET_PLANS_FROM_DB_REQUEST:
+    case PlanActions.GET_PLANS_FROM_DB_FAILURE:
+    case PlanActions.GET_PLANS_FROM_DB_SUCCESS:
+    case PlanActions.ADD_PLAN_TO_DB_REQUEST:
+    case PlanActions.ADD_PLAN_TO_DB_FAILURE:
+    case PlanActions.ADD_PLAN_TO_DB_SUCCESS:
+    case PlanActions.ADD_PLAN_TO_STATE:
+    case PlanActions.UPDATE_PLAN_IN_DB_REQUEST:
+    case PlanActions.UPDATE_PLAN_IN_DB_FAILURE:
+    case PlanActions.UPDATE_PLAN_IN_DB_SUCCESS:
+    case PlanActions.DELETE_PLAN_IN_DB_REQUEST:
+    case PlanActions.DELETE_PLAN_IN_DB_FAILURE:
+    case PlanActions.DELETE_PLAN_IN_DB_SUCCESS:
+    case PlanActions.DELETE_PLAN_IN_STATE:
+    case PlanActions.GET_PLAN_INFO_FROM_DB_REQUEST:
+    case PlanActions.GET_PLAN_INFO_FROM_DB_FAILURE:
+    case PlanActions.GET_PLAN_INFO_FROM_DB_SUCCESS:
       return {
         ...state,
         plans: planReducer(state.plans, action)
