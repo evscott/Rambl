@@ -34,7 +34,7 @@ function signupSuccess() {
     type: SIGNUP_SUCCESS,
     lastUpdated: Date.now(),
     isAuthenticated: true,
-    isFetching: true,
+    isFetching: false,
   };
 }
 
@@ -50,7 +50,7 @@ function loginFailure() {
   return {
     type: LOGIN_FAILURE,
     lastUpdated: Date.now(),
-    isFetching: true
+    isFetching: false
   };
 }
 

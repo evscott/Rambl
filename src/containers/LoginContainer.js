@@ -4,7 +4,8 @@ import { login, logout } from '../redux/actions/authActions';
 
 const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.authenticate.isAuthenticated
+    isAuthenticated: state.authenticate.isAuthenticated,
+    isFetching: state.authenticate.isFetching
   };
 };
 
