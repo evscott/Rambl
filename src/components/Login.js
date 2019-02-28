@@ -1,40 +1,43 @@
 import React, { Component } from 'react';
-import {Link, Redirect} from "react-router-dom";
-import { FormInput} from "./FormInput";
+import { Link, Redirect } from "react-router-dom";
+import Form from 'react-bootstrap/Form';
+import { FormInput } from "./FormInput";
 import './Login.css';
 
-export class Login extends Component {
+export default class Login extends Component {
   constructor(props) {
     super(props);
-    // logout, to reset status
+    // Logout, to reset status
     this.props.onLogout();
 
+    // Initial state
     this.state = {
       email: '', // Holds the email
       password: '', // Holds the password
-      attemptedSubmit: false // Tells us if they clicked submit
+      attemptedSubmit: false // Tells us if the user clicked submit
     };
 
+    // Bindings
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // Save input changes to current state
+  // Note: name and value are retrieved from HTML below
   handleChange(e) {
-    // Get the input's "name" attribute and its
-    // "value" attribute, puts both into the state.
     const { name, value } = e.target;
     this.setState({ [name]: value }); // Square brackets are important for syntax
   }
 
+  // When form is submit, check basic requirements and make appropriate
+  // call to container if met. TODO: possible refactor
   handleSubmit(e) {
     e.preventDefault();
     this.setState({ attemptedSubmit: true });
-    // If not blank, we attempt login
-    if (this.state.email && this.state.password) {
-      this.props.onLogin(this.state);
-    }
+    this.props.onLogin(this.state);
   }
 
+  // Render HTML
   render() {
     if(this.props.isAuthenticated) {
       // Redirect if authenticated
@@ -48,32 +51,47 @@ export class Login extends Component {
         ) : '');
 
       return (
-        <div className="col-md-6 col-md-offset-3">
-          <h2>Login</h2>
-          <form name="form" onSubmit={this.handleSubmit}>
+        <div className="container">
+
+          {/* Login Header. TODO: sticky and add <faChevronUp /> */}
+          <div className="header">
+            <h1>Login</h1>
+          </div>
+
+          {/* Sign Up Form */}
+          <Form name="form" onSubmit={this.handleSubmit}>
+
+            {/* Display errors, if necessary */}
             {errorDiv}
+
+            {/* Email */}
             <FormInput
               name="email"
               displayName="Email"
-              type="text"
+              type="email"
               handleChange={this.handleChange}
-              error={this.state.attemptedSubmit}
+              attemptedSubmit={this.state.attemptedSubmit}
               value={this.state.email}
             />
+
+            {/* Password */}
             <FormInput
               name="password"
               displayName="Password"
               type="password"
               handleChange={this.handleChange}
-              error={this.state.attemptedSubmit}
+              attemptedSubmit={this.state.attemptedSubmit}
               value={this.state.password}
             />
+
+            {/* Buttons */}
             <div className="btn-toolbar">
               <Link to="/" className="btn btn-default">Back</Link>
               <button className="btn btn-primary pull-right" type="submit">Login</button>
               <Link to="/signup" className="btn btn-default pull-right">Sign Up</Link>
             </div>
-          </form>
+
+          </Form>
         </div>
       );
     }

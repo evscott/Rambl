@@ -1,136 +1,151 @@
 import React, { Component } from "react";
-import "./SignUp.css";
 import Form from 'react-bootstrap/Form';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { Link, Redirect } from "react-router-dom";
+import { FormInput } from "./FormInput";
+import "./SignUp.css";
 
 export default class SignUp extends Component{
-  //constructor
   constructor(props) {
     super(props);
 
-    //initial state
+    // Initial state
     this.state = {
-      fName: '',
-      lName: '',
-      email: '',
-      confirmEmail: '',
-      password: '',
-      confirmPassword: '',
-      submitted: false
+      fName: '', // Holds first name
+      lName: '', // Holds last name
+      email: '', // Holds email
+      confirmEmail: '', // Holds email confirmation
+      password: '', // Holds password
+      confirmPassword: '', // Holds password confirmation
+      attemptedSubmit: false // Tells us if the user clicked submit
     };
 
-    //bind
+    // Bindings
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  //save input changes to current state
-  //name and value are retrieved in HTML below
+  // Save input changes to current state
+  // Note: name and value are retrieved from HTML below
   handleChange(e) {
     const { name, value } = e.target;
-    this.setState({ [name]: value });
+    this.setState({ [name]: value }); // Square brackets are important for syntax
   }
 
-  //when form is submit, check basic requirements and make appropriate
-  //call to container if met. TODO: refactor
+  // When form is submit, check basic requirements and make appropriate
+  // call to container if met. TODO: possible refactor
   handleSubmit(e) {
     e.preventDefault();
-    this.setState({ submitted: true });
+    this.setState({ attemptedSubmit: true });
     const { fName, lName, email, confirmEmail, password, confirmPassword } = this.state;
-    //all fields must exist.
+    /* If all fields exist, and confirmations match, attempt sign up
+    This feels redundant. If anyone can suggest a simpler way to
+    do this that would be great */
     if (fName && lName && email && confirmEmail && password && confirmPassword) {
-      //confirmations must match.
-      if(password.equals(confirmPassword) && email.equals(confirmEmail)){
-        this.props.onLogin({fName, lName, email, password});
+      if(password === confirmPassword && email === confirmEmail){
+        this.props.onSignUp({fName, lName, email, password});
       }
     }
   }
 
-  //render HTML
+  // Render HTML
   render(){
-    const { fName, lName, email, confirmEmail, password, confirmPassword, submitted } = this.state;
+    // Redirect if authenticated TODO: redirect to thank you page
+    if(this.props.isAuthenticated) {
+      return <Redirect to="/dashboard" />;
+    } else {
+      // Div for when there is an error when submitting
+      // Only shown if not fetching from server and already attempted to submit
+      let errorDiv = (this.state.attemptedSubmit && !this.props.isFetching ? (
+        <div className="alert alert-danger">Sign up failed. See fields for more information.</div>
+      ) : '');
 
-    return(
+      return (
+        <div className="container">
 
-      <div className="container">
-        <!-- Sign Up Header. TODO: sticky-->
-        <div className="header">
-          <faChevronUp />
-          <h1>Sign Up</h1>
+          {/* Sign Up Header. TODO: sticky and add <faChevronUp /> */}
+          <div className="header">
+            <h1>Sign Up</h1>
+          </div>
+
+          {/* Sign Up Form */}
+          <Form name="form" onSubmit={this.handleSubmit}>
+
+            {/* Display errors, if necessary */}
+            {errorDiv}
+
+            {/* First Name */}
+            <FormInput
+              name="fName"
+              displayName="First Name"
+              type="text"
+              handleChange={this.handleChange}
+              attemptedSubmit={this.state.attemptedSubmit}
+              value={this.state.fName}
+            />
+
+            {/* Last Name */}
+            <FormInput
+              name="lName"
+              displayName="Last Name"
+              type="text"
+              handleChange={this.handleChange}
+              attemptedSubmit={this.state.attemptedSubmit}
+              value={this.state.lName}
+            />
+
+            {/* Email */}
+            <FormInput
+              name="email"
+              displayName="Email"
+              type="email"
+              handleChange={this.handleChange}
+              attemptedSubmit={this.state.attemptedSubmit}
+              value={this.state.email}
+            />
+
+            {/* Confirm Email */}
+            <FormInput
+              name="confirmEmail"
+              displayName="Confirm Email"
+              type="email"
+              handleChange={this.handleChange}
+              attemptedSubmit={this.state.attemptedSubmit}
+              value={this.state.confirmEmail}
+              compare={this.state.email}
+            />
+
+            {/* Password */}
+            <FormInput
+              name="password"
+              displayName="Password"
+              type="password"
+              handleChange={this.handleChange}
+              attemptedSubmit={this.state.attemptedSubmit}
+              value={this.state.password}
+            />
+
+            {/* Confirm Password */}
+            <FormInput
+              name="confirmPassword"
+              displayName="Confirm Password"
+              type="password"
+              handleChange={this.handleChange}
+              attemptedSubmit={this.state.attemptedSubmit}
+              value={this.state.confirmPassword}
+              compare={this.state.password}
+            />
+
+            {/* Buttons */}
+            <div className="btn-toolbar">
+              <Link to="/" className="btn btn-default">Back</Link>
+              <button className="btn btn-primary" type="submit">Sign Up</button>
+              <Link to="/signup" className="btn btn-default pull-right">Sign Up</Link>
+            </div>
+
+          </Form>
         </div>
-
-        <!-- Sign Up Form -->
-        <Form name="form" onSubmit={this.handleSubmit}>
-          <!-- TODO Pull into separate components -->
-          <!-- First Name -->
-          <Form.Group controlId="formFName"
-                      className={(submitted && !fName ? ' has-error' : '')}>
-            <Form.Label>First Name</Form.Label>
-            <Form.Control placeholder="Enter first name"
-                          name="fName"
-                          value={fName}
-                          onChange={this.handleChange}/>
-          </Form.Group>
-
-          <!-- Last Name -->
-          <Form.Group controlId="formLName"
-                      className={(submitted && !lName ? ' has-error' : '')}>
-            <Form.Label>Last Name</Form.Label>
-            <Form.Control placeholder="Enter last name"
-                          name="lName"
-                          value={lName}
-                          onChange={this.handleChange}/>
-          </Form.Group>
-
-          <!-- Email -->
-          <Form.Group controlId="formEmail"
-                      className={(submitted && !email ? ' has-error' : '')}>
-            <Form.Label>Email Address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email"
-                          name="email"
-                          value={email}
-                          onChange={this.handleChange}/>
-          </Form.Group>
-
-          <!-- Confirm Email -->
-          <Form.Group controlId="formConfirmEmail"
-                      className={(submitted && !email ||
-                        !email.equals(confirmEmail) ? ' has-error' : '')}>
-            <Form.Label>Confirm Email Address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email"
-                          name="confirmEmail"
-                          value={confirmEmail}
-                          onChange={this.handleChange}/>
-          </Form.Group>
-
-          <!-- Password -->
-          <Form.Group controlId="formPassword"
-                      className={(submitted && !password ? ' has-error' : '')}>
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Enter password"
-                          name="password"
-                          value={password}
-                          onChange={this.handleChange}/>
-          </Form.Group>
-
-          <!-- Confirm Password -->
-          <Form.Group controlId="formConfirmPassword"
-                      className={(submitted && !password ||
-                      !password.equals(confirmPassword) ? ' has-error' : '')}>
-            <Form.Label>Confirm Password</Form.Label>
-            <Form.Control type="password" placeholder="Enter password"
-                          name="confirmPassword"
-                          value={confirmPassword}
-                          onChange={this.handleChange}/>
-          </Form.Group>
-
-          <!-- Submit Button -->
-          <button className="btn btn-primary" type="submit">Sign Up</button>
-
-        </Form>
-        <!-- end sign up form -->
-
-      </div>
-    );
+      );
+    }
   }
 }

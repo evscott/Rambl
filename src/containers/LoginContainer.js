@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
-import { Login } from '../components/Login';
 import { login, logout } from '../redux/actions/authActions';
+import Login from '../components/Login';
 
 const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.authenticate.isAuthenticated,
-    isFetching: state.authenticate.isFetching
+    isAuthenticated: state.isAuthenticated,
+    isFetching: state.isFetching
   };
 };
 
