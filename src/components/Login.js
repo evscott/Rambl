@@ -37,7 +37,7 @@ export default class Login extends Component {
 
   // Render HTML
   render() {
-    if(this.props.isAuthenticated) {
+    if(this.props.user.length !== 0) {
       // Redirect if authenticated
       return <Redirect to="/dashboard" />;
     } else {
