@@ -12,11 +12,30 @@ let getTrips = async (req, res) => {
   let token = req.headers['x-access-token'];
   let email = jwtDecoder(token);
   const query = `SELECT user_id, trip_id, name, dscript
-                  FROM trips
-                  WHERE user_id =
+                 FROM trips
+                 WHERE user_id =
                     (SELECT user_id FROM users
                     WHERE email = ?)`;
   const params = [email];
+  return databaseHandler.queryDatabase(res, query, params, 'Get trips');
+};
+
+/**
+ * Gets the information for a specific trip and gives it back to
+ * the user using the res object.
+ * @param req the request
+ * @param res the resource to give the response
+ * @returns {Promise<void>} the promise indicating success
+ */
+let getTrip = async (req, res) => {
+  let token = req.headers['x-access-token'];
+  let email = jwtDecoder(token);
+  const query = `SELECT user_id, trip_id, name, dscript
+                  FROM trips
+                  WHERE (trip_id = ?) AND user_id =
+                    (SELECT user_id FROM users
+                    WHERE email = ?)`;
+  const params = [req.params.trip_id, email];
   return databaseHandler.queryDatabase(res, query, params, 'Get trips');
 };
 
@@ -29,7 +48,6 @@ let getTrips = async (req, res) => {
 let addTrip = async (req, res) => {
   let token = req.headers['x-access-token'];
   let email = jwtDecoder(token);
-  console.log(req.body);
   const query = `INSERT INTO trips (user_id, name, dscript)
                   VALUES (
                     (SELECT MAX(user_id) 
@@ -78,6 +96,7 @@ let deleteTrip = async (req, res) => {
 
 module.exports = {
   getTrips: getTrips,
+  getTrip: getTrip,
   addTrip: addTrip,
   updateTrip: updateTrip,
   deleteTrip: deleteTrip
