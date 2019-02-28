@@ -4,8 +4,8 @@ import SignUp from '../components/SignUp';
 
 const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.isAuthenticated,
-    isFetching: state.isFetching
+    isAuthenticated: state.user.isAuthenticated,
+    isFetching: state.user.isFetching
   };
 };
 

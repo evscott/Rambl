@@ -4,8 +4,8 @@ import Login from '../components/Login';
 
 const mapStateToProps = (state) => {
   return {
-    isAuthenticated: state.isAuthenticated,
-    isFetching: state.isFetching
+    isAuthenticated: state.user.isAuthenticated,
+    isFetching: state.user.isFetching
   };
 };
 
