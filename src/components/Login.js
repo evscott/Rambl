@@ -20,7 +20,6 @@ export default class Login extends Component {
     // Bindings
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    console.log(this.props.isAuthenticated);
   }
 
   // Save input changes to current state
