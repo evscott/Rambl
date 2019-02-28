@@ -184,6 +184,7 @@ function getPlanInfoFromDbSuccess() {
  * Dispatches getPlanSuccess to indicate the end of a successful getPlanInfoFromDb process.
  * If getPlanInfoFromDb process succeeds, a plan list object is received and passed into
  * getPlanInfoFromDbSuccess to be stored into state.
+ * @param e_id of plan to fetch from database.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 function getPlanInfoFromDb(e_id) {

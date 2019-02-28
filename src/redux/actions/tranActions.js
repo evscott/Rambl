@@ -184,6 +184,7 @@ function getTranInfoFromDbSuccess() {
  * Dispatches getTranSuccess to indicate the end of a successful getTranInfoFromDb process.
  * If getTranInfoFromDb process succeeds, a tran list object is received and passed into
  * getTranInfoFromDbSuccess to be stored into state.
+ * @param e_id of transportation to fetch from database.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 function getTranInfoFromDb(e_id) {

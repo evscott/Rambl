@@ -184,6 +184,7 @@ function getAccomInfoFromDbSuccess() {
  * Dispatches getAccomSuccess to indicate the end of a successful getAccomInfoFromDb process.
  * If getAccomInfoFromDb process succeeds, a accom list object is received and passed into
  * getAccomInfoFromDbSuccess to be stored into state.
+ * @param e_id of accommodation to fetch from database.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 function getAccomInfoFromDb(e_id) {

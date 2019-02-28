@@ -184,6 +184,7 @@ function getTripInfoFromDbSuccess() {
  * Dispatches getTripSuccess to indicate the end of a successful getTripInfoFromDb process.
  * If getTripInfoFromDb process succeeds, a trip list object is received and passed into
  * getTripInfoFromDbSuccess to be stored into state.
+ * @param trip_id of the trip to fetch from the database.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 function getTripInfoFromDb(trip_id) {
@@ -198,7 +199,7 @@ function getTripInfoFromDb(trip_id) {
     })
       .then(response => response.json())
       .then(json => {
-        if (json.length === 0) dispatch(getTripInfoFromDbFailure());
+        if (json.success === false) dispatch(getTripInfoFromDbFailure());
         else {
           dispatch(getTripInfoFromDbSuccess());
           dispatch(addTripToState(json.result[0]));

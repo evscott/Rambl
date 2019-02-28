@@ -30,8 +30,7 @@ export function tripReducer(state = initialState, action) {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
-        isSynced: action.isSynced,
-        trips: action.trips
+        isSynced: action.isSynced
       };
     case TripActions.ADD_TRIP_TO_DB_REQUEST:
       return {
