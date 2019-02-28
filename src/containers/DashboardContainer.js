@@ -4,7 +4,9 @@ import {logout} from "../redux/actions/authActions";
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user.user
+    user: state.user.user,
+    isFetching: state.user.isFetching,
+    isAuthenticated: state.user.isAuthenticated
   };
 };
 
