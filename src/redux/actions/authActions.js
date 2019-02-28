@@ -151,7 +151,6 @@ function getUserInfo() {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function signup(user) {
-  console.log(user);
   return dispatch => {
     dispatch(requestSignup(user)); // Signup request process has begun...
     return fetch('http://localhost:4201/signup', {
