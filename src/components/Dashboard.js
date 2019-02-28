@@ -6,7 +6,6 @@ import Button from "react-bootstrap/Button";
 export default class Dashboard extends Component{
   constructor(props){
     super(props);
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -21,7 +20,7 @@ export default class Dashboard extends Component{
     } else {
       return(
         <div>
-          <h1>Hello, {this.props.f_name}</h1>
+          <h1>Hello, {this.props.user.user.f_name}</h1>
           <Form name="logout" onSubmit={this.handleSubmit}>
             <Button className="btn btn-default" type="submit">Logout</Button>
           </Form>

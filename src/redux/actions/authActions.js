@@ -134,8 +134,8 @@ function getUserInfo() {
     })
       .then(response => response.json())
       .then(json => {
-        if (json.length === 0) dispatch(getUserInfoFailure());
-        else dispatch(getUserInfoSuccess(json.result));
+        if (json.success === false) dispatch(getUserInfoFailure());
+        else dispatch(getUserInfoSuccess(json.result[0]));
       });
   };
 }
@@ -151,6 +151,7 @@ function getUserInfo() {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function signup(user) {
+  console.log(user);
   return dispatch => {
     dispatch(requestSignup(user)); // Signup request process has begun...
     return fetch('http://localhost:4201/signup', {
