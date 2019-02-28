@@ -23,7 +23,7 @@ export class FormInput extends Component {
     if(hasEmpty || !matches) groupClassName = 'has-error';
 
     // Display the error, if necessary
-    let errorMsg = hasEmpty ? this.props.displayName + " is required" : "";
+    let errorMsg = hasEmpty && matches ? this.props.displayName + " is required" : "";
     errorMsg += !matches ? "Does not match!" : "";
 
     // Render the FormInput
