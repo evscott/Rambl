@@ -7,8 +7,6 @@ import './Login.css';
 export default class Login extends Component {
   constructor(props) {
     super(props);
-    // Logout, to reset status
-    this.props.onLogout();
 
     // Initial state
     this.state = {
