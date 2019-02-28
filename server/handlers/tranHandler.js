@@ -1,4 +1,6 @@
+
 const databaseHandler = require('./databaseHandler');
+const jwtDecoder = require('../shared/jwtDecoder');
 
 /**
  * Gets the information for all transportation and gives it back to
@@ -8,17 +10,47 @@ const databaseHandler = require('./databaseHandler');
  * @returns {Promise<void>} the promise indicating success
  */
 let getTransportations = async (req, res) => {
+  let token = req.headers['x-access-token'];
+  let email = jwtDecoder(token);
   const query = `SELECT *
                   FROM transportation
                   WHERE trip_id IN
                     (SELECT trip_id FROM trips
-                    WHERE user_id = ?)`;
-  const params = [req.body.user_id];
+                    WHERE user_id =
+                      (SELECT user_id FROM users
+                      WHERE email = ?))`;
+  const params = [email];
   return databaseHandler.queryDatabase(
     res,
     query,
     params,
-    'Get transportation'
+    'Get all transportation'
+  );
+};
+
+/**
+ * Gets the information for a specific transportation and gives it back to
+ * the user using the res object.
+ * @param req the request
+ * @param res the resource to give the response
+ * @returns {Promise<void>} the promise indicating success
+ */
+let getTransportation = async (req, res) => {
+  let token = req.headers['x-access-token'];
+  let email = jwtDecoder(token);
+  const query = `SELECT *
+                  FROM transportation
+                  WHERE e_id = ? AND trip_id IN
+                    (SELECT trip_id FROM trips
+                    WHERE user_id =
+                      (SELECT user_id FROM users
+                      WHERE email = ?))`;
+  const params = [req.params.e_id, email];
+  return databaseHandler.queryDatabase(
+    res,
+    query,
+    params,
+    'Get a transportation'
   );
 };
 
@@ -46,7 +78,12 @@ let addTransportation = async (req, res) => {
     req.body.method
   ];
 
-  return databaseHandler.queryDatabaseBoolean(res, query, params, 'Add transportation');
+  return databaseHandler.queryDatabaseBoolean(
+    res,
+    query,
+    params,
+    'Add transportation'
+  );
 };
 
 /**
@@ -59,9 +96,8 @@ let updateTransportation = async (req, res) => {
   const query = `UPDATE transportation 
                   SET cost=?, begin_time=?, end_time=?, loc=?, loc_end=?, 
                   dscript=?, completed=?, priority=?, method=?
-                  WHERE trip_id=? AND e_id=?;`;
+                  WHERE trip_id=? AND e_id=?`;
   const params = [
-    req.body.trip_id,
     req.body.cost,
     req.body.begin_time,
     req.body.end_time,
@@ -70,7 +106,9 @@ let updateTransportation = async (req, res) => {
     req.body.dscript,
     req.body.completed,
     req.body.priority,
-    req.body.method
+    req.body.method,
+    req.body.trip_id,
+    req.body.e_id
   ];
   return databaseHandler.queryDatabaseBoolean(
     res,
@@ -99,6 +137,7 @@ let deleteTransportation = async (req, res) => {
 
 module.exports = {
   getTransportations: getTransportations,
+  getTransportation: getTransportation,
   addTransportation: addTransportation,
   updateTransportation: updateTransportation,
   deleteTransportation: deleteTransportation
