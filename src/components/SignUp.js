@@ -52,7 +52,7 @@ export default class SignUp extends Component{
   render(){
     // Redirect if authenticated TODO: redirect to thank you page
     if(this.props.isAuthenticated) {
-      return <Redirect to="/dashboard" />;
+      return <Redirect to="/thankyou" />;
     } else {
       // Div for when there is an error when submitting
       // Only shown if not fetching from server and already attempted to submit

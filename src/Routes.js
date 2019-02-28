@@ -4,6 +4,7 @@ import Home from './components/Home';
 import LoginContainer from './containers/LoginContainer';
 import SignUpContainer from './containers/SignUpContainer';
 import DashboardContainer from './containers/DashboardContainer';
+import ThankYouMsgContainer from "./containers/ThankYouMsgContainer";
 
 export default () => (
   <Router>
@@ -12,6 +13,7 @@ export default () => (
       <Route exact path="/login" component={LoginContainer} />
       <Route exact path="/signup" component={SignUpContainer} />
       <Route exact path="/dashboard" component={DashboardContainer} />
+      <Route exact path="/thankyou" component={ThankYouMsgContainer} />
     </Switch>
   </Router>
 );
