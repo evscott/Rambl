@@ -11,8 +11,8 @@ export default class SignUp extends Component{
 
     // Initial state
     this.state = {
-      fName: '', // Holds first name
-      lName: '', // Holds last name
+      f_name: '', // Holds first name
+      l_name: '', // Holds last name
       email: '', // Holds email
       confirmEmail: '', // Holds email confirmation
       password: '', // Holds password
@@ -76,22 +76,22 @@ export default class SignUp extends Component{
 
             {/* First Name */}
             <FormInput
-              name="fName"
+              name="f_name"
               displayName="First Name"
               type="text"
               handleChange={this.handleChange}
               attemptedSubmit={this.state.attemptedSubmit}
-              value={this.state.fName}
+              value={this.state.f_name}
             />
 
             {/* Last Name */}
             <FormInput
-              name="lName"
+              name="l_name"
               displayName="Last Name"
               type="text"
               handleChange={this.handleChange}
               attemptedSubmit={this.state.attemptedSubmit}
-              value={this.state.lName}
+              value={this.state.l_name}
             />
 
             {/* Email */}
