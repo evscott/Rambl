@@ -85,8 +85,8 @@ export default class Login extends Component {
             {/* Buttons */}
             <div className="btn-toolbar">
               <Link to="/" className="btn btn-default">Back</Link>
+              <Link to="/signup" className="btn btn-default">Sign Up</Link>
               <button className="btn btn-primary pull-right" type="submit">Login</button>
-              <Link to="/signup" className="btn btn-default pull-right">Sign Up</Link>
             </div>
 
           </Form>

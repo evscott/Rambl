@@ -12,7 +12,7 @@ export default class Home extends Component {
           <div className="btn-group">
             <Link to="/about" className="btn btn-default">About Rambl</Link>
             <Link to="/signup" className="btn btn-default">Sign Up</Link>
-            <Link to="/login" className="btn btn-primary">Log In</Link>
+            <Link to="/login" className="btn btn-primary">Login</Link>
           </div>
         </div>
       </div>

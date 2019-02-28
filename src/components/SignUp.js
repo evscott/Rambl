@@ -37,13 +37,13 @@ export default class SignUp extends Component{
   handleSubmit(e) {
     e.preventDefault();
     this.setState({ attemptedSubmit: true });
-    const { fName, lName, email, confirmEmail, password, confirmPassword } = this.state;
+    const { f_name, l_name, email, confirmEmail, password, confirmPassword } = this.state;
     /* If all fields exist, and confirmations match, attempt sign up
     This feels redundant. If anyone can suggest a simpler way to
     do this that would be great */
-    if (fName && lName && email && confirmEmail && password && confirmPassword) {
+    if (f_name && l_name && email && confirmEmail && password && confirmPassword) {
       if(password === confirmPassword && email === confirmEmail){
-        this.props.onSignUp({fName, lName, email, password});
+        this.props.onSignUp({ f_name, l_name, email, password});
       }
     }
   }
@@ -52,7 +52,7 @@ export default class SignUp extends Component{
   render(){
     // Redirect if authenticated TODO: redirect to thank you page
     if(this.props.isAuthenticated) {
-      return <Redirect to="/thankyou" />;
+      return <Redirect to="/dashboard" />;
     } else {
       // Div for when there is an error when submitting
       // Only shown if not fetching from server and already attempted to submit
@@ -139,8 +139,8 @@ export default class SignUp extends Component{
             {/* Buttons */}
             <div className="btn-toolbar">
               <Link to="/" className="btn btn-default">Back</Link>
-              <button className="btn btn-primary" type="submit">Sign Up</button>
-              <Link to="/login" className="btn btn-default pull-right">Login</Link>
+              <Link to="/login" className="btn btn-default">Login</Link>
+              <button className="btn btn-primary pull-right" type="submit">Sign Up</button>
             </div>
 
           </Form>
