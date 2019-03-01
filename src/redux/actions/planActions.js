@@ -222,7 +222,7 @@ export function getPlansFromDb() {
   console.log(hostUrl);
   return dispatch => {
     dispatch(getPlansFromDbRequest()); // Get plans request process has begun...
-    return fetch(hostUrl+'/plan/get', {
+    return fetch(hostUrl + '/plan/get', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -257,7 +257,7 @@ export function getPlansFromDb() {
 export function addPlanToDb(plan) {
   return dispatch => {
     dispatch(addPlanToDbRequest()); // Add plan request process has begun...
-    return fetch(hostUrl+'/plan/add', {
+    return fetch(hostUrl + '/plan/add', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -289,7 +289,7 @@ export function addPlanToDb(plan) {
 export function updatePlanInDb(plan) {
   return dispatch => {
     dispatch(updatePlanInDbRequest()); // Update plan request process has begun...
-    return fetch(hostUrl+'/plan/update', {
+    return fetch(hostUrl + '/plan/update', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -321,7 +321,7 @@ export function updatePlanInDb(plan) {
 export function deletePlanInDb(plan) {
   return dispatch => {
     dispatch(deletePlanInDbRequest()); // Delete plan request process has begun...
-    return fetch(hostUrl+'/plan/delete', {
+    return fetch(hostUrl + '/plan/delete', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
