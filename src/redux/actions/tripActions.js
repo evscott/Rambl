@@ -1,4 +1,5 @@
 import fetch from 'cross-fetch';
+import { hostUrl } from '../../Config';
 
 export const GET_TRIPS_FROM_DB_REQUEST = 'GET_TRIPS_FROM_DB_REQUEST';
 export const GET_TRIPS_FROM_DB_FAILURE = 'GET_TRIPS_FROM_DB_FAILURE';
@@ -190,7 +191,7 @@ function getTripInfoFromDbSuccess() {
 function getTripInfoFromDb(trip_id) {
   return dispatch => {
     dispatch(getTripInfoFromDbRequest());
-    return fetch(`http://localhost:4201/trip/get/${trip_id}`, {
+    return fetch(hostUrl + `/trip/get/${trip_id}`, {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -220,7 +221,7 @@ function getTripInfoFromDb(trip_id) {
 export function getTripsFromDb() {
   return dispatch => {
     dispatch(getTripsFromDbRequest()); // Get trips request process has begun...
-    return fetch('http://localhost:4201/trip/get', {
+    return fetch(hostUrl + '/trip/get', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -249,7 +250,7 @@ export function addTripToDb(trip) {
   return dispatch => {
     dispatch(addTripToDbRequest()); // Add trip request process has begun...
     console.log(trip);
-    return fetch('http://localhost:4201/trip/add', {
+    return fetch(hostUrl + '/trip/add', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -281,7 +282,7 @@ export function addTripToDb(trip) {
 export function updateTripInDb(trip) {
   return dispatch => {
     dispatch(updateTripInDbRequest()); // Update trip request process has begun...
-    return fetch('http://localhost:4201/trip/update', {
+    return fetch(hostUrl + '/trip/update', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -313,7 +314,7 @@ export function updateTripInDb(trip) {
 export function deleteTripInDb(trip) {
   return dispatch => {
     dispatch(deleteTripInDbRequest()); // Delete trip request process has begun...
-    return fetch('http://localhost:4201/trip/delete', {
+    return fetch(hostUrl + '/trip/delete', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -326,7 +327,7 @@ export function deleteTripInDb(trip) {
         if (json.success === false) dispatch(deleteTripInDbFailure());
         else {
           dispatch(deleteTripInDbSuccess());
-          dispatch(deleteTripInState(trip))
+          dispatch(deleteTripInState(trip));
         }
       });
   };

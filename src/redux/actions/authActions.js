@@ -1,4 +1,5 @@
 import fetch from 'cross-fetch';
+import { hostUrl } from '../../Config';
 
 export const SIGNUP_REQUEST = 'REQUEST_SIGNUP';
 export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
@@ -34,7 +35,7 @@ function signupSuccess() {
     type: SIGNUP_SUCCESS,
     lastUpdated: Date.now(),
     isAuthenticated: true,
-    isFetching: true,
+    isFetching: true
   };
 }
 
@@ -59,7 +60,7 @@ function loginSuccess() {
     type: LOGIN_SUCCESS,
     lastUpdated: Date.now(),
     isAuthenticated: true,
-    isFetching: false,
+    isFetching: false
   };
 }
 
@@ -112,7 +113,7 @@ function getUserInfoFailure() {
   return {
     type: GET_USER_INFO_FAILURE,
     lastUpdated: Date.now(),
-    isFetching: false,
+    isFetching: false
   };
 }
 
@@ -121,7 +122,7 @@ export function getUserInfoSuccess(user) {
     type: GET_USER_INFO_SUCCESS,
     lastUpdated: Date.now(),
     isFetching: false,
-    user: user,
+    user: user
   };
 }
 
@@ -139,7 +140,7 @@ export function getUserInfoSuccess(user) {
 function getUserInfo() {
   return dispatch => {
     dispatch(getUserInfoRequest());
-    return fetch('http://localhost:4201/user/getinfo', {
+    return fetch(hostUrl + '/user/getinfo', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -167,7 +168,7 @@ function getUserInfo() {
 export function signup(user) {
   return dispatch => {
     dispatch(requestSignup(user)); // Signup request process has begun...
-    return fetch('http://localhost:4201/signup', {
+    return fetch(hostUrl + '/signup', {
       headers: {
         'Content-Type': 'application/json'
       },
@@ -199,7 +200,7 @@ export function signup(user) {
 export function login(user) {
   return dispatch => {
     dispatch(requestLogin(user)); // login request process has begun...
-    return fetch('http://localhost:4201/login', {
+    return fetch(hostUrl + '/login', {
       headers: {
         'Content-Type': 'application/json'
       },
@@ -229,7 +230,7 @@ export function login(user) {
 export function logout() {
   return dispatch => {
     dispatch(requestLogout());
-    let token = localStorage.get('token');
+    let token = localStorage.getItem('token');
     if (!token) {
       dispatch(logoutFailure());
     } else {
