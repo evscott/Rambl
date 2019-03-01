@@ -36,7 +36,8 @@ function getPlansFromDbFailure() {
   };
 }
 
-function getPlansFromDbSuccess(plans) {
+// Export needed for testing
+export function getPlansFromDbSuccess(plans) {
   return {
     type: GET_PLANS_FROM_DB_SUCCESS,
     lastUpdated: Date.now(),

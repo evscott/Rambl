@@ -36,7 +36,7 @@ function getAccomsFromDbFailure() {
   };
 }
 
-function getAccomsFromDbSuccess(accoms) {
+export function getAccomsFromDbSuccess(accoms) {
   return {
     type: GET_ACCOMS_FROM_DB_SUCCESS,
     lastUpdated: Date.now(),

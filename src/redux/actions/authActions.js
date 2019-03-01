@@ -77,12 +77,26 @@ function logoutFailure() {
   };
 }
 
-function logoutSuccess() {
+/**
+ * This action has effects in multiple reducers. Since logout will
+ * affect every branch of the store by removing all of the information,
+ * it requires extra information to update those areas of the program.
+ * These extra pieces of information include empty arrays for the user,
+ * accoms, plans, trans, and trips (as well as fetching/synced booleans).
+ */
+// exported to allow testing
+export function logoutSuccess() {
   return {
     type: LOGOUT_SUCCESS,
     lastUpdated: Date.now(),
     isAuthenticated: false,
-    user: null
+    isFetching: false,
+    isSynced: false,
+    user: [],
+    accoms: [],
+    plans: [],
+    trans: [],
+    trips: []
   };
 }
 
@@ -102,7 +116,7 @@ function getUserInfoFailure() {
   };
 }
 
-function getUserInfoSuccess(user) {
+export function getUserInfoSuccess(user) {
   return {
     type: GET_USER_INFO_SUCCESS,
     lastUpdated: Date.now(),
