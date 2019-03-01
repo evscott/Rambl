@@ -191,7 +191,7 @@ function getAccomInfoFromDbSuccess() {
 function getAccomInfoFromDb(e_id) {
   return dispatch => {
     dispatch(getAccomInfoFromDbRequest());
-    return fetch(`http://localhost:4201/accom/get/${e_id}`, {
+    return fetch(`http://localhost/accom/get/${e_id}`, {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -221,7 +221,7 @@ function getAccomInfoFromDb(e_id) {
 export function getAccomsFromDb() {
   return dispatch => {
     dispatch(getAccomsFromDbRequest()); // Get accoms request process has begun...
-    return fetch(hostUrl+':4201/accom/get', {
+    return fetch(hostUrl+'/accom/get', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -256,7 +256,7 @@ export function getAccomsFromDb() {
 export function addAccomToDb(accom) {
   return dispatch => {
     dispatch(addAccomToDbRequest()); // Add accom request process has begun...
-    return fetch(hostUrl+':4201/accom/add', {
+    return fetch(hostUrl+'/accom/add', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -288,7 +288,7 @@ export function addAccomToDb(accom) {
 export function updateAccomInDb(accom) {
   return dispatch => {
     dispatch(updateAccomInDbRequest()); // Update accom request process has begun...
-    return fetch(hostUrl+':4201/accom/update', {
+    return fetch(hostUrl+'/accom/update', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -320,7 +320,7 @@ export function updateAccomInDb(accom) {
 export function deleteAccomInDb(accom) {
   return dispatch => {
     dispatch(deleteAccomInDbRequest()); // Delete accom request process has begun...
-    return fetch(hostUrl+':4201/accom/delete', {
+    return fetch(hostUrl+'/accom/delete', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')

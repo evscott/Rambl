@@ -15,13 +15,13 @@ class App extends Component {
     super();
     console.log(process.env);
     store.dispatch(login({email: "graeme@gmail.com", password: "password"}));
-    // store.dispatch(getTripsFromDb());
-    // store.dispatch(getPlansFromDb());
-    // store.dispatch(getTransFromDb());
-    // store.dispatch(getAccomsFromDb());
-    // setTimeout(() => {
-    //   store.dispatch(logout());
-    // }, 3000);
+    store.dispatch(getTripsFromDb());
+    store.dispatch(getPlansFromDb());
+    store.dispatch(getTransFromDb());
+    store.dispatch(getAccomsFromDb());
+    setTimeout(() => {
+      store.dispatch(logout());
+    }, 10000);
   }
   render() {
     return (

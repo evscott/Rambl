@@ -191,7 +191,7 @@ function getTranInfoFromDbSuccess() {
 function getTranInfoFromDb(e_id) {
   return dispatch => {
     dispatch(getTranInfoFromDbRequest());
-    return fetch(`http://localhost:4201/tran/get/${e_id}`, {
+    return fetch(`http://localhost/tran/get/${e_id}`, {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -221,7 +221,7 @@ function getTranInfoFromDb(e_id) {
 export function getTransFromDb() {
   return dispatch => {
     dispatch(getTransFromDbRequest()); // Get trans request process has begun...
-    return fetch(hostUrl+':4201/tran/get', {
+    return fetch(hostUrl+'/tran/get', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -256,7 +256,7 @@ export function getTransFromDb() {
 export function addTranToDb(tran) {
   return dispatch => {
     dispatch(addTranToDbRequest()); // Add tran request process has begun...
-    return fetch(hostUrl+':4201/tran/add', {
+    return fetch(hostUrl+'/tran/add', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -288,7 +288,7 @@ export function addTranToDb(tran) {
 export function updateTranInDb(tran) {
   return dispatch => {
     dispatch(updateTranInDbRequest()); // Update tran request process has begun...
-    return fetch(hostUrl+':4201/tran/update', {
+    return fetch(hostUrl+'/tran/update', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -320,7 +320,7 @@ export function updateTranInDb(tran) {
 export function deleteTranInDb(tran) {
   return dispatch => {
     dispatch(deleteTranInDbRequest()); // Delete tran request process has begun...
-    return fetch(hostUrl+':4201/tran/delete', {
+    return fetch(hostUrl+'/tran/delete', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
