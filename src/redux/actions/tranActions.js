@@ -1,4 +1,5 @@
 import fetch from 'cross-fetch';
+import { hostUrl } from '../../Config';
 
 export const GET_TRANS_FROM_DB_REQUEST = 'GET_TRANS_FROM_DB_REQUEST';
 export const GET_TRANS_FROM_DB_FAILURE = 'GET_TRANS_FROM_DB_FAILURE';
@@ -220,7 +221,7 @@ function getTranInfoFromDb(e_id) {
 export function getTransFromDb() {
   return dispatch => {
     dispatch(getTransFromDbRequest()); // Get trans request process has begun...
-    return fetch('http://localhost:4201/tran/get', {
+    return fetch(hostUrl+':4201/tran/get', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -255,7 +256,7 @@ export function getTransFromDb() {
 export function addTranToDb(tran) {
   return dispatch => {
     dispatch(addTranToDbRequest()); // Add tran request process has begun...
-    return fetch('http://localhost:4201/tran/add', {
+    return fetch(hostUrl+':4201/tran/add', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -287,7 +288,7 @@ export function addTranToDb(tran) {
 export function updateTranInDb(tran) {
   return dispatch => {
     dispatch(updateTranInDbRequest()); // Update tran request process has begun...
-    return fetch('http://localhost:4201/tran/update', {
+    return fetch(hostUrl+':4201/tran/update', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -319,7 +320,7 @@ export function updateTranInDb(tran) {
 export function deleteTranInDb(tran) {
   return dispatch => {
     dispatch(deleteTranInDbRequest()); // Delete tran request process has begun...
-    return fetch('http://localhost:4201/tran/delete', {
+    return fetch(hostUrl+':4201/tran/delete', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')

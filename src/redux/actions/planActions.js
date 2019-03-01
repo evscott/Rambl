@@ -1,4 +1,5 @@
 import fetch from 'cross-fetch';
+import { hostUrl } from '../../Config';
 
 export const GET_PLANS_FROM_DB_REQUEST = 'GET_PLANS_FROM_DB_REQUEST';
 export const GET_PLANS_FROM_DB_FAILURE = 'GET_PLANS_FROM_DB_FAILURE';
@@ -220,7 +221,7 @@ function getPlanInfoFromDb(e_id) {
 export function getPlansFromDb() {
   return dispatch => {
     dispatch(getPlansFromDbRequest()); // Get plans request process has begun...
-    return fetch('http://localhost:4201/plan/get', {
+    return fetch(hostUrl+':4201/plan/get', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -255,7 +256,7 @@ export function getPlansFromDb() {
 export function addPlanToDb(plan) {
   return dispatch => {
     dispatch(addPlanToDbRequest()); // Add plan request process has begun...
-    return fetch('http://localhost:4201/plan/add', {
+    return fetch(hostUrl+':4201/plan/add', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -287,7 +288,7 @@ export function addPlanToDb(plan) {
 export function updatePlanInDb(plan) {
   return dispatch => {
     dispatch(updatePlanInDbRequest()); // Update plan request process has begun...
-    return fetch('http://localhost:4201/plan/update', {
+    return fetch(hostUrl+':4201/plan/update', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -319,7 +320,7 @@ export function updatePlanInDb(plan) {
 export function deletePlanInDb(plan) {
   return dispatch => {
     dispatch(deletePlanInDbRequest()); // Delete plan request process has begun...
-    return fetch('http://localhost:4201/plan/delete', {
+    return fetch(hostUrl+':4201/plan/delete', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
