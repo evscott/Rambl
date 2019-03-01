@@ -14,25 +14,28 @@ export class FormInput extends Component {
 
     // Identify if a confirmation field matches the original value
     let matches = true;
-    if(this.props.compare && this.props.attemptedSubmit){
+    if (this.props.compare && this.props.attemptedSubmit) {
       matches = this.props.compare === this.props.value;
     }
 
     // Determine the class for the form group
     let groupClassName = '';
-    if(hasEmpty || !matches) groupClassName = 'has-error';
+    if (hasEmpty || !matches) groupClassName = 'has-error';
 
     // Display the error, if necessary
-    let errorMsg = hasEmpty && matches ? this.props.displayName + " is required" : "";
-    errorMsg += !matches ? "Does not match!" : "";
+    let errorMsg =
+      hasEmpty && matches ? this.props.displayName + ' is required' : '';
+    errorMsg += !matches ? 'Does not match!' : '';
 
     // Render the FormInput
     return (
       <Form.Group className={groupClassName}>
         <Form.Label>{this.props.displayName}</Form.Label>
-        <Form.Control type={this.props.type}
-                      name={this.props.name}
-                      onChange={this.props.handleChange}/>
+        <Form.Control
+          type={this.props.type}
+          name={this.props.name}
+          onChange={this.props.handleChange}
+        />
         <Form.Text>{errorMsg}</Form.Text>
       </Form.Group>
     );

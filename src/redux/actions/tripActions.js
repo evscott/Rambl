@@ -188,7 +188,7 @@ function getTripInfoFromDbSuccess() {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 function getTripInfoFromDb(trip_id) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(getTripInfoFromDbRequest());
     return fetch(`http://localhost:4201/trip/get/${trip_id}`, {
       headers: {
@@ -197,8 +197,8 @@ function getTripInfoFromDb(trip_id) {
       },
       method: 'get'
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.success === false) dispatch(getTripInfoFromDbFailure());
         else {
           dispatch(getTripInfoFromDbSuccess());
@@ -218,7 +218,7 @@ function getTripInfoFromDb(trip_id) {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function getTripsFromDb() {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(getTripsFromDbRequest()); // Get trips request process has begun...
     return fetch('http://localhost:4201/trip/get', {
       headers: {
@@ -227,8 +227,8 @@ export function getTripsFromDb() {
       },
       method: 'GET'
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.success === false) dispatch(getTripsFromDbFailure());
         else dispatch(getTripsFromDbSuccess(json.result));
       });
@@ -246,7 +246,7 @@ export function getTripsFromDb() {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function addTripToDb(trip) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(addTripToDbRequest()); // Add trip request process has begun...
     console.log(trip);
     return fetch('http://localhost:4201/trip/add', {
@@ -257,8 +257,8 @@ export function addTripToDb(trip) {
       method: 'POST',
       body: JSON.stringify(trip)
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.success === false) dispatch(addTripToDbFailure());
         else {
           dispatch(addTripToDbSuccess());
@@ -279,7 +279,7 @@ export function addTripToDb(trip) {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function updateTripInDb(trip) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(updateTripInDbRequest()); // Update trip request process has begun...
     return fetch('http://localhost:4201/trip/update', {
       headers: {
@@ -289,8 +289,8 @@ export function updateTripInDb(trip) {
       method: 'PUT',
       body: JSON.stringify(trip)
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.success === false) dispatch(updateTripInDbFailure());
         else {
           dispatch(updateTripInDbSuccess());
@@ -311,7 +311,7 @@ export function updateTripInDb(trip) {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function deleteTripInDb(trip) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(deleteTripInDbRequest()); // Delete trip request process has begun...
     return fetch('http://localhost:4201/trip/delete', {
       headers: {
@@ -321,12 +321,12 @@ export function deleteTripInDb(trip) {
       method: 'DELETE',
       body: JSON.stringify(trip)
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.success === false) dispatch(deleteTripInDbFailure());
         else {
           dispatch(deleteTripInDbSuccess());
-          dispatch(deleteTripInState(trip))
+          dispatch(deleteTripInState(trip));
         }
       });
   };

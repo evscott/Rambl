@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
-import { FormInput } from "./FormInput";
+import { FormInput } from './FormInput';
 import './Login.css';
 
 export default class Login extends Component {
@@ -37,20 +37,23 @@ export default class Login extends Component {
 
   // Render HTML
   render() {
-    if(this.props.user.length !== 0) {
+    if (this.props.user.length !== 0) {
       // Redirect if authenticated
       return <Redirect to="/dashboard" />;
     } else {
-
       // Div for when there is an error when submitting
       // Only shown if not fetching from server and already attempted to submit
-      let errorDiv = ( this.state.attemptedSubmit && !this.props.isFetching ? (
-          <div className="alert alert-danger">Login failed with the provided username and password.</div>
-        ) : '');
+      let errorDiv =
+        this.state.attemptedSubmit && !this.props.isFetching ? (
+          <div className="alert alert-danger">
+            Login failed with the provided username and password.
+          </div>
+        ) : (
+          ''
+        );
 
       return (
         <div className="container">
-
           {/* Login Header. TODO: sticky and add <faChevronUp /> */}
           <div className="header">
             <h1>Login</h1>
@@ -58,7 +61,6 @@ export default class Login extends Component {
 
           {/* Sign Up Form */}
           <Form name="form" onSubmit={this.handleSubmit}>
-
             {/* Display errors, if necessary */}
             {errorDiv}
 
@@ -84,11 +86,16 @@ export default class Login extends Component {
 
             {/* Buttons */}
             <div className="btn-toolbar">
-              <Link to="/" className="btn btn-default">Back</Link>
-              <Link to="/signup" className="btn btn-default">Sign Up</Link>
-              <button className="btn btn-primary pull-right" type="submit">Login</button>
+              <Link to="/" className="btn btn-default">
+                Back
+              </Link>
+              <Link to="/signup" className="btn btn-default">
+                Sign Up
+              </Link>
+              <button className="btn btn-primary pull-right" type="submit">
+                Login
+              </button>
             </div>
-
           </Form>
         </div>
       );

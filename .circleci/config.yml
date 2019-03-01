@@ -24,4 +24,6 @@ jobs:
         command: |
           ./cc-test-reporter before-build
           npm test -- --coverage
+          ./node_modules/.bin/eslint src/*
           ./cc-test-reporter after-build --exit-code $?
+

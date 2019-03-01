@@ -18,7 +18,7 @@ const initialState = {
   lastUpdated: null,
   isAuthenticated: false,
   isFetching: false,
-  user: [],
+  user: []
 };
 
 export function authReducer(state = initialState, action) {
@@ -33,14 +33,14 @@ export function authReducer(state = initialState, action) {
       return {
         ...state,
         lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
+        isFetching: action.isFetching
       };
     case SIGNUP_SUCCESS:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isAuthenticated: action.isAuthenticated,
-        isFetching: action.isFetching,
+        isFetching: action.isFetching
       };
     case LOGIN_REQUEST:
       return {
@@ -52,14 +52,14 @@ export function authReducer(state = initialState, action) {
       return {
         ...state,
         lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
+        isFetching: action.isFetching
       };
     case LOGIN_SUCCESS:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isAuthenticated: action.isAuthenticated,
-        isFetching: action.isFetching,
+        isFetching: action.isFetching
       };
     case LOGOUT_REQUEST:
       return {
@@ -76,7 +76,7 @@ export function authReducer(state = initialState, action) {
         ...state,
         lastUpdated: action.lastUpdated,
         isAuthenticated: action.isAuthenticated,
-        user: action.user,
+        user: action.user
       };
     case GET_USER_INFO_REQUEST:
       return {
@@ -88,14 +88,14 @@ export function authReducer(state = initialState, action) {
       return {
         ...state,
         lastUpdated: action.lastUpdated,
-        isFetching: action.isFetching,
+        isFetching: action.isFetching
       };
     case GET_USER_INFO_SUCCESS:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
-        user: action.user,
+        user: action.user
       };
     default:
       return state;

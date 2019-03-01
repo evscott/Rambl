@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { Link, Redirect } from "react-router-dom";
-import { FormInput } from "./FormInput";
-import "./SignUp.css";
+import { Link, Redirect } from 'react-router-dom';
+import { FormInput } from './FormInput';
+import './SignUp.css';
 
-export default class SignUp extends Component{
+export default class SignUp extends Component {
   constructor(props) {
     super(props);
 
@@ -37,32 +37,50 @@ export default class SignUp extends Component{
   handleSubmit(e) {
     e.preventDefault();
     this.setState({ attemptedSubmit: true });
-    const { f_name, l_name, email, confirmEmail, password, confirmPassword } = this.state;
+    const {
+      f_name,
+      l_name,
+      email,
+      confirmEmail,
+      password,
+      confirmPassword
+    } = this.state;
     /* If all fields exist, and confirmations match, attempt sign up
     This feels redundant. If anyone can suggest a simpler way to
     do this that would be great */
-    if (f_name && l_name && email && confirmEmail && password && confirmPassword) {
-      if(password === confirmPassword && email === confirmEmail){
-        this.props.onSignUp({ f_name, l_name, email, password});
+    if (
+      f_name &&
+      l_name &&
+      email &&
+      confirmEmail &&
+      password &&
+      confirmPassword
+    ) {
+      if (password === confirmPassword && email === confirmEmail) {
+        this.props.onSignUp({ f_name, l_name, email, password });
       }
     }
   }
 
   // Render HTML
-  render(){
+  render() {
     // Redirect if authenticated TODO: redirect to thank you page
-    if(this.props.isAuthenticated) {
+    if (this.props.isAuthenticated) {
       return <Redirect to="/dashboard" />;
     } else {
       // Div for when there is an error when submitting
       // Only shown if not fetching from server and already attempted to submit
-      let errorDiv = (this.state.attemptedSubmit && !this.props.isFetching ? (
-        <div className="alert alert-danger">Sign up failed. See fields for more information.</div>
-      ) : '');
+      let errorDiv =
+        this.state.attemptedSubmit && !this.props.isFetching ? (
+          <div className="alert alert-danger">
+            Sign up failed. See fields for more information.
+          </div>
+        ) : (
+          ''
+        );
 
       return (
         <div className="container">
-
           {/* Sign Up Header. TODO: sticky and add <faChevronUp /> */}
           <div className="header">
             <h1>Sign Up</h1>
@@ -70,7 +88,6 @@ export default class SignUp extends Component{
 
           {/* Sign Up Form */}
           <Form name="form" onSubmit={this.handleSubmit}>
-
             {/* Display errors, if necessary */}
             {errorDiv}
 
@@ -138,11 +155,16 @@ export default class SignUp extends Component{
 
             {/* Buttons */}
             <div className="btn-toolbar">
-              <Link to="/" className="btn btn-default">Back</Link>
-              <Link to="/login" className="btn btn-default">Login</Link>
-              <button className="btn btn-primary pull-right" type="submit">Sign Up</button>
+              <Link to="/" className="btn btn-default">
+                Back
+              </Link>
+              <Link to="/login" className="btn btn-default">
+                Login
+              </Link>
+              <button className="btn btn-primary pull-right" type="submit">
+                Sign Up
+              </button>
             </div>
-
           </Form>
         </div>
       );

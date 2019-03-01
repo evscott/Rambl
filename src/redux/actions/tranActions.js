@@ -188,7 +188,7 @@ function getTranInfoFromDbSuccess() {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 function getTranInfoFromDb(e_id) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(getTranInfoFromDbRequest());
     return fetch(`http://localhost:4201/tran/get/${e_id}`, {
       headers: {
@@ -197,8 +197,8 @@ function getTranInfoFromDb(e_id) {
       },
       method: 'get'
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.length === 0) dispatch(getTranInfoFromDbFailure());
         else {
           dispatch(getTranInfoFromDbSuccess());
@@ -218,7 +218,7 @@ function getTranInfoFromDb(e_id) {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function getTransFromDb() {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(getTransFromDbRequest()); // Get trans request process has begun...
     return fetch('http://localhost:4201/tran/get', {
       headers: {
@@ -227,12 +227,12 @@ export function getTransFromDb() {
       },
       method: 'GET'
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.success === false) dispatch(getTransFromDbFailure());
         else {
           let trans = [];
-          json.result.forEach(t => {
+          json.result.forEach((t) => {
             if (trans[t.trip_id] === undefined) trans[t.trip_id] = {};
             trans[t.trip_id][t.e_id] = t;
           });
@@ -253,7 +253,7 @@ export function getTransFromDb() {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function addTranToDb(tran) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(addTranToDbRequest()); // Add tran request process has begun...
     return fetch('http://localhost:4201/tran/add', {
       headers: {
@@ -263,8 +263,8 @@ export function addTranToDb(tran) {
       method: 'POST',
       body: JSON.stringify(tran)
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.success === false) dispatch(addTranToDbFailure());
         else {
           dispatch(addTranToDbSuccess());
@@ -285,7 +285,7 @@ export function addTranToDb(tran) {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function updateTranInDb(tran) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(updateTranInDbRequest()); // Update tran request process has begun...
     return fetch('http://localhost:4201/tran/update', {
       headers: {
@@ -295,8 +295,8 @@ export function updateTranInDb(tran) {
       method: 'PUT',
       body: JSON.stringify(tran)
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.success === false) dispatch(updateTranInDbFailure());
         else {
           dispatch(updateTranInDbSuccess());
@@ -317,7 +317,7 @@ export function updateTranInDb(tran) {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function deleteTranInDb(tran) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(deleteTranInDbRequest()); // Delete tran request process has begun...
     return fetch('http://localhost:4201/tran/delete', {
       headers: {
@@ -327,8 +327,8 @@ export function deleteTranInDb(tran) {
       method: 'DELETE',
       body: JSON.stringify(tran)
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.success === false) dispatch(deleteTranInDbFailure());
         else {
           dispatch(deleteTranInDbSuccess());

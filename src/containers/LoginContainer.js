@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { login, logout } from '../redux/actions/authActions';
 import Login from '../components/Login';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.user.isAuthenticated,
     isFetching: state.user.isFetching,
@@ -10,9 +10,9 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onLogin: user => {
+    onLogin: (user) => {
       dispatch(login(user));
     }
   };
