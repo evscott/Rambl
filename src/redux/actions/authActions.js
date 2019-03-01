@@ -34,7 +34,7 @@ function signupSuccess() {
     type: SIGNUP_SUCCESS,
     lastUpdated: Date.now(),
     isAuthenticated: true,
-    isFetching: false,
+    isFetching: false
   };
 }
 
@@ -59,7 +59,7 @@ function loginSuccess() {
     type: LOGIN_SUCCESS,
     lastUpdated: Date.now(),
     isAuthenticated: true,
-    isFetching: false,
+    isFetching: false
   };
 }
 
@@ -98,7 +98,7 @@ function getUserInfoFailure() {
   return {
     type: GET_USER_INFO_FAILURE,
     lastUpdated: Date.now(),
-    isFetching: false,
+    isFetching: false
   };
 }
 
@@ -107,7 +107,7 @@ function getUserInfoSuccess(user) {
     type: GET_USER_INFO_SUCCESS,
     lastUpdated: Date.now(),
     isFetching: false,
-    user: user,
+    user: user
   };
 }
 

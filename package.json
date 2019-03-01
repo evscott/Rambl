@@ -33,6 +33,9 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "eslint": "^5.14.1",
+    "eslint-config-google": "^0.12.0",
+    "eslint-plugin-react": "^7.12.4",
     "prettier": "^1.16.4"
   },
   "prettier": {
