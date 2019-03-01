@@ -1,4 +1,5 @@
 import fetch from 'cross-fetch';
+import { hostUrl } from '../../Config';
 
 export const SIGNUP_REQUEST = 'REQUEST_SIGNUP';
 export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
@@ -125,7 +126,7 @@ function getUserInfoSuccess(user) {
 function getUserInfo() {
   return dispatch => {
     dispatch(getUserInfoRequest());
-    return fetch('http://localhost:4201/user/getinfo', {
+    return fetch(hostUrl+'/user/getinfo', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -215,7 +216,7 @@ export function login(user) {
 export function logout() {
   return dispatch => {
     dispatch(requestLogout());
-    let token = localStorage.get('token');
+    let token = localStorage.getItem('token');
     if (!token) {
       dispatch(logoutFailure());
     } else {
