@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "concurrently \"npm run server\" \"serve -s build\"",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "node server/server.js",
     "client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "concurrently \"npm client\" \"npm run server\"",
+    "dev": "concurrently \"npm run server\" \"npm client\"",
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
