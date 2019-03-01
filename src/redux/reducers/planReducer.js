@@ -1,6 +1,7 @@
 import { filterMultiDimensionalArray } from '../../shared/filterArray';
 import { updateMultiDimensionalArray } from '../../shared/updateArray';
 import * as PlanActions from '../actions/planActions';
+import { LOGOUT_SUCCESS } from "../actions/authActions";
 
 const initialState = {
   lastUpdated: null,
@@ -11,6 +12,14 @@ const initialState = {
 
 export function planReducer(state = initialState, action) {
   switch (action.type) {
+    case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced,
+        plans: action.plans
+      };
     case PlanActions.GET_PLANS_FROM_DB_REQUEST:
       return {
         ...state,
