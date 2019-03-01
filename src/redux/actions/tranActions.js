@@ -191,7 +191,7 @@ function getTranInfoFromDbSuccess() {
 function getTranInfoFromDb(e_id) {
   return dispatch => {
     dispatch(getTranInfoFromDbRequest());
-    return fetch(`http://localhost/tran/get/${e_id}`, {
+    return fetch(hostUrl + `/tran/get/${e_id}`, {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')

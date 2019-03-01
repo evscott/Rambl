@@ -191,7 +191,7 @@ function getTripInfoFromDbSuccess() {
 function getTripInfoFromDb(trip_id) {
   return dispatch => {
     dispatch(getTripInfoFromDbRequest());
-    return fetch(`http://localhost/trip/get/${trip_id}`, {
+    return fetch(hostUrl + `/trip/get/${trip_id}`, {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')

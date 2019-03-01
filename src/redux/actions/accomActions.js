@@ -191,7 +191,7 @@ function getAccomInfoFromDbSuccess() {
 function getAccomInfoFromDb(e_id) {
   return dispatch => {
     dispatch(getAccomInfoFromDbRequest());
-    return fetch(`http://localhost/accom/get/${e_id}`, {
+    return fetch(hostUrl + `/accom/get/${e_id}`, {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')

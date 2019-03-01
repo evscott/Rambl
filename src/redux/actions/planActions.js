@@ -191,7 +191,7 @@ function getPlanInfoFromDbSuccess() {
 function getPlanInfoFromDb(e_id) {
   return dispatch => {
     dispatch(getPlanInfoFromDbRequest());
-    return fetch(`http://localhost/plan/get/${e_id}`, {
+    return fetch(hostUrl + `/plan/get/${e_id}`, {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
