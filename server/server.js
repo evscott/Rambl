@@ -18,10 +18,23 @@ const userRoutes = require('./controller/userRoutes');
 app.use(Config.AccessControl);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+
+app.use(express.static(path.join(__dirname, '/../build')));
+
 app.route('/*', (req, res) => {
   res.redirect(__dirname + '/../build/index.html');
 });
-app.use(express.static(path.join(__dirname, '/../build')));
+
+//production mode
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname + '/../build')));
+  //
+  app.get('*', (req, res) => {
+    res.sendfile(path.join(__dirname + '/../build/index.html'));
+  })
+}
+
 app.use(express.json());
 
 // App route configuration

@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "concurrently \"serve -s build\" \"npm run server\"",
+    "start": "serve -s build",
     "server": "node server/server.js",
     "client": "react-scripts start",
     "build": "react-scripts build",
