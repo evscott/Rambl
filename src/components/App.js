@@ -19,9 +19,6 @@ class App extends Component {
     store.dispatch(getPlansFromDb());
     store.dispatch(getTransFromDb());
     store.dispatch(getAccomsFromDb());
-    setTimeout(() => {
-      store.dispatch(logout());
-    }, 10000);
   }
   render() {
     return (
