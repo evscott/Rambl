@@ -54,7 +54,7 @@ describe('tripReducer', () => {
     delete state.lastUpdated;
     expect(state).toEqual({
       isFetching: false,
-      isSynced: true,
+      isSynced: false,
       trips: []
     });
   });
