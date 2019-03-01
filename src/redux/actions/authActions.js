@@ -91,7 +91,7 @@ export function logoutSuccess() {
     lastUpdated: Date.now(),
     isAuthenticated: false,
     isFetching: false,
-    isSynced: true,
+    isSynced: false,
     user: [],
     accoms: [],
     plans: [],
