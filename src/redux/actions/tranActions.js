@@ -36,7 +36,7 @@ function getTransFromDbFailure() {
   };
 }
 
-function getTransFromDbSuccess(trans) {
+export function getTransFromDbSuccess(trans) {
   return {
     type: GET_TRANS_FROM_DB_SUCCESS,
     lastUpdated: Date.now(),

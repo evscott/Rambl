@@ -36,7 +36,7 @@ function getTripsFromDbFailure() {
   };
 }
 
-function getTripsFromDbSuccess(trips) {
+export function getTripsFromDbSuccess(trips) {
   return {
     type: GET_TRIPS_FROM_DB_SUCCESS,
     lastUpdated: Date.now(),

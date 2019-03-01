@@ -84,7 +84,8 @@ function logoutFailure() {
  * These extra pieces of information include empty arrays for the user,
  * accoms, plans, trans, and trips (as well as fetching/synced booleans).
  */
-function logoutSuccess() {
+// exported to allow testing
+export function logoutSuccess() {
   return {
     type: LOGOUT_SUCCESS,
     lastUpdated: Date.now(),
@@ -115,7 +116,7 @@ function getUserInfoFailure() {
   };
 }
 
-function getUserInfoSuccess(user) {
+export function getUserInfoSuccess(user) {
   return {
     type: GET_USER_INFO_SUCCESS,
     lastUpdated: Date.now(),
