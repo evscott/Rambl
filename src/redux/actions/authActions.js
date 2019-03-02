@@ -60,7 +60,7 @@ function loginSuccess() {
     type: LOGIN_SUCCESS,
     lastUpdated: Date.now(),
     isAuthenticated: true,
-    isFetching: false
+    isFetching: true
   };
 }
 

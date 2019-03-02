@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from '../react/auth/components/landing/Landing';
-import LoginContainer from '../react/auth/containers/LoginContainer';
-import SignUpContainer from '../react/auth/containers/SignUpContainer';
-import DashboardContainer from '../react/dashboard/containers/DashboardContainer';
+import Home from './components/auth/landing/Landing';
+import LoginContainer from './containers/auth/LoginContainer';
+import SignUpContainer from './containers/auth/SignUpContainer';
+import DashboardContainer from './containers/home/DashboardContainer';
 
 export default () => (
   <Router>
