@@ -23,7 +23,6 @@ export default class SignUp extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // TODO - should these be handled in a container?
   /**************************** Helper functions ****************************/
 
   stateIsComplete() {
@@ -77,15 +76,14 @@ export default class SignUp extends Component {
     if (this.props.isAuthenticated && this.props.isFetching === false) {
       return <Redirect to="/dashboard" />;
     } else {
-      // Display error if credential mismatch TODO - this is difficult to read
-      let errorDiv =
-        this.state.attemptedSubmit && !this.props.isFetching ? (
+      let errorDiv = '';
+      if (this.state.attemptedSubmit && !this.props.isFetching) {
+        errorDiv = (
           <div className="alert alert-danger">
-            Sign up failed. See fields for more information.
+            Login failed with the provided username and password.
           </div>
-        ) : (
-          ''
         );
+      }
 
       return (
         <div className="container">

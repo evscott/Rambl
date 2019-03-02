@@ -39,15 +39,15 @@ export default class Login extends Component {
     if (this.props.isAuthenticated && !this.props.isFetching) {
       return <Redirect to="/dashboard" />;
     } else {
-      // Display error if credential mismatch TODO - this is difficult to read
-      let errorDiv =
-        this.state.attemptedSubmit && !this.props.isFetching ? (
+
+      let errorDiv = '';
+      if (this.state.attemptedSubmit && !this.props.isFetching) {
+        errorDiv = (
           <div className="alert alert-danger">
             Login failed with the provided username and password.
           </div>
-        ) : (
-          ''
         );
+      }
 
       return (
         <div className="container">
