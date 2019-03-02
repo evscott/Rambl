@@ -1,6 +1,7 @@
 import { filterSingleDimensionalArray } from '../../shared/filterArray';
 import { updateSingleDimensionalArray } from '../../shared/updateArray';
 import * as TripActions from '../actions/tripActions';
+import { LOGOUT_SUCCESS } from "../actions/authActions";
 
 const initialState = {
   lastUpdated: null,
@@ -11,6 +12,14 @@ const initialState = {
 
 export function tripReducer(state = initialState, action) {
   switch (action.type) {
+    case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced,
+        trips: action.trips
+      };
     case TripActions.GET_TRIPS_FROM_DB_REQUEST:
       return {
         ...state,
@@ -30,7 +39,8 @@ export function tripReducer(state = initialState, action) {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
-        isSynced: action.isSynced
+        isSynced: action.isSynced,
+        trips: action.trips
       };
     case TripActions.ADD_TRIP_TO_DB_REQUEST:
       return {

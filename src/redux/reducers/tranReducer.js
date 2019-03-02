@@ -1,6 +1,7 @@
 import * as TranActions from '../actions/tranActions';
 import { filterMultiDimensionalArray } from '../../shared/filterArray';
 import { updateMultiDimensionalArray } from '../../shared/updateArray';
+import { LOGOUT_SUCCESS } from "../actions/authActions";
 
 const initialState = {
   lastUpdated: null,
@@ -11,6 +12,14 @@ const initialState = {
 
 export function tranReducer(state = initialState, action) {
   switch (action.type) {
+    case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        lastUpdated: action.lastUpdated,
+        isFetching: action.isFetching,
+        isSynced: action.isSynced,
+        trans: action.trans
+      };
     case TranActions.GET_TRANS_FROM_DB_REQUEST:
       return {
         ...state,

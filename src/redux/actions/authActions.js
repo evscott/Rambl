@@ -1,4 +1,5 @@
 import fetch from 'cross-fetch';
+import { hostUrl } from '../../Config';
 
 export const SIGNUP_REQUEST = 'REQUEST_SIGNUP';
 export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
@@ -34,7 +35,7 @@ function signupSuccess() {
     type: SIGNUP_SUCCESS,
     lastUpdated: Date.now(),
     isAuthenticated: true,
-    isFetching: false,
+    isFetching: true
   };
 }
 
@@ -50,7 +51,7 @@ function loginFailure() {
   return {
     type: LOGIN_FAILURE,
     lastUpdated: Date.now(),
-    isFetching: false
+    isFetching: true
   };
 }
 
@@ -59,7 +60,7 @@ function loginSuccess() {
     type: LOGIN_SUCCESS,
     lastUpdated: Date.now(),
     isAuthenticated: true,
-    isFetching: false,
+    isFetching: false
   };
 }
 
@@ -77,12 +78,26 @@ function logoutFailure() {
   };
 }
 
-function logoutSuccess() {
+/**
+ * This action has effects in multiple reducers. Since logout will
+ * affect every branch of the store by removing all of the information,
+ * it requires extra information to update those areas of the program.
+ * These extra pieces of information include empty arrays for the user,
+ * accoms, plans, trans, and trips (as well as fetching/synced booleans).
+ */
+// exported to allow testing
+export function logoutSuccess() {
   return {
     type: LOGOUT_SUCCESS,
     lastUpdated: Date.now(),
     isAuthenticated: false,
-    user: null
+    isFetching: false,
+    isSynced: false,
+    user: [],
+    accoms: [],
+    plans: [],
+    trans: [],
+    trips: []
   };
 }
 
@@ -98,16 +113,16 @@ function getUserInfoFailure() {
   return {
     type: GET_USER_INFO_FAILURE,
     lastUpdated: Date.now(),
-    isFetching: false,
+    isFetching: false
   };
 }
 
-function getUserInfoSuccess(user) {
+export function getUserInfoSuccess(user) {
   return {
     type: GET_USER_INFO_SUCCESS,
     lastUpdated: Date.now(),
     isFetching: false,
-    user: user,
+    user: user
   };
 }
 
@@ -125,7 +140,7 @@ function getUserInfoSuccess(user) {
 function getUserInfo() {
   return dispatch => {
     dispatch(getUserInfoRequest());
-    return fetch('http://localhost:4201/user/getinfo', {
+    return fetch(hostUrl + '/user/getinfo', {
       headers: {
         'Content-Type': 'application/json',
         'x-access-token': localStorage.getItem('token')
@@ -134,8 +149,8 @@ function getUserInfo() {
     })
       .then(response => response.json())
       .then(json => {
-        if (json.success === false) dispatch(getUserInfoFailure());
-        else dispatch(getUserInfoSuccess(json.result[0]));
+        if (json.length === 0) dispatch(getUserInfoFailure());
+        else dispatch(getUserInfoSuccess(json.result));
       });
   };
 }
@@ -153,7 +168,7 @@ function getUserInfo() {
 export function signup(user) {
   return dispatch => {
     dispatch(requestSignup(user)); // Signup request process has begun...
-    return fetch('http://localhost:4201/signup', {
+    return fetch(hostUrl + '/signup', {
       headers: {
         'Content-Type': 'application/json'
       },
@@ -185,7 +200,7 @@ export function signup(user) {
 export function login(user) {
   return dispatch => {
     dispatch(requestLogin(user)); // login request process has begun...
-    return fetch('http://localhost:4201/login', {
+    return fetch(hostUrl + '/login', {
       headers: {
         'Content-Type': 'application/json'
       },
