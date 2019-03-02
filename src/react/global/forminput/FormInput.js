@@ -28,12 +28,12 @@ export class FormInput extends Component {
 
     // Render the FormInput
     return (
-      <Form.Group className={groupClassName}>
-        <Form.Label>{this.props.displayName}</Form.Label>
-        <Form.Control type={this.props.type}
-                      name={this.props.name}
-                      onChange={this.props.handleChange}/>
-        <Form.Text>{errorMsg}</Form.Text>
+      <Form.Group className={ groupClassName }>
+        <Form.Label>{ this.props.displayName }</Form.Label>
+        <Form.Control type={ this.props.type }
+                      name={ this.props.name }
+                      onChange={ this.props.handleChange }/>
+        <Form.Text>{ errorMsg }</Form.Text>
       </Form.Group>
     );
   }

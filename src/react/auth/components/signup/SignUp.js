@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Form from 'react-bootstrap/Form';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { Link, Redirect } from "react-router-dom";
-import { FormInput } from "./FormInput";
+import { FormInput } from "../../../global/forminput/FormInput";
 import "./SignUp.css";
 
 export default class SignUp extends Component{
@@ -37,10 +37,10 @@ export default class SignUp extends Component{
   handleSubmit(e) {
     e.preventDefault();
     this.setState({ attemptedSubmit: true });
-    const { f_name, l_name, email, confirmEmail, password, confirmPassword } = this.state;
     /* If all fields exist, and confirmations match, attempt sign up
     This feels redundant. If anyone can suggest a simpler way to
     do this that would be great */
+    const { f_name, l_name, email, confirmEmail, password, confirmPassword } = this.state;
     if (f_name && l_name && email && confirmEmail && password && confirmPassword) {
       if(password === confirmPassword && email === confirmEmail){
         this.props.onSignUp({ f_name, l_name, email, password});
@@ -69,7 +69,7 @@ export default class SignUp extends Component{
           </div>
 
           {/* Sign Up Form */}
-          <Form name="form" onSubmit={this.handleSubmit}>
+          <Form name="form" onSubmit={ this.handleSubmit }>
 
             {/* Display errors, if necessary */}
             {errorDiv}
@@ -79,9 +79,9 @@ export default class SignUp extends Component{
               name="f_name"
               displayName="First Name"
               type="text"
-              handleChange={this.handleChange}
-              attemptedSubmit={this.state.attemptedSubmit}
-              value={this.state.f_name}
+              handleChange={ this.handleChange }
+              attemptedSubmit={ this.state.attemptedSubmit }
+              value={ this.state.f_name }
             />
 
             {/* Last Name */}
@@ -89,9 +89,9 @@ export default class SignUp extends Component{
               name="l_name"
               displayName="Last Name"
               type="text"
-              handleChange={this.handleChange}
-              attemptedSubmit={this.state.attemptedSubmit}
-              value={this.state.l_name}
+              handleChange={ this.handleChange }
+              attemptedSubmit={ this.state.attemptedSubmit }
+              value={ this.state.l_name }
             />
 
             {/* Email */}
@@ -99,9 +99,9 @@ export default class SignUp extends Component{
               name="email"
               displayName="Email"
               type="email"
-              handleChange={this.handleChange}
-              attemptedSubmit={this.state.attemptedSubmit}
-              value={this.state.email}
+              handleChange={ this.handleChange }
+              attemptedSubmit={ this.state.attemptedSubmit }
+              value={ this.state.email }
             />
 
             {/* Confirm Email */}
@@ -109,10 +109,10 @@ export default class SignUp extends Component{
               name="confirmEmail"
               displayName="Confirm Email"
               type="email"
-              handleChange={this.handleChange}
-              attemptedSubmit={this.state.attemptedSubmit}
-              value={this.state.confirmEmail}
-              compare={this.state.email}
+              handleChange={ this.handleChange }
+              attemptedSubmit={ this.state.attemptedSubmit }
+              value={ this.state.confirmEmail }
+              compare={ this.state.email }
             />
 
             {/* Password */}
@@ -120,9 +120,9 @@ export default class SignUp extends Component{
               name="password"
               displayName="Password"
               type="password"
-              handleChange={this.handleChange}
-              attemptedSubmit={this.state.attemptedSubmit}
-              value={this.state.password}
+              handleChange={ this.handleChange }
+              attemptedSubmit={ this.state.attemptedSubmit }
+              value={ this.state.password }
             />
 
             {/* Confirm Password */}
@@ -130,10 +130,10 @@ export default class SignUp extends Component{
               name="confirmPassword"
               displayName="Confirm Password"
               type="password"
-              handleChange={this.handleChange}
-              attemptedSubmit={this.state.attemptedSubmit}
-              value={this.state.confirmPassword}
-              compare={this.state.password}
+              handleChange={ this.handleChange }
+              attemptedSubmit={ this.state.attemptedSubmit }
+              value={ this.state.confirmPassword }
+              compare={ this.state.password }
             />
 
             {/* Buttons */}

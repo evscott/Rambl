@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
-import { FormInput } from "./FormInput";
+import { FormInput } from "../../../global/forminput/FormInput";
 import './Login.css';
 
 export default class Login extends Component {
@@ -32,7 +32,10 @@ export default class Login extends Component {
   handleSubmit(e) {
     e.preventDefault();
     this.setState({ attemptedSubmit: true });
-    this.props.onLogin(this.state);
+    // If all fields exist attempt login
+    if (this.email && this.password) {
+      this.props.onLogin(this.state);
+    }
   }
 
   // Render HTML
@@ -57,7 +60,7 @@ export default class Login extends Component {
           </div>
 
           {/* Sign Up Form */}
-          <Form name="form" onSubmit={this.handleSubmit}>
+          <Form name="form" onSubmit={ this.handleSubmit }>
 
             {/* Display errors, if necessary */}
             {errorDiv}
@@ -67,9 +70,9 @@ export default class Login extends Component {
               name="email"
               displayName="Email"
               type="email"
-              handleChange={this.handleChange}
-              attemptedSubmit={this.state.attemptedSubmit}
-              value={this.state.email}
+              handleChange={ this.handleChange }
+              attemptedSubmit={ this.state.attemptedSubmit }
+              value={ this.state.email }
             />
 
             {/* Password */}
@@ -77,9 +80,9 @@ export default class Login extends Component {
               name="password"
               displayName="Password"
               type="password"
-              handleChange={this.handleChange}
-              attemptedSubmit={this.state.attemptedSubmit}
-              value={this.state.password}
+              handleChange={ this.handleChange }
+              attemptedSubmit={ this.state.attemptedSubmit }
+              value={ this.state.password }
             />
 
             {/* Buttons */}
