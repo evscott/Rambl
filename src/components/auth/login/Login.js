@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
-import { FormInput } from '../../../containers/global/forminput/FormInput';
+import { FormInput } from '../../global/FormInput';
 import './Login.css';
 
 export default class Login extends Component {

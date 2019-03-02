@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { Link, Redirect } from 'react-router-dom';
-import { FormInput } from '../../../containers/global/forminput/FormInput';
+import { FormInput } from '../../global/FormInput';
 import './SignUp.css';
 
 export default class SignUp extends Component {
