@@ -1,5 +1,5 @@
 import fetch from 'cross-fetch';
-import { hostUrl } from '../../Config';
+import { hostUrl } from '../../shared/Config';
 
 export const GET_TRIPS_FROM_DB_REQUEST = 'GET_TRIPS_FROM_DB_REQUEST';
 export const GET_TRIPS_FROM_DB_FAILURE = 'GET_TRIPS_FROM_DB_FAILURE';

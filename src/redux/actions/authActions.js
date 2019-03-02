@@ -1,5 +1,5 @@
 import fetch from 'cross-fetch';
-import { hostUrl } from '../../Config';
+import { hostUrl } from '../../shared/Config';
 
 export const SIGNUP_REQUEST = 'REQUEST_SIGNUP';
 export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
