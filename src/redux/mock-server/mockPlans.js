@@ -1,11 +1,6 @@
-import FetchMock from 'fetch-mock';
-import { hostUrl } from '../../shared/Config';
-
 export function mockPlans() {
-  FetchMock.mock(hostUrl + '/plan/get', 200, {
-    success: true,
-    message: 'Get all plans successful!',
-    result: [
+  return {
+    plans: [
       {
         e_id: 7,
         trip_id: 1,
@@ -51,5 +46,5 @@ export function mockPlans() {
         priority: '1'
       }
     ]
-  });
+  };
 }

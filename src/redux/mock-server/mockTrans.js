@@ -1,11 +1,6 @@
-import FetchMock from 'fetch-mock';
-import { hostUrl } from '../../shared/Config';
-
 export function mockTrans() {
-  FetchMock.mock(hostUrl + '/tran/get', 200, {
-    success: true,
-    message: 'Get all transportation successful!',
-    result: [
+  return {
+    trans: [
       {
         e_id: 7,
         trip_id: 1,
@@ -59,5 +54,5 @@ export function mockTrans() {
         method: 'plane'
       }
     ]
-  });
+  };
 }

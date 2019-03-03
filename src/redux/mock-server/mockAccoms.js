@@ -1,11 +1,6 @@
-import FetchMock from 'fetch-mock';
-import { hostUrl } from '../../shared/Config';
-
 export function mockAccoms() {
-  FetchMock.mock(hostUrl + '/accom/get', 200, {
-    success: true,
-    message: 'Get all accommodations successful!',
-    result: [
+  return {
+    accoms: [
       {
         e_id: 3,
         trip_id: 1,
@@ -55,5 +50,5 @@ export function mockAccoms() {
         priority: '1'
       }
     ]
-  });
+  };
 }

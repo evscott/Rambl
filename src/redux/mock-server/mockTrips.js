@@ -1,11 +1,6 @@
-import FetchMock from 'fetch-mock';
-import { hostUrl } from '../../shared/Config';
-
 export function mockTrips() {
-  FetchMock.mock(hostUrl + '/trip/get', 200, {
-    success: true,
-    message: 'Get trips successful!',
-    result: [
+  return {
+    trips: [
       {
         user_id: 2,
         trip_id: 1,
@@ -37,5 +32,5 @@ export function mockTrips() {
         dscript: ''
       }
     ]
-  });
+  };
 }
