@@ -37,6 +37,7 @@
     "serve": "^10.1.2"
   },
   "devDependencies": {
+    "fetch-mock": "^7.3.1",
     "prettier": "^1.16.4"
   },
   "prettier": {
