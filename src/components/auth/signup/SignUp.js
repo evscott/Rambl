@@ -80,7 +80,7 @@ export default class SignUp extends Component {
       if (this.state.attemptedSubmit && !this.props.isFetching) {
         errorDiv = (
           <div className="alert alert-danger">
-            Login failed with the provided username and password.
+            Signup failed with the provided username and password.
           </div>
         );
       }
