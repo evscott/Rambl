@@ -27,7 +27,7 @@ function sortTrips(trips) {
  * Note that the return is a dictionary with two elements: current (boolean
  * representing if the trip is currently happening) and trip (the trip object).
  * @param state the state of the Redux store.
- * @returns {*} {current: boolean, trip: current trip}
+ * @returns {{current: boolean, trip: *}}
  */
 export function getCurrTrip(state) {
   let currTrip = null;
@@ -64,17 +64,19 @@ export function getCurrTrip(state) {
 }
 
 /**
- * This gets all of the active trips. That is, it gathers
- * each of the trips which have events which have not yet occurred
- * (or has trips with no events that have yet occurred), assigns
- * start/end times to the trip objects based on its events, and
- * sorts them based on the start times.
- * @param state the Redux store's current state.
- * @returns {Array} array of trip objects, sorted, with start/end
- * times in fields trip_start and trip_end.
+ * This gets all of the active trips (that are underway or in the future)
+ * and puts them in a sorted array. It also gets the inactive trips in a
+ * sorted array. Each trip has assigned start/end times based on the events
+ * associated with the trip. That is, each trip has an associated trip_start
+ * and trip_end property.
+ * Access the active trips by using the active property.
+ * @param state the state of the Redux store
+ * @returns {{inactive: Array, active: Array}} the first is an array of
+ * inactive trips, the second is an array of current and upcoming trips.
  */
-export function getActiveTrips(state) {
-  let trips = [];
+export function getSortedTrips(state) {
+  let activeTrips = [];
+  let inactiveTrips = [];
   state.trips.trips.forEach((trip) => {
     let tripTimes = getTripTimes(state, trip.trip_id);
 
@@ -84,11 +86,14 @@ export function getActiveTrips(state) {
       tripTimes.trip_end > new Date() // Then it's not over yet
     ) {
       // Add the active trip with its calculated times
-      trips.push({ ...trip, ...tripTimes });
+      activeTrips.push({ ...trip, ...tripTimes });
+    } else {
+      inactiveTrips.push({ ...trip, ...tripTimes });
     }
   });
 
-  sortTrips(trips);
+  sortTrips(activeTrips);
+  sortTrips(inactiveTrips);
 
-  return trips;
+  return { active: activeTrips, inactive: inactiveTrips };
 }

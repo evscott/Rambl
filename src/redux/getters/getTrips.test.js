@@ -1,5 +1,5 @@
 import { mockStore } from '../mock-server/mockStore';
-import { getActiveTrips, getCurrTrip } from './getActiveTrips';
+import { getSortedTrips, getCurrTrip } from './getTrips';
 import { getTripTimes } from './getTripTimes';
 import { convertDate } from './convertDate';
 
@@ -30,7 +30,8 @@ it('Can get trip duration', () => {
 it('Gets all active trips and sorts them appropriately', () => {
   const store = makeStore(mockStore());
   console.log('This test will fail if the date is after May 2019.');
-  expect(getActiveTrips(store.getState())).toEqual([
+  const sortedTrips = getSortedTrips(store.getState());
+  expect(sortedTrips.active).toEqual([
     {
       user_id: 2,
       trip_id: 3,
@@ -62,6 +63,24 @@ it('Gets all active trips and sorts them appropriately', () => {
       dscript: '',
       trip_start: null,
       trip_end: null
+    }
+  ]);
+  expect(sortedTrips.inactive).toEqual([
+    {
+      user_id: 2,
+      trip_id: 6,
+      name: "Trip that's already over",
+      dscript: '',
+      trip_start: convertDate('2000-01-01T10:32:32.000Z'),
+      trip_end: convertDate('2001-01-01T15:32:34.000Z')
+    },
+    {
+      user_id: 2,
+      trip_id: 2,
+      name: 'Bacon Adventure',
+      dscript: 'Gr8 Times!',
+      trip_start: convertDate('2019-01-01T10:32:32.000Z'),
+      trip_end: convertDate('2019-01-02T10:32:32.000Z')
     }
   ]);
 });
