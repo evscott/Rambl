@@ -8,10 +8,10 @@ import DashboardContainer from './components/home/DashboardContainer';
 export default () => (
   <Router>
     <Switch>
-      <Route exact path="/" component={ Home } />
-      <Route exact path="/login" component={ LoginContainer } />
-      <Route exact path="/signup" component={ SignUpContainer } />
-      <Route exact path="/dashboard" component={ DashboardContainer } />
+      <Route exact path="/" component={Home} />
+      <Route exact path="/login" component={LoginContainer} />
+      <Route exact path="/signup" component={SignUpContainer} />
+      <Route exact path="/dashboard" component={DashboardContainer} />
     </Switch>
   </Router>
 );

@@ -1,7 +1,7 @@
 import { filterSingleDimensionalArray } from '../../shared/filterArray';
 import { updateSingleDimensionalArray } from '../../shared/updateArray';
 import * as TripActions from '../actions/tripActions';
-import { LOGOUT_SUCCESS } from "../actions/authActions";
+import { LOGOUT_SUCCESS } from '../actions/authActions';
 
 const initialState = {
   lastUpdated: null,

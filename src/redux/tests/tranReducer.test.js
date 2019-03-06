@@ -5,7 +5,6 @@ import { logoutSuccess } from '../actions/authActions';
 
 describe('tranReducer', () => {
   it('should return the initial state', () => {
-
     // Get initial state
     const state = tranReducer(undefined, {});
 
@@ -19,14 +18,18 @@ describe('tranReducer', () => {
   });
 
   it('should add trans to the store on the action GET_TRANS_FROM_DB_SUCCESS', () => {
-
     // Get initial state
     let state = tranReducer(undefined, {});
 
     // Perform action
-    state = tranReducer(state, tranActions.getTransFromDbSuccess([{
-      test: 'This is a test'
-    }]));
+    state = tranReducer(
+      state,
+      tranActions.getTransFromDbSuccess([
+        {
+          test: 'This is a test'
+        }
+      ])
+    );
 
     // Test the state after action: it should have added the plan
     delete state.lastUpdated; // Don't test this, because it varies too much
@@ -38,7 +41,6 @@ describe('tranReducer', () => {
   });
 
   it('should remove trans from the store on the action LOGOUT_SUCCESS', () => {
-
     // Make initial state
     let state = {
       lastUpdated: null,

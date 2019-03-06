@@ -18,13 +18,29 @@ export default class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  /**************************** Helper functions ****************************/
+
+  stateIsComplete() {
+    if ((this.state.email, this.state.password)) {
+      return true;
+    }
+    return false;
+  }
+
+  getUserObject() {
+    return {
+      email: this.state.email,
+      password: this.state.password
+    };
+  }
+
   /***************************** Core functions *****************************/
 
   handleSubmit(e) {
     e.preventDefault();
     this.setState({ attemptedSubmit: true });
-    if (this.email && this.password) {
-      this.props.onLogin(this.state);
+    if (this.stateIsComplete()) {
+      this.props.onLogin(this.getUserObject());
     }
   }
 
@@ -36,10 +52,9 @@ export default class Login extends Component {
   /**************************** Visual component ****************************/
 
   render() {
-    if (this.props.isAuthenticated && !this.props.isFetching) {
+    if (this.props.isAuthenticated && this.props.isFetching === false) {
       return <Redirect to="/dashboard" />;
     } else {
-
       let errorDiv = '';
       if (this.state.attemptedSubmit && !this.props.isFetching) {
         errorDiv = (
