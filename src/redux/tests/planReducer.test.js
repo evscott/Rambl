@@ -5,7 +5,6 @@ import { logoutSuccess } from '../actions/authActions';
 
 describe('planReducer', () => {
   it('should return the initial state', () => {
-
     // Get initial state
     const state = planReducer(undefined, {});
 
@@ -19,14 +18,18 @@ describe('planReducer', () => {
   });
 
   it('should add plans to the store on the action GET_PLANS_FROM_DB_SUCCESS', () => {
-
     // Get initial state
     let state = planReducer(undefined, {});
 
     // Perform action
-    state = planReducer(state, PlanActions.getPlansFromDbSuccess([{
-      test: 'This is a test'
-    }]));
+    state = planReducer(
+      state,
+      PlanActions.getPlansFromDbSuccess([
+        {
+          test: 'This is a test'
+        }
+      ])
+    );
 
     // Test the state after action: it should have added the plan
     delete state.lastUpdated; // Don't test this, because it varies too much
@@ -38,7 +41,6 @@ describe('planReducer', () => {
   });
 
   it('should remove plans from the store on the action LOGOUT_SUCCESS', () => {
-
     // Make initial state
     let state = {
       lastUpdated: null,

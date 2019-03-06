@@ -2,16 +2,16 @@ import { connect } from 'react-redux';
 import { login } from '../../../redux/actions/authActions';
 import Login from './Login';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.user.isAuthenticated,
-    isFetching: state.user.isFetching,
+    isFetching: state.user.isFetching
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    onLogin: user => {
+    onLogin: (user) => {
       dispatch(login(user));
     }
   };
