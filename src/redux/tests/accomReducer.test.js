@@ -5,7 +5,6 @@ import { logoutSuccess } from '../actions/authActions';
 
 describe('accomReducer', () => {
   it('should return the initial state', () => {
-
     // Get initial state
     const state = accomReducer(undefined, {});
 
@@ -19,14 +18,18 @@ describe('accomReducer', () => {
   });
 
   it('should add accoms to the store on the action GET_ACCOMS_FROM_DB_SUCCESS', () => {
-
     // Get initial state
     let state = accomReducer(undefined, {});
 
     // Perform action
-    state = accomReducer(state, AccomActions.getAccomsFromDbSuccess([{
-      test: 'This is a test'
-    }]));
+    state = accomReducer(
+      state,
+      AccomActions.getAccomsFromDbSuccess([
+        {
+          test: 'This is a test'
+        }
+      ])
+    );
 
     // Test the state after action: it should have added the plan
     delete state.lastUpdated; // Don't test this, because it varies too much
@@ -38,7 +41,6 @@ describe('accomReducer', () => {
   });
 
   it('should remove accoms from the store on the action LOGOUT_SUCCESS', () => {
-
     // Make initial state
     let state = {
       lastUpdated: null,
