@@ -19,19 +19,23 @@ function sortTrips(trips) {
 }
 
 /**
- * Gets the current trip that the user is on. If the user is on multiple
+ * Gets the current (or next) trip the user is on. If the user is on multiple
  * trips, it returns the trip that starts first. To break ties, it returns
- * the trip that ends first. If there are no current trips, it returns null.
- * @param state the Redux state.
- * @returns {*} the current trip.
+ * the trip that ends first. If there are no current trips, it returns the
+ * first future trip in a similar fashion. If there are no future trips, it
+ * returns null.
+ * Note that the return is a dictionary with two elements: current (boolean
+ * representing if the trip is currently happening) and trip (the trip object).
+ * @param state the state of the Redux store.
+ * @returns {*} {current: boolean, trip: current trip}
  */
 export function getCurrTrip(state) {
   let currTrip = null;
   state.trips.trips.forEach(trip => {
     let tripTimes = getTripTimes(state, trip.trip_id);
 
-    // If the trip is currently underway
-    if (tripTimes.trip_start < new Date() && new Date() < tripTimes.trip_end) {
+    // If the trip finishes in the future
+    if (new Date() < tripTimes.trip_end) {
       if (currTrip == null) {
         // Then we found our current trip
         currTrip = { ...trip, ...tripTimes };
@@ -50,7 +54,14 @@ export function getCurrTrip(state) {
       }
     }
   });
-  return currTrip;
+  if(currTrip == null) {
+    return {current: true, trip: null};
+  } else if(currTrip.trip_start < new Date()) {
+    return {current: true, trip: currTrip};
+  } else {
+    return {current: false, trip: currTrip};
+  }
+
 }
 
 /**

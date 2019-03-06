@@ -1,5 +1,3 @@
-import { convertDate } from './convertDate';
-
 /**
  * Gets the start and end times of a trip by going through the state
  * and comparing start/end times of various events. If there is no
@@ -32,9 +30,6 @@ export function getTripTimes(state, tripId) {
   });
 
   if(tripEnd == null) tripEnd = tripStart;
-
-  tripStart = convertDate(tripStart); // TODO: this may be pre-done with actual fetches from database!
-  tripEnd = convertDate(tripEnd);
 
   return { trip_start: tripStart, trip_end: tripEnd };
 }
