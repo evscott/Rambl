@@ -52,6 +52,19 @@ export function mockTrans() {
         completed: 0,
         priority: '0',
         method: 'plane'
+      },
+      {
+        e_id: 11,
+        trip_id: 6,
+        cost: 0.5,
+        begin_time: '2000-01-01T10:32:32.000Z',
+        end_time: '2001-01-01T15:32:34.000Z',
+        loc: 'Nowhere',
+        loc_end: 'Somewhere',
+        dscript: 'Fake transportation record',
+        completed: 0,
+        priority: '0',
+        method: 'plane'
       }
     ]
   };

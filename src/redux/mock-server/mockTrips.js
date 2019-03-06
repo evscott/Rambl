@@ -30,6 +30,12 @@ export function mockTrips() {
         trip_id: 5,
         name: 'redux trip blah blah',
         dscript: ''
+      },
+      {
+        user_id: 2,
+        trip_id: 6,
+        name: 'Trip that\'s already over',
+        dscript: ''
       }
     ]
   };
