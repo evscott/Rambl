@@ -138,7 +138,7 @@ export function getUserInfoSuccess(user) {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 function getUserInfo() {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(getUserInfoRequest());
     return fetch(hostUrl + '/user/getinfo', {
       headers: {
@@ -147,8 +147,8 @@ function getUserInfo() {
       },
       method: 'get'
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.length === 0) dispatch(getUserInfoFailure());
         else dispatch(getUserInfoSuccess(json.result));
       });
@@ -166,7 +166,7 @@ function getUserInfo() {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function signup(user) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(requestSignup(user)); // Signup request process has begun...
     return fetch(hostUrl + '/signup', {
       headers: {
@@ -175,8 +175,8 @@ export function signup(user) {
       method: 'post',
       body: JSON.stringify(user)
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.success === false) dispatch(signupFailure());
         else {
           localStorage.setItem('token', json.token);
@@ -198,7 +198,7 @@ export function signup(user) {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function login(user) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(requestLogin(user)); // login request process has begun...
     return fetch(hostUrl + '/login', {
       headers: {
@@ -207,8 +207,8 @@ export function login(user) {
       method: 'post',
       body: JSON.stringify(user)
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.success === false) dispatch(loginFailure());
         else {
           localStorage.setItem('token', json.token);
@@ -228,7 +228,7 @@ export function login(user) {
  * @returns {Function} dispatch results.
  */
 export function logout() {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(requestLogout());
     let token = localStorage.getItem('token');
     if (!token) {

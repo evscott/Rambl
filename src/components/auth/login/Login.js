@@ -39,7 +39,6 @@ export default class Login extends Component {
     if (this.props.isAuthenticated && !this.props.isFetching) {
       return <Redirect to="/dashboard" />;
     } else {
-
       let errorDiv = '';
       if (this.state.attemptedSubmit && !this.props.isFetching) {
         errorDiv = (

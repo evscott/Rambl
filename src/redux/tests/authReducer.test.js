@@ -4,7 +4,6 @@ import * as authActions from '../actions/authActions';
 
 describe('authReducer', () => {
   it('should return the initial state', () => {
-
     // Get initial state
     const state = authReducer(undefined, {});
 
@@ -18,14 +17,18 @@ describe('authReducer', () => {
   });
 
   it('should add user to the store on the action GET_USER_INFO_SUCCESS', () => {
-
     // Get initial state
     let state = authReducer(undefined, {});
 
     // Perform action
-    state = authReducer(state, authActions.getUserInfoSuccess([{
-      test: 'This is a test'
-    }]));
+    state = authReducer(
+      state,
+      authActions.getUserInfoSuccess([
+        {
+          test: 'This is a test'
+        }
+      ])
+    );
 
     // Test the state after action: it should have added the plan
     delete state.lastUpdated; // Don't test this, because it varies too much
@@ -37,7 +40,6 @@ describe('authReducer', () => {
   });
 
   it('should remove auths from the store on the action LOGOUT_SUCCESS', () => {
-
     // Make initial state
     let state = {
       isAuthenticated: false,

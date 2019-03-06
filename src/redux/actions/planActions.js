@@ -190,7 +190,7 @@ function getPlanInfoFromDbSuccess() {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 function getPlanInfoFromDb(e_id) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(getPlanInfoFromDbRequest());
     return fetch(hostUrl + `/plan/get/${e_id}`, {
       headers: {
@@ -199,8 +199,8 @@ function getPlanInfoFromDb(e_id) {
       },
       method: 'get'
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.length === 0) dispatch(getPlanInfoFromDbFailure());
         else {
           dispatch(getPlanInfoFromDbSuccess());
@@ -221,7 +221,7 @@ function getPlanInfoFromDb(e_id) {
  */
 export function getPlansFromDb() {
   console.log(hostUrl);
-  return dispatch => {
+  return (dispatch) => {
     dispatch(getPlansFromDbRequest()); // Get plans request process has begun...
     return fetch(hostUrl + '/plan/get', {
       headers: {
@@ -230,12 +230,12 @@ export function getPlansFromDb() {
       },
       method: 'GET'
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.success === false) dispatch(getPlansFromDbFailure());
         else {
           let plans = [];
-          json.result.forEach(t => {
+          json.result.forEach((t) => {
             if (plans[t.trip_id] === undefined) plans[t.trip_id] = {};
             plans[t.trip_id][t.e_id] = t;
           });
@@ -256,7 +256,7 @@ export function getPlansFromDb() {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function addPlanToDb(plan) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(addPlanToDbRequest()); // Add plan request process has begun...
     return fetch(hostUrl + '/plan/add', {
       headers: {
@@ -266,8 +266,8 @@ export function addPlanToDb(plan) {
       method: 'POST',
       body: JSON.stringify(plan)
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.success === false) dispatch(addPlanToDbFailure());
         else {
           dispatch(addPlanToDbSuccess());
@@ -288,7 +288,7 @@ export function addPlanToDb(plan) {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function updatePlanInDb(plan) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(updatePlanInDbRequest()); // Update plan request process has begun...
     return fetch(hostUrl + '/plan/update', {
       headers: {
@@ -298,8 +298,8 @@ export function updatePlanInDb(plan) {
       method: 'PUT',
       body: JSON.stringify(plan)
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.success === false) dispatch(updatePlanInDbFailure());
         else {
           dispatch(updatePlanInDbSuccess());
@@ -320,7 +320,7 @@ export function updatePlanInDb(plan) {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function deletePlanInDb(plan) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(deletePlanInDbRequest()); // Delete plan request process has begun...
     return fetch(hostUrl + '/plan/delete', {
       headers: {
@@ -330,8 +330,8 @@ export function deletePlanInDb(plan) {
       method: 'DELETE',
       body: JSON.stringify(plan)
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.success === false) dispatch(deletePlanInDbFailure());
         else {
           dispatch(deletePlanInDbSuccess());
