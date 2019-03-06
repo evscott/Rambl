@@ -1,7 +1,7 @@
 import * as TranActions from '../actions/tranActions';
 import { filterMultiDimensionalArray } from '../../shared/filterArray';
 import { updateMultiDimensionalArray } from '../../shared/updateArray';
-import { LOGOUT_SUCCESS } from "../actions/authActions";
+import { LOGOUT_SUCCESS } from '../actions/authActions';
 
 const initialState = {
   lastUpdated: null,

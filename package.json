@@ -10,7 +10,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "concurrently \"npm run server\" \"npm client\"",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "lint": "./node_modules/.bin/eslint src/*",
+    "lintfix": "./node_modules/.bin/eslint --fix src/*"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
@@ -32,15 +34,24 @@
     "react-scripts": "2.1.5",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
+    "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
     "save": "^2.3.3",
     "serve": "^10.1.2"
   },
   "devDependencies": {
-    "prettier": "^1.16.4"
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "prettier": "1.16.4"
   },
   "prettier": {
-    "singleQuote": true
+    "parser": "flow",
+    "useTabs:": true,
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true,
+    "bracketSpacing": true,
+    "arrowParens": "always"
   },
   "eslintConfig": {
     "extends": "react-app"

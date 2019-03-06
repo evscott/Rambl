@@ -189,7 +189,7 @@ function getAccomInfoFromDbSuccess() {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 function getAccomInfoFromDb(e_id) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(getAccomInfoFromDbRequest());
     return fetch(hostUrl + `/accom/get/${e_id}`, {
       headers: {
@@ -198,8 +198,8 @@ function getAccomInfoFromDb(e_id) {
       },
       method: 'get'
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.length === 0) dispatch(getAccomInfoFromDbFailure());
         else {
           dispatch(getAccomInfoFromDbSuccess());
@@ -219,7 +219,7 @@ function getAccomInfoFromDb(e_id) {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function getAccomsFromDb() {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(getAccomsFromDbRequest()); // Get accoms request process has begun...
     return fetch(hostUrl + '/accom/get', {
       headers: {
@@ -228,12 +228,12 @@ export function getAccomsFromDb() {
       },
       method: 'GET'
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.success === false) dispatch(getAccomsFromDbFailure());
         else {
           let accoms = [];
-          json.result.forEach(t => {
+          json.result.forEach((t) => {
             if (accoms[t.trip_id] === undefined) accoms[t.trip_id] = {};
             accoms[t.trip_id][t.e_id] = t;
           });
@@ -254,7 +254,7 @@ export function getAccomsFromDb() {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function addAccomToDb(accom) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(addAccomToDbRequest()); // Add accom request process has begun...
     return fetch(hostUrl + '/accom/add', {
       headers: {
@@ -264,8 +264,8 @@ export function addAccomToDb(accom) {
       method: 'POST',
       body: JSON.stringify(accom)
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.success === false) dispatch(addAccomToDbFailure());
         else {
           dispatch(addAccomToDbSuccess());
@@ -286,7 +286,7 @@ export function addAccomToDb(accom) {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function updateAccomInDb(accom) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(updateAccomInDbRequest()); // Update accom request process has begun...
     return fetch(hostUrl + '/accom/update', {
       headers: {
@@ -296,8 +296,8 @@ export function updateAccomInDb(accom) {
       method: 'PUT',
       body: JSON.stringify(accom)
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.success === false) dispatch(updateAccomInDbFailure());
         else {
           dispatch(updateAccomInDbSuccess());
@@ -318,7 +318,7 @@ export function updateAccomInDb(accom) {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function deleteAccomInDb(accom) {
-  return dispatch => {
+  return (dispatch) => {
     dispatch(deleteAccomInDbRequest()); // Delete accom request process has begun...
     return fetch(hostUrl + '/accom/delete', {
       headers: {
@@ -328,8 +328,8 @@ export function deleteAccomInDb(accom) {
       method: 'DELETE',
       body: JSON.stringify(accom)
     })
-      .then(response => response.json())
-      .then(json => {
+      .then((response) => response.json())
+      .then((json) => {
         if (json.success === false) dispatch(deleteAccomInDbFailure());
         else {
           dispatch(deleteAccomInDbSuccess());
