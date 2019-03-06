@@ -1,6 +1,6 @@
 import React from 'react';
 import { mockStore } from '../mock-server/mockStore';
-import { getActiveTrips } from './getActiveTrips';
+import { getActiveTrips, getCurrTrip } from './getActiveTrips';
 import { getTripTimes } from './getTripTimes';
 import { convertDate } from './convertDate';
 
@@ -26,6 +26,7 @@ it('Can get trip duration', () => {
 
 it('Gets all active trips and sorts them appropriately', () => {
   const store = makeStore(mockStore());
+  console.log('This test will fail if the date is after May 2019.');
   expect(getActiveTrips(store.getState())).toEqual([
     {
       user_id: 2,
@@ -60,4 +61,13 @@ it('Gets all active trips and sorts them appropriately', () => {
       trip_end: null
     }
   ]);
+});
+
+it('Gets the current trip', () => {
+  const store = makeStore(mockStore());
+  console.log(
+    'This test is time-dependent, so it needs to be verified in person.\n' +
+    'One could test it more cleverly, but that would take more time.'
+  );
+  console.log(getCurrTrip(store.getState()));
 });
