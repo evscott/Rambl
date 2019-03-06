@@ -18,6 +18,6 @@ export default function configureStore() {
     persistedReducer,
     applyMiddleware(thunkMiddleware, loggerMiddleware)
   );
-  let persistor = persistStore(store)
-  return { store, persistor }
+  let persistor = persistStore(store);
+  return { store, persistor };
 }
