@@ -1,4 +1,3 @@
-import React from 'react';
 import { mockStore } from '../mock-server/mockStore';
 import { getActiveTrips, getCurrTrip } from './getActiveTrips';
 import { getTripTimes } from './getTripTimes';
@@ -20,8 +19,12 @@ it('Has a store', () => {
 it('Can get trip duration', () => {
   const store = makeStore(mockStore());
   const duration = getTripTimes(store.getState(), 1);
-  expect(duration.trip_start.toUTCString()).toEqual('Thu, 11 Apr 2019 15:32:32 GMT');
-  expect(duration.trip_end.toUTCString()).toEqual('Thu, 16 May 2019 17:35:34 GMT');
+  expect(duration.trip_start.toUTCString()).toEqual(
+    'Thu, 11 Apr 2019 15:32:32 GMT'
+  );
+  expect(duration.trip_end.toUTCString()).toEqual(
+    'Thu, 16 May 2019 17:35:34 GMT'
+  );
 });
 
 it('Gets all active trips and sorts them appropriately', () => {
@@ -67,7 +70,7 @@ it('Gets the current trip', () => {
   const store = makeStore(mockStore());
   console.log(
     'This test is time-dependent, so it needs to be verified in person.\n' +
-    'One could test it more cleverly, but that would take more time.'
+      'One could test it more cleverly, but that would take more time.'
   );
   console.log(getCurrTrip(store.getState()));
 });

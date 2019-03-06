@@ -7,8 +7,8 @@ import { getTripTimes } from './getTripTimes';
  */
 function sortTrips(trips) {
   trips.sort((a, b) => {
-    if (b.trip_start === null) return -1;   // If null, b goes at end
-    if (a.trip_start === null) return 1;    // If null, a goes at end
+    if (b.trip_start === null) return -1; // If null, b goes at end
+    if (a.trip_start === null) return 1; // If null, a goes at end
 
     if (a.trip_start < b.trip_start) return -1;
     if (a.trip_start > b.trip_start) return 1;
@@ -31,7 +31,7 @@ function sortTrips(trips) {
  */
 export function getCurrTrip(state) {
   let currTrip = null;
-  state.trips.trips.forEach(trip => {
+  state.trips.trips.forEach((trip) => {
     let tripTimes = getTripTimes(state, trip.trip_id);
 
     // If the trip finishes in the future
@@ -54,14 +54,13 @@ export function getCurrTrip(state) {
       }
     }
   });
-  if(currTrip == null) {
-    return {current: true, trip: null};
-  } else if(currTrip.trip_start < new Date()) {
-    return {current: true, trip: currTrip};
+  if (currTrip == null) {
+    return { current: true, trip: null };
+  } else if (currTrip.trip_start < new Date()) {
+    return { current: true, trip: currTrip };
   } else {
-    return {current: false, trip: currTrip};
+    return { current: false, trip: currTrip };
   }
-
 }
 
 /**
@@ -80,9 +79,9 @@ export function getActiveTrips(state) {
     let tripTimes = getTripTimes(state, trip.trip_id);
 
     if (
-      tripTimes.trip_start === null ||      // Then it's a planned future trip
-      tripTimes.trip_start > new Date() ||  // Then it's in the future
-      tripTimes.trip_end > new Date()       // Then it's not over yet
+      tripTimes.trip_start === null || // Then it's a planned future trip
+      tripTimes.trip_start > new Date() || // Then it's in the future
+      tripTimes.trip_end > new Date() // Then it's not over yet
     ) {
       // Add the active trip with its calculated times
       trips.push({ ...trip, ...tripTimes });

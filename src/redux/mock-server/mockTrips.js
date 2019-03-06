@@ -34,7 +34,7 @@ export function mockTrips() {
       {
         user_id: 2,
         trip_id: 6,
-        name: 'Trip that\'s already over',
+        name: "Trip that's already over",
         dscript: ''
       }
     ]

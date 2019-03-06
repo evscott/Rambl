@@ -12,13 +12,13 @@ export function getTripTimes(state, tripId) {
   let accoms = state.accoms.accoms;
   let trans = state.trans.trans;
   let events = [...plans, ...accoms, ...trans];
-  events = events.filter(event => event.trip_id === tripId);
+  events = events.filter((event) => event.trip_id === tripId);
 
   let tripStart = null;
   let tripEnd = null;
 
   // Go through all of the events
-  events.forEach(event => {
+  events.forEach((event) => {
     if (event.begin_time !== null) {
       if (tripStart === null) tripStart = event.begin_time;
       else if (tripStart > event.begin_time) tripStart = event.begin_time;
@@ -29,7 +29,7 @@ export function getTripTimes(state, tripId) {
     }
   });
 
-  if(tripEnd == null) tripEnd = tripStart;
+  if (tripEnd == null) tripEnd = tripStart;
 
   return { trip_start: tripStart, trip_end: tripEnd };
 }
