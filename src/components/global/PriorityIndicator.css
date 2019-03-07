@@ -1,0 +1,15 @@
+.low-priority {
+    color: #FF00CC;
+}
+
+.med-priority {
+    color: #FF0;
+}
+
+.hi-priority {
+    color: #0FF;
+}
+
+.no-priority {
+    color: #DDD;
+}
