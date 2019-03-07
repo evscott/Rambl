@@ -234,7 +234,7 @@ export function getPlansFromDb() {
       .then((json) => {
         if (json.success === false) dispatch(getPlansFromDbFailure());
         else {
-          let plans = [];
+          let plans = {};
           json.result.forEach((t) => {
             if (plans[t.trip_id] === undefined) plans[t.trip_id] = {};
             plans[t.trip_id][t.e_id] = t;

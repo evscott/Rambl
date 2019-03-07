@@ -233,7 +233,7 @@ export function getTransFromDb() {
       .then((json) => {
         if (json.success === false) dispatch(getTransFromDbFailure());
         else {
-          let trans = [];
+          let trans = {};
           json.result.forEach((t) => {
             if (trans[t.trip_id] === undefined) trans[t.trip_id] = {};
             trans[t.trip_id][t.e_id] = t;

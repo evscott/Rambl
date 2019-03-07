@@ -1,5 +1,9 @@
 import fetch from 'cross-fetch';
 import { hostUrl } from '../../shared/Config';
+import { getTransFromDb } from './tranActions';
+import { getPlansFromDb } from './planActions';
+import { getAccomsFromDb } from './accomActions';
+import { getTripsFromDb } from './tripActions';
 
 export const SIGNUP_REQUEST = 'REQUEST_SIGNUP';
 export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
@@ -214,6 +218,10 @@ export function login(user) {
           localStorage.setItem('token', json.token);
           dispatch(loginSuccess());
           dispatch(getUserInfo());
+          dispatch(getPlansFromDb());
+          dispatch(getTransFromDb());
+          dispatch(getAccomsFromDb());
+          dispatch(getTripsFromDb());
         }
       });
   };

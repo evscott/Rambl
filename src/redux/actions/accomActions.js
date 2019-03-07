@@ -232,7 +232,7 @@ export function getAccomsFromDb() {
       .then((json) => {
         if (json.success === false) dispatch(getAccomsFromDbFailure());
         else {
-          let accoms = [];
+          let accoms = {};
           json.result.forEach((t) => {
             if (accoms[t.trip_id] === undefined) accoms[t.trip_id] = {};
             accoms[t.trip_id][t.e_id] = t;
