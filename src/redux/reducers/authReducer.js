@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import * as AuthActions from '../actions/authActions';
 
 const initialState = {
