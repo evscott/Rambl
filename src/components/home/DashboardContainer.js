@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Dashboard from './Dashboard';
 import { logout } from '../../redux/actions/authActions';
+import { updateUserInfoInDb } from '../../redux/actions/userActions';
 
 const mapStateToProps = (state) => {
   return {

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import UserInfo from './UserInfo';
+import { updateUserInfoInDb } from '../../redux/actions/userActions';
 
 const mapStateToProps = (state) => {
   return {

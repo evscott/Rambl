@@ -11,8 +11,8 @@
     "eject": "react-scripts eject",
     "dev": "concurrently \"npm run server\" \"npm client\"",
     "heroku-postbuild": "npm run build",
-    "lint": "./node_modules/.bin/eslint src/*",
-    "lintfix": "./node_modules/.bin/eslint --fix src/*"
+    "lint": "./node_modules/.bin/eslint src/* && ./node_modules/.bin/eslint server/*",
+    "lintfix": "./node_modules/.bin/eslint --fix src/* && ./node_modules/.bin/eslint --fix server/*"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",

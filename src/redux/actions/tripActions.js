@@ -102,13 +102,12 @@ function updateTripInDbFailure() {
   };
 }
 
-function updateTripInDbSuccess(trips) {
+function updateTripInDbSuccess() {
   return {
     type: UPDATE_TRIP_IN_DB_SUCCESS,
     lastUpdated: Date.now(),
     isFetching: false,
-    isSynced: true,
-    trips: trips
+    isSynced: true
   };
 }
 

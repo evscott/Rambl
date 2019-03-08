@@ -5,7 +5,7 @@ const userHandler = require('../handlers/userHandler');
 
 // Basic routes for user
 router.put('/update', middleware.checkToken, userHandler.updateUserInfo);
-router.router.get('/getinfo', middleware.checkToken, userHandler.getInfo);
+router.get('/getinfo', middleware.checkToken, userHandler.getInfo);
 
 // Export routes
 module.exports = router;
