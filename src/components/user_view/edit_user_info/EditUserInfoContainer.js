@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
-import UserInfo from './UserInfo';
-import { updateUserInfoInDb } from '../../redux/actions/userActions';
+import EditUserInfo from './EditUserInfo';
+import { updateUserInfoInDb } from '../../../redux/actions/userActions';
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user.user
+    user: state.user.user,
+    isFetching: state.user.isFetching
   };
 };
 
@@ -16,9 +17,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const UserInfoContainer = connect(
+const EditUserInfoContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(UserInfo);
+)(EditUserInfo);
 
-export default UserInfoContainer;
+export default EditUserInfoContainer;

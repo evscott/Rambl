@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -28,6 +28,9 @@ export default class Dashboard extends Component {
               Logout
             </Button>
           </Form>
+          <Link to="/userinfo" className="btn btn-primary">
+            User info
+          </Link>
         </div>
       );
     }

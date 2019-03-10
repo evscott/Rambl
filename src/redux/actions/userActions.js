@@ -99,7 +99,7 @@ export function getUserInfoFromDb() {
  * @param trip object containing name, dscript, trip_id.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
-export function updateUserInfoInDb(trip) {
+export function updateUserInfoInDb(user) {
   return (dispatch) => {
     dispatch(updateUserInfoInDbRequest()); // Update trip request process has begun...
     return fetch(hostUrl + '/user/update', {
@@ -108,11 +108,10 @@ export function updateUserInfoInDb(trip) {
         'x-access-token': localStorage.getItem('token')
       },
       method: 'PUT',
-      body: JSON.stringify(trip)
+      body: JSON.stringify(user)
     })
       .then((response) => response.json())
       .then((json) => {
-        console.log('jsooon', json);
         if (json.success === false) dispatch(updateUserInfoInDbFailure());
         else {
           dispatch(updateUserInfoInDbSuccess());

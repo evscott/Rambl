@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class UserInfo extends Component {
   constructor(props) {
@@ -11,18 +12,21 @@ export default class UserInfo extends Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <button className="btn btn-primary pull-right" type="submit">
-            Edit
-          </button>
+      <div className="container">
+        <div className="header">
+          <h1>User info</h1>
         </div>
         <div>
-          Display user mode
           <p>{this.props.user.f_name}</p>
           <p>{this.props.user.l_name}</p>
           <p>{this.props.user.email}</p>
         </div>
+        <Link to="/dashboard" className="btn btn-default">
+          Back
+        </Link>
+        <Link to="/userinfo/edit" className="btn btn-primary">
+          Edit
+        </Link>
       </div>
     );
   }
