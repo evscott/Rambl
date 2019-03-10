@@ -2,24 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
+import { allDayAccessor } from './cal/accessors';
 import './react-big-calendar.css';
 
 // Localizer for the calendar for formatting date objects
 const localizer = BigCalendar.momentLocalizer(moment);
 
 /**
- * Accessor function that retrieves if an event is considered
- * an "all day" event or not for display on the calendar.
- * @param event the event to display (given by BigCalendar)
- * @return true if the event is longer than 24 hours
+ * TripCal is a component for displaying a trip's calendar view.
+ * It requires the TripCalContainer to function.
+ * To go to the page with the trip view, simply go to the address
+ * '/trips?id=29' to go to trip id 29's calendar (for instance).
  */
-function allDayAccessor(event) {
-  let start = moment(event.begin_time);
-  let end = moment(event.end_time);
-  let diff = end.diff(start, 'hours');
-  return diff >= 24;
-}
-
 export class TripCal extends Component {
   render() {
     return (
@@ -28,6 +22,7 @@ export class TripCal extends Component {
           localizer={localizer}
           events={this.props.events}
           titleAccessor="dscript"
+          tooltipAccessor="dscript"
           startAccessor="begin_time"
           endAccessor="end_time"
           allDay={allDayAccessor}
