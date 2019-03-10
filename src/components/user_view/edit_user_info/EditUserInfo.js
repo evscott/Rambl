@@ -7,8 +7,6 @@ export default class EditUserInfo extends Component {
   constructor(props) {
     super(props);
 
-    console.log('user info', props.user);
-
     this.state = {
       email: props.user.email,
       f_name: props.user.f_name,
