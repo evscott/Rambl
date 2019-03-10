@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Modal, Fade } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import './EventModal.css';
 
 export class EventModal extends Component {
@@ -8,6 +8,20 @@ export class EventModal extends Component {
     super(props);
   }
   render() {
+    let eventComponent = null;
+    if(this.props.event != null) switch(this.props.event.event_type) {
+      case 'plan':
+        eventComponent = <p>This is a plan event component.</p>;
+        break;
+      case 'accom':
+        eventComponent = <p>Wow! This is an accommodation component!</p>;
+        break;
+      case 'trans':
+        eventComponent = <p>This is a trans event component. Such wow.</p>;
+        break;
+      default:
+        eventComponent = <p>Odd. We have an undefined event type.</p>;
+    }
     return (
       <Modal show={this.props.show} onHide={this.props.onHide}>
         <Modal.Header closeButton>
@@ -17,10 +31,7 @@ export class EventModal extends Component {
         </Modal.Header>
         <Modal.Body>
           <h4>Insert event view here</h4>
-          <p>
-            This is an event:
-            {this.props.event != null ? this.props.event.event_type : ''}
-          </p>
+          {eventComponent}
         </Modal.Body>
       </Modal>
     );

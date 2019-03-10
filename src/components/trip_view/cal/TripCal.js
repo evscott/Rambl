@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import { allDayAccessor } from './accessors';
 import { TripCalToolbar } from './TripCalToolbar';
 import { EventModal } from './EventModal';
@@ -70,3 +71,7 @@ export class TripCal extends Component {
     );
   }
 }
+
+TripCal.propTypes = {
+  location: PropTypes.any.isRequired // The window's URL
+};
