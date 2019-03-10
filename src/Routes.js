@@ -4,7 +4,7 @@ import Home from './components/auth/landing/Landing';
 import LoginContainer from './components/auth/login/LoginContainer';
 import SignUpContainer from './components/auth/signup/SignUpContainer';
 import DashboardContainer from './components/home/DashboardContainer';
-import TripCalContainer from './components/trip_view/TripCalContainer';
+import TripCalContainer from './components/trip_view/cal/TripCalContainer';
 
 export default () => (
   <Router>
