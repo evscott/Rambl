@@ -21,10 +21,8 @@ export default class Login extends Component {
   /**************************** Helper functions ****************************/
 
   stateIsComplete() {
-    if ((this.state.email, this.state.password)) {
-      return true;
-    }
-    return false;
+    return (this.state.email && this.state.password);
+
   }
 
   getUserObject() {

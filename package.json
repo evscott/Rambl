@@ -9,7 +9,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "concurrently \"npm run server\" \"npm client\"",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "npm run build",
     "lint": "./node_modules/.bin/eslint src/*",
     "lintfix": "./node_modules/.bin/eslint --fix src/*"

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './components/auth/landing/Landing';
 import LoginContainer from './components/auth/login/LoginContainer';
 import SignUpContainer from './components/auth/signup/SignUpContainer';
-import DashboardContainer from './components/home/DashboardContainer';
+import DashboardContainer from './components/dashboard/DashboardContainer';
 
 export default () => (
   <Router>
