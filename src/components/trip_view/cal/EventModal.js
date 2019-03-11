@@ -9,19 +9,20 @@ export class EventModal extends Component {
   }
   render() {
     let eventComponent = null;
-    if(this.props.event != null) switch(this.props.event.event_type) {
-      case 'plan':
-        eventComponent = <p>This is a plan event component.</p>;
-        break;
-      case 'accom':
-        eventComponent = <p>Wow! This is an accommodation component!</p>;
-        break;
-      case 'trans':
-        eventComponent = <p>This is a trans event component. Such wow.</p>;
-        break;
-      default:
-        eventComponent = <p>Odd. We have an undefined event type.</p>;
-    }
+    if (this.props.event != null)
+      switch (this.props.event.event_type) {
+        case 'plan':
+          eventComponent = <p>This is a plan event component.</p>;
+          break;
+        case 'accom':
+          eventComponent = <p>Wow! This is an accommodation component!</p>;
+          break;
+        case 'trans':
+          eventComponent = <p>This is a trans event component. Such wow.</p>;
+          break;
+        default:
+          eventComponent = <p>Odd. We have an undefined event type.</p>;
+      }
     return (
       <Modal show={this.props.show} onHide={this.props.onHide}>
         <Modal.Header closeButton>

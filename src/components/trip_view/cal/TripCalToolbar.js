@@ -16,22 +16,13 @@ export class TripCalToolbar extends Component {
     return (
       <div className="rbc-toolbar">
         <span className="rbc-btn-group">
-          <button
-            type="button"
-            onClick={this.navigate.bind(null, 'TODAY')}
-          >
+          <button type="button" onClick={this.navigate.bind(null, 'TODAY')}>
             {messages.today}
           </button>
-          <button
-            type="button"
-            onClick={this.navigate.bind(null, 'PREV')}
-          >
+          <button type="button" onClick={this.navigate.bind(null, 'PREV')}>
             {messages.previous}
           </button>
-          <button
-            type="button"
-            onClick={this.navigate.bind(null, 'NEXT')}
-          >
+          <button type="button" onClick={this.navigate.bind(null, 'NEXT')}>
             {messages.next}
           </button>
         </span>

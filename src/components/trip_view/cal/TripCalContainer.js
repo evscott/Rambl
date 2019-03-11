@@ -22,4 +22,4 @@ const TripCalContainer = connect(
   mapDispatchToProps
 )(TripCal);
 
-export default TripCalContainer
+export default TripCalContainer;

@@ -10,7 +10,6 @@ import PropTypes from 'prop-types';
  * means trip id 29, with the month view open.
  */
 export class CalViewOptions extends Component {
-
   constructor(props) {
     super(props);
     this.getPath = this.getPath.bind(this);
@@ -55,10 +54,7 @@ export class CalViewOptions extends Component {
         >
           Week View
         </Button>
-        <Button
-          onClick={() => this.routeTo('day')}
-          active={currView === 'day'}
-        >
+        <Button onClick={() => this.routeTo('day')} active={currView === 'day'}>
           Day View
         </Button>
         <Button
