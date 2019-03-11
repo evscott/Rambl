@@ -27,6 +27,10 @@ export class TripCal extends Component {
     this.deselectEvent = this.deselectEvent.bind(this);
   }
 
+  /**
+   * Selects an event for displaying in a modal.
+   * @param event the event to display.
+   */
   selectEvent(event) {
     this.setState({ showEvent: true, currEvent: event });
   }

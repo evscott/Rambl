@@ -3,13 +3,19 @@ import PropTypes from 'prop-types';
 import { Modal } from 'react-bootstrap';
 import './EventModal.css';
 
+/**
+ * This is a popup modal which displays the event information. It should contain
+ * a component that is specific to the type of event being shown.
+ */
 export class EventModal extends Component {
   constructor(props) {
     super(props);
   }
   render() {
     let eventComponent = null;
-    if (this.props.event != null)
+
+    // Vary what component to show based on what type of event we have.
+    if (this.props.event != null) {
       switch (this.props.event.event_type) {
         case 'plan':
           eventComponent = <p>This is a plan event component.</p>;
@@ -23,6 +29,7 @@ export class EventModal extends Component {
         default:
           eventComponent = <p>Odd. We have an undefined event type.</p>;
       }
+    }
     return (
       <Modal show={this.props.show} onHide={this.props.onHide}>
         <Modal.Header closeButton>
@@ -40,7 +47,7 @@ export class EventModal extends Component {
 }
 
 EventModal.propTypes = {
-  show: PropTypes.bool.isRequired,
-  onHide: PropTypes.func.isRequired,
-  event: PropTypes.any
+  show: PropTypes.bool.isRequired, // To show the modal or not
+  onHide: PropTypes.func.isRequired, // What function to call when try to close
+  event: PropTypes.any // The event object to display
 };

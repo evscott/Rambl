@@ -17,16 +17,19 @@ export class CalViewOptions extends Component {
     this.routeTo = this.routeTo.bind(this);
   }
 
+  /** Get the path of the current browser's URL */
   getPath() {
     return this.props.history.location.pathname;
   }
 
+  /** Get the search query from the URL */
   getQuery(view) {
     let location = this.props.history.location;
     let tripId = queryString.parse(location.search).id;
     return '?id=' + tripId + '&view=' + view;
   }
 
+  /** Routes the window to a different URL */
   routeTo(view) {
     let route = {
       pathname: this.getPath(),
