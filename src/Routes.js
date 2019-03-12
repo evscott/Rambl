@@ -13,7 +13,7 @@ export default () => (
       <Route exact path="/login" component={LoginContainer} />
       <Route exact path="/signup" component={SignUpContainer} />
       <Route exact path="/dashboard" component={DashboardContainer} />
-      <Route exact path="/trips" component={TripView} />
+      <Route exact path="/trip" component={TripView} />
     </Switch>
   </Router>
 );
