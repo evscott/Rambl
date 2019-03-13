@@ -1,0 +1,45 @@
+@media only screen and (max-width: 400px)  {
+    .card-body {
+        padding-left: 80px;
+        text-align: left;
+    }
+}
+
+.card {
+    margin: 20px 0;
+}
+
+.start-date,
+.end-date {
+    margin: 2px;
+    border-radius: 5px;
+    padding: 2px;
+    background-color: #FEFEFE;
+}
+
+.pull-right {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+}
+
+.card-header {
+    font-weight: 700;
+    padding-right: 40px;
+}
+
+.card-body {
+    position: relative;
+}
+
+.card-body svg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    height: 100%;
+    float: left;
+    margin: 0 15px 0 0;
+}
+
+
