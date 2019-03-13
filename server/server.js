@@ -9,7 +9,7 @@ const port = process.env.PORT || 4201;
 // Routes
 const accomRoutes = require('./controller/accomRoutes');
 const authRoutes = require('./controller/authRoutes');
-const planRoutes = require('./controller/planRoutes')
+const planRoutes = require('./controller/planRoutes');
 const tranRoutes = require('./controller/tranRoutes');
 const tripRoutes = require('./controller/tripRoutes');
 const userRoutes = require('./controller/userRoutes');
@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname + '/../build')));
-app.route('/*', function (req, res) {
+app.route('/*', (req, res) => {
   res.sendFile(path.join(__dirname + '/../build/index.html'));
 });
 
