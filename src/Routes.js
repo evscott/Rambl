@@ -4,6 +4,7 @@ import Home from './components/auth/landing/Landing';
 import LoginContainer from './components/auth/login/LoginContainer';
 import SignUpContainer from './components/auth/signup/SignUpContainer';
 import DashboardContainer from './components/home/DashboardContainer';
+import { TripView } from './components/trip_view/TripView';
 
 export default () => (
   <Router>
@@ -12,6 +13,7 @@ export default () => (
       <Route exact path="/login" component={LoginContainer} />
       <Route exact path="/signup" component={SignUpContainer} />
       <Route exact path="/dashboard" component={DashboardContainer} />
+      <Route exact path="/trip" component={TripView} />
     </Switch>
   </Router>
 );
