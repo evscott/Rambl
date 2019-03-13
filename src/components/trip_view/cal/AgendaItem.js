@@ -5,6 +5,10 @@ import { PriorityIndicator } from '../../global/PriorityIndicator';
 import './AgendaItem.css';
 import { EventTypeIndicator } from '../../global/EventTypeIndicator';
 
+/**
+ * This is the code for a single item displayed on the react-big-calendar
+ * agenda. It displays the title, priority, event type, and dates.
+ */
 export class AgendaItem extends Component {
   render() {
     let { localizer, accessors, event } = this.props;
@@ -28,7 +32,7 @@ export class AgendaItem extends Component {
         </Card.Header>
         <Card.Body>
           <div>
-            <EventTypeIndicator type={eventType} size={'3x'}/>
+            <EventTypeIndicator type={eventType} size={'3x'} />
             <div className="start-date">{localizer.format(start, 'LLL')}</div>
             <div className="end-date">{localizer.format(end, 'LLL')}</div>
           </div>
@@ -40,7 +44,8 @@ export class AgendaItem extends Component {
 
 AgendaItem.propTypes = {
   event: PropTypes.object.isRequired, // The event to show
-  accessors: PropTypes.object.isRequired,
-  localizer: PropTypes.object.isRequired,
-  onSelectEvent: PropTypes.func.isRequired
+  accessors: PropTypes.object.isRequired, // The accessors to figure out
+  // what to show from the event object
+  localizer: PropTypes.object.isRequired, // moment (for dealing with dates)
+  onSelectEvent: PropTypes.func.isRequired // what to do when selected
 };

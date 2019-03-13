@@ -6,58 +6,78 @@ import { navigate } from './utils/constants';
 import { inRange } from './utils/eventLevels';
 import { AgendaItem } from './AgendaItem';
 
+/**
+ * Agenda displaying all of the user's events in sequence. It shows it with
+ * headers for each day and then Bootstrap cards for each event.
+ * Note that this is used by react-big-calendar, so it has some code from
+ * the library that is default for all views.
+ */
 class Agenda extends React.Component {
   render() {
     let { length, date, events, accessors, localizer } = this.props;
     let { messages } = localizer;
-    let end = dates.add(date, length, 'day');
 
+    // This gets the last date which should be displayed by the agenda
+    // (only shows one month at a time)
+    let end = dates.add(date, length, 'day');
     let range = dates.range(date, end, 'day');
 
+    // Get the events that are in the right range
     events = events.filter((event) => inRange(event, date, end, accessors));
 
+    // Sort by date (the + turns them into numbers that are easily sortable)
     events.sort((a, b) => +accessors.start(a) - +accessors.start(b));
 
-    return (
-      <div className="rbc-agenda-view">
-        {events.length !== 0 ? (
-          <div className="rbc-agenda-content" ref="content">
-            {range.map((day, idx) => this.renderDay(day, events, idx))}
-          </div>
-        ) : (
-          <span className="rbc-agenda-empty">{messages.noEventsInRange}</span>
-        )}
-      </div>
-    );
+    // Figure out what to show for the agenda (depends on if there are any events)
+    let agendaContent;
+    if (events.length !== 0) {
+      agendaContent = (
+        <div className="rbc-agenda-content" ref="content">
+          {range.map((day, idx) => this.renderDay(day, events, idx))}
+        </div>
+      );
+    } else {
+      agendaContent = (
+        <span className="rbc-agenda-empty">{messages.noEventsInRange}</span>
+      );
+    }
+
+    return <div className="rbc-agenda-view">{agendaContent}</div>;
   }
 
+  /**
+   * This renders a single day worth of events.
+   * @param day javascript date object for the day to render
+   * @param events the events to sort through
+   * @param dayKey the key used by react to keep track of the event
+   * @returns {*} react fragment representing the day
+   */
   renderDay(day, events, dayKey) {
     let { accessors, localizer } = this.props;
 
-    events = events.filter((e) => {
+    // Narrow down the events to just have the single day's events
+    events = events.filter((event) => {
+      // This uses a react-big-calendar helper method
       return inRange(
-        e,
+        event,
         dates.startOf(day, 'day'),
         dates.endOf(day, 'day'),
         accessors
       );
     });
 
+    // Now, create react fragments for every one of the agenda items
     return events.map((event, idx) => {
 
-      let dateLabel = idx === 0 && localizer.format(day, 'MMMM Do YYYY');
-
-      let first =
-        idx === 0 ? (
-          <h3 key={"__" + idx}>
-            {dateLabel}
-          </h3>
-        ) : (
-          false
-        );
+      // If first event of the day, show the label for the event
+      let first = false;
+      if(idx === 0) {
+        let dateLabel = localizer.format(day, 'MMMM Do YYYY');
+        first = <h3 key={'__' + idx}>{dateLabel}</h3>;
+      }
 
       return (
-        <React.Fragment key={dayKey + "_" + idx}>
+        <React.Fragment key={dayKey + '_' + idx}>
           {first}
           <AgendaItem
             event={event}
@@ -68,19 +88,19 @@ class Agenda extends React.Component {
         </React.Fragment>
       );
     }, []);
-  };
+  }
 }
 
 Agenda.propTypes = {
-  events: PropTypes.array,
-  date: PropTypes.instanceOf(Date),
-  length: PropTypes.number.isRequired,
+  events: PropTypes.array, // The events to show
+  date: PropTypes.instanceOf(Date), // The date to start at
+  length: PropTypes.number.isRequired, // The length of time to show
 
-  accessors: PropTypes.object.isRequired,
-  components: PropTypes.object.isRequired,
-  localizer: PropTypes.object.isRequired
+  accessors: PropTypes.object.isRequired, // How to get the data from event objects
+  localizer: PropTypes.object.isRequired // moment localizer for dates
 };
 
+// This is default for react-big-calendar
 Agenda.defaultProps = {
   length: 30
 };
