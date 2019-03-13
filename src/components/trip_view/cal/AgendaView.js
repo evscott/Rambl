@@ -32,9 +32,8 @@ class Agenda extends React.Component {
   }
 
   renderDay(day, events, dayKey) {
-    let { selected, accessors, localizer } = this.props;
+    let { accessors, localizer } = this.props;
 
-    console.log(selected);
     events = events.filter((e) => {
       return inRange(
         e,
@@ -64,6 +63,7 @@ class Agenda extends React.Component {
             event={event}
             accessors={accessors}
             localizer={localizer}
+            onSelectEvent={this.props.onSelectEvent}
           />
         </React.Fragment>
       );
@@ -75,8 +75,6 @@ Agenda.propTypes = {
   events: PropTypes.array,
   date: PropTypes.instanceOf(Date),
   length: PropTypes.number.isRequired,
-
-  selected: PropTypes.object,
 
   accessors: PropTypes.object.isRequired,
   components: PropTypes.object.isRequired,

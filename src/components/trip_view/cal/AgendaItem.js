@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
-import { isSelected } from './utils/selection';
 import { PriorityIndicator } from '../../global/PriorityIndicator';
 import './AgendaItem.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { EventTypeIndicator } from '../../global/EventTypeIndicator';
 
 export class AgendaItem extends Component {
   render() {
-    let { selected, localizer, accessors, event } = this.props;
+    let { localizer, accessors, event } = this.props;
 
     // Retrieve info in the default way for react-big-calendar
     let title = accessors.title(event);
@@ -20,13 +18,12 @@ export class AgendaItem extends Component {
     let priority = event.priority; // May be null
     let eventType = event.event_type; // May be null
 
-    console.log(isSelected(event, selected)); // Don't know what this is
     return (
-      <Card>
+      <Card onClick={() => this.props.onSelectEvent(event)}>
         <Card.Header>
           {title}
           <span className="pull-right">
-            <PriorityIndicator priority={priority} />
+            <PriorityIndicator priority={+priority} />
           </span>
         </Card.Header>
         <Card.Body>
@@ -44,5 +41,6 @@ export class AgendaItem extends Component {
 AgendaItem.propTypes = {
   event: PropTypes.object.isRequired, // The event to show
   accessors: PropTypes.object.isRequired,
-  localizer: PropTypes.object.isRequired
+  localizer: PropTypes.object.isRequired,
+  onSelectEvent: PropTypes.func.isRequired
 };
