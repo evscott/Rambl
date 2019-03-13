@@ -68,10 +68,9 @@ class Agenda extends React.Component {
 
     // Now, create react fragments for every one of the agenda items
     return events.map((event, idx) => {
-
       // If first event of the day, show the label for the event
       let first = false;
-      if(idx === 0) {
+      if (idx === 0) {
         let dateLabel = localizer.format(day, 'MMMM Do YYYY');
         first = <h3 key={'__' + idx}>{dateLabel}</h3>;
       }
