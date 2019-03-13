@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import EventField from '../event_field/EventField';
 import { usdFormatter } from '../../../shared/inputFormatter';
+import PropTypes from 'prop-types';
 
 export default class AccomInfo extends Component {
   constructor(props) {
@@ -42,3 +43,7 @@ export default class AccomInfo extends Component {
     );
   }
 }
+
+AccomInfo.propTypes = {
+  accom: PropTypes.object.isRequired
+};

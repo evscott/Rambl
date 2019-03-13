@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import EventField from '../event_field/EventField';
 import { usdFormatter } from '../../../shared/inputFormatter';
+import PropTypes from 'prop-types';
 
 export default class PlanInfo extends Component {
   constructor(props) {
@@ -42,3 +43,7 @@ export default class PlanInfo extends Component {
     );
   }
 }
+
+PlanInfo.propTypes = {
+  plan: PropTypes.object.isRequired
+};

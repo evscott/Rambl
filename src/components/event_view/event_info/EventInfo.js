@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PlanInfo from '../events/PlanInfo';
 import AccomInfo from '../events/AccomInfo';
 import TranInfo from '../events/TranInfo';
+import PropTypes from 'prop-types';
 
 /**
  * EventInfo is a handler component designed to determine what type of event
@@ -9,10 +10,6 @@ import TranInfo from '../events/TranInfo';
  * updateAccom, updateTran... Etc
  */
 export default class EventInfo extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   /**************************** Visual component ****************************/
 
   render() {
@@ -31,3 +28,7 @@ export default class EventInfo extends Component {
     }
   }
 }
+
+EventInfo.propTypes = {
+  event: PropTypes.object.isRequired
+};
