@@ -13,6 +13,8 @@ export default class EventInfo extends Component {
   /**************************** Visual component ****************************/
 
   render() {
+    if (this.props.event === null)
+      return <div>Error: Event object is null.</div>;
     switch (this.props.event.event_type) {
       case 'plan':
         return <PlanInfo plan={this.props.event} />;
@@ -24,7 +26,7 @@ export default class EventInfo extends Component {
         return <TranInfo tran={this.props.event} />;
         break;
       default:
-        return <div>Unable to fetch information for this event</div>;
+        return <div>Unable to fetch information for this event type.</div>;
     }
   }
 }

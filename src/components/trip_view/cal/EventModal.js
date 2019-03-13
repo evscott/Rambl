@@ -15,22 +15,6 @@ export class EventModal extends Component {
   render() {
     let eventComponent = null;
 
-    // Vary what component to show based on what type of event we have.
-    if (this.props.event != null) {
-      switch (this.props.event.event_type) {
-        case 'plan':
-          eventComponent = <EventInfo event={this.props.event} />;
-          break;
-        case 'accom':
-          eventComponent = <EventInfo event={this.props.event} />;
-          break;
-        case 'trans':
-          eventComponent = <EventInfo event={this.props.event} />;
-          break;
-        default:
-          eventComponent = <p>Odd. We have an undefined event type.</p>;
-      }
-    }
     return (
       <Modal show={this.props.show} onHide={this.props.onHide}>
         <Modal.Header closeButton>
@@ -38,7 +22,9 @@ export class EventModal extends Component {
             {this.props.event != null ? this.props.event.dscript : ''}
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>{eventComponent}</Modal.Body>
+        <Modal.Body>
+          <EventInfo event={this.props.event} />
+        </Modal.Body>
       </Modal>
     );
   }
