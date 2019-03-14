@@ -3,7 +3,7 @@ import { Table } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import EventField from '../event_fields/EventField';
 import { usdFormatter } from '../../../shared/inputFormatter';
-import { editEventButton } from '../EditEventButton';
+import { initiateEdit } from '../../global/EditButtons';
 import '../EventView.css';
 
 export default class PlanInfo extends Component {
@@ -51,29 +51,29 @@ export default class PlanInfo extends Component {
             </tr>
             <tr>
               <EventField fieldType={'Location'} fieldValue={this.state.loc} />
-              {editEventButton(this.state, this.onClick)}
+              {initiateEdit(this.state, this.onClick)}
             </tr>
             <tr>
               <EventField
                 fieldType={'Begins'}
                 fieldValue={this.state.begin_time}
               />
-              {editEventButton(this.state, this.onClick)}
+              {initiateEdit(this.state, this.onClick)}
             </tr>
             <tr>
               <EventField fieldType={'Ends'} fieldValue={this.state.end_time} />
-              {editEventButton(this.state, this.onClick)}
+              {initiateEdit(this.state, this.onClick)}
             </tr>
             <tr>
               <EventField fieldType={'Cost'} fieldValue={this.state.cost} />
-              {editEventButton(this.state, this.onClick)}
+              {initiateEdit(this.state, this.onClick)}
             </tr>
             <tr>
               <EventField
                 fieldType={'Description'}
                 fieldValue={this.state.dscript}
               />
-              {editEventButton(this.state, this.onClick)}
+              {initiateEdit(this.state, this.onClick)}
             </tr>
           </tbody>
         </Table>

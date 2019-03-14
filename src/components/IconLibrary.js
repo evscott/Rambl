@@ -3,10 +3,11 @@ import {
   fas,
   faStar as faStar1,
   faStarHalfAlt,
-  faPencilAlt
+  faPencilAlt,
+  faCheck
 } from '@fortawesome/free-solid-svg-icons';
 import { far, faStar as faStar2 } from '@fortawesome/free-regular-svg-icons';
 
 export function createIconLibrary() {
-  library.add(fas, far, faStar1, faStar2, faStarHalfAlt, faPencilAlt);
+  library.add(fas, far, faStar1, faStar2, faStarHalfAlt, faPencilAlt, faCheck);
 }
