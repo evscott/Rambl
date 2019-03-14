@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
-import { getSortedTrips, getCurrTrip } from '../../redux/getters/getTrips';
+import {getCurrTrip, getSortedTrips} from '../../../redux/getters/getTrips';
 import DboardJumbotron from './DboardJumbotron';
 
 const mapStateToProps = (state) => {
-  return {
-    upcoming: getSortedTrips(state).active,
-    isCurrent: getCurrTrip(state).current
-  };
+  return{
+    currTripInfo: getCurrTrip(state),
+    allActiveTrips: getSortedTrips(state).active
+  }
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return { };
+  return {};
 };
 
 const DboardJumbotronContainer = connect(

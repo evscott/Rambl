@@ -11,7 +11,7 @@ export default class NullJumbotron extends Component {
   /**************************** Visual component ****************************/
   render(){
     return(
-      <div className="container">
+      <div>
         <p>You have no upcoming trips :(</p>
         <Link to="#"><p>Create one now!</p></Link>
       </div>
