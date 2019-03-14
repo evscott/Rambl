@@ -10,6 +10,8 @@ export default class TranInfo extends Component {
   constructor(props) {
     super(props);
     this.state = this.getState(this.props.tran);
+
+    this.onClick = this.onClick.bind(this);
   }
 
   /**************************** Helper functions ****************************/
@@ -23,41 +25,49 @@ export default class TranInfo extends Component {
   getState(tran) {
     return {
       eventType: {
+        name: 'eventType',
         type: 'Event type',
         value: tran.event_type,
         editMode: false
       },
       method: {
+        name: 'method',
         type: 'Method',
         value: tran.method ? tran.method : 'unspecified',
         editMode: false
       },
       loc_begin: {
+        name: 'loc_begin',
         type: 'Departing from',
         value: tran.loc ? tran.loc : 'unspecified',
-        editMode: true
+        editMode: false
       },
       loc_end: {
+        name: 'loc_end',
         type: 'Arriving to',
         value: tran.loc_end ? tran.loc_end : 'unspecified',
         editMode: false
       },
       begin_time: {
+        name: 'begin_time',
         type: 'Begins',
         value: tran.begin_time.toString(),
         editMode: false
       },
       end_time: {
+        name: 'end_time',
         type: 'Ends',
         value: tran.end_time.toString(),
         editMode: false
       },
       cost: {
+        name: 'cost',
         type: 'Cost',
         value: tran.cost ? usdFormatter.format(tran.cost) : 'unspecified',
         editMode: false
       },
       dscript: {
+        name: 'dscript',
         type: 'Description',
         value: tran.dscript ? tran.dscript : 'unspecified',
         editMode: false
@@ -99,8 +109,15 @@ export default class TranInfo extends Component {
    * @param e
    */
   onClick(field) {
-    console.log('Clicked:', field.type, 'Edit mode:', field.editMode);
-    field.editMode = !field.editMode;
+    console.log(this.state.method);
+    this.setState({
+      [field.name]: {
+        name: field.name,
+        type: field.type,
+        value: field.value,
+        editMode: !field.editMode
+      }
+    });
   }
 
   /**************************** Visual component ****************************/
