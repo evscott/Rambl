@@ -1,0 +1,66 @@
+@media only screen and (max-width: 400px)  {
+    .card-body {
+        padding-left: 80px;
+        text-align: left;
+    }
+}
+
+.start-date,
+.end-date {
+    margin: 2px;
+    border-radius: 5px;
+    padding: 2px;
+    background-color: #FEFEFE;
+}
+
+.pull-right {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+}
+
+.card-header {
+    font-weight: 700;
+    padding-right: 40px;
+}
+
+.card-body {
+    position: relative;
+}
+
+.card-body svg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    height: 100%;
+    float: left;
+    margin: 0 15px 0 0;
+}
+
+.card {
+    transition: transform .5s;
+    margin: 20px 5px;
+}
+
+.card::after {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     transition: opacity 2s cubic-bezier(.165, .84, .44, 1);
+     box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+     content: '';
+     opacity: 0;
+     z-index: -1;
+ }
+
+.card:hover, .card:focus {
+    transform: scale3d(1.006, 1.006, 1);
+    cursor: pointer;
+}
+
+.card:hover::after, .card:focus::after {
+    opacity: 1;
+}
