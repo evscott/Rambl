@@ -16,29 +16,26 @@ export default class DboardJumbotron extends Component {
     this.state = {
       displayCurrent: this.props.currTripInfo.current,
       hasActiveTrip: this.props.allActiveTrips.length
-    }
+    };
   }
 
   /***************************** Core functions *****************************/
   /**
    * @returns instantiation of appropriate jumbotron component
    */
-  selectJumbotron(){
-    if(this.state.displayCurrent){
-      return <CurrentJumbotronContainer id={this.props.currTripInfo.trip.trip_id} />
+  selectJumbotron() {
+    if (this.state.displayCurrent) {
+      return (
+        <CurrentJumbotronContainer id={this.props.currTripInfo.trip.trip_id} />
+      );
+    } else if (!this.state.hasActiveTrip) {
+      return <NullJumbotron />;
     }
-    else if(!this.state.hasActiveTrip){
-      return <NullJumbotron />
-    }
-    return <UpcomingJumbotronContainer />
+    return <UpcomingJumbotronContainer />;
   }
 
   /**************************** Visual component ****************************/
   render() {
-    return(
-      <div>
-        {this.selectJumbotron()}
-      </div>
-    );
-  };
+    return <div>{this.selectJumbotron()}</div>;
+  }
 }

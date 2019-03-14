@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getActiveEvents } from "../../../redux/getters/getEvents";
+import { getActiveEvents } from '../../../redux/getters/getEvents';
 import CurrentJumbotron from './CurrentJumbotron';
 
 const mapStateToProps = (state, ownProps) => {

@@ -89,16 +89,16 @@ export function getActiveEvents(state, tripId) {
       event.begin_time > new Date() // Then it's in the future
     ) {
       // Add the active event
-      upcomingEvents.push({...event});
-    }
-    else if (event.end_time > new Date() // Then it's not over yet
+      upcomingEvents.push({ ...event });
+    } else if (
+      event.end_time > new Date() // Then it's not over yet
     ) {
-      currEvents.push({...event});
+      currEvents.push({ ...event });
     }
 
     sortEvents(currEvents);
     sortEvents(upcomingEvents);
   });
 
-  return {current: currEvents, upcoming: upcomingEvents};
+  return { current: currEvents, upcoming: upcomingEvents };
 }

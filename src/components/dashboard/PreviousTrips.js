@@ -17,24 +17,22 @@ export default class PreviousTrips extends Component {
 
   /**************************** Helper functions ****************************/
   // Get information for each previous trip
-  getAllPrevious(){
-    const listItems = this.props.previous.map((trip) =>
+  getAllPrevious() {
+    return this.props.previous.map((trip) => (
       <div key={trip.trip_id}>
-        <Link to={"/trip?id=" + trip.trip_id + "&view=month"}>
+        <Link to={'/trip?id=' + trip.trip_id + '&view=month'}>
           <p>{trip.name}</p>
         </Link>
         <p>{trip.dscript}</p>
       </div>
-    );
-
-    return(listItems);
+    ));
   }
 
   /***************************** Core functions *****************************/
   // Generate header and call to helper function if previous trips exist
-  getPreviousDiv(){
-    if(this.state.hasPrevious){
-      return(
+  getPreviousDiv() {
+    if (this.state.hasPrevious) {
+      return (
         <div>
           <h1>Previous Trips</h1>
           {this.getAllPrevious()}
@@ -45,10 +43,6 @@ export default class PreviousTrips extends Component {
 
   /**************************** Visual component ****************************/
   render() {
-    return(
-      <div>
-        {this.getPreviousDiv()}
-      </div>
-    );
+    return <div>{this.getPreviousDiv()}</div>;
   }
 }

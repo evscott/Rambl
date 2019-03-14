@@ -17,24 +17,24 @@ export default class UpcomingTrips extends Component {
 
   /**************************** Helper functions ****************************/
   // Get information for each upcoming trip
-  getAllUpcoming(){
-    const listItems = this.props.upcoming.map((trip) =>
+  getAllUpcoming() {
+    const listItems = this.props.upcoming.map((trip) => (
       <div key={trip.trip_id}>
-        <Link to={"/trip?id=" + trip.trip_id + "&view=month"}>
+        <Link to={'/trip?id=' + trip.trip_id + '&view=month'}>
           <p>{trip.name}</p>
         </Link>
         <p>{trip.dscript}</p>
       </div>
-    );
+    ));
 
-    return(listItems);
+    return listItems;
   }
 
   /***************************** Core functions *****************************/
   // Generate header and call to helper function if upcoming trips exist
-  getUpcomingDiv(){
-    if(this.state.hasUpcoming){
-      return(
+  getUpcomingDiv() {
+    if (this.state.hasUpcoming) {
+      return (
         <div>
           <h1>Upcoming Trips</h1>
           {this.getAllUpcoming()}
@@ -45,10 +45,6 @@ export default class UpcomingTrips extends Component {
 
   /**************************** Visual component ****************************/
   render() {
-    return(
-      <div>
-        {this.getUpcomingDiv()}
-      </div>
-    );
+    return <div>{this.getUpcomingDiv()}</div>;
   }
 }

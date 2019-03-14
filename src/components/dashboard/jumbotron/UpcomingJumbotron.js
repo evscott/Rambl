@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 
 export default class UpcomingJumbotron extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  /***************************** Core functions *****************************/
-
   /**************************** Visual component ****************************/
-  render(){
-    return(
+  render() {
+    return (
       <div>
         <p>countdown component here</p>
         <p>until</p>
@@ -19,5 +13,5 @@ export default class UpcomingJumbotron extends Component {
         <p>Stats component here</p>
       </div>
     );
-  };
+  }
 }

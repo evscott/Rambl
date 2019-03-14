@@ -11,7 +11,8 @@ export default class CurrentJumbotron extends Component {
 
     this.state = {
       hasCurrEvent: this.props.currEvents && this.props.currEvents.length,
-      hasUpcomingEvent: this.props.upcomingEvents && this.props.upcomingEvents.length
+      hasUpcomingEvent:
+        this.props.upcomingEvents && this.props.upcomingEvents.length
     };
   }
 
@@ -19,13 +20,12 @@ export default class CurrentJumbotron extends Component {
   // Get information for currently ongoing events
   // TODO: Modal support
   getCurrentEvents() {
-    const listItems = this.props.currEvents.map((event) =>
+    return this.props.currEvents.map((event) => (
       <div>
         <p>{event.name}</p>
         <p>{event.dscript}</p>
       </div>
-    );
-    return (listItems);
+    ));
   }
 
   // Get information for next upcoming event
@@ -58,8 +58,8 @@ export default class CurrentJumbotron extends Component {
 
   // Creates a div for next event if any exist
   getUpcomingDiv() {
-    if(this.state.hasUpcomingEvent){
-      return(
+    if (this.state.hasUpcomingEvent) {
+      return (
         <div>
           <h2>Next Event</h2>
           {this.getUpcomingEvents()}
