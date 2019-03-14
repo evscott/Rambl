@@ -2,18 +2,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'react-bootstrap';
 import './EventModal.css';
-import EventInfo from '../../event_view/event_info/EventInfo';
+import EventView from '../../../event_view/EventView';
 
 /**
  * This is a popup modal which displays the event information. It should contain
  * a component that is specific to the type of event being shown.
  */
 export class EventModal extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
-    let eventComponent = null;
+    let eventInfoComponent = <p>Odd. We have an undefined event type.</p>;
+
+    if (this.props.event != null) {
+      eventInfoComponent = <EventView event={this.props.event} />;
+    }
+
+    switch (this.props.event) {
+    }
 
     return (
       <Modal show={this.props.show} onHide={this.props.onHide}>
@@ -22,9 +26,7 @@ export class EventModal extends Component {
             {this.props.event != null ? this.props.event.dscript : ''}
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <EventInfo event={this.props.event} />
-        </Modal.Body>
+        <Modal.Body>{eventInfoComponent}</Modal.Body>
       </Modal>
     );
   }

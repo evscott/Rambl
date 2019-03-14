@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-import PlanInfo from '../events/PlanInfo';
-import AccomInfo from '../events/AccomInfo';
-import TranInfo from '../events/TranInfo';
+import PlanInfo from './event_info/PlanInfo';
+import AccomInfo from './event_info/AccomInfo';
+import TranInfo from './event_info/TranInfo';
 import PropTypes from 'prop-types';
 
 /**
- * EventInfo is a handler component designed to determine what type of event
+ * EventView is a handler component designed to determine what type of event
  * to display, as well as to also serve state methods to - i.e. updatePlan,
  * updateAccom, updateTran... Etc
  */
-export default class EventInfo extends Component {
+export default class EventView extends Component {
   /**************************** Visual component ****************************/
-
   render() {
     if (this.props.event === null)
       return <div>Error: Event object is null.</div>;
@@ -31,6 +30,6 @@ export default class EventInfo extends Component {
   }
 }
 
-EventInfo.propTypes = {
+EventView.propTypes = {
   event: PropTypes.object.isRequired
 };

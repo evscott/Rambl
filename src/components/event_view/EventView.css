@@ -1,0 +1,9 @@
+.editIcon {
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.editIcon:hover {
+    opacity: .5;
+}

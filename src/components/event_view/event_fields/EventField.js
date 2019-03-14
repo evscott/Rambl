@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './EventField.css';
 
 /**
  * EventField is a visual element for an event, which receives and displays
@@ -10,10 +11,10 @@ export default class EventField extends Component {
 
   render() {
     return (
-      <p>
-        {' '}
-        {this.props.fieldType}: {this.props.fieldValue}{' '}
-      </p>
+      <td>
+        <b>{this.props.fieldType}</b>
+        <p>{this.props.fieldValue}</p>
+      </td>
     );
   }
 }

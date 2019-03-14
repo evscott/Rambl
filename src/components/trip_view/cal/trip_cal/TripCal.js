@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import { allDayAccessor } from './accessors';
+import { allDayAccessor } from '../accessors';
 import { TripCalToolbar } from './TripCalToolbar';
-import { EventModal } from './EventModal';
+import { EventModal } from '../event_modal/EventModal';
 import './TripCal.css';
 
 // Localizer for the calendar for formatting date objects
