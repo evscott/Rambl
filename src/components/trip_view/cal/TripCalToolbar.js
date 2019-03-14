@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { Button, ButtonGroup } from 'react-bootstrap';
 
 /**
  * This is a slightly modified version of the default react-big-calendar
@@ -15,18 +16,17 @@ export class TripCalToolbar extends Component {
 
     return (
       <div className="rbc-toolbar">
-        <span className="rbc-btn-group">
-          <button type="button" onClick={this.navigate.bind(null, 'TODAY')}>
+        <ButtonGroup>
+          <Button onClick={this.navigate.bind(null, 'TODAY')}>
             {messages.today}
-          </button>
-          <button type="button" onClick={this.navigate.bind(null, 'PREV')}>
+          </Button>
+          <Button onClick={this.navigate.bind(null, 'PREV')}>
             {messages.previous}
-          </button>
-          <button type="button" onClick={this.navigate.bind(null, 'NEXT')}>
+          </Button>
+          <Button onClick={this.navigate.bind(null, 'NEXT')}>
             {messages.next}
-          </button>
-        </span>
-
+          </Button>
+        </ButtonGroup>
         <span className="rbc-toolbar-label">{label}</span>
       </div>
     );
