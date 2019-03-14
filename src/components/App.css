@@ -1,4 +1,81 @@
+@import url('https://fonts.googleapis.com/css?family=Cardo:400,700|Oswald:400,700');
+
 .App {
   margin-top: 15px;
   text-align: center;
+  font-family: 'Cardo', Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  color: #0a2e48;
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Oswald', Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+h1{
+  font-size: 40px;
+}
+
+h2{
+  font-size: 30px;
+}
+
+.btn-red{
+  background: #f78888;
+  color: #0a2e48;
+  font-family: 'Oswald', Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  margin: 0 5px;
+}
+
+.btn-yellow{
+  background: #f3d250;
+  color: #0a2e48;
+  font-family: 'Oswald', Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  margin: 0 5px;
+}
+
+.btn-blue{
+  background: #90ccf4;
+  color: #0a2e48;
+  font-family: 'Oswald', Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  margin: 0 5px;
+}
+
+.flex-wrap-center{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.sidebar{
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 25%; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #90ccf4; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+
+.container-right{
+  width: 75%;
+  float: right;
+  padding: 0 100px;
+}
+
+.jumbo-component{
+  width: 250px;
+  padding: 25px;
 }

@@ -35,7 +35,7 @@ export default class UpcomingTrips extends Component {
   getUpcomingDiv() {
     if (this.state.hasUpcoming) {
       return (
-        <div>
+        <div id="section-upcoming">
           <h1>Upcoming Trips</h1>
           {this.getAllUpcoming()}
         </div>

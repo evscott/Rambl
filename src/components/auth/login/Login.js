@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import { FormInput } from '../../global/FormInput';
 import './Login.css';
+import Button from 'react-bootstrap/Button';
 
 export default class Login extends Component {
   constructor(props) {
@@ -94,17 +95,17 @@ export default class Login extends Component {
             />
 
             {/* Buttons */}
-            <div className="btn-toolbar">
-              <Link to="/" className="btn btn-default">
+            <div className="flex-wrap-center">
+              <Link to="/" className="btn btn-blue">
                 Back
               </Link>
-              <Link to="/signup" className="btn btn-default">
-                Sign Up
-              </Link>
-              <button className="btn btn-primary pull-right" type="submit">
+              <Button className="btn btn-blue" type="submit">
                 Login
-              </button>
+              </Button>
             </div>
+            <Link to="/signup" className="btn btn-default">
+              Sign Up
+            </Link>
           </Form>
         </div>
       );

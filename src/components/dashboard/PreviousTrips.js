@@ -33,7 +33,7 @@ export default class PreviousTrips extends Component {
   getPreviousDiv() {
     if (this.state.hasPrevious) {
       return (
-        <div>
+        <div id="section-previous">
           <h1>Previous Trips</h1>
           {this.getAllPrevious()}
         </div>

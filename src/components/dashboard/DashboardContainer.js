@@ -1,21 +1,14 @@
 import { connect } from 'react-redux';
 import Dashboard from './Dashboard';
-import { logout } from '../../redux/actions/authActions';
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user.user,
-    isFetching: state.user.isFetching,
-    isAuthenticated: state.user.isAuthenticated
+    user: state.user.user
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    onLogout: () => {
-      dispatch(logout());
-    }
-  };
+  return {};
 };
 
 const DashboardContainer = connect(
