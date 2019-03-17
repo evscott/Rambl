@@ -32,5 +32,7 @@ export default class EventInfo extends Component {
 }
 
 EventInfo.propTypes = {
-  event: PropTypes.object.isRequired
+  // Not required since the event may be null when rendered and then changed
+  // after the user makes a selection
+  event: PropTypes.object
 };
