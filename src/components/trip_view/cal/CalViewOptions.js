@@ -57,7 +57,8 @@ export class CalViewOptions extends Component {
       <ButtonGroup>
         {views.map((view) => {
           return (
-            <Button key={view[0]}
+            <Button
+              key={view[0]}
               onClick={() => this.routeTo(view[0])}
               active={currView === view[0]}
             >

@@ -31,7 +31,6 @@ export class ToDoItem extends Component {
               <PriorityIndicator priority={+priority} />
             </div>
           </div>
-
         </Card.Body>
       </Card>
     );

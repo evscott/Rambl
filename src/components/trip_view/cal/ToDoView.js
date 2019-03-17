@@ -10,15 +10,13 @@ import { filterTripToDos } from '../../../redux/getters/getEvents';
  * It takes much of its structure from the AgendaView component.
  */
 class ToDoList extends React.Component {
-
   constructor(props) {
     super(props);
     this.renderToDo = this.renderToDo.bind(this);
   }
 
   render() {
-    let { events, localizer } = this.props;
-    let { messages } = localizer;
+    let { events } = this.props;
 
     // Gets just events with no associated start time.
     events = filterTripToDos(events);
@@ -39,7 +37,9 @@ class ToDoList extends React.Component {
       );
     } else {
       agendaContent = (
-        <span className="rbc-agenda-empty">There are no unscheduled to-dos.</span>
+        <span className="rbc-agenda-empty">
+          There are no unscheduled to-dos.
+        </span>
       );
     }
 
@@ -55,7 +55,8 @@ class ToDoList extends React.Component {
     let { accessors, localizer } = this.props;
 
     return (
-      <ToDoItem key={event.event_type + '_' + event.e_id}
+      <ToDoItem
+        key={event.event_type + '_' + event.e_id}
         event={event}
         accessors={accessors}
         localizer={localizer}

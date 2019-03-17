@@ -66,7 +66,13 @@ export class TripCal extends Component {
             onSelectEvent={this.selectEvent}
             popup={true}
             components={components}
-            views={{ month: true, week: true, day: true, agenda: Agenda, todo: ToDoView }}
+            views={{
+              month: true,
+              week: true,
+              day: true,
+              agenda: Agenda,
+              todo: ToDoView
+            }}
           />
         </div>
         <EventModal
