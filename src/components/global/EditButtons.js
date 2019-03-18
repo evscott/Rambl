@@ -1,5 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './EditButtons.css';
 
 /**
  * TODO
@@ -7,13 +8,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
  * @param onClick
  * @returns {*}
  */
-export function initiateEdit(name, onClick) {
+export function initiateEdit(val, onClick) {
   return (
-    <td>
-      <button className="editIcon" onClick={() => onClick(name)}>
-        <FontAwesomeIcon size="sm" icon={['fas', 'pencil-alt']} />
-      </button>
-    </td>
+    <button className="initEdit" onClick={() => onClick(val)}>
+      <b className="initEdit txt">Edit</b>
+      <FontAwesomeIcon
+        className="initEdit btn"
+        size="sm"
+        icon={['fas', 'pencil-alt']}
+      />
+    </button>
   );
 }
 
@@ -23,12 +27,27 @@ export function initiateEdit(name, onClick) {
  * @param onClick
  * @returns {*}
  */
-export function finishEdit(name, onClick) {
+export function cancelEdit(field, onClick) {
   return (
-    <td>
-      <button className="editIcon" onClick={() => onClick(name)}>
-        <FontAwesomeIcon size="sm" icon={['fas', 'check']} />
-      </button>
-    </td>
+    <button className="btn btn-default editIcon" onClick={() => onClick(field)}>
+      <b>Cancel</b>
+    </button>
+  );
+}
+
+/**
+ * TODO
+ * @param name
+ * @param onClick
+ * @returns {*}
+ */
+export function saveEdit(field, onClick, newValue) {
+  return (
+    <button
+      className="btn btn-primary editIcon"
+      onClick={() => onClick(field, newValue)}
+    >
+      <b>Save changes</b>
+    </button>
   );
 }

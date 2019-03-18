@@ -2,34 +2,33 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'react-bootstrap';
 import EventField from '../event_fields/EventField';
-import { usdFormatter } from '../../../shared/inputFormatter';
-import { initiateEdit, finishEdit } from '../../global/EditButtons';
 import EventFieldEdit from '../event_fields/EventFieldEdit';
+import {
+  usdFormatter,
+  convertToNumber
+} from '../../../shared/currencyFormatter';
+import { formatForMysql } from '../../../shared/dateFormatter';
 
 export default class TranInfo extends Component {
   constructor(props) {
     super(props);
     this.state = this.getState(this.props.tran);
-
+    this.getTran = this.getTran.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.getField = this.getField.bind(this);
+    this.reserveEditMode = this.reserveEditMode.bind(this);
   }
 
   /**************************** Helper functions ****************************/
 
   /**
-   * Receives and formats the values of a tran from props.
+   * Receives and formats the values of a tran event from props.
    * @param tran
    * @returns {{method: string, loc_begin: string, loc_end: *,
    * begin_time: string, end_time: string, cost: string, dscript: string}}
    */
   getState(tran) {
     return {
-      eventType: {
-        name: 'eventType',
-        type: 'Event type',
-        value: tran.event_type,
-        editMode: false
-      },
       method: {
         name: 'method',
         type: 'Method',
@@ -76,29 +75,57 @@ export default class TranInfo extends Component {
   }
 
   /**
-   * TODO
-   * @param field
-   * @returns {*}
+   *
    */
-  getField(field) {
-    if (field.editMode === true) {
-      return <EventFieldEdit fieldType={field.type} fieldValue={field.value} />;
-    } else {
-      return <EventField fieldType={field.type} fieldValue={field.value} />;
+  getTran() {
+    return {
+      e_id: this.props.tran.e_id,
+      trip_id: this.props.tran.trip_id,
+      method: this.state.method.value,
+      loc: this.state.loc_begin.value,
+      loc_end: this.state.loc_end.value,
+      begin_time: formatForMysql(this.state.begin_time.value),
+      end_time: formatForMysql(this.state.end_time.value),
+      cost: convertToNumber(this.state.cost.value),
+      dscript: this.state.dscript.value,
+      completed: 0,
+      priority: 0
+    };
+  }
+
+  /**
+   *
+   * @param field
+   */
+  reserveEditMode(field) {
+    for (let f in this.state) {
+      if (field.name != f) {
+        this.setState({
+          [f]: {
+            ...this.state[f],
+            editMode: false
+          }
+        });
+      }
     }
   }
 
   /**
    * TODO
    * @param field
-   * @param onClick
    * @returns {*}
    */
-  getButton(field, onClick) {
+  getField(field) {
     if (field.editMode === true) {
-      return finishEdit(field, onClick);
+      return (
+        <EventFieldEdit
+          field={field}
+          end_time={this.state.end_time}
+          onClick={this.onClick}
+        />
+      );
     } else {
-      return initiateEdit(field, onClick);
+      return <EventField field={field} onClick={this.onClick} />;
     }
   }
 
@@ -108,16 +135,26 @@ export default class TranInfo extends Component {
    * TODO
    * @param e
    */
-  onClick(field) {
-    console.log(this.state.method);
-    this.setState({
-      [field.name]: {
-        name: field.name,
-        type: field.type,
-        value: field.value,
-        editMode: !field.editMode
-      }
-    });
+  onClick(field, newValue) {
+    this.reserveEditMode(field); // Reserve edit mode for this field
+    if (newValue) {
+      this.setState({
+        [field.name]: {
+          ...field,
+          editMode: !field.editMode,
+          value: newValue
+        }
+      });
+      console.log(this.getTran());
+      // this.props.onUpdate(this.getTran());
+    } else {
+      this.setState({
+        [field.name]: {
+          ...field,
+          editMode: !field.editMode
+        }
+      });
+    }
   }
 
   /**************************** Visual component ****************************/
@@ -127,35 +164,13 @@ export default class TranInfo extends Component {
       <div>
         <Table className="table-hover">
           <tbody>
-            <tr>{this.getField(this.state.eventType)}</tr>
-            <tr>
-              {this.getField(this.state.method)}
-              {this.getButton(this.state.method, this.onClick)}
-            </tr>
-            <tr>
-              {this.getField(this.state.loc_begin)}
-              {this.getButton(this.state.loc_begin, this.onClick)}
-            </tr>
-            <tr>
-              {this.getField(this.state.loc_end)}
-              {this.getButton(this.state.loc_end, this.onClick)}
-            </tr>
-            <tr>
-              {this.getField(this.state.begin_time)}
-              {this.getButton(this.state.begin_time, this.onClick)}
-            </tr>
-            <tr>
-              {this.getField(this.state.end_time)}
-              {this.getButton(this.state.end_time, this.onClick)}
-            </tr>
-            <tr>
-              {this.getField(this.state.cost)}
-              {this.getButton(this.state.cost, this.onClick)}
-            </tr>
-            <tr>
-              {this.getField(this.state.dscript)}
-              {this.getButton(this.state.dscript, this.onClick)}
-            </tr>
+            <tr>{this.getField(this.state.method)}</tr>
+            <tr>{this.getField(this.state.loc_begin)}</tr>
+            <tr>{this.getField(this.state.loc_end)}</tr>
+            <tr>{this.getField(this.state.begin_time)}</tr>
+            <tr>{this.getField(this.state.end_time)}</tr>
+            <tr>{this.getField(this.state.cost)}</tr>
+            <tr>{this.getField(this.state.dscript)}</tr>
           </tbody>
         </Table>
       </div>

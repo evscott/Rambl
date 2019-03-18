@@ -32,6 +32,7 @@ export class FormInput extends Component {
       <Form.Group className={groupClassName}>
         <Form.Label>{this.props.displayName}</Form.Label>
         <Form.Control
+          placeholder={this.props.value}
           type={this.props.type}
           name={this.props.name}
           onChange={this.props.handleChange}

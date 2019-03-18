@@ -1,0 +1,31 @@
+.displayType {
+    margin-right: 10px;
+}
+.displayValue {
+    display: inline-block;
+    opacity: .8;
+}
+
+.initEdit {
+    padding: 0;
+    border: none;
+    background: none;
+    float: right;
+}
+
+.initEdit .initEditTxt {
+    opacity: .9;
+}
+
+.initEdit .initEditBtn {
+    opacity: 0;
+    margin: 4px;
+}
+
+.initEdit:hover .initEditTxt {
+    text-decoration: underline;
+}
+
+td:hover .initEditBtn {
+    opacity: .4;
+}

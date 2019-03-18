@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PlanInfo from './event_info/PlanInfo';
 import AccomInfo from './event_info/AccomInfo';
-import TranInfo from './event_info/TranInfo';
+import TranInfoContainer from './event_info/TranInfoContainer';
 import PropTypes from 'prop-types';
 
 /**
@@ -22,7 +22,7 @@ export default class EventView extends Component {
         return <AccomInfo accom={this.props.event} />;
         break;
       case 'trans':
-        return <TranInfo tran={this.props.event} />;
+        return <TranInfoContainer tran={this.props.event} />;
         break;
       default:
         return <div>Unable to fetch information for this event type.</div>;
