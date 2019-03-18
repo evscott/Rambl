@@ -47,7 +47,6 @@ export function getTripEvents(state, tripId) {
  * @returns {any[]} array of to-dos
  */
 export function filterTripToDos(events) {
-  console.log(events);
   events = events.filter((event) => {
     // keep if no start time and it's a plan type
     return event.begin_time === null;
