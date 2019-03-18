@@ -5,7 +5,7 @@ import {
   faStarHalfAlt,
   faBus,
   faHotel,
-  faCalendarWeek
+  faCalendarWeek,
   faPencilAlt,
   faCheck
 } from '@fortawesome/free-solid-svg-icons';

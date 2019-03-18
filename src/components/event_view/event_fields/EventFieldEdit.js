@@ -26,14 +26,26 @@ export default class EventFieldEdit extends Component {
   }
 
   /***************************** Core functions *****************************/
+  /**
+   * TODO
+   * @param e
+   */
   handleTextChange(e) {
     this.setState({ value: e.target.value });
   }
 
+  /**
+   * TODO
+   * @param e
+   */
   handleDateChange(e) {
     this.setState({ value: e.toString() });
   }
 
+  /**
+   * TODO
+   * @param e
+   */
   handleCostChange(e) {
     this.setState({ value: usdFormatter.format(e) });
   }
