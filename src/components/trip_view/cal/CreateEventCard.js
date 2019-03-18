@@ -4,8 +4,9 @@ import { Card } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 /**
- * This is the code for a single item displayed on the react-big-calendar
- * to-do list. It displays the title, priority, and event type (no dates).
+ * This is a card that allows a user to create a new event from the calendar.
+ * It calls the function onCreateEvent, which is a method used by react-big
+ * -calendar for creating events.
  */
 export class CreateEventCard extends Component {
   render() {

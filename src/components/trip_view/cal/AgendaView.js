@@ -16,7 +16,6 @@ import { CreateEventCard } from './CreateEventCard';
 class Agenda extends React.Component {
   render() {
     let { length, date, events, accessors, localizer } = this.props;
-    let { messages } = localizer;
 
     // This gets the last date which should be displayed by the agenda
     // (only shows one month at a time)
@@ -34,14 +33,14 @@ class Agenda extends React.Component {
     if (events.length !== 0) {
       agendaContent = (
         <div className="rbc-agenda-content" ref="content">
-          <CreateEventCard onCreateEvent={this.props.onSelectSlot}/>
+          <CreateEventCard onCreateEvent={this.props.onSelectSlot} />
           {range.map((day, idx) => this.renderDay(day, events, idx))}
         </div>
       );
     } else {
       agendaContent = (
         <span className="rbc-agenda-empty">
-          <CreateEventCard onCreateEvent={this.props.onSelectSlot}/>
+          <CreateEventCard onCreateEvent={this.props.onSelectSlot} />
         </span>
       );
     }

@@ -31,7 +31,7 @@ class ToDoList extends React.Component {
     if (events.length !== 0) {
       agendaContent = (
         <div className="rbc-agenda-content" ref="content">
-          <CreateEventCard onCreateEvent={this.props.onSelectSlot}/>
+          <CreateEventCard onCreateEvent={this.props.onSelectSlot} />
           {events.map((event) => {
             return this.renderToDo(event);
           })}
@@ -40,7 +40,7 @@ class ToDoList extends React.Component {
     } else {
       agendaContent = (
         <span className="rbc-agenda-empty">
-          <CreateEventCard onCreateEvent={this.props.onSelectSlot}/>
+          <CreateEventCard onCreateEvent={this.props.onSelectSlot} />
         </span>
       );
     }
