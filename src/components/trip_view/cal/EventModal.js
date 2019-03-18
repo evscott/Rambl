@@ -9,12 +9,7 @@ import EventInfo from '../../event_view/event_info/EventInfo';
  * a component that is specific to the type of event being shown.
  */
 export class EventModal extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
-    let eventComponent = null;
-
     return (
       <Modal show={this.props.show} onHide={this.props.onHide}>
         <Modal.Header closeButton>

@@ -1,0 +1,9 @@
+
+/*
+Overrides the default styles to make the span visible
+ */
+.pull-right {
+    width: 50px;
+    height: 40px;
+    display: block;
+}
