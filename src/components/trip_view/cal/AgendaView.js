@@ -5,6 +5,7 @@ import dates from './utils/dates';
 import { navigate } from './utils/constants';
 import { inRange } from './utils/eventLevels';
 import { AgendaItem } from './AgendaItem';
+import { CreateEventCard } from './CreateEventCard';
 
 /**
  * Agenda displaying all of the user's events in sequence. It shows it with
@@ -33,12 +34,15 @@ class Agenda extends React.Component {
     if (events.length !== 0) {
       agendaContent = (
         <div className="rbc-agenda-content" ref="content">
+          <CreateEventCard onCreateEvent={this.props.onSelectSlot}/>
           {range.map((day, idx) => this.renderDay(day, events, idx))}
         </div>
       );
     } else {
       agendaContent = (
-        <span className="rbc-agenda-empty">{messages.noEventsInRange}</span>
+        <span className="rbc-agenda-empty">
+          <CreateEventCard onCreateEvent={this.props.onSelectSlot}/>
+        </span>
       );
     }
 
@@ -96,7 +100,8 @@ Agenda.propTypes = {
   length: PropTypes.number.isRequired, // The length of time to show
 
   accessors: PropTypes.object.isRequired, // How to get the data from event objects
-  localizer: PropTypes.object.isRequired // moment localizer for dates
+  localizer: PropTypes.object.isRequired, // moment localizer for dates
+  onSelectSlot: PropTypes.func.isRequired // what to do when want to create new!
 };
 
 // This is default for react-big-calendar
