@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TripCalContainer from './cal/trip_cal/TripCalContainer';
 import { CalViewOptions } from './cal/CalViewOptions';
+import './TripView.css';
 
 /**
  * Placeholder component for the view that allows a user to view
@@ -15,7 +16,9 @@ export class TripView extends Component {
   render() {
     return (
       <div>
-        <CalViewOptions history={this.props.history} />
+        <div className="cal-options">
+          <CalViewOptions history={this.props.history} />
+        </div>
         <TripCalContainer location={this.props.location} />
       </div>
     );

@@ -3,9 +3,12 @@ import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import { allDayAccessor } from '../accessors';
+import { allDayAccessor } from './utils/accessors';
 import { TripCalToolbar } from './TripCalToolbar';
 import { EventModal } from '../event_modal/EventModal';
 import './TripCal.css';
+import Agenda from './AgendaView';
+import ToDoView from './ToDoView';
 
 // Localizer for the calendar for formatting date objects
 const localizer = BigCalendar.momentLocalizer(moment);
@@ -64,6 +67,13 @@ export class TripCal extends Component {
             onSelectEvent={this.selectEvent}
             popup={true}
             components={components}
+            views={{
+              month: true,
+              week: true,
+              day: true,
+              agenda: Agenda,
+              todo: ToDoView
+            }}
           />
         </div>
         <EventModal

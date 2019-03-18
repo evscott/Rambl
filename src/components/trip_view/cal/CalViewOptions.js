@@ -43,29 +43,29 @@ export class CalViewOptions extends Component {
     let location = this.props.history.location;
     let currView = queryString.parse(location.search).view;
 
+    // These are all the view buttons that are needed.
+    // Index 0 is the route, index 1 is the title display.
+    let views = [
+      ['month', 'Month View'],
+      ['week', 'Week View'],
+      ['day', 'Day View'],
+      ['agenda', 'Agenda View'],
+      ['todo', 'To-Do View']
+    ];
+
     return (
       <ButtonGroup>
-        <Button
-          onClick={() => this.routeTo('month')}
-          active={currView === 'month'}
-        >
-          Month View
-        </Button>
-        <Button
-          onClick={() => this.routeTo('week')}
-          active={currView === 'week'}
-        >
-          Week View
-        </Button>
-        <Button onClick={() => this.routeTo('day')} active={currView === 'day'}>
-          Day View
-        </Button>
-        <Button
-          onClick={() => this.routeTo('agenda')}
-          active={currView === 'agenda'}
-        >
-          Agenda View
-        </Button>
+        {views.map((view) => {
+          return (
+            <Button
+              key={view[0]}
+              onClick={() => this.routeTo(view[0])}
+              active={currView === view[0]}
+            >
+              {view[1]}
+            </Button>
+          );
+        })}
       </ButtonGroup>
     );
   }

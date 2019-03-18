@@ -10,15 +10,6 @@ import EventView from '../../../event_view/EventView';
  */
 export class EventModal extends Component {
   render() {
-    let eventInfoComponent = <p>Odd. We have an undefined event type.</p>;
-
-    if (this.props.event != null) {
-      eventInfoComponent = <EventView event={this.props.event} />;
-    }
-
-    switch (this.props.event) {
-    }
-
     return (
       <Modal show={this.props.show} onHide={this.props.onHide}>
         <Modal.Header closeButton>
@@ -26,7 +17,9 @@ export class EventModal extends Component {
             {this.props.event != null ? this.props.event.dscript : ''}
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>{eventInfoComponent}</Modal.Body>
+        <Modal.Body>
+          <EventView event={this.props.event} />
+        </Modal.Body>
       </Modal>
     );
   }

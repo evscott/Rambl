@@ -38,3 +38,18 @@ export function getTripEvents(state, tripId) {
     }))
   ];
 }
+
+/**
+ * This gets all of the plans associated with the trip ID where the
+ * start time is undefined. That is, it filters the events to find
+ * all of the to-dos not on the calendar.
+ * @param events array of events (as from getTripEvents(state, tripId)
+ * @returns {any[]} array of to-dos
+ */
+export function filterTripToDos(events) {
+  events = events.filter((event) => {
+    // keep if no start time and it's a plan type
+    return event.begin_time === null;
+  });
+  return events;
+}
