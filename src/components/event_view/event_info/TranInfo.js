@@ -94,7 +94,7 @@ export default class TranInfo extends Component {
   }
 
   /**
-   *
+   * TODO
    * @param field
    */
   reserveEditMode(field) {
@@ -145,8 +145,10 @@ export default class TranInfo extends Component {
           value: newValue
         }
       });
-      console.log(this.getTran());
-      // this.props.onUpdate(this.getTran());
+      setTimeout(() => {
+        // Buffer for render to complete
+        this.props.onUpdate(this.getTran());
+      }, 100);
     } else {
       this.setState({
         [field.name]: {

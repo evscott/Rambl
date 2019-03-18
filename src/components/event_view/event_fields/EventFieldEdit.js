@@ -75,6 +75,10 @@ export default class EventFieldEdit extends Component {
     );
   }
 
+  /**
+   * TODO
+   * @returns {*}
+   */
   renderTextInput() {
     return (
       <Form>
@@ -89,6 +93,10 @@ export default class EventFieldEdit extends Component {
     );
   }
 
+  /**
+   * TODO
+   * @returns {*}
+   */
   renderCurrencyInput() {
     return (
       <div>
@@ -105,6 +113,10 @@ export default class EventFieldEdit extends Component {
     );
   }
 
+  /**
+   * TODO
+   * @returns {*}
+   */
   renderLimitedDateSelection() {
     return (
       <div>
@@ -125,6 +137,10 @@ export default class EventFieldEdit extends Component {
     );
   }
 
+  /**
+   * TODO
+   * @returns {*}
+   */
   renderOpenDateSelection() {
     return (
       <div>
