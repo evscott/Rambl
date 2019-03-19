@@ -29,5 +29,5 @@ export default class EventView extends Component {
 }
 
 EventView.propTypes = {
-  event: PropTypes.object.isRequired
+  event: PropTypes.object
 };
