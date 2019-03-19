@@ -10,7 +10,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "dev": "concurrently \"npm run server\" \"npm run start\"",
-    "heroku-postbuild": "npm run build",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build",
     "lint": "./node_modules/.bin/eslint src/*",
     "lintfix": "./node_modules/.bin/eslint --fix src/*"
   },
