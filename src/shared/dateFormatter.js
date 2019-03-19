@@ -7,7 +7,6 @@ export const formatDateForUser = (d) => {
     hour: 'numeric',
     minute: 'numeric'
   });
-  console.log('Formatted date', date);
   return date;
 };
 

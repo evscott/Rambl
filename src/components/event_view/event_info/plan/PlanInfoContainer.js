@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import PlanInfo from './PlanInfo';
 
-import { updatePlanInDb } from '../../../redux/actions/planActions';
+import { updatePlanInDb } from '../../../../redux/actions/planActions';
 
 const mapStateToProps = () => {
   return {};

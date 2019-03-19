@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import TranInfo from './TranInfo';
 
-import { updateTranInDb } from '../../../redux/actions/tranActions';
+import { updateTranInDb } from '../../../../redux/actions/tranActions';
 
 const mapStateToProps = () => {
   return {};

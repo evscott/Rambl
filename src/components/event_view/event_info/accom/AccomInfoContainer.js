@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import AccomInfo from './AccomInfo';
 
-import { updateAccomInDb } from '../../../redux/actions/accomActions';
+import { updateAccomInDb } from '../../../../redux/actions/accomActions';
 
 const mapStateToProps = () => {
   return {};

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import PlanInfoContainer from './event_info/PlanInfoContainer';
-import AccomInfo from './event_info/AccomInfo';
-import TranInfoContainer from './event_info/TranInfoContainer';
+import PlanInfoContainer from './event_info/plan/PlanInfoContainer';
+import AccomInfoContainer from './event_info/accom/AccomInfoContainer';
+import TranInfoContainer from './event_info/tran/TranInfoContainer';
 import PropTypes from 'prop-types';
 
 /**
@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
  */
 export default class EventView extends Component {
   /**************************** Visual component ****************************/
+
   render() {
     if (this.props.event === null)
       return <div>Error: Event object is null.</div>;
@@ -18,7 +19,7 @@ export default class EventView extends Component {
       case 'plan':
         return <PlanInfoContainer plan={this.props.event} />;
       case 'accom':
-        return <AccomInfo accom={this.props.event} />;
+        return <AccomInfoContainer accom={this.props.event} />;
       case 'trans':
         return <TranInfoContainer tran={this.props.event} />;
       default:
