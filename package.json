@@ -3,16 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "react-scripts start",
     "server": "node server/server.js",
-    "client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "concurrently \"npm run server\" \"npm client\"",
-    "heroku-postbuild": "npm run build",
-    "lint": "./node_modules/.bin/eslint src/* && ./node_modules/.bin/eslint server/*",
-    "lintfix": "./node_modules/.bin/eslint --fix src/* && ./node_modules/.bin/eslint --fix server/*"
+    "dev": "concurrently \"npm run server\" \"npm run start\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build",
+    "lint": "./node_modules/.bin/eslint src/*",
+    "lintfix": "./node_modules/.bin/eslint --fix src/*"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
