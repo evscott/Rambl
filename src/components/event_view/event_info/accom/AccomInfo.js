@@ -58,17 +58,19 @@ export default class AccomInfo extends Component {
   }
 
   /**
-   * Gets the accommodation.
+   * Gets the accom object formatted for MySql and Redux.
+   * @param accom object to get.
+   * @returns {{e_id: number, trip_id: *, loc: *, begin_time: string, end_time: string, cost: (string|*), dscript: *, completed: number, priority: number}}
    */
-  getAccom() {
+  getAccom(accom) {
     return {
       e_id: this.props.accom.e_id,
       trip_id: this.props.accom.trip_id,
-      loc: this.state.loc.value,
-      begin_time: formatDateForMySql(this.state.begin_time.value),
-      end_time: formatDateForMySql(this.state.end_time.value),
-      cost: convertToNumber(this.state.cost.value),
-      dscript: this.state.dscript.value,
+      loc: accom.loc.value,
+      begin_time: formatDateForMySql(accom.begin_time.value),
+      end_time: formatDateForMySql(accom.end_time.value),
+      cost: convertToNumber(accom.cost.value),
+      dscript: accom.dscript.value,
       completed: 0,
       priority: 0
     };

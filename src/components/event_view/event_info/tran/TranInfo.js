@@ -70,7 +70,9 @@ export default class TranInfo extends Component {
   }
 
   /**
-   * Gets the transaction.
+   * Gets the tran object formatted for MySql and Redux.
+   * @param tran object to get.
+   * @returns {{e_id: number, trip_id: *, method: *, loc: (string|*), loc_end: *, begin_time: string, end_time: string, cost: (string|*), dscript: *, completed: number, priority: number}}
    */
   getTran(tran) {
     return {

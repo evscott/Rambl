@@ -58,17 +58,19 @@ export default class PlanInfo extends Component {
   }
 
   /**
-   * Gets the plan.
+   * Gets the plan object formatted for MySql and Redux.
+   * @param plan object to get.
+   * @returns {{e_id: number, trip_id: *, loc: *, begin_time: string, end_time: string, cost: (string|*), dscript: *, completed: number, priority: number}}
    */
-  getPlan() {
+  getPlan(plan) {
     return {
       e_id: this.props.plan.e_id,
       trip_id: this.props.plan.trip_id,
-      loc: this.state.loc.value,
-      begin_time: formatDateForMySql(this.state.begin_time.value),
-      end_time: formatDateForMySql(this.state.end_time.value),
-      cost: convertToNumber(this.state.cost.value),
-      dscript: this.state.dscript.value,
+      loc: plan.loc.value,
+      begin_time: formatDateForMySql(plan.begin_time.value),
+      end_time: formatDateForMySql(plan.end_time.value),
+      cost: convertToNumber(plan.cost.value),
+      dscript: plan.dscript.value,
       completed: 0,
       priority: 0
     };
