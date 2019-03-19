@@ -28,27 +28,27 @@ export default class EventFieldEdit extends Component {
 
   /***************************** Core functions *****************************/
   /**
-   * TODO
-   * @param e
+   * Handles the change of an events date.
+   * @param e the event containing the new text.
    */
   handleTextChange(e) {
     this.setState({ value: e.target.value });
   }
 
   /**
-   * TODO
-   * @param e
+   * Handles the change of an events date.
+   * @param date the new date.
    */
-  handleDateChange(e) {
-    this.setState({ value: e.toString() });
+  handleDateChange(date) {
+    this.setState({ value: date.toString() });
   }
 
   /**
-   * TODO
-   * @param e
+   * Handles the change of an events cost.
+   * @param cost the new cost.
    */
-  handleCostChange(e) {
-    this.setState({ value: usdFormatter.format(e) });
+  handleCostChange(cost) {
+    this.setState({ value: usdFormatter.format(cost) });
   }
 
   /**************************** Visual component ****************************/
@@ -60,10 +60,10 @@ export default class EventFieldEdit extends Component {
         inputField = this.renderCurrencyInput();
         break;
       case 'begin_time':
-        inputField = this.renderLimitedDateSelection();
+        inputField = this.renderRestrictedDateSelection();
         break;
       case 'end_time':
-        inputField = this.renderOpenDateSelection();
+        inputField = this.renderUnrestrictedDateSelection();
         break;
       default:
         inputField = this.renderTextInput();
@@ -89,8 +89,8 @@ export default class EventFieldEdit extends Component {
   }
 
   /**
-   * TODO
-   * @returns {*}
+   * Renders a text input field.
+   * @returns {*} the text input field.
    */
   renderTextInput() {
     return (
@@ -107,8 +107,8 @@ export default class EventFieldEdit extends Component {
   }
 
   /**
-   * TODO
-   * @returns {*}
+   * Renders a currency input field.
+   * @returns {*} the currency input field.
    */
   renderCurrencyInput() {
     return (
@@ -127,10 +127,10 @@ export default class EventFieldEdit extends Component {
   }
 
   /**
-   * TODO
-   * @returns {*}
+   * Renders a date selection field with restrictions.
+   * @returns {*} the restricted date selection field.
    */
-  renderLimitedDateSelection() {
+  renderRestrictedDateSelection() {
     return (
       <div>
         <div className={'inputHeader'}>
@@ -151,10 +151,10 @@ export default class EventFieldEdit extends Component {
   }
 
   /**
-   * TODO
-   * @returns {*}
+   * Renders a date selection field with no date restrictions.
+   * @returns {*} the unrestricted date selection field.
    */
-  renderOpenDateSelection() {
+  renderUnrestrictedDateSelection() {
     return (
       <div>
         <div className={'inputHeader'}>

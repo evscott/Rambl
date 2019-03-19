@@ -63,7 +63,7 @@ export default class AccomInfo extends Component {
   }
 
   /**
-   *
+   * Gets the accommodation.
    */
   getAccom() {
     return {
@@ -80,8 +80,8 @@ export default class AccomInfo extends Component {
   }
 
   /**
-   * TODO
-   * @param field
+   * Reserves editing to just one field element at a time.
+   * @param field to reserve edit mode for.
    */
   reserveEditMode(field) {
     for (let f in this.state) {
@@ -97,9 +97,10 @@ export default class AccomInfo extends Component {
   }
 
   /**
-   * TODO
-   * @param field
-   * @returns {*}
+   * Gets either a editable or viewable field representing a value of a
+   * accommodation object.
+   * @param field to be retrieved.
+   * @returns {*} either an editable or viewable field.
    */
   getField(field) {
     if (field.editMode === true) {
@@ -118,8 +119,9 @@ export default class AccomInfo extends Component {
   /***************************** Core functions *****************************/
 
   /**
-   * TODO
-   * @param e
+   * Either puts a field into edit mode or dispatches an update of the field.
+   * @param field to be put into edit mode or be updated.
+   * @param newValue to update accommodation object with.
    */
   onClick(field, newValue) {
     this.reserveEditMode(field); // Reserve edit mode for this field

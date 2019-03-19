@@ -32,6 +32,11 @@ export default class EventField extends Component {
     );
   }
 
+  /**
+   * Renders either a text or formatted date field depending on what is being
+   * passed into EventField.
+   * @returns {*} the event field to be displayed.
+   */
   renderFieldValue() {
     if (
       this.props.field.name === 'begin_time' ||
