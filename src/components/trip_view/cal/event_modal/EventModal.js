@@ -10,11 +10,8 @@ import EventView from '../../../event_view/EventView';
  */
 export class EventModal extends Component {
   render() {
-    let eventView = this.props.event ? (
-      <EventView event={this.props.event} />
-    ) : (
-      ''
-    );
+    let eventView = false;
+    if (this.props.event) eventView = <EventView event={this.props.event} />;
     return (
       <Modal show={this.props.show} onHide={this.props.onHide}>
         <Modal.Header closeButton>

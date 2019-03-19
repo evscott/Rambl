@@ -8,16 +8,18 @@ export class EventInfo extends Component {
   constructor(props) {
     super(props);
     this.state = props.state;
-    this.onClick = this.onClick.bind(this);
+    this.onEdit = this.onEdit.bind(this);
+    this.onCancel = this.onCancel.bind(this);
+    this.onSave = this.onSave.bind(this);
   }
 
   /**
    * Reserves editing to just one field element at a time.
    * @param field to reserve edit mode for.
    */
-  reserveEditMode(field) {
+  reserveEditMode(fieldName) {
     for (let f in this.state) {
-      if (field.name !== f) {
+      if (fieldName !== f) {
         this.setState({
           [f]: {
             ...this.state[f],
@@ -40,44 +42,75 @@ export class EventInfo extends Component {
         <EventFieldEdit
           field={field}
           end_time={this.state.end_time}
-          onClick={this.onClick}
+          type={field.type}
+          name={field.name}
+          value={field.value}
+          editMode={field.editMode}
+          onCancel={this.onCancel}
+          onSave={this.onSave}
         />
       );
     } else {
-      return <EventField field={field} onClick={this.onClick} />;
+      return (
+        <EventField
+          field={field}
+          type={field.type}
+          name={field.name}
+          value={field.value}
+          editMode={field.editMode}
+          onEdit={this.onEdit}
+        />
+      );
     }
   }
 
   /***************************** Core functions *****************************/
 
   /**
-   * Either puts a field into edit mode or dispatches an update of the field.
-   * @param field to be put into edit mode or be updated.
-   * @param newValue to update plan object with.
+   *
+   * @param field
    */
-  onClick(field, newValue) {
-    this.reserveEditMode(field); // Reserve edit mode for this field
-    if (newValue) {
-      this.setState({
-        [field.name]: {
-          ...field,
-          editMode: !field.editMode,
-          value: newValue
-        }
-      });
-      console.log('Updated state!', newValue, this.state);
-      setTimeout(() => {
-        // Buffer for render to complete
-        this.props.onUpdate(this.props.getEvent());
-      }, 500);
-    } else {
-      this.setState({
-        [field.name]: {
-          ...field,
-          editMode: !field.editMode
-        }
-      });
-    }
+  onEdit(name, type, value, editMode) {
+    this.reserveEditMode(name); // Reserve edit mode for this field
+    this.setState({
+      [name]: {
+        name: name,
+        type: type,
+        value: value,
+        editMode: !editMode
+      }
+    });
+  }
+
+  /**
+   *
+   * @param field
+   */
+  onCancel(name, type, value, editMode) {
+    this.setState({
+      [name]: {
+        name: name,
+        type: type,
+        value: value,
+        editMode: false
+      }
+    });
+  }
+
+  /**
+   *
+   * @param field
+   * @param newValue
+   */
+  onSave(name, type, newValue, editMode) {
+    this.setState({
+      [name]: {
+        name: name,
+        type: type,
+        value: newValue,
+        editMode: false
+      }
+    });
   }
 
   /**************************** Visual component ****************************/
@@ -98,5 +131,7 @@ export class EventInfo extends Component {
 }
 
 EventInfo.propTypes = {
-  state: PropTypes.object.isRequired
+  state: PropTypes.object.isRequired,
+  getEvent: PropTypes.func.isRequired,
+  onUpdate: PropTypes.func.isRequired
 };

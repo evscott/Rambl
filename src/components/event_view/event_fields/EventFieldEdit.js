@@ -18,7 +18,7 @@ export default class EventFieldEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: this.props.field.value
+      value: this.props.value
     };
 
     this.handleTextChange = this.handleTextChange.bind(this);
@@ -40,7 +40,7 @@ export default class EventFieldEdit extends Component {
    * @param date the new date.
    */
   handleDateChange(date) {
-    this.setState({ value: date.toString() });
+    if (date !== null) this.setState({ value: date.toString() });
   }
 
   /**
@@ -55,7 +55,7 @@ export default class EventFieldEdit extends Component {
   render() {
     let inputField;
 
-    switch (this.props.field.name) {
+    switch (this.props.name) {
       case 'cost':
         inputField = this.renderCurrencyInput();
         break;
@@ -74,13 +74,27 @@ export default class EventFieldEdit extends Component {
         {inputField}
         <button
           className={'btn btn-primary editSave'}
-          onClick={() => this.props.onClick(this.props.field, this.state.value)}
+          onClick={() =>
+            this.props.onSave(
+              this.props.name,
+              this.props.type,
+              this.state.value,
+              this.props.editMode
+            )
+          }
         >
           <b>Save changes</b>
         </button>
         <button
           className={'btn btn-secondary editCancel'}
-          onClick={() => this.props.onClick(this.props.field)}
+          onClick={() =>
+            this.props.onCancel(
+              this.props.name,
+              this.props.type,
+              this.props.value,
+              this.props.editMode
+            )
+          }
         >
           <b>Cancel</b>
         </button>
@@ -89,16 +103,16 @@ export default class EventFieldEdit extends Component {
   }
 
   /**
-   * Renders a text input field.
-   * @returns {*} the text input field.
+   * Renders a text input
+   * @returns {*} the text input
    */
   renderTextInput() {
     return (
       <Form className={'textInput'}>
         <FormInput
-          displayName={this.props.field.type}
-          name={this.props.field.name}
-          type={this.props.field.type}
+          displayName={this.props.type}
+          name={this.props.name}
+          type={this.props.type}
           handleChange={this.handleTextChange}
           value={this.state.value}
         />
@@ -107,14 +121,14 @@ export default class EventFieldEdit extends Component {
   }
 
   /**
-   * Renders a currency input field.
-   * @returns {*} the currency input field.
+   * Renders a currency input
+   * @returns {*} the currency input
    */
   renderCurrencyInput() {
     return (
       <div>
         <div className={'inputHeader'}>
-          <b> {this.props.field.type} </b>{' '}
+          <b> {this.props.type} </b>{' '}
         </div>
 
         <CurrencyInput
@@ -128,23 +142,24 @@ export default class EventFieldEdit extends Component {
 
   /**
    * Renders a date selection field with restrictions.
-   * @returns {*} the restricted date selection field.
+   * @returns {*} the restricted date selection
    */
   renderRestrictedDateSelection() {
     return (
       <div>
         <div className={'inputHeader'}>
-          <b> {this.props.field.type} </b>{' '}
+          <b> {this.props.type} </b>{' '}
         </div>
 
         <DatePicker
           className={'form-control dateInput'}
           selected={new Date(this.state.value)}
           onChange={this.handleDateChange}
-          showTimeSelect
+          showTimeInput
+          timeInputLabel="Time:"
           maxDate={new Date(this.props.end_time.value)}
           placeholderText={formatDateForUser(this.state.value)}
-          dateFormat="MMMM d, yyyy, h:mm aa"
+          dateFormat={'MMMM d, yyyy, h:mm aa'}
         />
       </div>
     );
@@ -152,22 +167,23 @@ export default class EventFieldEdit extends Component {
 
   /**
    * Renders a date selection field with no date restrictions.
-   * @returns {*} the unrestricted date selection field.
+   * @returns {*} the unrestricted date selection
    */
   renderUnrestrictedDateSelection() {
     return (
       <div>
         <div className={'inputHeader'}>
-          <b> {this.props.field.type} </b>{' '}
+          <b> {this.props.type} </b>{' '}
         </div>
 
         <DatePicker
-          className="form-control dateInput"
+          className={'form-control dateInput'}
           selected={new Date(this.state.value)}
           onChange={this.handleDateChange}
-          showTimeSelect
+          showTimeInput
+          timeInputLabel="Time:"
           placeholderText={formatDateForUser(this.state.value)}
-          dateFormat="MMMM d, yyyy, h:mm aa"
+          dateFormat={'MMMM d, yyyy, h:mm aa'}
         />
       </div>
     );
@@ -175,6 +191,9 @@ export default class EventFieldEdit extends Component {
 }
 
 EventFieldEdit.propTypes = {
-  field: PropTypes.object.isRequired,
-  end_time: PropTypes.object.isRequired
+  end_time: PropTypes.object.isRequired,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  value: PropTypes.any.isRequired,
+  editMode: PropTypes.bool.isRequired
 };

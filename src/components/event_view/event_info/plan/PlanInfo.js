@@ -11,7 +11,6 @@ export default class PlanInfo extends Component {
   constructor(props) {
     super(props);
     this.state = this.getState(this.props.plan);
-    console.log('Plan state', this.state);
     this.getPlan = this.getPlan.bind(this);
   }
 
