@@ -11,21 +11,16 @@ const Config = require('../Config');
 let checkToken = (request, response, next) => {
   let token = request.headers['x-access-token'];
   if (token) {
-    jwt.verify(
-      token,
-      Config.publicKey,
-      Config.verifyOptions,
-      (err) => {
-        if (err) {
-          return response.json({
-            success: false,
-            message: 'Token is not valid'
-          });
-        } else {
-          next();
-        }
+    jwt.verify(token, Config.publicKey, Config.verifyOptions, (err) => {
+      if (err) {
+        return response.json({
+          success: false,
+          message: 'Token is not valid'
+        });
+      } else {
+        next();
       }
-    );
+    });
   } else {
     return response.json({
       success: false,

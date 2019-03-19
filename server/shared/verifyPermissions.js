@@ -19,7 +19,7 @@ let canEditTrip = async (req, res, next) => {
                   (SELECT user_id FROM trips
                   WHERE trip_id=?)`;
   try {
-    databaseHandler.queryDatabaseSilent(query, params).then(success => {
+    databaseHandler.queryDatabaseSilent(query, params).then((success) => {
       console.log(success);
       if (success.length > 0) {
         next();
