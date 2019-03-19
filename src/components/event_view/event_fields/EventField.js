@@ -10,6 +10,22 @@ import { formatDateForUser } from '../../../shared/dateFormatter';
  */
 export default class EventField extends Component {
   /**************************** Visual component ****************************/
+
+  /**
+   * Renders either a text or formatted date field depending on what is being
+   * passed into EventField.
+   * @returns {*} the event field to be displayed.
+   */
+  renderFieldValue() {
+    if (this.props.name === 'begin_time' || this.props.name === 'end_time') {
+      return (
+        <p className={'displayValue'}>{formatDateForUser(this.props.value)}</p>
+      );
+    } else {
+      return <p className={'displayValue'}>{this.props.value}</p>;
+    }
+  }
+
   render() {
     return (
       <td>
@@ -37,21 +53,6 @@ export default class EventField extends Component {
         </div>
       </td>
     );
-  }
-
-  /**
-   * Renders either a text or formatted date field depending on what is being
-   * passed into EventField.
-   * @returns {*} the event field to be displayed.
-   */
-  renderFieldValue() {
-    if (this.props.name === 'begin_time' || this.props.name === 'end_time') {
-      return (
-        <p className={'displayValue'}>{formatDateForUser(this.props.value)}</p>
-      );
-    } else {
-      return <p className={'displayValue'}>{this.props.value}</p>;
-    }
   }
 }
 
