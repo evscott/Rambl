@@ -7,5 +7,6 @@ cache:
 script:
 - npm test
 - npm run build
+- npm run lint
 on:
   branch: master
