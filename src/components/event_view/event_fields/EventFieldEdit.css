@@ -7,13 +7,17 @@
     font-size: 11px;
 }
 
+.textInput {
+    width: 400px
+}
 
 .dateInput {
-    width: 550px;
+    width: 400px;
     margin-bottom: 13px;
 }
 
 .currencyInput {
+    width: 400px;
     margin-bottom: 13px;
 }
 

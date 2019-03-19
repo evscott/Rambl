@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PlanInfo from './event_info/PlanInfo';
+import PlanInfoContainer from './event_info/PlanInfoContainer';
 import AccomInfo from './event_info/AccomInfo';
 import TranInfoContainer from './event_info/TranInfoContainer';
 import PropTypes from 'prop-types';
@@ -16,14 +16,11 @@ export default class EventView extends Component {
       return <div>Error: Event object is null.</div>;
     switch (this.props.event.event_type) {
       case 'plan':
-        return <PlanInfo plan={this.props.event} />;
-        break;
+        return <PlanInfoContainer plan={this.props.event} />;
       case 'accom':
         return <AccomInfo accom={this.props.event} />;
-        break;
       case 'trans':
         return <TranInfoContainer tran={this.props.event} />;
-        break;
       default:
         return <div>Unable to fetch information for this event type.</div>;
     }

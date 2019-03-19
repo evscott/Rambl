@@ -10,6 +10,11 @@ import EventView from '../../../event_view/EventView';
  */
 export class EventModal extends Component {
   render() {
+    let eventView = this.props.event ? (
+      <EventView event={this.props.event} />
+    ) : (
+      ''
+    );
     return (
       <Modal show={this.props.show} onHide={this.props.onHide}>
         <Modal.Header closeButton>
@@ -17,9 +22,7 @@ export class EventModal extends Component {
             {this.props.event != null ? this.props.event.dscript : ''}
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <EventView event={this.props.event} />
-        </Modal.Body>
+        <Modal.Body className={'modalBody'}>{eventView}</Modal.Body>
       </Modal>
     );
   }

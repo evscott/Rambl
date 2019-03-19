@@ -7,7 +7,7 @@ import {
   usdFormatter,
   convertToNumber
 } from '../../../shared/currencyFormatter';
-import { formatForMysql } from '../../../shared/dateFormatter';
+import { formatDateForMySql } from '../../../shared/dateFormatter';
 
 export default class TranInfo extends Component {
   constructor(props) {
@@ -84,8 +84,8 @@ export default class TranInfo extends Component {
       method: this.state.method.value,
       loc: this.state.loc_begin.value,
       loc_end: this.state.loc_end.value,
-      begin_time: formatForMysql(this.state.begin_time.value),
-      end_time: formatForMysql(this.state.end_time.value),
+      begin_time: formatDateForMySql(this.state.begin_time.value),
+      end_time: formatDateForMySql(this.state.end_time.value),
       cost: convertToNumber(this.state.cost.value),
       dscript: this.state.dscript.value,
       completed: 0,
@@ -99,7 +99,7 @@ export default class TranInfo extends Component {
    */
   reserveEditMode(field) {
     for (let f in this.state) {
-      if (field.name != f) {
+      if (field.name !== f) {
         this.setState({
           [f]: {
             ...this.state[f],

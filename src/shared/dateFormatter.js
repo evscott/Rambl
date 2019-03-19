@@ -1,4 +1,17 @@
-export const formatForMysql = (d) => {
+export const formatDateForUser = (d) => {
+  let date = new Date(d);
+  date = date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric'
+  });
+  console.log('Formatted date', date);
+  return date;
+};
+
+export const formatDateForMySql = (d) => {
   let date = new Date(d);
   let mysqlDate =
     getYear(date) +

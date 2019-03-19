@@ -1,4 +1,3 @@
-import React from 'react';
 import { accomReducer } from '../reducers/accomReducer';
 import * as AccomActions from '../actions/accomActions';
 import { logoutSuccess } from '../actions/authActions';

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './EventField.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { formatDateForUser } from '../../../shared/dateFormatter';
 
 /**
  * EventField is a visual element for an event, which receives and displays
@@ -14,7 +15,7 @@ export default class EventField extends Component {
       <td>
         <b className={'displayType'}>{this.props.field.type}</b>
         <div>
-          <p className={'displayValue'}>{this.props.field.value}</p>
+          {this.renderFieldValue()}
           <button
             className="initEdit"
             onClick={() => this.props.onClick(this.props.field)}
@@ -29,6 +30,21 @@ export default class EventField extends Component {
         </div>
       </td>
     );
+  }
+
+  renderFieldValue() {
+    if (
+      this.props.field.name === 'begin_time' ||
+      this.props.field.name === 'end_time'
+    ) {
+      return (
+        <p className={'displayValue'}>
+          {formatDateForUser(this.props.field.value)}
+        </p>
+      );
+    } else {
+      return <p className={'displayValue'}>{this.props.field.value}</p>;
+    }
   }
 }
 

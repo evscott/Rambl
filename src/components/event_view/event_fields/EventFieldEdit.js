@@ -6,6 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import CurrencyInput from 'react-currency-input-field';
 import './EventFieldEdit.css';
 import { FormInput } from '../../global/FormInput';
+import { formatDateForUser } from '../../../shared/dateFormatter';
 import { usdFormatter } from '../../../shared/currencyFormatter';
 
 /**
@@ -78,7 +79,7 @@ export default class EventFieldEdit extends Component {
           <b>Save changes</b>
         </button>
         <button
-          className={'btn btn-default editCancel'}
+          className={'btn btn-secondary editCancel'}
           onClick={() => this.props.onClick(this.props.field)}
         >
           <b>Cancel</b>
@@ -93,7 +94,7 @@ export default class EventFieldEdit extends Component {
    */
   renderTextInput() {
     return (
-      <Form>
+      <Form className={'textInput'}>
         <FormInput
           displayName={this.props.field.type}
           name={this.props.field.name}
@@ -142,8 +143,8 @@ export default class EventFieldEdit extends Component {
           onChange={this.handleDateChange}
           showTimeSelect
           maxDate={new Date(this.props.end_time.value)}
-          placeholderText={this.state.value}
-          dateFormat="MMMM d, yyyy h:mm aa"
+          placeholderText={formatDateForUser(this.state.value)}
+          dateFormat="MMMM d, yyyy, h:mm aa"
         />
       </div>
     );
@@ -165,8 +166,8 @@ export default class EventFieldEdit extends Component {
           selected={new Date(this.state.value)}
           onChange={this.handleDateChange}
           showTimeSelect
-          placeholderText={this.state.value}
-          dateFormat="MMMM d, yyyy h:mm aa"
+          placeholderText={formatDateForUser(this.state.value)}
+          dateFormat="MMMM d, yyyy, h:mm aa"
         />
       </div>
     );
