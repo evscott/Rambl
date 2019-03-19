@@ -1,4 +1,4 @@
-![CircleCI](https://circleci.com/gh/evscott/Rambl.svg?style=svg)
+[![Build Status](https://travis-ci.org/evscott/Rambl.svg?branch=master)](https://travis-ci.org/evscott/Rambl)
 ![David](https://david-dm.org/evscott/rambl.svg) 
 
 
