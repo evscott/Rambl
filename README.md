@@ -1,5 +1,5 @@
-[![CircleCI](https://circleci.com/gh/evscott/Rambl.svg?style=svg)]
-[![David](https://david-dm.org/evscott/rambl.svg)] 
+![CircleCI](https://circleci.com/gh/evscott/Rambl.svg?style=svg)
+![David](https://david-dm.org/evscott/rambl.svg) 
 
 
 ## Available Scripts
