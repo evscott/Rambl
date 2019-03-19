@@ -7,6 +7,7 @@ import { TripCalToolbar } from './TripCalToolbar';
 import { EventModal } from './EventModal';
 import './TripCal.css';
 import Agenda from './AgendaView';
+import ToDoView from './ToDoView';
 
 // Localizer for the calendar for formatting date objects
 const localizer = BigCalendar.momentLocalizer(moment);
@@ -65,7 +66,13 @@ export class TripCal extends Component {
             onSelectEvent={this.selectEvent}
             popup={true}
             components={components}
-            views={{ month: true, week: true, day: true, agenda: Agenda }}
+            views={{
+              month: true,
+              week: true,
+              day: true,
+              agenda: Agenda,
+              todo: ToDoView
+            }}
           />
         </div>
         <EventModal
