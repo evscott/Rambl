@@ -72,17 +72,17 @@ export default class TranInfo extends Component {
   /**
    * Gets the transaction.
    */
-  getTran() {
+  getTran(tran) {
     return {
       e_id: this.props.tran.e_id,
       trip_id: this.props.tran.trip_id,
-      method: this.state.method.value,
-      loc: this.state.loc_begin.value,
-      loc_end: this.state.loc_end.value,
-      begin_time: formatDateForMySql(this.state.begin_time.value),
-      end_time: formatDateForMySql(this.state.end_time.value),
-      cost: convertToNumber(this.state.cost.value),
-      dscript: this.state.dscript.value,
+      method: tran.method.value,
+      loc: tran.loc_begin.value,
+      loc_end: tran.loc_end.value,
+      begin_time: formatDateForMySql(tran.begin_time.value),
+      end_time: formatDateForMySql(tran.end_time.value),
+      cost: convertToNumber(tran.cost.value),
+      dscript: tran.dscript.value,
       completed: 0,
       priority: 0
     };

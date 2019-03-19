@@ -15,7 +15,7 @@ export class EventInfo extends Component {
 
   /**
    * Reserves editing to just one field element at a time.
-   * @param field to reserve edit mode for.
+   * @param fieldName to reserve edit mode for.
    */
   reserveEditMode(fieldName) {
     for (let f in this.state) {
@@ -45,7 +45,6 @@ export class EventInfo extends Component {
           type={field.type}
           name={field.name}
           value={field.value}
-          editMode={field.editMode}
           onCancel={this.onCancel}
           onSave={this.onSave}
         />
@@ -67,8 +66,11 @@ export class EventInfo extends Component {
   /***************************** Core functions *****************************/
 
   /**
-   *
-   * @param field
+   * Switch field into or out of edit mode.
+   * @param name of field.
+   * @param type of field.
+   * @param value of field.
+   * @param editMode to be flipped.
    */
   onEdit(name, type, value, editMode) {
     this.reserveEditMode(name); // Reserve edit mode for this field
@@ -83,10 +85,12 @@ export class EventInfo extends Component {
   }
 
   /**
-   *
-   * @param field
+   * Cancel update.
+   * @param name of field.
+   * @param type of field.
+   * @param value of field.
    */
-  onCancel(name, type, value, editMode) {
+  onCancel(name, type, value) {
     this.setState({
       [name]: {
         name: name,
@@ -98,19 +102,26 @@ export class EventInfo extends Component {
   }
 
   /**
-   *
-   * @param field
-   * @param newValue
+   * On save update event with new value.
+   * @param name of field.
+   * @param type of field.
+   * @param newValue of field to be updated.
    */
-  onSave(name, type, newValue, editMode) {
-    this.setState({
-      [name]: {
-        name: name,
-        type: type,
-        value: newValue,
-        editMode: false
+  onSave(name, type, newValue) {
+    this.setState(
+      {
+        [name]: {
+          name: name,
+          type: type,
+          value: newValue,
+          editMode: false
+        }
+      },
+      () => {
+        // Wait for async set state to complete then update event
+        this.props.onUpdate(this.props.getEvent(this.state));
       }
-    });
+    );
   }
 
   /**************************** Visual component ****************************/

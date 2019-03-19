@@ -52,55 +52,6 @@ export default class EventFieldEdit extends Component {
   }
 
   /**************************** Visual component ****************************/
-  render() {
-    let inputField;
-
-    switch (this.props.name) {
-      case 'cost':
-        inputField = this.renderCurrencyInput();
-        break;
-      case 'begin_time':
-        inputField = this.renderRestrictedDateSelection();
-        break;
-      case 'end_time':
-        inputField = this.renderUnrestrictedDateSelection();
-        break;
-      default:
-        inputField = this.renderTextInput();
-    }
-
-    return (
-      <td>
-        {inputField}
-        <button
-          className={'btn btn-primary editSave'}
-          onClick={() =>
-            this.props.onSave(
-              this.props.name,
-              this.props.type,
-              this.state.value,
-              this.props.editMode
-            )
-          }
-        >
-          <b>Save changes</b>
-        </button>
-        <button
-          className={'btn btn-secondary editCancel'}
-          onClick={() =>
-            this.props.onCancel(
-              this.props.name,
-              this.props.type,
-              this.props.value,
-              this.props.editMode
-            )
-          }
-        >
-          <b>Cancel</b>
-        </button>
-      </td>
-    );
-  }
 
   /**
    * Renders a text input
@@ -188,12 +139,59 @@ export default class EventFieldEdit extends Component {
       </div>
     );
   }
+
+  render() {
+    let inputField;
+
+    switch (this.props.name) {
+      case 'cost':
+        inputField = this.renderCurrencyInput();
+        break;
+      case 'begin_time':
+        inputField = this.renderRestrictedDateSelection();
+        break;
+      case 'end_time':
+        inputField = this.renderUnrestrictedDateSelection();
+        break;
+      default:
+        inputField = this.renderTextInput();
+    }
+
+    return (
+      <td>
+        {inputField}
+        <button
+          className={'btn btn-primary editSave'}
+          onClick={() =>
+            this.props.onSave(
+              this.props.name,
+              this.props.type,
+              this.state.value
+            )
+          }
+        >
+          <b>Save changes</b>
+        </button>
+        <button
+          className={'btn btn-secondary editCancel'}
+          onClick={() =>
+            this.props.onCancel(
+              this.props.name,
+              this.props.type,
+              this.props.value
+            )
+          }
+        >
+          <b>Cancel</b>
+        </button>
+      </td>
+    );
+  }
 }
 
 EventFieldEdit.propTypes = {
   end_time: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  value: PropTypes.any.isRequired,
-  editMode: PropTypes.bool.isRequired
+  value: PropTypes.any.isRequired
 };

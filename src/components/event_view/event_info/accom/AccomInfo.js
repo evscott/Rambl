@@ -80,7 +80,7 @@ export default class AccomInfo extends Component {
     return (
       <EventInfo
         state={this.getState(this.props.accom)}
-        getEvent={this.getAccom()}
+        getEvent={this.getAccom}
         onUpdate={this.props.onUpdate}
       />
     );
