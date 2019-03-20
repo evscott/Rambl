@@ -21,7 +21,6 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname));
 app.use(express.json());
 
-
 if (process.env.NODE_ENV === 'production') {
   // production mode
   app.use(express.static(path.join(__dirname + '/../build')));
@@ -34,7 +33,6 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname + '/../public/index.html'));
   });
 }
-
 
 // App route configuration
 app.use('/', authRoutes); // Authentication routes
