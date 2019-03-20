@@ -1,4 +1,3 @@
-'use strict';
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -19,24 +18,23 @@ app.use(Config.AccessControl);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname + '/../build')));
+app.use(express.static(__dirname));
+app.use(express.json());
 
-//production mode
+
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../build')));
-  //
-  console.log(__dirname, '../build/index.html');
-  app.get('*', (req, res) => {
-    res.sendfile(path.join(__dirname + '../build/index.html'));
+  // production mode
+  app.use(express.static(path.join(__dirname + '/../build')));
+  app.route('/*', (req, res) => {
+    res.sendfile(path.join(__dirname + '/../build/index.html'));
+  });
+} else {
+  //build mode
+  app.route('/*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/../public/index.html'));
   });
 }
 
-//build mode
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/../public/index.html'));
-});
-
-app.use(express.json());
 
 // App route configuration
 app.use('/', authRoutes); // Authentication routes
@@ -44,6 +42,6 @@ app.use('/trip', tripRoutes); // Trip routes
 app.use('/plan', planRoutes); // Plan routes
 app.use('/accom', accomRoutes); // Accommodation routes
 app.use('/tran', tranRoutes); // Transportation routes
-app.use('/user', userRoutes); // User routes
+app.use('/user', userRoutes); // UserInfo routes
 
 app.listen(port, () => console.log(`Listening on port: ${port}...`));
