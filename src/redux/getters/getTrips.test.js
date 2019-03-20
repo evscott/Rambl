@@ -50,17 +50,17 @@ it('Gets all active trips and sorts them appropriately', () => {
     },
     {
       user_id: 2,
-      trip_id: 4,
-      name: 'updated',
-      dscript: 'blah',
+      trip_id: 5,
+      name: 'redux trip blah blah',
+      dscript: '',
       trip_start: null,
       trip_end: null
     },
     {
       user_id: 2,
-      trip_id: 5,
-      name: 'redux trip blah blah',
-      dscript: '',
+      trip_id: 4,
+      name: 'updated',
+      dscript: 'blah',
       trip_start: null,
       trip_end: null
     }
