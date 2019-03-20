@@ -16,12 +16,7 @@ let getInfo = async (req, res) => {
   let email = jwtDecoder(token);
   const params = [email];
   const query = `SELECT * FROM users WHERE email = ?;`;
-  return databaseHandler.queryDatabase(
-    res,
-    query,
-    params,
-    'Get user info'
-  );
+  return databaseHandler.queryDatabase(res, query, params, 'Get user info');
 };
 
 module.exports = {

@@ -6,7 +6,8 @@ import {
   faBus,
   faHotel,
   faCalendarWeek,
-  faChevronUp
+  faPencilAlt,
+  faCheck
 } from '@fortawesome/free-solid-svg-icons';
 import { far, faStar as faStar2 } from '@fortawesome/free-regular-svg-icons';
 
@@ -20,6 +21,7 @@ export function createIconLibrary() {
     faBus,
     faHotel,
     faCalendarWeek,
-    faChevronUp
+    faPencilAlt,
+    faCheck
   );
 }

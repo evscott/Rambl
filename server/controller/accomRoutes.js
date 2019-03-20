@@ -7,8 +7,23 @@ const verifier = require('../shared/verifyPermissions');
 // All the routes for accommodations
 router.get('/get', middleware.checkToken, accomHandler.getAccoms);
 router.get('/get/:e_id', middleware.checkToken, accomHandler.getAccom);
-router.post('/add', middleware.checkToken, verifier.canEditTrip, accomHandler.addAccom);
-router.put('/update', middleware.checkToken, verifier.canEditTrip, accomHandler.updateAccom);
-router.delete('/delete', middleware.checkToken, verifier.canEditTrip, accomHandler.deleteAccom);
+router.post(
+  '/add',
+  middleware.checkToken,
+  verifier.canEditTrip,
+  accomHandler.addAccom
+);
+router.put(
+  '/update',
+  middleware.checkToken,
+  verifier.canEditTrip,
+  accomHandler.updateAccom
+);
+router.delete(
+  '/delete',
+  middleware.checkToken,
+  verifier.canEditTrip,
+  accomHandler.deleteAccom
+);
 
 module.exports = router;

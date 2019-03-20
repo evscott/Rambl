@@ -1,4 +1,3 @@
-
 const databaseHandler = require('./databaseHandler');
 const jwtDecoder = require('../shared/jwtDecoder');
 
