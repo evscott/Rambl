@@ -59,7 +59,7 @@ export default class EventFieldEdit extends Component {
    */
   renderTextInput() {
     return (
-      <Form className={'textInput'}>
+      <Form className={'inputWidth'}>
         <FormInput
           displayName={this.props.type}
           name={this.props.name}
@@ -83,7 +83,7 @@ export default class EventFieldEdit extends Component {
         </div>
 
         <CurrencyInput
-          className={'form-control currencyInput'}
+          className={'form-control inputWidth marginbottom'}
           placeholder="$0"
           onChange={this.handleCostChange}
         />
@@ -103,7 +103,7 @@ export default class EventFieldEdit extends Component {
         </div>
 
         <DatePicker
-          className={'form-control dateInput'}
+          className={'form-control inputWidth marginBottom'}
           selected={new Date(this.state.value)}
           onChange={this.handleDateChange}
           showTimeInput
@@ -128,7 +128,7 @@ export default class EventFieldEdit extends Component {
         </div>
 
         <DatePicker
-          className={'form-control dateInput'}
+          className={'form-control inputWidth marginBottom'}
           selected={new Date(this.state.value)}
           onChange={this.handleDateChange}
           showTimeInput

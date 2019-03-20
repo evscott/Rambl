@@ -31,13 +31,13 @@ export class EventInfo extends Component {
   }
 
   /**
-   * Gets either a editable or viewable field representing a value of a
+   * Gets either an editable or viewable field representing a value of a
    * plan object.
    * @param field to be retrieved.
    * @returns {*} either an editable or viewable field.
    */
   getField(field) {
-    if (field.editMode === true) {
+    if (field.editMode) {
       return (
         <EventFieldEdit
           field={field}
