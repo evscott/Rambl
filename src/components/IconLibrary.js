@@ -6,6 +6,7 @@ import {
   faBus,
   faHotel,
   faCalendarWeek,
+  faPlusSquare,
   faPencilAlt,
   faCheck
 } from '@fortawesome/free-solid-svg-icons';
@@ -21,6 +22,7 @@ export function createIconLibrary() {
     faBus,
     faHotel,
     faCalendarWeek,
+    faPlusSquare,
     faPencilAlt,
     faCheck
   );

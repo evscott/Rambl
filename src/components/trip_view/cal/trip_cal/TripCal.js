@@ -8,6 +8,7 @@ import { EventModal } from '../event_modal/EventModal';
 import './TripCal.css';
 import Agenda from '../AgendaView';
 import ToDoView from '../ToDoView';
+import { NewEventModal } from './NewEventModal';
 
 // Localizer for the calendar for formatting date objects
 const localizer = BigCalendar.momentLocalizer(moment);
@@ -22,11 +23,16 @@ export class TripCal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showEvent: false,
-      currEvent: null
+      showEvent: false, // Show event info modal
+      currEvent: null,
+      showNewEvent: false, // Show create new event modal
+      start: null, // The start time of the new event to create
+      end: null // The end time of the new event to create
     };
     this.selectEvent = this.selectEvent.bind(this);
     this.deselectEvent = this.deselectEvent.bind(this);
+    this.createEvent = this.createEvent.bind(this);
+    this.quitCreateEvent = this.quitCreateEvent.bind(this);
   }
 
   /**
@@ -44,6 +50,22 @@ export class TripCal extends Component {
     this.setState({ showEvent: false, currEvent: null });
   }
 
+  /**
+   * Creates a new event by opening the popup modal for creating events.
+   * @param start start time for the new event (if applicable)
+   * @param end end time for the new event (if applicable)
+   */
+  createEvent({ start, end }) {
+    this.setState({ showNewEvent: true, start: start, end: end });
+  }
+
+  /**
+   * This closes the create event modal.
+   */
+  quitCreateEvent() {
+    this.setState({ showNewEvent: false });
+  }
+
   render() {
     // Define the special components for the BigCalendar which differ from
     // the defaults.
@@ -54,6 +76,7 @@ export class TripCal extends Component {
       <div>
         <div className="cal-container">
           <BigCalendar
+            selectable // Makes it possible to select time slots
             localizer={localizer}
             events={this.props.events}
             view={this.props.view}
@@ -64,6 +87,7 @@ export class TripCal extends Component {
             endAccessor="end_time"
             allDay={allDayAccessor}
             onSelectEvent={this.selectEvent}
+            onSelectSlot={this.createEvent}
             popup={true}
             components={components}
             views={{
@@ -79,6 +103,12 @@ export class TripCal extends Component {
           show={this.state.showEvent}
           onHide={this.deselectEvent}
           event={this.state.currEvent}
+        />
+        <NewEventModal
+          show={this.state.showNewEvent}
+          onHide={this.quitCreateEvent}
+          start={this.state.start}
+          end={this.state.end}
         />
       </div>
     );
