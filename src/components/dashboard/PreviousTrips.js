@@ -13,6 +13,8 @@ export default class PreviousTrips extends Component {
     this.state = {
       hasPrevious: this.props.previous && this.props.previous.length
     };
+    this.getAllPrevious = this.getAllPrevious.bind(this);
+    this.getPreviousDiv = this.getPreviousDiv.bind(this);
   }
 
   /**************************** Helper functions ****************************/

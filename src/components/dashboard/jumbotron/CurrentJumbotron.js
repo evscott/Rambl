@@ -14,6 +14,10 @@ export default class CurrentJumbotron extends Component {
       hasUpcomingEvent:
         this.props.upcomingEvents && this.props.upcomingEvents.length
     };
+    this.getCurrentEvents = this.getCurrentEvents.bind(this);
+    this.getUpcomingEvents = this.getUpcomingEvents.bind(this);
+    this.getCurrentDiv = this.getCurrentDiv.bind(this);
+    this.getUpcomingDiv = this.getUpcomingDiv.bind(this);
   }
 
   /**************************** Helper functions ****************************/

@@ -13,6 +13,8 @@ export default class UpcomingTrips extends Component {
     this.state = {
       hasUpcoming: this.props.upcoming && this.props.upcoming.length
     };
+    this.getAllUpcoming = this.getAllUpcoming.bind(this);
+    this.getUpcomingDiv = this.getUpcomingDiv.bind(this);
   }
 
   /**************************** Helper functions ****************************/

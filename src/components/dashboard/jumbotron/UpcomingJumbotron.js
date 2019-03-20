@@ -8,7 +8,7 @@ export default class UpcomingJumbotron extends Component {
       <div>
         <p>countdown component here</p>
         <p>until</p>
-        <h2>{this.props.trip.name}</h2>
+        <h2>{this.props.trip != null ? this.props.trip.name : false}</h2>
         <div className="flex-wrap-center">
           <div className="jumbo-component">
             <FontAwesomeIcon
@@ -24,7 +24,7 @@ export default class UpcomingJumbotron extends Component {
               icon={['far', 'star']}
               className="light-blue"
             />
-            <p>Notes: {this.props.trip.dscript}</p>
+            <p>Notes: {this.props.trip ? this.props.trip.dscript : false}</p>
           </div>
           <div className="jumbo-component">
             <FontAwesomeIcon size="lg" icon={['far', 'star']} className="red" />

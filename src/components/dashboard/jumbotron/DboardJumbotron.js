@@ -17,6 +17,7 @@ export default class DboardJumbotron extends Component {
       displayCurrent: this.props.currTripInfo.current,
       hasActiveTrip: this.props.allActiveTrips.length
     };
+    this.selectJumbotron = this.selectJumbotron.bind(this);
   }
 
   /***************************** Core functions *****************************/
