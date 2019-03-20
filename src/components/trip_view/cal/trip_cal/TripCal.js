@@ -8,7 +8,7 @@ import { EventModal } from '../event_modal/EventModal';
 import './TripCal.css';
 import Agenda from '../AgendaView';
 import ToDoView from '../ToDoView';
-import { NewEventModal } from './NewEventModal';
+import { NewEventModal } from '../NewEventModal';
 
 // Localizer for the calendar for formatting date objects
 const localizer = BigCalendar.momentLocalizer(moment);

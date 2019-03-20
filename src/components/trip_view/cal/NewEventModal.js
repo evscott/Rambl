@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'react-bootstrap';
-import './EventModal.css';
+import './event_modal/EventModal.css';
 
 /**
  * This is a popup modal which allows a user to input information for a
