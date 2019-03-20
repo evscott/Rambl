@@ -3,6 +3,7 @@ import React from 'react';
 
 import { ToDoItem } from './ToDoItem';
 import { filterTripToDos } from '../../../redux/getters/getEvents';
+import { CreateEventCard } from './CreateEventCard';
 
 /**
  * This react-big-calendar view displays all events that have a NULL
@@ -30,6 +31,7 @@ class ToDoList extends React.Component {
     if (events.length !== 0) {
       agendaContent = (
         <div className="rbc-agenda-content" ref="content">
+          <CreateEventCard onCreateEvent={this.props.onSelectSlot} />
           {events.map((event) => {
             return this.renderToDo(event);
           })}
@@ -38,7 +40,7 @@ class ToDoList extends React.Component {
     } else {
       agendaContent = (
         <span className="rbc-agenda-empty">
-          There are no unscheduled to-dos.
+          <CreateEventCard onCreateEvent={this.props.onSelectSlot} />
         </span>
       );
     }
@@ -69,7 +71,8 @@ class ToDoList extends React.Component {
 ToDoList.propTypes = {
   events: PropTypes.array, // The events to show
   accessors: PropTypes.object.isRequired, // How to get the data from event objects
-  localizer: PropTypes.object.isRequired // moment localizer for dates
+  localizer: PropTypes.object.isRequired, // moment localizer for dates
+  onSelectSlot: PropTypes.func.isRequired // what to do when want to create new!
 };
 
 // This is required for react-big-calendar
