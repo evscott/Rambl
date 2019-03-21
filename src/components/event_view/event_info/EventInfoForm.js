@@ -4,7 +4,7 @@ import { Table } from 'react-bootstrap';
 import EventField from '../event_fields/EventField';
 import EventFieldEdit from '../event_fields/EventFieldEdit';
 
-export class EventInfo extends Component {
+export class EventInfoForm extends Component {
   constructor(props) {
     super(props);
     this.state = props.state;
@@ -141,7 +141,7 @@ export class EventInfo extends Component {
   }
 }
 
-EventInfo.propTypes = {
+EventInfoForm.propTypes = {
   state: PropTypes.object.isRequired,
   getEvent: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired
