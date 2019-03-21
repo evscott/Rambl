@@ -14,8 +14,8 @@ let decodeToken = (token) => {
     (err, decoded) => {
       if (err) return err;
       else {
-        return decoded.email
-      };
+        return decoded.email;
+      }
     }
   );
 };

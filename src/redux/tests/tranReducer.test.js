@@ -1,4 +1,3 @@
-import React from 'react';
 import { tranReducer } from '../reducers/tranReducer';
 import * as tranActions from '../actions/tranActions';
 import { logoutSuccess } from '../actions/authActions';

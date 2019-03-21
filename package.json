@@ -10,8 +10,8 @@
     "eject": "react-scripts eject",
     "dev": "concurrently \"npm run server\" \"npm run start\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build",
-    "lint": "./node_modules/.bin/eslint src/*",
-    "lintfix": "./node_modules/.bin/eslint --fix src/*"
+    "lint": "./node_modules/.bin/eslint src/* && ./node_modules/.bin/eslint server/*",
+    "lintfix": "./node_modules/.bin/eslint --fix src/* && ./node_modules/.bin/eslint --fix server/*"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
@@ -32,6 +32,8 @@
     "react": "^16.8.1",
     "react-big-calendar": "^0.20.3",
     "react-bootstrap": "^1.0.0-beta.5",
+    "react-currency-input-field": "0.0.45",
+    "react-datepicker": "^2.2.0",
     "react-devtools": "^3.6.0",
     "react-dom": "^16.8.1",
     "react-redux": "^6.0.1",

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import PlanInfo from '../events/PlanInfo';
-import AccomInfo from '../events/AccomInfo';
-import TranInfo from '../events/TranInfo';
+import PlanInfoContainer from './event_info/plan/PlanInfoContainer';
+import AccomInfoContainer from './event_info/accom/AccomInfoContainer';
+import TranInfoContainer from './event_info/tran/TranInfoContainer';
 import PropTypes from 'prop-types';
 
 /**
- * EventInfo is a handler component designed to determine what type of event
+ * EventView is a handler component designed to determine what type of event
  * to display, as well as to also serve state methods to - i.e. updatePlan,
  * updateAccom, updateTran... Etc
  */
-export default class EventInfo extends Component {
+export default class EventView extends Component {
   /**************************** Visual component ****************************/
 
   render() {
@@ -17,22 +17,17 @@ export default class EventInfo extends Component {
       return <div>Error: Event object is null.</div>;
     switch (this.props.event.event_type) {
       case 'plan':
-        return <PlanInfo plan={this.props.event} />;
-        break;
+        return <PlanInfoContainer plan={this.props.event} />;
       case 'accom':
-        return <AccomInfo accom={this.props.event} />;
-        break;
+        return <AccomInfoContainer accom={this.props.event} />;
       case 'trans':
-        return <TranInfo tran={this.props.event} />;
-        break;
+        return <TranInfoContainer tran={this.props.event} />;
       default:
         return <div>Unable to fetch information for this event type.</div>;
     }
   }
 }
 
-EventInfo.propTypes = {
-  // Not required since the event may be null when rendered and then changed
-  // after the user makes a selection
+EventView.propTypes = {
   event: PropTypes.object
 };

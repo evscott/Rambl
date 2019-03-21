@@ -17,7 +17,7 @@ let signup = async (req, res) => {
 
   // Attempt signup with unique username, return success notification.
   try {
-    databaseHandler.signup(email, password, fName, lName).then(success => {
+    databaseHandler.signup(email, password, fName, lName).then((success) => {
       if (success === false) {
         // Signup unsuccessful - username potentially already taken.
         res.json({
@@ -63,7 +63,7 @@ let login = async (req, res) => {
 
   // Check if username and password exist, return success notification
   try {
-    databaseHandler.login(email, password).then(success => {
+    databaseHandler.login(email, password).then((success) => {
       if (success === false) {
         // Credential authentication failure.
         res.json({

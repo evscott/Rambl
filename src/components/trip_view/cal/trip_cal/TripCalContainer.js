@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { TripCal } from './TripCal';
-import { getTripEvents } from '../../../redux/getters/getEvents';
-import { convertAllDates } from '../../../redux/getters/convertDate';
+import { getTripEvents } from '../../../../redux/getters/getEvents';
+import { convertAllDates } from '../../../../redux/getters/convertDate';
 import queryString from 'query-string';
 
 const mapStateToProps = (state, ownProps) => {
@@ -15,13 +15,6 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = () => {
-  return {};
-};
-
-const TripCalContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TripCal);
+const TripCalContainer = connect(mapStateToProps)(TripCal);
 
 export default TripCalContainer;

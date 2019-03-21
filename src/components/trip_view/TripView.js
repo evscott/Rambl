@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TripCalContainer from './cal/TripCalContainer';
+import TripCalContainer from './cal/trip_cal/TripCalContainer';
 import { CalViewOptions } from './cal/CalViewOptions';
 import './TripView.css';
 
