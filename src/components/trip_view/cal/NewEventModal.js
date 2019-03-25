@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'react-bootstrap';
-import './event_modal/EventModal.css';
+import './NewEventModal.css';
+import { EventNewDirector } from '../../events/EventNewDirector';
 
 /**
  * This is a popup modal which allows a user to input information for a
@@ -17,21 +18,8 @@ export class NewEventModal extends Component {
         <Modal.Header closeButton>
           <Modal.Title>Create Event</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <p>
-            Insert create event thing here. It should accept as properties start
-            and end.
-          </p>
-          <p>
-            Start:{' '}
-            {this.props.start != null
-              ? this.props.start.toLocaleString()
-              : false}
-          </p>
-          <p>
-            End:{' '}
-            {this.props.end != null ? this.props.end.toLocaleString() : false}
-          </p>
+        <Modal.Body className={'modal-body'}>
+          <EventNewDirector begin_time={this.props.start} end_time={this.props.end}/>
         </Modal.Body>
       </Modal>
     );
