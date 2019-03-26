@@ -5,7 +5,7 @@ import {
   convertToNumber
 } from '../../../../shared/currencyFormatter';
 import { formatDateForMySql } from '../../../../shared/dateFormatter';
-import { EventInfo } from '../EventInfo';
+import { EventInfoForm } from '../EventInfoForm';
 
 export default class TranInfo extends Component {
   constructor(props) {
@@ -94,7 +94,7 @@ export default class TranInfo extends Component {
 
   render() {
     return (
-      <EventInfo
+      <EventInfoForm
         state={this.getState(this.props.tran)}
         getEvent={this.getTran}
         onUpdate={this.props.onUpdate}

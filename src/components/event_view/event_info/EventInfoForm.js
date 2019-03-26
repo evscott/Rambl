@@ -4,7 +4,7 @@ import { Table } from 'react-bootstrap';
 import EventField from '../event_fields/EventField';
 import EventFieldEdit from '../event_fields/EventFieldEdit';
 
-export class EventInfo extends Component {
+export class EventInfoForm extends Component {
   constructor(props) {
     super(props);
     this.state = props.state;
@@ -31,13 +31,13 @@ export class EventInfo extends Component {
   }
 
   /**
-   * Gets either a editable or viewable field representing a value of a
+   * Gets either an editable or viewable field representing a value of a
    * plan object.
    * @param field to be retrieved.
    * @returns {*} either an editable or viewable field.
    */
   getField(field) {
-    if (field.editMode === true) {
+    if (field.editMode) {
       return (
         <EventFieldEdit
           field={field}
@@ -141,7 +141,7 @@ export class EventInfo extends Component {
   }
 }
 
-EventInfo.propTypes = {
+EventInfoForm.propTypes = {
   state: PropTypes.object.isRequired,
   getEvent: PropTypes.func.isRequired,
   onUpdate: PropTypes.func.isRequired
