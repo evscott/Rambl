@@ -11,7 +11,8 @@ import EventInfoDirector from '../../../events/EventInfoDirector';
 export class EventModal extends Component {
   render() {
     let eventView = false;
-    if (this.props.event) eventView = <EventInfoDirector event={this.props.event} />;
+    if (this.props.event)
+      eventView = <EventInfoDirector event={this.props.event} />;
     return (
       <Modal show={this.props.show} onHide={this.props.onHide}>
         <Modal.Header closeButton>

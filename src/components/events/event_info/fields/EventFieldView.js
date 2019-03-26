@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './EventFieldView.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { formatDateForUser } from '../../../shared/dateFormatter';
+import { formatDateForUser } from '../../../../shared/dateFormatter';
 
 /**
  * EventFieldView is a visual element for an event, which receives and displays

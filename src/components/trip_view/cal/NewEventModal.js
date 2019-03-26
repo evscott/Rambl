@@ -19,7 +19,10 @@ export class NewEventModal extends Component {
           <Modal.Title>Create Event</Modal.Title>
         </Modal.Header>
         <Modal.Body className={'modal-body'}>
-          <EventNewDirector begin_time={this.props.start} end_time={this.props.end}/>
+          <EventNewDirector
+            begin_time={this.props.start}
+            end_time={this.props.end}
+          />
         </Modal.Body>
       </Modal>
     );
