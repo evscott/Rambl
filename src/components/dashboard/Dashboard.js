@@ -5,6 +5,10 @@ import PreviousTripsContainer from './PreviousTripsContainer';
 import DashboardNavContainer from './DashboardNavContainer';
 import './Dashboard.css';
 
+/**
+ *  Dashboard is a component that holds all of the dashboard helper components
+ */
+
 export default class Dashboard extends Component {
   /**************************** Visual component ****************************/
   render() {

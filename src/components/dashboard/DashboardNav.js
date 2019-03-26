@@ -3,6 +3,11 @@ import { Redirect } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+/**
+ *  DashboardNav displays the navigation required on the dashboard,
+ *  along with appropriate redirections
+ */
+
 export default class DashboardNav extends Component {
   constructor(props) {
     super(props);

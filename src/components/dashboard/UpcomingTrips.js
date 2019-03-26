@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 /**
- *  This component displays a list of all upcoming
+ *  UpcomingTrips displays a list of all upcoming
  *  trips recorded by user
  */
 

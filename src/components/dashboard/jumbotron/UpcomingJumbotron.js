@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+/**
+ *  UpcomingJumbotron displays when the user has at least one upcoming
+ *  trip and no ongoing trips. It features a countdown to the next trip,
+ *  highlights, notes, and stats
+ */
+
 export default class UpcomingJumbotron extends Component {
   /**************************** Visual component ****************************/
   render() {

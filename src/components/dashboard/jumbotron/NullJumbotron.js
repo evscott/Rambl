@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+/**
+ *  NullJumbotron displays when the user has no upcoming trips
+ */
+
 export default class NullJumbotron extends Component {
   /**************************** Visual component ****************************/
   render() {

@@ -5,6 +5,10 @@ import { FormInput } from '../../global/FormInput';
 import './Login.css';
 import Button from 'react-bootstrap/Button';
 
+/**
+ *  Login handles the display for logging in along with associated
+ *  redirection, and error message
+ */
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +23,7 @@ export default class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.stateIsComplete = this.stateIsComplete.bind(this);
     this.getUserObject = this.getUserObject.bind(this);
+    this.userInfoRetrieved = this.userInfoRetrieved.bind(this);
   }
 
   /**************************** Helper functions ****************************/
@@ -32,6 +37,14 @@ export default class Login extends Component {
       email: this.state.email,
       password: this.state.password
     };
+  }
+
+  userInfoRetrieved() {
+    return (
+      this.props.isAuthenticated &&
+      !this.props.isFetching &&
+      this.props.isSynced
+    );
   }
 
   /***************************** Core functions *****************************/
@@ -52,11 +65,11 @@ export default class Login extends Component {
   /**************************** Visual component ****************************/
 
   render() {
-    if (this.props.isAuthenticated && this.props.isFetching === false) {
+    if (this.userInfoRetrieved()) {
       return <Redirect to="/dashboard" />;
     } else {
       let errorDiv = '';
-      if (this.state.attemptedSubmit && !this.props.isFetching) {
+      if (this.state.attemptedSubmit && !this.userInfoRetrieved()) {
         errorDiv = (
           <div className="alert alert-danger">
             Login failed with the provided username and password.

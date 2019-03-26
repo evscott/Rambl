@@ -4,7 +4,7 @@ import UpcomingJumbotronContainer from './UpcomingJumbotronContainer';
 import NullJumbotron from './NullJumbotron';
 
 /**
- *  This component handles the logic for which dashboard jumbotron we are
+ *  DBoardJumbotron handles the logic for which dashboard jumbotron we are
  *  displaying (an ongoing trip, countdown to next trip, or no
  *  upcoming trips)
  */

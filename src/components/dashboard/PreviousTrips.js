@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 /**
- *  This component displays a list of all previous
+ *  PreviousTrips displays a list of all previous
  *  trips recorded by user
  */
 

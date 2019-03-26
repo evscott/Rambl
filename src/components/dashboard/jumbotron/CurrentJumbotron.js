@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 /**
- *  This component displays information for a trip
+ *  CurrentJumbotron displays information for a trip
  *  that is currently in progress
  */
 

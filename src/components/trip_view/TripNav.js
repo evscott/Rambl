@@ -3,6 +3,11 @@ import { Link, Redirect } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+/**
+ *  TripNav displays the navigation required for any trip view,
+ *  along with appropriate redirections
+ */
+
 export default class TripNav extends Component {
   constructor(props) {
     super(props);
