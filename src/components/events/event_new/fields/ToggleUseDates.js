@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import '../EventNewForm.css';
 
 export class ToggleUseDates extends Component {
+  /**************************** Visual component ****************************/
   render() {
     if (this.props.eventType === 'plan')
       // display toggle display dates field

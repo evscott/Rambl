@@ -23,6 +23,10 @@ export class EventNewSelector extends Component {
 
   /***************************** Core functions *****************************/
 
+  /**
+   * Services dropdown for user to select which event they would like to add.
+   * @param e the event containing the name of event to add.
+   */
   onChange(e) {
     switch (e.target.value) {
       case 'plan':

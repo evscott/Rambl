@@ -11,21 +11,25 @@ export class CostField extends Component {
     this.receiveCost = this.receiveCost.bind(this);
   }
 
+  /***************************** Core functions *****************************/
+
   /**
-   *
-   * @param mode
+   * Receives the mode of transportation to use.
+   * @param mode of transportation to use.
    */
   receiveModeOfTransport(mode) {
     this.props.handleChange('method', mode.target.value);
   }
 
   /**
-   *
-   * @param cost
+   * Receives the cost of the event.
+   * @param cost of event.
    */
   receiveCost(cost) {
     this.props.handleChange('cost', cost);
   }
+
+  /**************************** Visual component ****************************/
 
   render() {
     if (this.props.eventType === 'tran')

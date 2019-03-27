@@ -26,7 +26,8 @@ export class EventNewForm extends Component {
   /***************************** Core functions *****************************/
 
   /**
-   *
+   * Toggles the use of dates -- this function only is only called upon by
+   * plan events.
    */
   toggleUseDates() {
     this.setState({
@@ -35,16 +36,16 @@ export class EventNewForm extends Component {
   }
 
   /**
-   *
-   * @param t
-   * @param val
+   * Handles the change of an event field.
+   * @param t the target name of an event field to change.
+   * @param val the value of an event field to change.
    */
   handleChange(t, val) {
     this.setState({ [t]: val });
   }
 
   /**
-   *
+   * Submits an event to be added and closes the modal.
    */
   handleSubmit() {
     this.props.addEvent(this.props.getEvent(this.state));

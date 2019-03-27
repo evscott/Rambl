@@ -12,8 +12,11 @@ export class LocationField extends Component {
     this.receiveLocation = this.receiveLocation.bind(this);
   }
 
+  /***************************** Core functions *****************************/
+
   /**
-   *
+   * Receives the departure location of an event -- this function is only
+   * called upon by transportation events.
    * @param input
    */
   receiveDeparture(input) {
@@ -21,7 +24,8 @@ export class LocationField extends Component {
   }
 
   /**
-   *
+   * Receives the arrival location of an event -- this function is only called
+   * upon by transportation events.
    * @param input
    */
   receiveArrival(input) {
@@ -29,12 +33,14 @@ export class LocationField extends Component {
   }
 
   /**
-   *
+   * Receives the location of an event.
    * @param input
    */
   receiveLocation(input) {
     this.props.handleChange('loc', input.target.value);
   }
+
+  /**************************** Visual component ****************************/
 
   render() {
     if (this.props.eventType === 'tran')

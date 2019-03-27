@@ -15,10 +15,9 @@ export default class TranNew extends Component {
   /**************************** Helper functions ****************************/
 
   /**
-   * Receives and formats the values of a tran event from props.
-   * @param tran
-   * @returns {{method: string, loc_begin: string, loc_end: *,
-   * begin_time: string, end_time: string, cost: string, dscript: string}}
+   * Initializes a tran state using begin_time and end_time if provided.
+   * @returns {{loc_begin: null, cost: null, method: null, loc_end: null,
+   * end_time: *, begin_time: *, dscript: null}}
    */
   getState() {
     return {
@@ -33,9 +32,12 @@ export default class TranNew extends Component {
   }
 
   /**
-   * TODO
-   * @param tran
-   * @returns {{method: *, loc: *, loc_end: *, begin_time, end_time, cost: (string|*), dscript: *, completed: number, priority: number}}
+   * Gets a tran object formatted for MySql.
+   * @param tran object to be formatted.
+   * @returns {{loc: (null|loc_begin|{editMode, name, type, value}),
+   * trip_id: String, cost: *, method: *,
+   * loc_end: (null|loc_end|{editMode, name, type, value}|string|*), end_time,
+   * begin_time, dscript: *, completed: number, priority: number}}
    */
   getTran(tran) {
     return {

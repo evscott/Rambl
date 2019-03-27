@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { formatDateForMySql } from '../../../../shared/dateFormatter';
 import { EventNewForm } from '../EventNewForm';
-import AccomNewContainer from '../../EventNewSelector';
 
 export default class PlanNew extends Component {
   constructor(props) {
@@ -15,10 +14,8 @@ export default class PlanNew extends Component {
   /**************************** Helper functions ****************************/
 
   /**
-   * Receives and formats the values of a tran event from props.
-   * @param tran
-   * @returns {{method: string, loc_begin: string, loc_end: *,
-   * begin_time: string, end_time: string, cost: string, dscript: string}}
+   * Initializes a plan state using begin_time and end_time if provided.
+   * @returns {{loc: null, cost: null, end_time: *, begin_time: *, dscript: null}}
    */
   getState() {
     return {
@@ -31,21 +28,36 @@ export default class PlanNew extends Component {
   }
 
   /**
-   * TODO
-   * @param tran
-   * @returns {{method: *, loc: *, loc_end: *, begin_time, end_time, cost: (string|*), dscript: *, completed: number, priority: number}}
+   * Gets a plan object formatted for MySql. If plan object contains a true
+   * useDates variable, then dates are used else the plan is added without
+   * dates.
+   * @param plan object to be formatted, containing useDates flag.
+   * @returns {*} plan object formatted for MySql, containing or not
+   * containing dates.
    */
   getPlan(plan) {
-    return {
-      trip_id: this.props.trip_id,
-      loc: plan.loc_begin,
-      begin_time: formatDateForMySql(plan.begin_time),
-      end_time: formatDateForMySql(plan.end_time),
-      cost: plan.cost,
-      dscript: plan.dscript,
-      completed: 0,
-      priority: 0
-    };
+    if (plan.useDates)
+      return {
+        trip_id: this.props.trip_id,
+        loc: plan.loc_begin,
+        begin_time: formatDateForMySql(plan.begin_time),
+        end_time: formatDateForMySql(plan.end_time),
+        cost: plan.cost,
+        dscript: plan.dscript,
+        completed: 0,
+        priority: 0
+      };
+    else
+      return {
+        trip_id: this.props.trip_id,
+        loc: plan.loc_begin,
+        begin_time: null,
+        end_time: null,
+        cost: plan.cost,
+        dscript: plan.dscript,
+        completed: 0,
+        priority: 0
+      };
   }
 
   /**************************** Visual component ****************************/

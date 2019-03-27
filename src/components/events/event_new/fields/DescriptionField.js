@@ -9,13 +9,17 @@ export class DescriptionField extends Component {
     this.receiveDescription = this.receiveDescription.bind(this);
   }
 
+  /***************************** Core functions *****************************/
+
   /**
-   *
-   * @param input
+   * Receives the description of an event.
+   * @param input the description of an event.
    */
   receiveDescription(input) {
     this.props.handleChange('dscript', input.target.value);
   }
+
+  /**************************** Visual component ****************************/
 
   render() {
     if (this.props.eventType === 'plan' && this.props.useDates)

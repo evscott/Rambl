@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { formatDateForMySql } from '../../../../shared/dateFormatter';
 import { EventNewForm } from '../EventNewForm';
-import AccomNewContainer from '../../EventNewSelector';
 
 export default class AccomNew extends Component {
   constructor(props) {
@@ -15,10 +14,8 @@ export default class AccomNew extends Component {
   /**************************** Helper functions ****************************/
 
   /**
-   * Receives and formats the values of a tran event from props.
-   * @param tran
-   * @returns {{method: string, loc_begin: string, loc_end: *,
-   * begin_time: string, end_time: string, cost: string, dscript: string}}
+   * Initializes an accom state using begin_time and end_time if provided.
+   * @returns {{loc: null, cost: null, end_time: *, begin_time: *, dscript: null}}
    */
   getState() {
     return {
@@ -31,9 +28,11 @@ export default class AccomNew extends Component {
   }
 
   /**
-   * TODO
-   * @param tran
-   * @returns {{method: *, loc: *, loc_end: *, begin_time, end_time, cost: (string|*), dscript: *, completed: number, priority: number}}
+   * Gets an accom object formatted for MySql.
+   * @param accom object to be formatted.
+   * @returns {{loc: (null|loc_begin|{editMode, name, type, value}),
+   * trip_id: String, cost: *, end_time, begin_time, dscript: *,
+   * completed: number, priority: number}}
    */
   getAccom(accom) {
     return {

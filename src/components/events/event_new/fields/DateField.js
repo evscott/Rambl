@@ -12,22 +12,24 @@ export class DateField extends Component {
     this.receiveEndDate = this.receiveEndDate.bind(this);
   }
 
+  /**************************** Helper functions ****************************/
+
   /**
-   *
+   * Gets either a specified begin date or today's date.
    */
   beginDate() {
     return this.props.begin_time ? this.props.begin_time : new Date();
   }
 
   /**
-   *
+   * Gets either a specified end date or today's date.
    */
   endDate() {
     return this.props.end_time ? this.props.end_time : new Date();
   }
 
   /**
-   *
+   * Gets either a specified begin date or a generic begin_date placeholder.
    */
   beginDatePlaceHolder() {
     return this.props.begin_time
@@ -36,7 +38,7 @@ export class DateField extends Component {
   }
 
   /**
-   *
+   * Gets either a specified end date or a generic end_date placeholder.
    */
   endDatePlaceHolder() {
     return this.props.end_time
@@ -44,17 +46,19 @@ export class DateField extends Component {
       : 'Ends';
   }
 
+  /***************************** Core functions *****************************/
+
   /**
-   *
-   * @param date
+   * Receives the begin date.
+   * @param date of beginning of event.
    */
   receiveBeginDate(date) {
     this.props.handleChange('begin_time', date);
   }
 
   /**
-   *
-   * @param date
+   * Receives the end date.
+   * @param date of end of event.
    */
   receiveEndDate(date) {
     this.props.handleChange('end_time', date);
