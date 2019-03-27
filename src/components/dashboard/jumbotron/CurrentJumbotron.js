@@ -67,7 +67,7 @@ export default class CurrentJumbotron extends Component {
    * @returns {*} HTML for upcoming events
    */
   getUpcomingDiv() {
-    if (this.state.hasUpcomingEvent) {
+    if (this.hasUpcomingEvent()) {
       return (
         <div>
           <h2>Next Event</h2>
