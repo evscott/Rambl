@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
+import { Form, Button } from 'react-bootstrap';
 import { FormInput } from '../../global/FormInput';
 import './Login.css';
-import Button from 'react-bootstrap/Button';
 
 /**
  *  Login handles the display for logging in along with associated

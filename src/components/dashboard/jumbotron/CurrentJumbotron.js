@@ -6,23 +6,20 @@ import React, { Component } from 'react';
  */
 
 export default class CurrentJumbotron extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      hasCurrEvent: this.props.currEvents && this.props.currEvents.length,
-      hasUpcomingEvent:
-        this.props.upcomingEvents && this.props.upcomingEvents.length
-    };
-    this.getCurrentEvents = this.getCurrentEvents.bind(this);
-    this.getUpcomingEvents = this.getUpcomingEvents.bind(this);
-    this.getCurrentDiv = this.getCurrentDiv.bind(this);
-    this.getUpcomingDiv = this.getUpcomingDiv.bind(this);
+  /**************************** Helper functions ****************************/
+  hasCurrEvent() {
+    return this.props.currEvents && this.props.currEvents.length;
   }
 
-  /**************************** Helper functions ****************************/
-  // Get information for currently ongoing events
-  // TODO: Modal support
+  hasUpcomingEvent() {
+    return this.props.upcomingEvents && this.props.upcomingEvents.length;
+  }
+
+  /**
+   * Get HTML for currently ongoing event(s)
+   * TODO: Modal support
+   * @returns {*} HTML for all currently ongoing events
+   */
   getCurrentEvents() {
     return this.props.currEvents.map((event) => (
       <div>
@@ -32,10 +29,12 @@ export default class CurrentJumbotron extends Component {
     ));
   }
 
-  // Get information for next upcoming event
-  // TODO: Modal support
+  /**
+   * Get HTML for upcoming event(s)
+   * @returns {*} HTML for next upcoming event
+   */
   getUpcomingEvents() {
-    if (this.state.hasUpcomingEvent) {
+    if (this.hasUpcomingEvent()) {
       const upcoming = this.props.upcomingEvents.shift();
 
       return (
@@ -48,7 +47,10 @@ export default class CurrentJumbotron extends Component {
   }
 
   /***************************** Core functions *****************************/
-  // Creates a div for current events if they exist
+  /**
+   * Creates all HTML for current events (if they exist)
+   * @returns {*} HTML for current events
+   */
   getCurrentDiv() {
     if (this.state.hasCurrEvent) {
       return (
@@ -60,7 +62,10 @@ export default class CurrentJumbotron extends Component {
     }
   }
 
-  // Creates a div for next event if any exist
+  /**
+   * Creates all HTML for upcoming events (if any exist)
+   * @returns {*} HTML for upcoming events
+   */
   getUpcomingDiv() {
     if (this.state.hasUpcomingEvent) {
       return (

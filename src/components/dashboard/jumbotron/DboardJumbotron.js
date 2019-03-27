@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CurrentJumbotronContainer from './CurrentJumbotronContainer';
 import UpcomingJumbotronContainer from './UpcomingJumbotronContainer';
-import NullJumbotron from './NullJumbotron';
 
 /**
  *  DBoardJumbotron handles the logic for which dashboard jumbotron we are
@@ -10,14 +9,13 @@ import NullJumbotron from './NullJumbotron';
  */
 
 export default class DboardJumbotron extends Component {
-  constructor(props) {
-    super(props);
+  /**************************** Helper functions ****************************/
+  displayCurrent() {
+    return this.props.currTripInfo.current;
+  }
 
-    this.state = {
-      displayCurrent: this.props.currTripInfo.current,
-      hasActiveTrip: this.props.allActiveTrips.length
-    };
-    this.selectJumbotron = this.selectJumbotron.bind(this);
+  hasActiveTrip() {
+    return this.props.allActiveTrips.length;
   }
 
   /***************************** Core functions *****************************/
@@ -25,14 +23,19 @@ export default class DboardJumbotron extends Component {
    * @returns instantiation of appropriate jumbotron component
    */
   selectJumbotron() {
-    if (this.state.displayCurrent) {
+    if (this.displayCurrent()) {
       return (
         <CurrentJumbotronContainer id={this.props.currTripInfo.trip.trip_id} />
       );
-    } else if (!this.state.hasActiveTrip) {
-      return <NullJumbotron />;
+    } else if (this.hasActiveTrip()) {
+      return <UpcomingJumbotronContainer />;
     }
-    return <UpcomingJumbotronContainer />;
+    return (
+      <div>
+        <p>You have no upcoming trips</p>
+        <p>Create one now!</p>
+      </div>
+    );
   }
 
   /**************************** Visual component ****************************/

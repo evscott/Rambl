@@ -7,18 +7,15 @@ import { Link } from 'react-router-dom';
  */
 
 export default class UpcomingTrips extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      hasUpcoming: this.props.upcoming && this.props.upcoming.length
-    };
-    this.getAllUpcoming = this.getAllUpcoming.bind(this);
-    this.getUpcomingDiv = this.getUpcomingDiv.bind(this);
+  /**************************** Helper functions ****************************/
+  hasUpcoming() {
+    return this.props.upcoming && this.props.upcoming.length;
   }
 
-  /**************************** Helper functions ****************************/
-  // Get information for each upcoming trip
+  /**
+   * Get HTML for each upcoming trip
+   * @returns {*} HTML for upcoming trips
+   */
   getAllUpcoming() {
     const listItems = this.props.upcoming.map((trip) => (
       <div key={trip.trip_id}>
@@ -33,9 +30,12 @@ export default class UpcomingTrips extends Component {
   }
 
   /***************************** Core functions *****************************/
-  // Generate header and call to helper function if upcoming trips exist
+  /**
+   * Generate header and call to helper function if upcoming trips exist
+   * @returns {*} All HTML for upcoming trips component
+   */
   getUpcomingDiv() {
-    if (this.state.hasUpcoming) {
+    if (this.hasUpcoming()) {
       return (
         <div id="section-upcoming">
           <h1>Upcoming Trips</h1>

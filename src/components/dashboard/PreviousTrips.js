@@ -7,18 +7,15 @@ import { Link } from 'react-router-dom';
  */
 
 export default class PreviousTrips extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      hasPrevious: this.props.previous && this.props.previous.length
-    };
-    this.getAllPrevious = this.getAllPrevious.bind(this);
-    this.getPreviousDiv = this.getPreviousDiv.bind(this);
+  /**************************** Helper functions ****************************/
+  hasPrevious() {
+    return this.props.previous && this.props.previous.length;
   }
 
-  /**************************** Helper functions ****************************/
-  // Get information for each previous trip
+  /**
+   * Generates HTML for each previous trip
+   * @returns {*} HTML for each trip in props.previous array
+   */
   getAllPrevious() {
     return this.props.previous.map((trip) => (
       <div key={trip.trip_id}>
@@ -31,9 +28,12 @@ export default class PreviousTrips extends Component {
   }
 
   /***************************** Core functions *****************************/
-  // Generate header and call to helper function if previous trips exist
+  /**
+   * Generate header and call to helper function if previous trips exist
+   * @returns {*} All HTML for previous trips component
+   */
   getPreviousDiv() {
-    if (this.state.hasPrevious) {
+    if (this.hasPrevious()) {
       return (
         <div id="section-previous">
           <h1>Previous Trips</h1>

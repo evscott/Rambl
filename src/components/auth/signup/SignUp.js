@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Form from 'react-bootstrap/Form';
+import { Form, Button } from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom';
 import { FormInput } from '../../global/FormInput';
 import './SignUp.css';
-import Button from 'react-bootstrap/Button';
 
 export default class SignUp extends Component {
   constructor(props) {
