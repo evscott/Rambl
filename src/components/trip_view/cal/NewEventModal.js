@@ -22,6 +22,8 @@ export class NewEventModal extends Component {
           <EventNewDirector
             begin_time={this.props.start}
             end_time={this.props.end}
+            trip_id={this.props.trip_id}
+            close={this.props.onHide}
           />
         </Modal.Body>
       </Modal>
@@ -32,6 +34,7 @@ export class NewEventModal extends Component {
 NewEventModal.propTypes = {
   show: PropTypes.bool.isRequired, // To show the modal or not
   onHide: PropTypes.func.isRequired, // What function to call when try to close
+  trip_id: PropTypes.string.isRequired, // The id of trip
   start: PropTypes.any, // Start time of the event
   end: PropTypes.any // End time of the event
 };

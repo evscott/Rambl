@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { convertToNumber } from '../../../../shared/currencyFormatter';
 import { formatDateForMySql } from '../../../../shared/dateFormatter';
 import { EventNewForm } from '../EventNewForm';
+import AccomNewContainer from '../../EventNewDirector';
 
 export default class AccomNew extends Component {
   constructor(props) {
     super(props);
+    this.state = this.getState();
     this.getAccom = this.getAccom.bind(this);
     this.getState = this.getState.bind(this);
-    this.state = this.getState();
   }
 
   /**************************** Helper functions ****************************/
@@ -37,6 +37,7 @@ export default class AccomNew extends Component {
    */
   getAccom(accom) {
     return {
+      trip_id: this.props.trip_id,
       loc: accom.loc_begin,
       begin_time: formatDateForMySql(accom.begin_time),
       end_time: formatDateForMySql(accom.end_time),
@@ -59,6 +60,7 @@ export default class AccomNew extends Component {
           begin_time={this.props.begin_time}
           end_time={this.props.end_time}
           addEvent={this.props.addAccom}
+          close={this.props.close}
         />
       </div>
     );
@@ -66,6 +68,8 @@ export default class AccomNew extends Component {
 }
 
 AccomNew.propTypes = {
+  trip_id: PropTypes.string.isRequired,
+  close: PropTypes.func.isRequired,
   begin_time: PropTypes.object,
   end_time: PropTypes.object
 };

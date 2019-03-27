@@ -40,7 +40,7 @@ export class EventNewForm extends Component {
    * @param val
    */
   handleChange(t, val) {
-    this.setState({ [t]: val }, () => console.log(this.state));
+    this.setState({ [t]: val });
   }
 
   /**
@@ -48,6 +48,7 @@ export class EventNewForm extends Component {
    */
   handleSubmit() {
     this.props.addEvent(this.props.getEvent(this.state));
+    this.props.close();
   }
 
   /**************************** Visual component ****************************/
@@ -97,6 +98,7 @@ EventNewForm.propTypes = {
   getEvent: PropTypes.func.isRequired,
   eventType: PropTypes.string.isRequired,
   addEvent: PropTypes.func.isRequired,
+  close: PropTypes.func.isRequired,
   begin_time: PropTypes.object,
   end_time: PropTypes.object
 };

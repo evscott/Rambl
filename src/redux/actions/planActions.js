@@ -256,6 +256,7 @@ export function getPlansFromDb() {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function addPlanToDb(plan) {
+  console.log('Redux', plan);
   return (dispatch) => {
     dispatch(addPlanToDbRequest()); // Add plan request process has begun...
     return fetch(hostUrl + '/plan/add', {

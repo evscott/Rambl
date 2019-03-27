@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { convertToNumber } from '../../../../shared/currencyFormatter';
 import { formatDateForMySql } from '../../../../shared/dateFormatter';
 import { EventNewForm } from '../EventNewForm';
 import '../EventNewForm.css';
@@ -8,9 +7,9 @@ import '../EventNewForm.css';
 export default class TranNew extends Component {
   constructor(props) {
     super(props);
+    this.state = this.getState();
     this.getTran = this.getTran.bind(this);
     this.getState = this.getState.bind(this);
-    this.state = this.getState();
   }
 
   /**************************** Helper functions ****************************/
@@ -40,6 +39,7 @@ export default class TranNew extends Component {
    */
   getTran(tran) {
     return {
+      trip_id: this.props.trip_id,
       method: tran.method,
       loc: tran.loc_begin,
       loc_end: tran.loc_end,
@@ -64,6 +64,7 @@ export default class TranNew extends Component {
           begin_time={this.props.begin_time}
           end_time={this.props.end_time}
           addEvent={this.props.addTran}
+          close={this.props.close}
         />
       </div>
     );
@@ -71,6 +72,8 @@ export default class TranNew extends Component {
 }
 
 TranNew.propTypes = {
+  trip_id: PropTypes.string.isRequired,
+  close: PropTypes.func.isRequired,
   begin_time: PropTypes.object,
   end_time: PropTypes.object
 };

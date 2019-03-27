@@ -8,28 +8,22 @@ import AccomNewContainer from './event_new/accom/AccomNewContainer';
 export class EventNewDirector extends Component {
   constructor(props) {
     super(props);
-    this.onChange = this.onChange.bind(this);
     this.state = {
       EventNewForm: (
         <PlanNewContainer
           begin_time={this.props.begin_time}
           end_time={this.props.end_time}
+          trip_id={this.props.trip_id}
+          close={this.props.close}
         />
       )
     };
+    this.onChange = this.onChange.bind(this);
   }
 
   /***************************** Core functions *****************************/
 
   onChange(e) {
-    this.setState({
-      EventNewForm: (
-        <TranNewContainer
-          begin_time={this.props.begin_time}
-          end_time={this.props.end_time}
-        />
-      )
-    });
     switch (e.target.value) {
       case 'plan':
         this.setState({
@@ -37,6 +31,8 @@ export class EventNewDirector extends Component {
             <PlanNewContainer
               begin_time={this.props.begin_time}
               end_time={this.props.end_time}
+              trip_id={this.props.trip_id}
+              close={this.props.close}
             />
           )
         });
@@ -47,6 +43,8 @@ export class EventNewDirector extends Component {
             <TranNewContainer
               begin_time={this.props.begin_time}
               end_time={this.props.end_time}
+              trip_id={this.props.trip_id}
+              close={this.props.close}
             />
           )
         });
@@ -57,6 +55,8 @@ export class EventNewDirector extends Component {
             <AccomNewContainer
               begin_time={this.props.begin_time}
               end_time={this.props.end_time}
+              trip_id={this.props.trip_id}
+              close={this.props.close}
             />
           )
         });
@@ -89,6 +89,8 @@ export class EventNewDirector extends Component {
 }
 
 EventNewDirector.propTypes = {
+  trip_id: PropTypes.string.isRequired,
+  close: PropTypes.func.isRequired,
   begin_time: PropTypes.object,
-  end_time: PropTypes.object
+  end_time: PropTypes.object,
 };

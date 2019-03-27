@@ -11,6 +11,7 @@ const databaseHandler = require('../handlers/databaseHandler');
  * @returns {Promise<*>}
  */
 let canEditTrip = async (req, res, next) => {
+  console.log('can edit trip', req.body);
   let token = req.headers['x-access-token'];
   let email = jwtDecoder(token);
   let params = [email, req.body.trip_id];
