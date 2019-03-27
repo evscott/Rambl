@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
+import { Form, Button } from 'react-bootstrap';
 import { FormInput } from '../../global/FormInput';
 import './Login.css';
 
+/**
+ *  Login handles the display for logging in along with associated
+ *  redirection, and error message
+ */
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -16,15 +20,15 @@ export default class Login extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.stateIsComplete = this.stateIsComplete.bind(this);
+    this.getUserObject = this.getUserObject.bind(this);
+    this.userInfoRetrieved = this.userInfoRetrieved.bind(this);
   }
 
   /**************************** Helper functions ****************************/
 
   stateIsComplete() {
-    if ((this.state.email, this.state.password)) {
-      return true;
-    }
-    return false;
+    return this.state.email && this.state.password;
   }
 
   getUserObject() {
@@ -32,6 +36,14 @@ export default class Login extends Component {
       email: this.state.email,
       password: this.state.password
     };
+  }
+
+  userInfoRetrieved() {
+    return (
+      this.props.isAuthenticated &&
+      !this.props.isFetching &&
+      this.props.isSynced
+    );
   }
 
   /***************************** Core functions *****************************/
@@ -52,11 +64,11 @@ export default class Login extends Component {
   /**************************** Visual component ****************************/
 
   render() {
-    if (this.props.isAuthenticated && this.props.isFetching === false) {
+    if (this.userInfoRetrieved()) {
       return <Redirect to="/dashboard" />;
     } else {
       let errorDiv = '';
-      if (this.state.attemptedSubmit && !this.props.isFetching) {
+      if (this.state.attemptedSubmit && !this.userInfoRetrieved()) {
         errorDiv = (
           <div className="alert alert-danger">
             Login failed with the provided username and password.
@@ -97,17 +109,17 @@ export default class Login extends Component {
             />
 
             {/* Buttons */}
-            <div className="btn-toolbar">
-              <Link to="/" className="btn btn-default">
+            <div className="flex-wrap-center">
+              <Link to="/" className="btn btn-blue">
                 Back
               </Link>
-              <Link to="/signup" className="btn btn-default">
-                Sign Up
-              </Link>
-              <button className="btn btn-primary pull-right" type="submit">
+              <Button className="btn btn-blue" type="submit">
                 Login
-              </button>
+              </Button>
             </div>
+            <Link to="/signup" className="btn btn-default">
+              Sign Up
+            </Link>
           </Form>
         </div>
       );

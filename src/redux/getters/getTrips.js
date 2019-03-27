@@ -55,7 +55,7 @@ export function getCurrTrip(state) {
     }
   });
   if (currTrip == null) {
-    return { current: true, trip: null };
+    return { current: false, trip: null };
   } else if (currTrip.trip_start < new Date()) {
     return { current: true, trip: currTrip };
   } else {

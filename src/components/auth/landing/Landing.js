@@ -5,21 +5,26 @@ import './Landing.css';
 export default class Home extends Component {
   render() {
     return (
-      <div className="Home">
-        <div className="lander">
-          <h1>Rambl</h1>
-          <p>Welcome to Rambl. Your future is here.</p>
-          <div className="btn-group">
-            <Link to="/about" className="btn btn-default">
-              About Rambl
-            </Link>
-            <Link to="/signup" className="btn btn-default">
-              Sign Up
-            </Link>
-            <Link to="/login" className="btn btn-primary">
-              Login
-            </Link>
-          </div>
+      <div className="landing">
+        <div className="title">
+          <h1>
+            <span className="red">R</span>
+            <span className="yellow">a</span>
+            <span className="light-blue">m</span>
+            <span className="red">b</span>
+            <span className="dark-blue">l</span>
+          </h1>
+        </div>
+        <div className="flex-wrap-center">
+          <Link to="/about" className="btn btn-red">
+            About Rambl
+          </Link>
+          <Link to="/signup" className="btn btn-yellow">
+            Sign Up
+          </Link>
+          <Link to="/login" className="btn btn-blue">
+            Login
+          </Link>
         </div>
       </div>
     );

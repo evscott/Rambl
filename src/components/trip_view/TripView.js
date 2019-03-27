@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TripCalContainer from './cal/trip_cal/TripCalContainer';
 import { CalViewOptions } from './cal/CalViewOptions';
+import TripNavContainer from './TripNavContainer';
 import './TripView.css';
 
 /**
@@ -16,10 +17,15 @@ export class TripView extends Component {
   render() {
     return (
       <div>
-        <div className="cal-options">
-          <CalViewOptions history={this.props.history} />
+        <div className="sidebar">
+          <TripNavContainer />
         </div>
-        <TripCalContainer location={this.props.location} />
+        <div className="container-right">
+          <div className="cal-options">
+            <CalViewOptions history={this.props.history} />
+          </div>
+          <TripCalContainer location={this.props.location} />
+        </div>
       </div>
     );
   }

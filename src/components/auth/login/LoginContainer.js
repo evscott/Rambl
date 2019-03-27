@@ -5,7 +5,8 @@ import Login from './Login';
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.user.isAuthenticated,
-    isFetching: state.user.isFetching
+    isFetching: state.user.isFetching,
+    isSynced: state.trips.isSynced
   };
 };
 

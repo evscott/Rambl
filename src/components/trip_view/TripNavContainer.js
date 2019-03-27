@@ -1,10 +1,9 @@
 import { connect } from 'react-redux';
-import Dashboard from './Dashboard';
+import TripNav from './TripNav';
 import { logout } from '../../redux/actions/authActions';
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user.user,
     isFetching: state.user.isFetching,
     isAuthenticated: state.user.isAuthenticated
   };
@@ -18,9 +17,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const DashboardContainer = connect(
+const TripNavContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Dashboard);
+)(TripNav);
 
-export default DashboardContainer;
+export default TripNavContainer;

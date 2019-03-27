@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Form from 'react-bootstrap/Form';
+import { Form, Button } from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom';
 import { FormInput } from '../../global/FormInput';
 import './SignUp.css';
@@ -159,17 +159,17 @@ export default class SignUp extends Component {
             />
 
             {/* Buttons */}
-            <div className="btn-toolbar">
-              <Link to="/" className="btn btn-default">
+            <div className="flex-wrap-center">
+              <Link to="/" className="btn btn-yellow">
                 Back
               </Link>
-              <Link to="/login" className="btn btn-default">
-                Login
-              </Link>
-              <button className="btn btn-primary pull-right" type="submit">
+              <Button className="btn-warning btn-yellow" type="submit">
                 Sign Up
-              </button>
+              </Button>
             </div>
+            <Link to="/login" className="btn btn-default">
+              Login
+            </Link>
           </Form>
         </div>
       );
