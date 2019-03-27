@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { formatDateForMySql } from '../../../../shared/dateFormatter';
 import { EventNewForm } from '../EventNewForm';
-import AccomNewContainer from '../../EventNewDirector';
+import AccomNewContainer from '../../EventNewSelector';
 
 export default class PlanNew extends Component {
   constructor(props) {

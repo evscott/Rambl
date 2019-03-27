@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'react-bootstrap';
 import './NewEventModal.css';
-import { EventNewDirector } from '../../events/EventNewDirector';
+import { EventNewSelector } from '../../events/EventNewSelector';
 
 /**
  * This is a popup modal which allows a user to input information for a
@@ -19,7 +19,7 @@ export class NewEventModal extends Component {
           <Modal.Title>Create Event</Modal.Title>
         </Modal.Header>
         <Modal.Body className={'modal-body'}>
-          <EventNewDirector
+          <EventNewSelector
             begin_time={this.props.start}
             end_time={this.props.end}
             trip_id={this.props.trip_id}

@@ -5,7 +5,7 @@ import TranNewContainer from './event_new/tran/TranNewContainer';
 import PlanNewContainer from './event_new/plan/PlanNewContainer';
 import AccomNewContainer from './event_new/accom/AccomNewContainer';
 
-export class EventNewDirector extends Component {
+export class EventNewSelector extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -88,9 +88,9 @@ export class EventNewDirector extends Component {
   }
 }
 
-EventNewDirector.propTypes = {
+EventNewSelector.propTypes = {
   trip_id: PropTypes.string.isRequired,
   close: PropTypes.func.isRequired,
   begin_time: PropTypes.object,
-  end_time: PropTypes.object,
+  end_time: PropTypes.object
 };
