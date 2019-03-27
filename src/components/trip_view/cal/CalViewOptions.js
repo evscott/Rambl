@@ -112,10 +112,10 @@ export class CalViewOptions extends Component {
     // These are all the filters that are needed.
     // Index 0 is the filter, index 1 is the title display.
     let filters = [
-      ['all', 'All events'],
-      ['accoms', 'Only accommodations'],
-      ['trans', 'Only transportation'],
-      ['plans', 'Only plans']
+      ['all', 'Show all'],
+      ['accoms', 'Show accommodations'],
+      ['trans', 'Show transportation'],
+      ['plans', 'Show plans']
     ];
 
     return (
