@@ -29,8 +29,6 @@ export default class CurrentJumbotron extends Component {
     ));
   }
 
-  // Get information for next upcoming event
-  // TODO: Modal support
   /**
    * Get HTML for upcoming event(s)
    * @returns {*} HTML for next upcoming event
@@ -69,7 +67,7 @@ export default class CurrentJumbotron extends Component {
    * @returns {*} HTML for upcoming events
    */
   getUpcomingDiv() {
-    if (this.state.hasUpcomingEvent) {
+    if (this.hasUpcomingEvent()) {
       return (
         <div>
           <h2>Next Event</h2>
