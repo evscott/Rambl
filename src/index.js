@@ -9,8 +9,6 @@ import configureStore from './redux/store/configureStore';
 const store = configureStore().store;
 const persistor = configureStore().persistor;
 
-document.body.style = 'background: #f0f0f0;';
-
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>

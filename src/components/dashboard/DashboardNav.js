@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+import { Form, Button } from 'react-bootstrap';
 
 /**
  *  DashboardNav displays the navigation required on the dashboard,
@@ -9,12 +8,6 @@ import Button from 'react-bootstrap/Button';
  */
 
 export default class DashboardNav extends Component {
-  constructor(props) {
-    super(props);
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
   /***************************** Core functions *****************************/
   handleSubmit(e) {
     e.preventDefault();
