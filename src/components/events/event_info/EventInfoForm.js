@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'react-bootstrap';
-import EventField from '../event_fields/EventField';
-import EventFieldEdit from '../event_fields/EventFieldEdit';
+import EventFieldView from './fields/EventFieldView';
+import EventFieldEdit from './fields/EventFieldEdit';
 
 export class EventInfoForm extends Component {
   constructor(props) {
@@ -51,7 +51,7 @@ export class EventInfoForm extends Component {
       );
     } else {
       return (
-        <EventField
+        <EventFieldView
           field={field}
           type={field.type}
           name={field.name}

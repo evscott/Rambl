@@ -72,6 +72,7 @@ export class TripCal extends Component {
     let components = {
       toolbar: TripCalToolbar
     };
+
     return (
       <div>
         <div className="cal-container">
@@ -109,6 +110,7 @@ export class TripCal extends Component {
           onHide={this.quitCreateEvent}
           start={this.state.start}
           end={this.state.end}
+          trip_id={this.props.id}
         />
       </div>
     );

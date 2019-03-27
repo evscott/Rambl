@@ -11,7 +11,8 @@ const mapStateToProps = (state, ownProps) => {
   let vals = queryString.parse(ownProps.location.search);
   return {
     events: convertAllDates(getTripEvents(state, vals.id)),
-    view: vals.view
+    view: vals.view,
+    id: vals.id
   };
 };
 

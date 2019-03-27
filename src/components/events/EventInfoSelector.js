@@ -5,11 +5,11 @@ import TranInfoContainer from './event_info/tran/TranInfoContainer';
 import PropTypes from 'prop-types';
 
 /**
- * EventView is a handler component designed to determine what type of event
+ * EventInfoSelector is a handler component designed to determine what type of event
  * to display, as well as to also serve state methods to - i.e. updatePlan,
  * updateAccom, updateTran... Etc
  */
-export default class EventView extends Component {
+export default class EventInfoSelector extends Component {
   /**************************** Visual component ****************************/
 
   render() {
@@ -28,6 +28,6 @@ export default class EventView extends Component {
   }
 }
 
-EventView.propTypes = {
+EventInfoSelector.propTypes = {
   event: PropTypes.object
 };

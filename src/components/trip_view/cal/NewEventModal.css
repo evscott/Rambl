@@ -1,13 +1,10 @@
 .modal {
     padding: 20px 20px 20px 20px;
+    position: fixed;
     background: rgba(0,0,0,0.5);
 }
 
 .modal-body {
     max-height: 530px;
     overflow-y: auto;
-}
-
-.show {
-    opacity: 1;
 }
