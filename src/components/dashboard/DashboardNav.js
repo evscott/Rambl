@@ -8,6 +8,12 @@ import { Form, Button } from 'react-bootstrap';
  */
 
 export default class DashboardNav extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
   /***************************** Core functions *****************************/
   handleSubmit(e) {
     e.preventDefault();
