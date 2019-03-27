@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import './EventNewForm.css';
-import { ToggleDisplayDates } from './fields/ToggleDisplayDates';
+import { ToggleUseDates } from './fields/ToggleUseDates';
 import { DateField } from './fields/DateField';
 import { LocationField } from './fields/LocationField';
 import { CostField } from './fields/CostField';
@@ -14,23 +14,40 @@ export class EventNewForm extends Component {
     super(props);
 
     this.state = {
-      displayDates: true,
+      useDates: true,
       eventType: props.eventType,
-      event: props.event
+      ...props.event
     };
-
-    this.toggleDisplayDates = this.toggleDisplayDates.bind(this);
+    this.toggleUseDates = this.toggleUseDates.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   /***************************** Core functions *****************************/
 
-  handleChange(e) {}
+  /**
+   *
+   */
+  toggleUseDates() {
+    this.setState({
+      useDates: !this.state.useDates
+    });
+  }
+
+  /**
+   *
+   * @param t
+   * @param val
+   */
+  handleChange(t, val) {
+    this.setState({ [t]: val }, () => console.log(this.state));
+  }
 
   /**
    *
    */
-  toggleDisplayDates() {
-    this.setState({ displayDates: !this.state.displayDates });
+  handleSubmit() {
+    this.props.addEvent(this.props.getEvent(this.state));
   }
 
   /**************************** Visual component ****************************/
@@ -41,29 +58,33 @@ export class EventNewForm extends Component {
         {/*Create event form*/}
         <div>
           <Form>
-            <ToggleDisplayDates
+            <ToggleUseDates
               eventType={this.state.eventType}
-              toggleDisplayDates={this.toggleDisplayDates}
+              toggleUseDates={this.toggleUseDates}
             />
             <DateField
-              begin_time={this.state.event.begin_time.value}
-              end_time={this.state.event.end_time.value}
-              displayDates={this.state.displayDates}
+              begin_time={this.state.begin_time}
+              end_time={this.state.end_time}
+              useDates={this.state.useDates}
               handleChange={this.handleChange}
             />
-            <LocationField eventType={this.state.eventType} />
+            <LocationField
+              eventType={this.state.eventType}
+              handleChange={this.handleChange}
+            />
             <CostField
               eventType={this.state.eventType}
               handleChange={this.handleChange}
             />
             <DescriptionField
               eventType={this.state.eventType}
-              displayDates={this.state.displayDates}
+              useDates={this.state.useDates}
+              handleChange={this.handleChange}
             />
           </Form>
         </div>
         {/*Buttons*/}
-        <Button variant="primary" size="sm">
+        <Button variant="primary" size="sm" onClick={this.handleSubmit}>
           <b>Submit</b>
         </Button>
       </div>
@@ -75,6 +96,7 @@ EventNewForm.propTypes = {
   event: PropTypes.object.isRequired,
   getEvent: PropTypes.func.isRequired,
   eventType: PropTypes.string.isRequired,
+  addEvent: PropTypes.func.isRequired,
   begin_time: PropTypes.object,
   end_time: PropTypes.object
 };

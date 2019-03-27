@@ -8,7 +8,7 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdate: (accom) => {
+    addAccom: (accom) => {
       dispatch(addAccomToDb(accom));
     }
   };

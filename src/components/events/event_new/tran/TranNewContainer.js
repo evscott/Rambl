@@ -8,7 +8,7 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUpdate: (tran) => {
+    addTran: (tran) => {
       dispatch(addTranToDb(tran));
     }
   };

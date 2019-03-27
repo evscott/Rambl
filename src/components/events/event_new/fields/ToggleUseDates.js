@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import '../EventNewForm.css';
 
-export class ToggleDisplayDates extends Component {
+export class ToggleUseDates extends Component {
   render() {
     if (this.props.eventType === 'plan')
       // display toggle display dates field
@@ -14,7 +14,7 @@ export class ToggleDisplayDates extends Component {
               label="Ignore dates"
               type={'checkbox'}
               key={1}
-              onChange={this.props.toggleDisplayDates}
+              onChange={this.props.toggleUseDates}
             />
           </Form.Group>
         </div>
@@ -23,7 +23,7 @@ export class ToggleDisplayDates extends Component {
   }
 }
 
-ToggleDisplayDates.propTypes = {
+ToggleUseDates.propTypes = {
   eventType: PropTypes.string.isRequired,
-  toggleDisplayDates: PropTypes.func.isRequired
+  toggleUseDates: PropTypes.func.isRequired
 };

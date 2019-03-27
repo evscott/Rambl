@@ -6,6 +6,26 @@ import DatePicker from 'react-datepicker/es';
 import { formatDateForUser } from '../../../../shared/dateFormatter';
 
 export class DateField extends Component {
+  constructor(props) {
+    super(props);
+    this.receiveBeginDate = this.receiveBeginDate.bind(this);
+    this.receiveEndDate = this.receiveEndDate.bind(this);
+  }
+
+  /**
+   *
+   */
+  beginDate() {
+    return this.props.begin_time ? this.props.begin_time : new Date();
+  }
+
+  /**
+   *
+   */
+  endDate() {
+    return this.props.end_time ? this.props.end_time : new Date();
+  }
+
   /**
    *
    */
@@ -24,10 +44,26 @@ export class DateField extends Component {
       : 'Ends';
   }
 
+  /**
+   *
+   * @param date
+   */
+  receiveBeginDate(date) {
+    this.props.handleChange('begin_time', date);
+  }
+
+  /**
+   *
+   * @param date
+   */
+  receiveEndDate(date) {
+    this.props.handleChange('end_time', date);
+  }
+
   /**************************** Visual component ****************************/
 
   render() {
-    if (this.props.displayDates)
+    if (this.props.useDates)
       // display dates
       return (
         <Form.Group>
@@ -39,9 +75,11 @@ export class DateField extends Component {
                   className={'form-control date-width'}
                   placeholderText={this.beginDatePlaceHolder()}
                   showTimeInput
+                  selectsStart
+                  startDate={this.beginDate()}
+                  endDate={this.endDate()}
                   dateFormat={'M/d/yyyy h:mm aa'}
-                  fixedHeight
-                  onChange={this.props.handleChange}
+                  onChange={this.receiveBeginDate}
                 />
               </div>
             </Col>
@@ -52,9 +90,11 @@ export class DateField extends Component {
                   className={'form-control date-width'}
                   placeholderText={this.endDatePlaceHolder()}
                   showTimeInput
+                  selectsEnd
                   dateFormat={'M/d/yyyy h:mm aa'}
-                  fixedHeight
-                  onChange={this.props.handleChange}
+                  startDate={this.beginDate()}
+                  endDate={this.endDate()}
+                  onChange={this.receiveEndDate}
                 />
               </div>
             </Col>
@@ -66,7 +106,7 @@ export class DateField extends Component {
 }
 
 DateField.propTypes = {
-  displayDates: PropTypes.bool.isRequired,
+  useDates: PropTypes.bool.isRequired,
   handleChange: PropTypes.func.isRequired,
   begin_time: PropTypes.any,
   end_time: PropTypes.any

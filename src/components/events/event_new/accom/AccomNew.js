@@ -22,31 +22,11 @@ export default class AccomNew extends Component {
    */
   getState() {
     return {
-      loc: {
-        name: 'loc',
-        type: 'Location',
-        value: null
-      },
-      begin_time: {
-        name: 'begin_time',
-        type: 'Begins',
-        value: this.props.begin_time ? this.props.begin_time : null
-      },
-      end_time: {
-        name: 'end_time',
-        type: 'Ends',
-        value: this.props.end_time ? this.props.end_time.toString() : null
-      },
-      cost: {
-        name: 'cost',
-        type: 'Cost',
-        value: null
-      },
-      dscript: {
-        name: 'dscript',
-        type: 'Description',
-        value: null
-      }
+      loc: null,
+      begin_time: this.props.begin_time ? this.props.begin_time : null,
+      end_time: this.props.end_time ? this.props.end_time : null,
+      cost: null,
+      dscript: null
     };
   }
 
@@ -55,13 +35,13 @@ export default class AccomNew extends Component {
    * @param tran
    * @returns {{method: *, loc: *, loc_end: *, begin_time, end_time, cost: (string|*), dscript: *, completed: number, priority: number}}
    */
-  getAccom(tran) {
+  getAccom(accom) {
     return {
-      loc: tran.loc_begin.value,
-      begin_time: formatDateForMySql(tran.begin_time.value),
-      end_time: formatDateForMySql(tran.end_time.value),
-      cost: convertToNumber(tran.cost.value),
-      dscript: tran.dscript.value,
+      loc: accom.loc_begin,
+      begin_time: formatDateForMySql(accom.begin_time),
+      end_time: formatDateForMySql(accom.end_time),
+      cost: accom.cost,
+      dscript: accom.dscript,
       completed: 0,
       priority: 0
     };
@@ -78,6 +58,7 @@ export default class AccomNew extends Component {
           eventType={'accom'}
           begin_time={this.props.begin_time}
           end_time={this.props.end_time}
+          addEvent={this.props.addAccom}
         />
       </div>
     );

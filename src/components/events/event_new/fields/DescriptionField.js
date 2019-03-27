@@ -4,13 +4,30 @@ import { Form } from 'react-bootstrap';
 import '../EventNewForm.css';
 
 export class DescriptionField extends Component {
+  constructor(props) {
+    super(props);
+    this.receiveDescription = this.receiveDescription.bind(this);
+  }
+
+  /**
+   *
+   * @param input
+   */
+  receiveDescription(input) {
+    this.props.handleChange('dscript', input.target.value);
+  }
+
   render() {
-    if (this.props.eventType === 'plan' && this.props.displayDates)
+    if (this.props.eventType === 'plan' && this.props.useDates)
       // display description field with one row
       return (
         <Form.Group controlId="exampleForm.ControlTextarea1">
           <Form.Label>Description</Form.Label>
-          <Form.Control as="textarea" rows="1" />
+          <Form.Control
+            as="textarea"
+            rows="1"
+            onChange={this.receiveDescription}
+          />
         </Form.Group>
       );
     // display description field with two rows
@@ -18,7 +35,11 @@ export class DescriptionField extends Component {
       return (
         <Form.Group controlId="exampleForm.ControlTextarea1">
           <Form.Label>Description</Form.Label>
-          <Form.Control as="textarea" rows="2" />
+          <Form.Control
+            as="textarea"
+            rows="2"
+            onChange={this.receiveDescription}
+          />
         </Form.Group>
       );
   }
@@ -26,5 +47,6 @@ export class DescriptionField extends Component {
 
 DescriptionField.propTypes = {
   eventType: PropTypes.string.isRequired,
-  displayDates: PropTypes.bool.isRequired
+  useDates: PropTypes.bool.isRequired,
+  handleChange: PropTypes.func.isRequired
 };

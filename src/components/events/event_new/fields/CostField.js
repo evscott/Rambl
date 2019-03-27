@@ -5,6 +5,28 @@ import CurrencyInput from 'react-currency-input-field';
 import '../EventNewForm.css';
 
 export class CostField extends Component {
+  constructor(props) {
+    super(props);
+    this.receiveModeOfTransport = this.receiveModeOfTransport.bind(this);
+    this.receiveCost = this.receiveCost.bind(this);
+  }
+
+  /**
+   *
+   * @param mode
+   */
+  receiveModeOfTransport(mode) {
+    this.props.handleChange('method', mode.target.value);
+  }
+
+  /**
+   *
+   * @param cost
+   */
+  receiveCost(cost) {
+    this.props.handleChange('cost', cost);
+  }
+
   render() {
     if (this.props.eventType === 'tran')
       // display mode of transportation & cost
@@ -13,7 +35,7 @@ export class CostField extends Component {
           <Form.Row>
             <Col>
               <Form.Label>Mode of transportation</Form.Label>
-              <Form.Control as="select" onChange={this.props.handleChange}>
+              <Form.Control as="select" onChange={this.receiveModeOfTransport}>
                 <option disabled>Select your option</option>
                 <option value={'plane'}>Plane</option>
                 <option value={'train'}>Train</option>
@@ -26,7 +48,7 @@ export class CostField extends Component {
               <CurrencyInput
                 className={'form-control'}
                 placeholder="$0"
-                onChange={this.props.handleChange}
+                onChange={this.receiveCost}
               />
             </Col>
           </Form.Row>
@@ -39,7 +61,7 @@ export class CostField extends Component {
         <CurrencyInput
           className={'form-control'}
           placeholder="$0"
-          onChange={this.props.handleChange}
+          onChange={this.receiveCost}
         />
       </Form.Group>
     );
