@@ -23,7 +23,7 @@ function shouldShow(events, eventType, filter) {
  * @returns {any[]} the array of events associated with the trip.
  */
 export function getTripEvents(state, tripId, filter = null) {
-  if(filter == null) filter = new Set(['all']);
+  if (filter == null) filter = new Set(['all']);
   else filter = new Set(filter.split(' ')); // Get all of the filters in a set
   let plans = state.plans.plans[tripId];
   let accoms = state.accoms.accoms[tripId];

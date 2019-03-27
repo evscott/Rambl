@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 /**
  * This component has all of the options for routing that allow the
  * TripCal to show the right elements.
- * It routes to addresses such as '/trips?id=29&view=month&filter=all',
+ * It routes to addresses such as '/trips?id=29&view=month&filter=accoms+plans',
  * which means trip id 29, the month view open, all events showing.
  */
 export class CalViewOptions extends Component {
@@ -15,6 +15,7 @@ export class CalViewOptions extends Component {
     this.getPath = this.getPath.bind(this);
     this.getQuery = this.getQuery.bind(this);
     this.routeToView = this.routeToView.bind(this);
+    this.toggleFilter = this.toggleFilter.bind(this);
   }
 
   /** Get the path of the current browser's URL */
@@ -33,7 +34,11 @@ export class CalViewOptions extends Component {
   getQuery(view, filter) {
     let location = this.props.history.location;
     let queries = queryString.parse(location.search);
+
+    // If view is null, just use old view
     view = view != null ? view : queries.view;
+
+    // If filter is null, just use old filter
     filter = filter != null ? filter : queries.filter;
     return '?id=' + queries.id + '&view=' + view + '&filter=' + filter;
   }
@@ -65,11 +70,13 @@ export class CalViewOptions extends Component {
     // Get the filter we're looking for and toggle it
     if (newFilterSet.has(filter)) newFilterSet.delete(filter);
     else {
+      // Should not have 'all' if filtering something specific
       newFilterSet.delete('all');
       newFilterSet.add(filter);
     }
 
-    // Turn this into a string, remove 'all' if it's not in the new filter
+    // Turn this into a string, only add them if 'all' is not selected.
+    // If all is selected, all the others are redundant.
     let newFilter = 'all';
     if (!newFilterSet.has('all')) {
       newFilterSet.forEach((filter) => {
