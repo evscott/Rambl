@@ -6,7 +6,6 @@ import { EventNewForm } from '../EventNewForm';
 export default class AccomNew extends Component {
   constructor(props) {
     super(props);
-    this.state = this.getState();
     this.getAccom = this.getAccom.bind(this);
     this.getState = this.getState.bind(this);
   }
@@ -53,7 +52,7 @@ export default class AccomNew extends Component {
     return (
       <div>
         <EventNewForm
-          event={this.state}
+          event={this.getState()}
           getEvent={this.getAccom}
           eventType={'accom'}
           begin_time={this.props.begin_time}

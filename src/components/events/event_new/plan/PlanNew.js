@@ -6,7 +6,6 @@ import { EventNewForm } from '../EventNewForm';
 export default class PlanNew extends Component {
   constructor(props) {
     super(props);
-    this.state = this.getState();
     this.getPlan = this.getPlan.bind(this);
     this.getState = this.getState.bind(this);
   }
@@ -66,7 +65,7 @@ export default class PlanNew extends Component {
     return (
       <div>
         <EventNewForm
-          event={this.state}
+          event={this.getState()}
           getEvent={this.getPlan}
           eventType={'plan'}
           begin_time={this.props.begin_time}

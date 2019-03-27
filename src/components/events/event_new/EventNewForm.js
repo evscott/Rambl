@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Form from 'react-bootstrap/Form';
-import { Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import './EventNewForm.css';
 import { ToggleUseDates } from './fields/ToggleUseDates';
 import { DateField } from './fields/DateField';
 import { LocationField } from './fields/LocationField';
+import { ModeOfTranField } from './fields/ModeOfTranField';
 import { CostField } from './fields/CostField';
 import { DescriptionField } from './fields/DescriptionField';
 
@@ -74,10 +74,18 @@ export class EventNewForm extends Component {
               eventType={this.state.eventType}
               handleChange={this.handleChange}
             />
-            <CostField
-              eventType={this.state.eventType}
-              handleChange={this.handleChange}
-            />
+            <Form.Group>
+              <Form.Row>
+                <ModeOfTranField
+                  eventType={this.state.eventType}
+                  handleChange={this.handleChange}
+                />
+                <CostField
+                  eventType={this.state.eventType}
+                  handleChange={this.handleChange}
+                />
+              </Form.Row>
+            </Form.Group>
             <DescriptionField
               eventType={this.state.eventType}
               useDates={this.state.useDates}

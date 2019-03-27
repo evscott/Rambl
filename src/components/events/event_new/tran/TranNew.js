@@ -7,7 +7,6 @@ import '../EventNewForm.css';
 export default class TranNew extends Component {
   constructor(props) {
     super(props);
-    this.state = this.getState();
     this.getTran = this.getTran.bind(this);
     this.getState = this.getState.bind(this);
   }
@@ -60,7 +59,7 @@ export default class TranNew extends Component {
     return (
       <div>
         <EventNewForm
-          event={this.state}
+          event={this.getState()}
           getEvent={this.getTran}
           eventType={'tran'}
           begin_time={this.props.begin_time}
