@@ -6,15 +6,15 @@ import PropTypes from 'prop-types';
 /**
  * This component has all of the options for routing that allow the
  * TripCal to show the right elements.
- * It routes to addresses such as '/trips?id=29&view=month', which
- * means trip id 29, with the month view open.
+ * It routes to addresses such as '/trips?id=29&view=month&filter=all',
+ * which means trip id 29, the month view open, all events showing.
  */
 export class CalViewOptions extends Component {
   constructor(props) {
     super(props);
     this.getPath = this.getPath.bind(this);
     this.getQuery = this.getQuery.bind(this);
-    this.routeTo = this.routeTo.bind(this);
+    this.routeToView = this.routeToView.bind(this);
   }
 
   /** Get the path of the current browser's URL */
@@ -22,26 +22,75 @@ export class CalViewOptions extends Component {
     return this.props.history.location.pathname;
   }
 
-  /** Get the search query from the URL */
-  getQuery(view) {
+  /**
+   * Gets the search query from the URL and creates a new one using
+   * updated view and filter information. If any argument is null, it
+   * uses the previous argument in the URL.
+   * @param view the view to direct to
+   * @param filter the filter (what to show/hide) to use for the calendar
+   * @returns {string} the updated query
+   */
+  getQuery(view, filter) {
     let location = this.props.history.location;
-    let tripId = queryString.parse(location.search).id;
-    return '?id=' + tripId + '&view=' + view;
+    let queries = queryString.parse(location.search);
+    view = view != null ? view : queries.view;
+    filter = filter != null ? filter : queries.filter;
+    return '?id=' + queries.id + '&view=' + view + '&filter=' + filter;
   }
 
   /** Routes the window to a different URL */
-  routeTo(view) {
+  routeToView(view) {
     let route = {
       pathname: this.getPath(),
-      search: this.getQuery(view)
+      search: this.getQuery(view, null)
+    };
+    this.props.history.push(route);
+  }
+
+  /**
+   * This toggles a filter from the URL query.
+   * If all is selected before and a different filter is selected,
+   * that filter is removed. In all other cases, it simply toggles.
+   * @param filter the filter to toggle
+   */
+  toggleFilter(filter) {
+    let location = this.props.history.location;
+    let oldFilter = queryString.parse(location.search).filter;
+
+    // Find all the filters from before
+    let newFilterSet;
+    if (oldFilter == null) newFilterSet = new Set();
+    else newFilterSet = new Set(oldFilter.split(' '));
+
+    // Get the filter we're looking for and toggle it
+    if (newFilterSet.has(filter)) newFilterSet.delete(filter);
+    else {
+      newFilterSet.delete('all');
+      newFilterSet.add(filter);
+    }
+
+    // Turn this into a string, remove 'all' if it's not in the new filter
+    let newFilter = 'all';
+    if (!newFilterSet.has('all')) {
+      newFilterSet.forEach((filter) => {
+        if (newFilter === 'all') newFilter = filter;
+        else newFilter += '+' + filter;
+      });
+    }
+
+    let route = {
+      pathname: this.getPath(),
+      search: this.getQuery(null, newFilter)
     };
     this.props.history.push(route);
   }
 
   render() {
-    // Get the current calendar view from the URL
+    // Get the current calendar view and filters from the URL
     let location = this.props.history.location;
-    let currView = queryString.parse(location.search).view;
+    let queries = queryString.parse(location.search);
+    let currView = queries.view;
+    let currFilter = new Set(queries.filter.split(' '));
 
     // These are all the view buttons that are needed.
     // Index 0 is the route, index 1 is the title display.
@@ -53,20 +102,44 @@ export class CalViewOptions extends Component {
       ['todo', 'To-Do View']
     ];
 
+    // These are all the filters that are needed.
+    // Index 0 is the filter, index 1 is the title display.
+    let filters = [
+      ['all', 'All events'],
+      ['accoms', 'Only accommodations'],
+      ['trans', 'Only transportation'],
+      ['plans', 'Only plans']
+    ];
+
     return (
-      <ButtonGroup>
-        {views.map((view) => {
-          return (
-            <Button
-              key={view[0]}
-              onClick={() => this.routeTo(view[0])}
-              active={currView === view[0]}
-            >
-              {view[1]}
-            </Button>
-          );
-        })}
-      </ButtonGroup>
+      <div>
+        <ButtonGroup>
+          {views.map((view) => {
+            return (
+              <Button
+                key={view[0]}
+                onClick={() => this.routeToView(view[0])}
+                active={currView === view[0]}
+              >
+                {view[1]}
+              </Button>
+            );
+          })}
+        </ButtonGroup>
+        <ButtonGroup>
+          {filters.map((filter) => {
+            return (
+              <Button
+                key={filter[0]}
+                onClick={() => this.toggleFilter(filter[0])}
+                active={currFilter.has(filter[0])}
+              >
+                {filter[1]}
+              </Button>
+            );
+          })}
+        </ButtonGroup>
+      </div>
     );
   }
 }

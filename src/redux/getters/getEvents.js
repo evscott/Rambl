@@ -1,12 +1,30 @@
 /**
+ * Helper method that checks if events of a certain types should be
+ * shown or not based on the contents of the filter.
+ * @param events the array of events
+ * @param eventType the type of event (as a string, plural version)
+ * @param filter set with the allowed event types
+ * @returns {boolean|*}
+ */
+function shouldShow(events, eventType, filter) {
+  return (
+    events != null &&
+    (filter == null || filter.has(eventType) || filter.has('all'))
+  );
+}
+
+/**
  * Gets all events associated with a trip in the form of an array, and assigns
  * each a property called "event_type", which has a value of "plan", "accom",
  * or "trans", depending on the event's type.
  * @param state the state of the redux store.
  * @param tripId the id of the trip to get events from.
+ * @param filter the filter for the events to show (optional)
  * @returns {any[]} the array of events associated with the trip.
  */
-export function getTripEvents(state, tripId) {
+export function getTripEvents(state, tripId, filter = null) {
+  if(filter == null) filter = new Set(['all']);
+  else filter = new Set(filter.split(' ')); // Get all of the filters in a set
   let plans = state.plans.plans[tripId];
   let accoms = state.accoms.accoms[tripId];
   let trans = state.trans.trans[tripId];
@@ -14,12 +32,17 @@ export function getTripEvents(state, tripId) {
   // Get all the values from the dictionaries (just get the raw event objects
   // without worrying about their event ids). It only gets them if the section
   // is not null.
-  if (plans != null) plans = Object.values(plans);
-  else plans = [];
-  if (accoms != null) accoms = Object.values(accoms);
-  else accoms = [];
-  if (trans != null) trans = Object.values(trans);
-  else trans = [];
+  if (shouldShow(plans, 'plans', filter)) {
+    plans = Object.values(plans);
+  } else plans = [];
+
+  if (shouldShow(accoms, 'accoms', filter)) {
+    accoms = Object.values(accoms);
+  } else accoms = [];
+
+  if (shouldShow(trans, 'trans', filter)) {
+    trans = Object.values(trans);
+  } else trans = [];
 
   // This does a deeper copy of the events than before, and it adds an extra
   // property to the event types' names.

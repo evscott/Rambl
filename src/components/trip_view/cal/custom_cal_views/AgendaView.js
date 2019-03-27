@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import dates from './utils/dates';
-import { navigate } from './utils/constants';
-import { inRange } from './utils/eventLevels';
+import dates from '../utils/dates';
+import { navigate } from '../utils/constants';
+import { inRange } from '../utils/eventLevels';
 import { AgendaItem } from './AgendaItem';
 import { CreateEventCard } from './CreateEventCard';
 
