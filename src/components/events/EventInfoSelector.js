@@ -17,11 +17,20 @@ export default class EventInfoSelector extends Component {
       return <div>Error: Event object is null.</div>;
     switch (this.props.event.event_type) {
       case 'plan':
-        return <PlanInfoContainer plan={this.props.event} />;
+        return (
+          <PlanInfoContainer plan={this.props.event} close={this.props.close} />
+        );
       case 'accom':
-        return <AccomInfoContainer accom={this.props.event} />;
+        return (
+          <AccomInfoContainer
+            accom={this.props.event}
+            close={this.props.close}
+          />
+        );
       case 'trans':
-        return <TranInfoContainer tran={this.props.event} />;
+        return (
+          <TranInfoContainer tran={this.props.event} close={this.props.close} />
+        );
       default:
         return <div>Unable to fetch information for this event type.</div>;
     }
@@ -29,5 +38,6 @@ export default class EventInfoSelector extends Component {
 }
 
 EventInfoSelector.propTypes = {
+  close: PropTypes.func.isRequired,
   event: PropTypes.object
 };
