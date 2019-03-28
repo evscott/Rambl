@@ -14,8 +14,10 @@ export class TripCalToolbar extends Component {
       label
     } = this.props;
 
-    return (
-      <div className="rbc-toolbar">
+    console.log(this.props.view);
+    let navItems = false;
+    if(this.props.view !== 'todo') {
+      navItems = (
         <ButtonGroup>
           <Button onClick={this.navigate.bind(null, 'TODAY')}>
             {messages.today}
@@ -27,6 +29,11 @@ export class TripCalToolbar extends Component {
             {messages.next}
           </Button>
         </ButtonGroup>
+      );
+    }
+    return (
+      <div className="rbc-toolbar">
+        {navItems}
         <span className="rbc-toolbar-label">{label}</span>
       </div>
     );
