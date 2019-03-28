@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Modal } from 'react-bootstrap';
 import './NewEventModal.css';
 import './EventModal.css';
-import { EventNewSelector } from '../../events/EventNewSelector';
+import { EventNewSelector } from '../../../events/EventNewSelector';
 
 /**
  * This is a popup modal which allows a user to input information for a

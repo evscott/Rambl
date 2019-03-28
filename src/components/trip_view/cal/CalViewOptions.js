@@ -97,7 +97,8 @@ export class CalViewOptions extends Component {
     let location = this.props.history.location;
     let queries = queryString.parse(location.search);
     let currView = queries.view;
-    let currFilter = new Set(queries.filter.split(' '));
+    let currFilter = new Set();
+    if(queries.filter != null) currFilter = new Set(queries.filter.split(' '));
 
     // These are all the view buttons that are needed.
     // Index 0 is the route, index 1 is the title display.
