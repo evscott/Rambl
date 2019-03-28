@@ -51,7 +51,6 @@ let getPlan = async (req, res) => {
  * @returns {Promise<void>} the promise indicating success
  */
 let addPlan = async (req, res) => {
-  console.log(req.body);
   const query = `INSERT INTO plans (trip_id, cost, begin_time, 
                   end_time, loc, dscript, completed, priority)
                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;

@@ -6,9 +6,9 @@ import { allDayAccessor } from '../utils/accessors';
 import { TripCalToolbar } from './TripCalToolbar';
 import { EventModal } from '../event_modal/EventModal';
 import './TripCal.css';
-import Agenda from '../AgendaView';
-import ToDoView from '../ToDoView';
-import { NewEventModal } from '../NewEventModal';
+import Agenda from '../custom_cal_views/AgendaView';
+import ToDoView from '../custom_cal_views/ToDoView';
+import { NewEventModal } from '../event_modal/NewEventModal';
 
 // Localizer for the calendar for formatting date objects
 const localizer = BigCalendar.momentLocalizer(moment);
@@ -72,6 +72,7 @@ export class TripCal extends Component {
     let components = {
       toolbar: TripCalToolbar
     };
+
     return (
       <div>
         <div className="cal-container">
@@ -109,6 +110,7 @@ export class TripCal extends Component {
           onHide={this.quitCreateEvent}
           start={this.state.start}
           end={this.state.end}
+          trip_id={this.props.id}
         />
       </div>
     );

@@ -8,7 +8,8 @@ import {
   faCalendarWeek,
   faPlusSquare,
   faPencilAlt,
-  faCheck
+  faCheck,
+  faBomb
 } from '@fortawesome/free-solid-svg-icons';
 import { far, faStar as faStar2 } from '@fortawesome/free-regular-svg-icons';
 
@@ -24,6 +25,7 @@ export function createIconLibrary() {
     faCalendarWeek,
     faPlusSquare,
     faPencilAlt,
-    faCheck
+    faCheck,
+    faBomb
   );
 }

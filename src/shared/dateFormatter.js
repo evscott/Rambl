@@ -2,7 +2,7 @@ export const formatDateForUser = (d) => {
   let date = new Date(d);
   date = date.toLocaleDateString('en-US', {
     year: 'numeric',
-    month: 'long',
+    month: 'numeric',
     day: 'numeric',
     hour: 'numeric',
     minute: 'numeric'
