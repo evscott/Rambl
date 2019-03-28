@@ -14,7 +14,6 @@ export class TripCalToolbar extends Component {
       label
     } = this.props;
 
-    console.log(this.props.view);
     let navItems = false;
     if (this.props.view !== 'todo') {
       navItems = (
