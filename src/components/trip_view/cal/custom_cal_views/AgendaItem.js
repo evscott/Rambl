@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
-import { PriorityIndicator } from '../../global/PriorityIndicator';
+import { PriorityIndicator } from '../../../global/PriorityIndicator';
 import './AgendaItem.css';
-import { EventTypeIndicator } from '../../global/EventTypeIndicator';
+import { EventTypeIndicator } from '../../../global/EventTypeIndicator';
 
 /**
  * This is the code for a single item displayed on the react-big-calendar
