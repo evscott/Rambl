@@ -12,7 +12,9 @@ export class EventModal extends Component {
   render() {
     let eventView = false;
     if (this.props.event)
-      eventView = <EventInfoSelector event={this.props.event} />;
+      eventView = (
+        <EventInfoSelector event={this.props.event} close={this.props.onHide} />
+      );
     return (
       <Modal show={this.props.show} onHide={this.props.onHide}>
         <Modal.Header closeButton>

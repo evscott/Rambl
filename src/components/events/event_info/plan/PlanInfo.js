@@ -82,13 +82,18 @@ export default class PlanInfo extends Component {
     return (
       <EventInfoForm
         state={this.getState(this.props.plan)}
+        trip_id={this.props.plan.trip_id}
+        e_id={this.props.plan.e_id}
         getEvent={this.getPlan}
         onUpdate={this.props.onUpdate}
+        onDelete={this.props.onDelete}
+        close={this.props.close}
       />
     );
   }
 }
 
 PlanInfo.propTypes = {
-  plan: PropTypes.object.isRequired
+  plan: PropTypes.object.isRequired,
+  close: PropTypes.func.isRequired
 };

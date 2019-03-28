@@ -82,13 +82,18 @@ export default class AccomInfo extends Component {
     return (
       <EventInfoForm
         state={this.getState(this.props.accom)}
+        trip_id={this.props.accom.trip_id}
+        e_id={this.props.accom.e_id}
         getEvent={this.getAccom}
         onUpdate={this.props.onUpdate}
+        onDelete={this.props.onDelete}
+        close={this.props.close}
       />
     );
   }
 }
 
 AccomInfo.propTypes = {
-  accom: PropTypes.object.isRequired
+  accom: PropTypes.object.isRequired,
+  close: PropTypes.func.isRequired
 };
