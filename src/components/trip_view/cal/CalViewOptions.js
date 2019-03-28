@@ -31,7 +31,7 @@ export class CalViewOptions extends Component {
    * @param filter the filter (what to show/hide) to use for the calendar
    * @returns {string} the updated query
    */
-  getQuery(view, filter) {
+  getQuery(view = null, filter = null) {
     let location = this.props.history.location;
     let queries = queryString.parse(location.search);
 
@@ -47,7 +47,7 @@ export class CalViewOptions extends Component {
   routeToView(view) {
     let route = {
       pathname: this.getPath(),
-      search: this.getQuery(view, null)
+      search: this.getQuery(view)
     };
     this.props.history.push(route);
   }
