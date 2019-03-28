@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'react-bootstrap';
 import './EventModal.css';
-import EventView from '../../../event_view/EventView';
+import EventInfoSelector from '../../../events/EventInfoSelector';
 
 /**
  * This is a popup modal which displays the event information. It should contain
@@ -11,7 +11,10 @@ import EventView from '../../../event_view/EventView';
 export class EventModal extends Component {
   render() {
     let eventView = false;
-    if (this.props.event) eventView = <EventView event={this.props.event} />;
+    if (this.props.event)
+      eventView = (
+        <EventInfoSelector event={this.props.event} close={this.props.onHide} />
+      );
     return (
       <Modal show={this.props.show} onHide={this.props.onHide}>
         <Modal.Header closeButton>
@@ -19,7 +22,7 @@ export class EventModal extends Component {
             {this.props.event != null ? this.props.event.dscript : ''}
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body className={'modalBody'}>{eventView}</Modal.Body>
+        <Modal.Body className={'modal-body'}>{eventView}</Modal.Body>
       </Modal>
     );
   }

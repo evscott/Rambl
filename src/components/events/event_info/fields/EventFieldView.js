@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './EventField.css';
+import './EventFieldView.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { formatDateForUser } from '../../../shared/dateFormatter';
+import { formatDateForUser } from '../../../../shared/dateFormatter';
 
 /**
- * EventField is a visual element for an event, which receives and displays
+ * EventFieldView is a visual element for an event, which receives and displays
  * a field type and value.
  */
-export default class EventField extends Component {
+export default class EventFieldView extends Component {
   /**************************** Visual component ****************************/
 
   /**
    * Renders either a text or formatted date field depending on what is being
-   * passed into EventField.
+   * passed into EventFieldView.
    * @returns {*} the event field to be displayed.
    */
   renderFieldValue() {
@@ -56,7 +56,7 @@ export default class EventField extends Component {
   }
 }
 
-EventField.propTypes = {
+EventFieldView.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   value: PropTypes.any.isRequired,

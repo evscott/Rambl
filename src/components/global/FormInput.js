@@ -32,7 +32,7 @@ export class FormInput extends Component {
       <Form.Group className={groupClassName}>
         <Form.Label>{this.props.displayName}</Form.Label>
         <Form.Control
-          placeholder={this.props.value}
+          placeholder={this.props.placeholder}
           type={this.props.type}
           name={this.props.name}
           onChange={this.props.handleChange}
@@ -45,7 +45,7 @@ export class FormInput extends Component {
 
 FormInput.propTypes = {
   name: PropTypes.string.isRequired, // Name of the input element (camelcase)
-  displayName: PropTypes.string.isRequired, // Displayed name of input (with spaces)
+  displayName: PropTypes.string, // Displayed name of input (with spaces)
   type: PropTypes.string.isRequired, // The type of input (i.e. text, password)
   handleChange: PropTypes.func.isRequired, // What to call when the input changes
   value: PropTypes.any.isRequired, // The variable containing the input's value

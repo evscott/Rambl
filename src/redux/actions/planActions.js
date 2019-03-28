@@ -220,7 +220,6 @@ function getPlanInfoFromDb(e_id) {
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function getPlansFromDb() {
-  console.log(hostUrl);
   return (dispatch) => {
     dispatch(getPlansFromDbRequest()); // Get plans request process has begun...
     return fetch(hostUrl + '/plan/get', {

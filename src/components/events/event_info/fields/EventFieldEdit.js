@@ -5,9 +5,9 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import CurrencyInput from 'react-currency-input-field';
 import './EventFieldEdit.css';
-import { FormInput } from '../../global/FormInput';
-import { formatDateForUser } from '../../../shared/dateFormatter';
-import { usdFormatter } from '../../../shared/currencyFormatter';
+import { FormInput } from '../../../global/FormInput';
+import { formatDateForUser } from '../../../../shared/dateFormatter';
+import { usdFormatter } from '../../../../shared/currencyFormatter';
 
 /**
  * EventFieldEdit is a visual element for an event, which receives and displays
@@ -66,6 +66,7 @@ export default class EventFieldEdit extends Component {
           type={this.props.type}
           handleChange={this.handleTextChange}
           value={this.state.value}
+          placeholder={this.state.value}
         />
       </Form>
     );
@@ -110,7 +111,7 @@ export default class EventFieldEdit extends Component {
           timeInputLabel="Time:"
           maxDate={new Date(this.props.end_time.value)}
           placeholderText={formatDateForUser(this.state.value)}
-          dateFormat={'MMMM d, yyyy, h:mm aa'}
+          dateFormat={'M/d/yyyy h:mm aa'}
         />
       </div>
     );
@@ -134,7 +135,7 @@ export default class EventFieldEdit extends Component {
           showTimeInput
           timeInputLabel="Time:"
           placeholderText={formatDateForUser(this.state.value)}
-          dateFormat={'MMMM d, yyyy, h:mm aa'}
+          dateFormat={'M/d/yyyy h:mm aa'}
         />
       </div>
     );

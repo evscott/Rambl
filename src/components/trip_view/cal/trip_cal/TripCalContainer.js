@@ -12,6 +12,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     events: convertAllDates(getTripEvents(state, queries.id, queries.filter)),
     view: queries.view
+    id: queries.id
   };
 };
 

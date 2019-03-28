@@ -7,70 +7,70 @@ import {
 import { formatDateForMySql } from '../../../../shared/dateFormatter';
 import { EventInfoForm } from '../EventInfoForm';
 
-export default class AccomInfo extends Component {
+export default class PlanInfo extends Component {
   constructor(props) {
     super(props);
-    this.state = this.getState(this.props.accom);
-    this.getAccom = this.getAccom.bind(this);
+    this.state = this.getState(this.props.plan);
+    this.getPlan = this.getPlan.bind(this);
   }
 
   /**************************** Helper functions ****************************/
 
   /**
-   * Receives and formats the values of a accom event from props.
-   * @param accom
+   * Receives and formats the values of a plan event from props.
+   * @param plan
    * @returns {{method: string, loc_begin: string, loc_end: *,
    * begin_time: string, end_time: string, cost: string, dscript: string}}
    */
-  getState(accom) {
+  getState(plan) {
     return {
       loc: {
         name: 'loc',
         type: 'Location',
-        value: accom.loc ? accom.loc : 'unspecified',
+        value: plan.loc ? plan.loc : 'unspecified',
         editMode: false
       },
       begin_time: {
         name: 'begin_time',
         type: 'Begins',
-        value: accom.begin_time.toString(),
+        value: plan.begin_time.toString(),
         editMode: false
       },
       end_time: {
         name: 'end_time',
         type: 'Ends',
-        value: accom.end_time.toString(),
+        value: plan.end_time.toString(),
         editMode: false
       },
       cost: {
         name: 'cost',
         type: 'Cost',
-        value: accom.cost ? usdFormatter.format(accom.cost) : 'unspecified',
+        value: plan.cost ? usdFormatter.format(plan.cost) : 'unspecified',
         editMode: false
       },
       dscript: {
         name: 'dscript',
         type: 'Description',
-        value: accom.dscript ? accom.dscript : 'unspecified',
+        value: plan.dscript ? plan.dscript : 'unspecified',
         editMode: false
       }
     };
   }
 
   /**
-   * Gets the accom object formatted for MySql and Redux.
-   * @param accom object to get.
+   * Gets the plan object formatted for MySql and Redux.
+   * @param plan object to get.
    * @returns {{e_id: number, trip_id: *, loc: *, begin_time: string, end_time: string, cost: (string|*), dscript: *, completed: number, priority: number}}
    */
-  getAccom(accom) {
+  getPlan(plan) {
     return {
-      e_id: this.props.accom.e_id,
-      trip_id: this.props.accom.trip_id,
-      loc: accom.loc.value,
-      begin_time: formatDateForMySql(accom.begin_time.value),
-      end_time: formatDateForMySql(accom.end_time.value),
-      cost: convertToNumber(accom.cost.value),
-      dscript: accom.dscript.value,
+      e_id: this.props.plan.e_id,
+      trip_id: this.props.plan.trip_id,
+      loc: plan.loc.value,
+      begin_time: formatDateForMySql(plan.begin_time.value),
+      end_time: formatDateForMySql(plan.end_time.value),
+      cost: convertToNumber(plan.cost.value),
+      dscript: plan.dscript.value,
       completed: 0,
       priority: 0
     };
@@ -81,14 +81,19 @@ export default class AccomInfo extends Component {
   render() {
     return (
       <EventInfoForm
-        state={this.getState(this.props.accom)}
-        getEvent={this.getAccom}
+        state={this.getState(this.props.plan)}
+        trip_id={this.props.plan.trip_id}
+        e_id={this.props.plan.e_id}
+        getEvent={this.getPlan}
         onUpdate={this.props.onUpdate}
+        onDelete={this.props.onDelete}
+        close={this.props.close}
       />
     );
   }
 }
 
-AccomInfo.propTypes = {
-  accom: PropTypes.object.isRequired
+PlanInfo.propTypes = {
+  plan: PropTypes.object.isRequired,
+  close: PropTypes.func.isRequired
 };
