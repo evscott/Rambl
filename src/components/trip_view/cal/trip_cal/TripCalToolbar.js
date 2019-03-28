@@ -16,7 +16,7 @@ export class TripCalToolbar extends Component {
 
     console.log(this.props.view);
     let navItems = false;
-    if(this.props.view !== 'todo') {
+    if (this.props.view !== 'todo') {
       navItems = (
         <ButtonGroup>
           <Button onClick={this.navigate.bind(null, 'TODAY')}>
