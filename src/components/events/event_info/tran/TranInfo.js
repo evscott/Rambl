@@ -96,13 +96,18 @@ export default class TranInfo extends Component {
     return (
       <EventInfoForm
         state={this.getState(this.props.tran)}
+        trip_id={this.props.tran.trip_id}
+        e_id={this.props.tran.e_id}
         getEvent={this.getTran}
         onUpdate={this.props.onUpdate}
+        onDelete={this.props.onDelete}
+        close={this.props.close}
       />
     );
   }
 }
 
 TranInfo.propTypes = {
-  tran: PropTypes.object.isRequired
+  tran: PropTypes.object.isRequired,
+  close: PropTypes.func.isRequired
 };

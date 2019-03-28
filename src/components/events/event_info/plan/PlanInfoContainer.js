@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 import PlanInfo from './PlanInfo';
-
-import { updatePlanInDb } from '../../../../redux/actions/planActions';
+import {
+  deletePlanInDb,
+  updatePlanInDb
+} from '../../../../redux/actions/planActions';
 
 const mapStateToProps = () => {
   return {};
@@ -11,6 +13,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onUpdate: (plan) => {
       dispatch(updatePlanInDb(plan));
+    },
+    onDelete: (plan) => {
+      dispatch(deletePlanInDb(plan));
     }
   };
 };

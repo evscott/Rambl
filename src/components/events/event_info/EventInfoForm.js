@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Table } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import EventFieldView from './fields/EventFieldView';
 import EventFieldEdit from './fields/EventFieldEdit';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export class EventInfoForm extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export class EventInfoForm extends Component {
     this.onEdit = this.onEdit.bind(this);
     this.onCancel = this.onCancel.bind(this);
     this.onSave = this.onSave.bind(this);
+    this.onDelete = this.onDelete.bind(this);
   }
 
   /**
@@ -124,6 +126,14 @@ export class EventInfoForm extends Component {
     );
   }
 
+  /**
+   * Deletes an event.
+   */
+  onDelete() {
+    this.props.onDelete(this.props.getEvent(this.state));
+    this.props.close();
+  }
+
   /**************************** Visual component ****************************/
 
   render() {
@@ -137,7 +147,18 @@ export class EventInfoForm extends Component {
       </Table>
     );
 
-    return <div>{fields}</div>;
+    return (
+      <div>
+        {fields}
+        <Button
+          variant={'danger'}
+          className={'float-right'}
+          onClick={this.onDelete}
+        >
+          <FontAwesomeIcon size={'sm'} icon={['fas', 'bomb']} />
+        </Button>
+      </div>
+    );
   }
 }
 
