@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 import AccomInfo from './AccomInfo';
-
-import { updateAccomInDb } from '../../../../redux/actions/accomActions';
+import {
+  deleteAccomInDb,
+  updateAccomInDb
+} from '../../../../redux/actions/accomActions';
 
 const mapStateToProps = () => {
   return {};
@@ -11,6 +13,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onUpdate: (accom) => {
       dispatch(updateAccomInDb(accom));
+    },
+    onDelete: (accom) => {
+      dispatch(deleteAccomInDb(accom));
     }
   };
 };
