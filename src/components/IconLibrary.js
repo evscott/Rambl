@@ -9,7 +9,16 @@ import {
   faPlusSquare,
   faPencilAlt,
   faCheck,
-  faGrinBeam
+  faGrinBeam,
+  faGrinWink,
+  faGrinTongue,
+  faGrinTongueSquint,
+  faGrinTongueWink,
+  faLaughBeam,
+  faGrinStars,
+  faGrin,
+  faLaughWink,
+  faLaugh
 } from '@fortawesome/free-solid-svg-icons';
 import { far, faStar as faStar2 } from '@fortawesome/free-regular-svg-icons';
 
@@ -26,6 +35,15 @@ export function createIconLibrary() {
     faPlusSquare,
     faPencilAlt,
     faCheck,
-    faGrinBeam
+    faGrinBeam,
+    faGrinWink,
+    faGrinTongue,
+    faGrinTongueSquint,
+    faGrinTongueWink,
+    faLaughBeam,
+    faGrinStars,
+    faGrin,
+    faLaughWink,
+    faLaugh
   );
 }
