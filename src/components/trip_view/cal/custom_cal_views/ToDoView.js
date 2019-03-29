@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { ToDoItem } from './ToDoItem';
-import { filterTripToDos } from '../../../redux/getters/getEvents';
+import { filterTripToDos } from '../../../../redux/getters/getEvents';
 import { CreateEventCard } from './CreateEventCard';
 
 /**

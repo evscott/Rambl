@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import dates from './utils/dates';
-import { navigate } from './utils/constants';
-import { inRange } from './utils/eventLevels';
+import dates from '../utils/dates';
+import { navigate } from '../utils/constants';
+import { inRange } from '../utils/eventLevels';
 import { AgendaItem } from './AgendaItem';
 import { CreateEventCard } from './CreateEventCard';
 
@@ -15,7 +15,7 @@ import { CreateEventCard } from './CreateEventCard';
  */
 class Agenda extends React.Component {
   render() {
-    let { length, date, events, accessors, localizer } = this.props;
+    let { length, date, events, accessors } = this.props;
 
     // This gets the last date which should be displayed by the agenda
     // (only shows one month at a time)

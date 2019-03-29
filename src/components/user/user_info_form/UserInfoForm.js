@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './UserInfoForm.css';
 
+/**
+ * This component simply displays a users information.
+ */
 export class UserInfoForm extends Component {
   /**************************** Visual component ****************************/
 
