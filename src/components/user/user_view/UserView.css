@@ -1,0 +1,15 @@
+.display-inline {
+    display: inline;
+}
+
+.user-name {
+ margin-left: 65px;
+}
+
+.user-email {
+    margin-left: 51px;
+}
+
+.edit-button {
+    float: right;
+}

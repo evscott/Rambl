@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Modal } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import UserInfoFormContainer from '../user_info_form/UserInfoFormContainer';
+import UserViewContainer from '../user_view/UserViewContainer';
+import UserEdit from '../user_edit/UserEditContainer';
+import './UserModal.css';
 
 /**
  * This component creates a user information modal. It accepts two properties:
@@ -10,15 +12,36 @@ import UserInfoFormContainer from '../user_info_form/UserInfoFormContainer';
  * value of show.
  */
 export class UserModal extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { editMode: false };
+    this.toggleEdit = this.toggleEdit.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  toggleEdit() {
+    this.setState({ editMode: !this.state.editMode });
+  }
+
+  closeModal() {
+    this.setState({ editMode: false }, () => {
+      this.props.onHide();
+    });
+  }
+
   render() {
+    let userForm = this.state.editMode ? (
+      <UserEdit onReturn={this.toggleEdit} />
+    ) : (
+      <UserViewContainer onEdit={this.toggleEdit} />
+    );
+
     return (
-      <Modal show={this.props.show} onHide={this.props.onHide}>
+      <Modal show={this.props.show} onHide={this.closeModal}>
         <Modal.Header closeButton>
           <Modal.Title>Your info!</Modal.Title>
         </Modal.Header>
-        <Modal.Body className={'modal-body'}>
-          <UserInfoFormContainer />
-        </Modal.Body>
+        <Modal.Body>{userForm}</Modal.Body>
       </Modal>
     );
   }

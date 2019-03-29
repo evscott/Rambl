@@ -45,21 +45,19 @@ export default class UserInfoButton extends Component {
   render() {
     this.userIcon();
     return (
-      <div>
+      <OverlayTrigger
+        key={'1'}
+        placement={'left'}
+        overlay={
+          <Tooltip>
+            About <strong> you </strong>
+          </Tooltip>
+        }
+      >
         <Button className={'user-info'} onClick={this.props.toggleShow}>
-          <OverlayTrigger
-            key={'1'}
-            placement={'left'}
-            overlay={
-              <Tooltip>
-                About <strong> you </strong>
-              </Tooltip>
-            }
-          >
-            <FontAwesomeIcon size={'lg'} icon={['fas', this.userIcon()]} />
-          </OverlayTrigger>
+          <FontAwesomeIcon size={'lg'} icon={['fas', this.userIcon()]} />
         </Button>
-      </div>
+      </OverlayTrigger>
     );
   }
 }
