@@ -1,3 +1,4 @@
+import React from 'react';
 import { tripReducer } from '../reducers/tripReducer';
 import * as tripActions from '../actions/tripActions';
 import { logoutSuccess } from '../actions/authActions';

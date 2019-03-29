@@ -1,10 +1,11 @@
-import { authReducer } from '../reducers/authReducer';
+import React from 'react';
+import { userReducer } from '../reducers/userReducer';
 import * as authActions from '../actions/authActions';
 
-describe('authReducer', () => {
+describe('userReducer', () => {
   it('should return the initial state', () => {
     // Get initial state
-    const state = authReducer(undefined, {});
+    const state = userReducer(undefined, {});
 
     // Check that the state is correct
     expect(state).toEqual({
@@ -17,10 +18,10 @@ describe('authReducer', () => {
 
   it('should add user to the store on the action GET_USER_INFO_SUCCESS', () => {
     // Get initial state
-    let state = authReducer(undefined, {});
+    let state = userReducer(undefined, {});
 
     // Perform action
-    state = authReducer(
+    state = userReducer(
       state,
       authActions.getUserInfoSuccess([
         {
@@ -47,7 +48,7 @@ describe('authReducer', () => {
     };
 
     // Log out
-    state = authReducer(state, authActions.logoutSuccess());
+    state = userReducer(state, authActions.logoutSuccess());
 
     // Test the state after action: it should have removed the plan
     delete state.lastUpdated;
