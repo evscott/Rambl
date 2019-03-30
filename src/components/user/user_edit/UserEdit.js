@@ -8,7 +8,8 @@ import { TogglePasswordChange } from '../password_change/TogglePasswordChange';
 import { PasswordChange } from '../password_change/PasswordChange';
 
 /**
- * TODO
+ * User edit form. Users can change their name and/or their password by using
+ * a toggle password change button.
  */
 export class UserEdit extends Component {
   constructor(props) {
@@ -26,42 +27,33 @@ export class UserEdit extends Component {
     this.onUpdate = this.onUpdate.bind(this);
   }
 
-  /**
-   * TODO
-   * @param e
-   */
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value, attemptedSubmit: false });
-  }
+  /**************************** Helper functions ****************************/
 
   /**
-   * TODO
-   */
-  changePassword() {
-    this.setState({ changePassword: !this.state.changePassword });
-  }
-
-  /**
-   * TODO
+   * Updates the users information with their new password or with original.
+   * Returns the modal to view mode from edit mode.
+   * Sets the attemptedSubmit state to true to detect errors if any are encountered.
    */
   onUpdate() {
     this.setState({ attemptedSubmit: true });
-    if (this.state.changePassword) this.updateWithPassword();
+    if (this.state.changePassword) this.updateWithNewPassword();
     else this.updateUser();
     this.props.onReturn();
   }
 
   /**
-   * TODO
+   * Updates the users information with their new password if conditions
+   * are satisfied.
    */
-  updateWithPassword() {
+  updateWithNewPassword() {
     if (this.compareOldPasswords() && this.compareNewPasswords()) {
       this.updateUser(this.state.newPassword);
     }
   }
 
   /**
-   * TODO
+   * Updates user information - password defaults to current password
+   * if new password is not provided as argument.
    */
   updateUser(password = this.props.currentPassword) {
     this.props.updateUser({
@@ -72,7 +64,8 @@ export class UserEdit extends Component {
   }
 
   /**
-   * TODO
+   * Checks for any errors if a submission has been attempted and user password
+   * is being changed.
    */
   checkForError() {
     if (this.state.attemptedSubmit && this.state.changePassword) {
@@ -91,7 +84,7 @@ export class UserEdit extends Component {
   }
 
   /**
-   * TODO
+   * Compares the current password to the users input.
    */
   compareOldPasswords() {
     if (this.state.oldPassword !== this.props.currentPassword) {
@@ -101,13 +94,31 @@ export class UserEdit extends Component {
   }
 
   /**
-   * TODO
+   * Compares the new password to its confirmation.
    */
   compareNewPasswords() {
     if (this.state.newPassword !== this.state.confirmPassword) {
       return false;
     }
     return true;
+  }
+
+  /***************************** Core functions *****************************/
+
+  /**
+   * Handles input changes by assigning values to target names. Resets an
+   * attempted submission in case user is attempting to correct an error.
+   * @param e
+   */
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value, attemptedSubmit: false });
+  }
+
+  /**
+   * Toggles whether a user wants to change their password or not.
+   */
+  changePassword() {
+    this.setState({ changePassword: !this.state.changePassword });
   }
 
   /**************************** Visual component ****************************/
