@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 /**
- * TODO
+ * Generic submit button which accepts an onClick handler.
  */
 export class SubmitButton extends Component {
   render() {

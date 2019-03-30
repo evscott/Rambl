@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 /**
- * TODO
+ * Generic return button which accepts an onClick handler.
  */
 export class ReturnButton extends Component {
   render() {
