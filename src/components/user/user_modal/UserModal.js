@@ -20,14 +20,14 @@ export class UserModal extends Component {
   }
 
   /**
-   * TODO
+   * Toggles whether userInformation should be in view or edit mode.
    */
   toggleEdit() {
     this.setState({ editMode: !this.state.editMode });
   }
 
   /**
-   * TODO
+   * Resets userInformation to view mode and closes modal.
    */
   closeModal() {
     this.setState({ editMode: false }, () => {

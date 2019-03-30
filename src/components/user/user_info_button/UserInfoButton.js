@@ -5,7 +5,8 @@ import './UserInfoButton.css';
 import PropTypes from 'prop-types';
 
 /**
- * TODO
+ * Playful button which displays rotating emoji icons, and accepts
+ * an onClick handler.
  */
 export default class UserInfoButton extends Component {
   /**************************** Helper functions ****************************/
