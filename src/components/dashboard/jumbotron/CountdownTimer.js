@@ -2,11 +2,12 @@ import React from 'react';
 
 
 /**
- *
+ * Displays Time untill upcoming trip
  */
 
 export default class CountdownTimer extends React.Component {
 
+    /**************************** Helper functions ****************************/
     getTimeLeft(){
         var start = this.props.currTripInfo.trip_start;
         var curr = new Date();
@@ -18,6 +19,9 @@ export default class CountdownTimer extends React.Component {
         return { days: daysleft , hours: hoursleft, minutes: minutesleft, seconds: secondsleft }
     }
 
+    /**
+      * Creates all HTML for countdown timer
+      */
     getTimeDiv(){
         var time = this.getTimeLeft()
         return (<div><p>{time.days Days}</p>
@@ -26,7 +30,7 @@ export default class CountdownTimer extends React.Component {
                 <p>{time.seconds} </p></div>)
     }
 
-
+    /**************************** Visual component ****************************/
     render() {
         return (
             <div> {this.getTimeDiv} </div>

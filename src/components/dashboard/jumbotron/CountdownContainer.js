@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => {
     return {};
 };
 
-const DashboardContainer = connect(
+const CountdownContainer = connect(
     mapStateToProps,
     mapDispatchToProps
 )(CountdownTimer);
