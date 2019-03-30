@@ -10,9 +10,9 @@ const jwtDecoder = require('../shared/jwtDecoder');
 let updateUserInfo = async (req, res) => {
   let token = req.headers['x-access-token'];
   let email = jwtDecoder(token);
-  const params = [req.body.f_name, req.body.l_name, email];
+  const params = [req.body.f_name, req.body.l_name, req.body.password, email];
   const query = `UPDATE users
-                 SET f_name = ?, l_name = ?
+                 SET f_name = ?, l_name = ?, password = ?
                  WHERE email = ?;`;
   return databaseHandler.queryDatabase(res, query, params, 'Update user info');
 };

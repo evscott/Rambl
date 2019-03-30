@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './UserInfoButton.css';
 import PropTypes from 'prop-types';
 
+/**
+ * TODO
+ */
 export default class UserInfoButton extends Component {
   /**************************** Helper functions ****************************/
 

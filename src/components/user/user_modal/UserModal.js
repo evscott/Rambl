@@ -19,10 +19,16 @@ export class UserModal extends Component {
     this.closeModal = this.closeModal.bind(this);
   }
 
+  /**
+   * TODO
+   */
   toggleEdit() {
     this.setState({ editMode: !this.state.editMode });
   }
 
+  /**
+   * TODO
+   */
   closeModal() {
     this.setState({ editMode: false }, () => {
       this.props.onHide();

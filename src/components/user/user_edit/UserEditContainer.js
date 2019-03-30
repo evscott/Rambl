@@ -5,7 +5,8 @@ import { updateUserInfoInDb } from '../../../redux/actions/userActions';
 const mapStateToProps = (state) => {
   return {
     f_name: state.user.user.f_name,
-    l_name: state.user.user.l_name
+    l_name: state.user.user.l_name,
+    currentPassword: state.user.user.password
   };
 };
 

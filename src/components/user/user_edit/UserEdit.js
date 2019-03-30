@@ -4,35 +4,119 @@ import PropTypes from 'prop-types';
 import './UserEdit.css';
 import { SubmitButton } from '../../global/SubmitButton';
 import { ReturnButton } from '../../global/ReturnButton';
+import { TogglePasswordChange } from '../password_change/TogglePasswordChange';
+import { PasswordChange } from '../password_change/PasswordChange';
 
 /**
- * This component simply displays a users information.
+ * TODO
  */
 export class UserEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      changePassword: false,
       f_name: this.props.f_name,
-      l_name: this.props.l_name
+      l_name: this.props.l_name,
+      oldPassword: null,
+      newPassword: null,
+      confirmPassword: null
     };
     this.handleChange = this.handleChange.bind(this);
+    this.changePassword = this.changePassword.bind(this);
     this.onUpdate = this.onUpdate.bind(this);
   }
 
+  /**
+   * TODO
+   * @param e
+   */
   handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value, attemptedSubmit: false });
   }
 
+  /**
+   * TODO
+   */
+  changePassword() {
+    this.setState({ changePassword: !this.state.changePassword });
+  }
+
+  /**
+   * TODO
+   */
   onUpdate() {
-    this.props.updateUser(this.state);
+    this.setState({ attemptedSubmit: true });
+    if (this.state.changePassword) this.updateWithPassword();
+    else this.updateUser();
     this.props.onReturn();
+  }
+
+  /**
+   * TODO
+   */
+  updateWithPassword() {
+    if (this.compareOldPasswords() && this.compareNewPasswords()) {
+      this.updateUser(this.state.newPassword);
+    }
+  }
+
+  /**
+   * TODO
+   */
+  updateUser(password = this.props.currentPassword) {
+    this.props.updateUser({
+      f_name: this.state.f_name,
+      l_name: this.state.l_name,
+      password: password
+    });
+  }
+
+  /**
+   * TODO
+   */
+  checkForError() {
+    if (this.state.attemptedSubmit && this.state.changePassword) {
+      if (!this.compareOldPasswords())
+        return (
+          <div className="alert alert-danger">
+            Old password does not match current password.
+          </div>
+        );
+      if (this.compareNewPasswords())
+        return (
+          <div className="alert alert-danger">New passwords do not match.</div>
+        );
+    }
+    return null;
+  }
+
+  /**
+   * TODO
+   */
+  compareOldPasswords() {
+    if (this.state.oldPassword !== this.props.currentPassword) {
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * TODO
+   */
+  compareNewPasswords() {
+    if (this.state.newPassword !== this.state.confirmPassword) {
+      return false;
+    }
+    return true;
   }
 
   /**************************** Visual component ****************************/
   render() {
+    let errorMessage = this.checkForError();
     return (
       <div>
         <Form>
+          {/* Name change */}
           <Form.Row>
             <Col>
               <Form.Label>Your first name</Form.Label>
@@ -52,10 +136,20 @@ export class UserEdit extends Component {
             </Col>
           </Form.Row>
         </Form>
+        {/* Password change */}
+        <TogglePasswordChange toggle={this.changePassword} />
+        {errorMessage}
+        <PasswordChange
+          changePassword={this.state.changePassword}
+          handleChange={this.handleChange}
+        />
+        {/* Buttons */}
         <div className={'buttons'}>
+          {/* Submit */}
           <div className={'submit-button'}>
             <SubmitButton handleChange={this.onUpdate} />
           </div>
+          {/* Return */}
           <div className={'return-button'}>
             <ReturnButton handleChange={this.props.onReturn} />
           </div>

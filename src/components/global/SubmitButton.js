@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
+/**
+ * TODO
+ */
 export class SubmitButton extends Component {
   render() {
     return (

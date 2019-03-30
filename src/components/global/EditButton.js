@@ -3,6 +3,9 @@ import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+/**
+ * TODO
+ */
 export class EditButton extends Component {
   render() {
     return (

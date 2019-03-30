@@ -3,8 +3,7 @@ import UserInfoButton from './user_info_button/UserInfoButton';
 import { UserModal } from './user_modal/UserModal';
 
 /**
- *  Login handles the display for logging in along with associated
- *  redirection, and error message
+ *  TODO
  */
 export default class UserInfo extends Component {
   constructor(props) {
