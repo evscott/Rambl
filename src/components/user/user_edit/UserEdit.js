@@ -30,28 +30,6 @@ export class UserEdit extends Component {
   /**************************** Helper functions ****************************/
 
   /**
-   * Updates the users information with their new password or with original.
-   * Returns the modal to view mode from edit mode.
-   * Sets the attemptedSubmit state to true to detect errors if any are encountered.
-   */
-  onUpdate() {
-    this.setState({ attemptedSubmit: true });
-    if (this.state.changePassword) this.updateWithNewPassword();
-    else this.updateUser();
-    this.props.onReturn();
-  }
-
-  /**
-   * Updates the users information with their new password if conditions
-   * are satisfied.
-   */
-  updateWithNewPassword() {
-    if (this.compareOldPasswords() && this.compareNewPasswords()) {
-      this.updateUser(this.state.newPassword);
-    }
-  }
-
-  /**
    * Updates user information - password defaults to current password
    * if new password is not provided as argument.
    */
@@ -104,6 +82,28 @@ export class UserEdit extends Component {
   }
 
   /***************************** Core functions *****************************/
+
+  /**
+   * Updates the users information with their new password or with original.
+   * Returns the modal to view mode from edit mode.
+   * Sets the attemptedSubmit state to true to detect errors if any are encountered.
+   */
+  onUpdate() {
+    this.setState({ attemptedSubmit: true });
+    if (this.state.changePassword) this.updateWithNewPassword();
+    else this.updateUser();
+    this.props.onReturn();
+  }
+
+  /**
+   * Updates the users information with their new password if conditions
+   * are satisfied.
+   */
+  updateWithNewPassword() {
+    if (this.compareOldPasswords() && this.compareNewPasswords()) {
+      this.updateUser(this.state.newPassword);
+    }
+  }
 
   /**
    * Handles input changes by assigning values to target names. Resets an
