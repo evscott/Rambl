@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
  * Generic edit button which accepts an onClick handler.
  */
 export class EditButton extends Component {
+  /**************************** Visual component ****************************/
+
   render() {
     return (
       <OverlayTrigger

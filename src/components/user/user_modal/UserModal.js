@@ -19,6 +19,8 @@ export class UserModal extends Component {
     this.closeModal = this.closeModal.bind(this);
   }
 
+  /***************************** Core functions *****************************/
+
   /**
    * Toggles whether userInformation should be in view or edit mode.
    */
@@ -34,6 +36,8 @@ export class UserModal extends Component {
       this.props.onHide();
     });
   }
+
+  /**************************** Visual component ****************************/
 
   render() {
     let userForm = this.state.editMode ? (

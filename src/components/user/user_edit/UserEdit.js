@@ -122,6 +122,7 @@ export class UserEdit extends Component {
   }
 
   /**************************** Visual component ****************************/
+
   render() {
     let errorMessage = this.checkForError();
     return (
