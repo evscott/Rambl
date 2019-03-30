@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import CountdownContainer from  './CountdownContainer';
 /**
  *  UpcomingJumbotron displays when the user has at least one upcoming
  *  trip and no ongoing trips. It features a countdown to the next trip,
@@ -12,7 +12,7 @@ export default class UpcomingJumbotron extends Component {
   render() {
     return (
       <div>
-        <p>countdown component here</p>
+        <CountdownContainer/>
         <p>until</p>
         <h2>{this.props.trip != null ? this.props.trip.name : false}</h2>
         <div className="flex-wrap-center">

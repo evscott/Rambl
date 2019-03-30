@@ -4,7 +4,7 @@ import {getCurrTrip} from "../../../redux/getters/getTrips";
 
 const mapStateToProps = (state) => {
     return {
-        currTripInfo: getCurrTrip(state),
+        currTripInfo: getCurrTrip(state)
     };
 };
 

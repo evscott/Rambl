@@ -52,7 +52,7 @@ export default class CurrentJumbotron extends Component {
    * @returns {*} HTML for current events
    */
   getCurrentDiv() {
-    if (this.state.hasCurrEvent()) {
+    if ( 1 ) {
       return (
         <div>
           <h2>Ongoing Events</h2>

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component }  from 'react';
 
 
 /**
  * Displays Time untill upcoming trip
  */
 
-export default class CountdownTimer extends React.Component {
+export default class CountdownTimer extends Component {
 
     /**************************** Helper functions ****************************/
     getTimeLeft(){
@@ -24,10 +24,10 @@ export default class CountdownTimer extends React.Component {
       */
     getTimeDiv(){
         var time = this.getTimeLeft()
-        return (<div><p>{time.days Days}</p>
-                <p>{time.hours Hours}</p>
-                <p>{time.minutes} </p>
-                <p>{time.seconds} </p></div>)
+        return (<div><p>time.days Days</p>
+                <p>time.hours Hours</p>
+                <p>time.minutes</p>
+                <p>time.seconds </p></div>)
     }
 
     /**************************** Visual component ****************************/
