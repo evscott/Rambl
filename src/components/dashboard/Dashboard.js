@@ -4,6 +4,7 @@ import UpcomingTripsContainer from './UpcomingTripsContainer';
 import PreviousTripsContainer from './PreviousTripsContainer';
 import DashboardNavContainer from './DashboardNavContainer';
 import './Dashboard.css';
+import UserInfo from '../user/UserInfo';
 
 /**
  *  Dashboard is a component that holds all of the dashboard helper components
@@ -14,6 +15,7 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div>
+        <UserInfo />
         <div className="sidebar">
           <DashboardNavContainer />
         </div>
