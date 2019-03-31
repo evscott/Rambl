@@ -262,6 +262,7 @@ export function addTripToDb(trip) {
       .then((json) => {
         if (json.success === false) dispatch(addTripToDbFailure());
         else {
+          console.log(json.result);
           dispatch(addTripToDbSuccess());
           dispatch(getTripInfoFromDb(json.result)); // Fetch updated trip
         }

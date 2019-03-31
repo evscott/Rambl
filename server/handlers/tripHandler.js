@@ -46,7 +46,6 @@ let getTrip = async (req, res) => {
  * @returns {Promise<void>} the promise indicating success
  */
 let addTrip = async (req, res) => {
-  console.log('HELLO');
   let token = req.headers['x-access-token'];
   let email = jwtDecoder(token);
   const query = `INSERT INTO trips (user_id, name, dscript)
@@ -56,7 +55,6 @@ let addTrip = async (req, res) => {
                      WHERE email = ?), ?, ?
                     )`;
   const params = [email, req.body.name, req.body.dscript];
-  console.log(req.body);
   return databaseHandler.queryDatabaseBoolean(res, query, params, 'Add trip');
 };
 

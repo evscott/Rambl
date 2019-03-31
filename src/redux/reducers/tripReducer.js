@@ -1,5 +1,4 @@
 import { filterSingleDimensionalArray } from '../../shared/filterArray';
-import { updateSingleDimensionalArray } from '../../shared/updateArray';
 import * as TripActions from '../actions/tripActions';
 import { LOGOUT_SUCCESS } from '../actions/authActions';
 
@@ -69,11 +68,7 @@ export function tripReducer(state = initialState, action) {
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
-        trips: updateSingleDimensionalArray(
-          state.trips,
-          action.tripToAdd.trip_id,
-          action.tripToAdd
-        )
+        trips: [...state.trips, action.tripToAdd]
       };
     case TripActions.UPDATE_TRIP_IN_DB_REQUEST:
       return {
@@ -123,11 +118,9 @@ export function tripReducer(state = initialState, action) {
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
-        trips: filterSingleDimensionalArray(
-          state.trips,
-          action.tripToDelete.trip_id,
-          action.tripToDelete.e_id
-        )
+        trips: state.trips.filter((trip) => {
+          return trip.trip_id !== action.tripToDelete.trip_id;
+        })
       };
     case TripActions.GET_TRIP_INFO_FROM_DB_REQUEST:
       return {
