@@ -7,11 +7,7 @@ const verifier = require('../shared/verifyPermissions');
 // All the routes for trips
 router.get('/get', middleware.checkToken, tripHandler.getTrips);
 router.get('/get/:trip_id', middleware.checkToken, tripHandler.getTrip);
-router.post(
-  '/add',
-  middleware.checkToken,
-  tripHandler.addTrip
-);
+router.post('/add', middleware.checkToken, tripHandler.addTrip);
 router.put(
   '/update',
   middleware.checkToken,
