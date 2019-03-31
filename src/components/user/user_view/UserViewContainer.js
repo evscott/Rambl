@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { UserInfoForm } from './UserInfoForm';
+import { UserView } from './UserView';
 
 const mapStateToProps = (state) => {
   return {
@@ -14,9 +14,9 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-const UserInfoFormContainer = connect(
+const UserViewContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(UserInfoForm);
+)(UserView);
 
-export default UserInfoFormContainer;
+export default UserViewContainer;

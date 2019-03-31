@@ -19,7 +19,8 @@ import {
   faGrinStars,
   faGrin,
   faLaughWink,
-  faLaugh
+  faLaugh,
+  faLongArrowAltLeft
 } from '@fortawesome/free-solid-svg-icons';
 import { far, faStar as faStar2 } from '@fortawesome/free-regular-svg-icons';
 
@@ -46,6 +47,7 @@ export function createIconLibrary() {
     faGrinStars,
     faGrin,
     faLaughWink,
-    faLaugh
+    faLaugh,
+    faLongArrowAltLeft
   );
 }
