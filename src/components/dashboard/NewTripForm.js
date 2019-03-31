@@ -36,7 +36,6 @@ export default class NewTripForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('I AM HERE', this.state.name);
     this.setState({ attemptedSubmit: true });
     if (this.state.name) {
       this.props.addTrip(this.getTripObj());
