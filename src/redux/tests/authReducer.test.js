@@ -11,7 +11,7 @@ describe('authReducer', () => {
       lastUpdated: null,
       isAuthenticated: false,
       isFetching: false,
-      user: []
+      user: {}
     });
   });
 

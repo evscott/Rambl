@@ -12,7 +12,7 @@ describe('tranReducer', () => {
       lastUpdated: null,
       isFetching: false,
       isSynced: false,
-      trans: []
+      trans: {}
     });
   });
 

@@ -12,7 +12,7 @@ describe('tripReducer', () => {
       lastUpdated: null,
       isFetching: false,
       isSynced: false,
-      trips: []
+      trips: {}
     });
   });
 
