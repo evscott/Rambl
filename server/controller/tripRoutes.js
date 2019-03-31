@@ -10,7 +10,6 @@ router.get('/get/:trip_id', middleware.checkToken, tripHandler.getTrip);
 router.post(
   '/add',
   middleware.checkToken,
-  verifier.canEditTrip,
   tripHandler.addTrip
 );
 router.put(

@@ -19,7 +19,9 @@ let canEditTrip = async (req, res, next) => {
                   (SELECT user_id FROM trips
                   WHERE trip_id=?)`;
   try {
+    console.log('Trying to see permissions');
     databaseHandler.queryDatabaseSilent(query, params).then((success) => {
+      console.log('Found permissions');
       console.log(success);
       if (success.length > 0) {
         next();
