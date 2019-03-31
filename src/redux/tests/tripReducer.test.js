@@ -12,7 +12,7 @@ describe('tripReducer', () => {
       lastUpdated: null,
       isFetching: false,
       isSynced: false,
-      trips: {}
+      trips: []
     });
   });
 
@@ -23,9 +23,11 @@ describe('tripReducer', () => {
     // Perform action
     state = tripReducer(
       state,
-      tripActions.getTripsFromDbSuccess({
-        test: 'This is a test'
-      })
+      tripActions.getTripsFromDbSuccess([
+        {
+          test: 'This is a test'
+        }
+      ])
     );
 
     // Test the state after action: it should have added the plan
@@ -33,7 +35,7 @@ describe('tripReducer', () => {
     expect(state).toEqual({
       isFetching: false,
       isSynced: true,
-      trips: { test: 'This is a test' }
+      trips: [{ test: 'This is a test' }]
     });
   });
 
@@ -43,7 +45,7 @@ describe('tripReducer', () => {
       lastUpdated: null,
       isFetching: false,
       isSynced: false,
-      trips: { test: 'This is a test' }
+      trips: [{ test: 'This is a test' }]
     };
 
     // Log out
@@ -54,7 +56,7 @@ describe('tripReducer', () => {
     expect(state).toEqual({
       isFetching: false,
       isSynced: false,
-      trips: {}
+      trips: []
     });
   });
 });
