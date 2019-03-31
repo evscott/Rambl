@@ -22,7 +22,7 @@ function shouldShow(events, eventType, filter) {
  * @returns {boolean} whether the state is valid (true if ok)
  */
 function isValid(state) {
-  if (
+  return !(
     state == null ||
     state.plans == null ||
     state.plans.plans == null ||
@@ -30,10 +30,7 @@ function isValid(state) {
     state.accoms.accoms == null ||
     state.trans == null ||
     state.trans.trans == null
-  ) {
-    return false;
-  }
-  return true;
+  );
 }
 
 /**

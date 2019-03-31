@@ -1,5 +1,5 @@
 import { getTripEvents } from './getEvents';
-//import { convertAllDates } from './convertDate';
+import { convertAllDates } from './convertDate';
 
 /**
  * Gets the start and end times of a trip by going through the state
@@ -12,7 +12,7 @@ import { getTripEvents } from './getEvents';
  */
 export function getTripTimes(state, tripId) {
   let events = getTripEvents(state, tripId);
-  //events = convertAllDates(events);
+  events = convertAllDates(events);
   let tripStart = null;
   let tripEnd = null;
 
