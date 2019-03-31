@@ -4,6 +4,7 @@ import CurrentJumbotron from './CurrentJumbotron';
 
 const mapStateToProps = (state, ownProps) => {
   let activeEvents = getActiveEvents(state, ownProps.id);
+  console.log(activeEvents);
 
   return {
     currEvents: activeEvents.current,
