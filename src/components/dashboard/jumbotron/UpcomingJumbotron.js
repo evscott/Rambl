@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import HighlightsContainer from './HighlightsContainer';
 
 /**
  *  UpcomingJumbotron displays when the user has at least one upcoming
@@ -8,30 +9,45 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
  */
 
 export default class UpcomingJumbotron extends Component {
+  /**************************** Helper functions ****************************/
+  /**
+   * Generates the notes information to be displayed
+   * @return {*} notes icon followed by either the trip notes or a
+   * message indicating there are no trip notes
+   */
+  getNotesDiv() {
+    let par = '';
+    if (this.props.trip.dscript) {
+      par = <p>Notes: {this.props.trip.dscript}</p>;
+    } else {
+      par = <p>You do not have any notes</p>;
+    }
+    return (
+      <div>
+        <FontAwesomeIcon
+          size="lg"
+          icon={['far', 'star']}
+          className="light-blue"
+        />
+        {par}
+      </div>
+    );
+  }
   /**************************** Visual component ****************************/
   render() {
     return (
       <div>
         <p>countdown component here</p>
         <p>until</p>
-        <h2>{this.props.trip != null ? this.props.trip.name : false}</h2>
+        <h2>{this.props.trip.name}</h2>
         <div className="flex-wrap-center">
+          {/* Highlights */}
           <div className="jumbo-component">
-            <FontAwesomeIcon
-              size="lg"
-              icon={['far', 'star']}
-              className="yellow"
-            />
-            <p>Highlight component here</p>
+            <HighlightsContainer id={this.props.trip.trip_id} />
           </div>
-          <div className="jumbo-component">
-            <FontAwesomeIcon
-              size="lg"
-              icon={['far', 'star']}
-              className="light-blue"
-            />
-            <p>Notes: {this.props.trip ? this.props.trip.dscript : false}</p>
-          </div>
+          {/* Notes */}
+          <div className="jumbo-component">{this.getNotesDiv()}</div>
+          {/* Stats */}
           <div className="jumbo-component">
             <FontAwesomeIcon size="lg" icon={['far', 'star']} className="red" />
             <p>Stats component here</p>

@@ -68,7 +68,11 @@ export default class Login extends Component {
       return <Redirect to="/dashboard" />;
     } else {
       let errorDiv = '';
-      if (this.state.attemptedSubmit && !this.userInfoRetrieved()) {
+      if (
+        this.state.attemptedSubmit &&
+        !this.props.isAuthenticated &&
+        !this.props.isFetching
+      ) {
         errorDiv = (
           <div className="alert alert-danger">
             Login failed with the provided username and password.

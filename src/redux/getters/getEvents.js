@@ -22,7 +22,7 @@ function shouldShow(events, eventType, filter) {
  * @returns {boolean} whether the state is valid (true if ok)
  */
 function isValid(state) {
-  if (
+  return !(
     state == null ||
     state.plans == null ||
     state.plans.plans == null ||
@@ -30,10 +30,7 @@ function isValid(state) {
     state.accoms.accoms == null ||
     state.trans == null ||
     state.trans.trans == null
-  ) {
-    return false;
-  }
-  return true;
+  );
 }
 
 /**
@@ -171,4 +168,47 @@ export function getActiveEvents(state, tripId) {
   });
 
   return { current: currEvents, upcoming: upcomingEvents };
+}
+
+/**
+ *  This gets all of the events that are flagged as high
+ *  priority (priority 2), med priority (1), and low priority (0)
+ *  and stores them in an appropriate array
+ * @param state the state of the Redux store
+ * @param tripId the ID of the trip to check events for
+ * @returns {{highPriority: Array, medPriority: Array, lowPriority: Array}}
+ * arrays of all high priority, medium priority, and low priority events (respectively)
+ */
+export function getPrioritizedEvents(state, tripId) {
+  let hpEvents = [];
+  let mpEvents = [];
+  let lpEvents = [];
+
+  let plans = state.plans.plans[tripId];
+  let accoms = state.accoms.accoms[tripId];
+  let trans = state.trans.trans[tripId];
+
+  let events = [];
+  if (plans != null) events = [...Object.values(plans)];
+  if (accoms != null) events = [...events, ...Object.values(accoms)];
+  if (trans != null) events = [...events, ...Object.values(trans)];
+
+  events.forEach((event) => {
+    if (event.priority === 2) {
+      hpEvents.push({ ...event });
+    } else if (event.priority === 1) {
+      mpEvents.push({ ...event });
+    } else {
+      lpEvents.push({ ...event });
+    }
+  });
+
+  sortEvents(hpEvents);
+  sortEvents(mpEvents);
+  sortEvents(lpEvents);
+  return {
+    highPriority: hpEvents,
+    medPriority: mpEvents,
+    lowPriority: lpEvents
+  };
 }
