@@ -154,7 +154,6 @@ export function getActiveEvents(state, tripId) {
   convertAllDates(events);
 
   events.forEach((event) => {
-    console.log(event.begin_time instanceof Date);
     if (
       event.begin_time === null || // Then it's a planned future event
       event.begin_time > new Date() // Then it's in the future
