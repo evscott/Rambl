@@ -66,6 +66,10 @@ export class TripCal extends Component {
     this.setState({ showNewEvent: false });
   }
 
+  getEventClass(event) {
+    return { className: event.event_type + '-event' };
+  }
+
   render() {
     // Define the special components for the BigCalendar which differ from
     // the defaults.
@@ -91,6 +95,7 @@ export class TripCal extends Component {
             onSelectSlot={this.createEvent}
             popup={true}
             components={components}
+            eventPropGetter={this.getEventClass}
             views={{
               month: true,
               week: true,

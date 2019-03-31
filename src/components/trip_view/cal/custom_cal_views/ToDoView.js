@@ -80,4 +80,9 @@ ToDoList.title = () => {
   return 'Trip To-Dos';
 };
 
+// This is required for react-big-calendar
+ToDoList.navigate = () => {
+  return null;
+};
+
 export default ToDoList;
