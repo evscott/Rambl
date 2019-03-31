@@ -31,6 +31,7 @@ export function convertDate(dateString) {
  * @return the events array (again)
  */
 export function convertAllDates(events) {
+  if (events == null) return null;
   events.forEach((event) => {
     // Change the begin_time and end_time into a date object
     event.begin_time = convertDate(event.begin_time);

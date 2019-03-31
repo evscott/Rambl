@@ -1,3 +1,5 @@
+import { convertAllDates } from './convertDate';
+
 /**
  * Helper method that checks if events of a certain types should be
  * shown or not based on the contents of the filter.
@@ -14,6 +16,27 @@ function shouldShow(events, eventType, filter) {
 }
 
 /**
+ * Checks if a state is not null (along with all the inner
+ * pieces of the state needed to get events).
+ * @param state the state of the redux store
+ * @returns {boolean} whether the state is valid (true if ok)
+ */
+function isValid(state) {
+  if (
+    state == null ||
+    state.plans == null ||
+    state.plans.plans == null ||
+    state.accoms == null ||
+    state.accoms.accoms == null ||
+    state.trans == null ||
+    state.trans.trans == null
+  ) {
+    return false;
+  }
+  return true;
+}
+
+/**
  * Gets all events associated with a trip in the form of an array, and assigns
  * each a property called "event_type", which has a value of "plan", "accom",
  * or "trans", depending on the event's type.
@@ -23,6 +46,9 @@ function shouldShow(events, eventType, filter) {
  * @returns {any[]} the array of events associated with the trip.
  */
 export function getTripEvents(state, tripId, filter = null) {
+  // Check for nulls, just in case.
+  if (!isValid(state)) return [];
+
   if (filter == null) filter = new Set(['all']);
   else filter = new Set(filter.split(' ')); // Get all of the filters in a set
   let plans = state.plans.plans[tripId];
@@ -46,7 +72,7 @@ export function getTripEvents(state, tripId, filter = null) {
 
   // This does a deeper copy of the events than before, and it adds an extra
   // property to the event types' names.
-  return [
+  let events = [
     ...plans.map((plan) => ({
       ...plan,
       event_type: 'plan'
@@ -60,6 +86,8 @@ export function getTripEvents(state, tripId, filter = null) {
       event_type: 'trans'
     }))
   ];
+  convertAllDates(events);
+  return events;
 }
 
 /**
@@ -106,6 +134,9 @@ function sortEvents(events) {
  * current events, the second is an array of upcoming events.
  */
 export function getActiveEvents(state, tripId) {
+  // Check for nulls, just in case.
+  if (!isValid(state)) return [];
+
   let currEvents = [];
   let upcomingEvents = [];
 
@@ -120,6 +151,7 @@ export function getActiveEvents(state, tripId) {
   if (plans != null) events = [...Object.values(plans)];
   if (accoms != null) events = [...events, ...Object.values(accoms)];
   if (trans != null) events = [...events, ...Object.values(trans)];
+  convertAllDates(events);
 
   events.forEach((event) => {
     if (
