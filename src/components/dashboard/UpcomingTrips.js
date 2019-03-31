@@ -36,7 +36,7 @@ export default class UpcomingTrips extends Component {
         <Button
           variant={'danger'}
           className={'float-right'}
-          onClick={this.handleDelete}
+          onClick={() => this.handleDelete(trip)}
         >
           <FontAwesomeIcon size={'sm'} icon={['fas', 'bomb']} />
         </Button>

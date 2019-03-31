@@ -314,6 +314,7 @@ export function updateTripInDb(trip) {
  */
 export function deleteTripInDb(trip) {
   return (dispatch) => {
+    console.log(trip);
     dispatch(deleteTripInDbRequest()); // Delete trip request process has begun...
     return fetch(hostUrl + '/trip/delete', {
       headers: {
