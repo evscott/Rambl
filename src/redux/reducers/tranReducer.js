@@ -7,7 +7,7 @@ const initialState = {
   lastUpdated: null,
   isFetching: false,
   isSynced: false,
-  trans: []
+  trans: {}
 };
 
 export function tranReducer(state = initialState, action) {

@@ -7,7 +7,7 @@ const initialState = {
   lastUpdated: null,
   isFetching: false,
   isSynced: false,
-  accoms: []
+  accoms: {}
 };
 
 export function accomReducer(state = initialState, action) {

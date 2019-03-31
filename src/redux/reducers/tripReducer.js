@@ -1,4 +1,3 @@
-import { filterSingleDimensionalArray } from '../../shared/filterArray';
 import * as TripActions from '../actions/tripActions';
 import { LOGOUT_SUCCESS } from '../actions/authActions';
 
