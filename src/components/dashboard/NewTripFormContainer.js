@@ -2,8 +2,10 @@ import { connect } from 'react-redux';
 import NewTripForm from './NewTripForm';
 import { addTripToDb } from '../../redux/actions/tripActions';
 
-const mapStateToProps = (state) => {
-  return {};
+const mapStateToProps = (state, ownProps) => {
+  return {
+    close: ownProps.close
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {

@@ -11,16 +11,22 @@ import NewTripModal from './NewTripModal';
 export default class DashboardNav extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       showNewTrip: false
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
+
+    this.handleLogout = this.handleLogout.bind(this);
     this.startCreateEvent = this.startCreateEvent.bind(this);
     this.quitCreateEvent = this.quitCreateEvent.bind(this);
   }
 
   /***************************** Core functions *****************************/
-  handleSubmit(e) {
+  /**
+   * Logs user out
+   * @param e click event
+   */
+  handleLogout(e) {
     e.preventDefault();
     this.props.onLogout();
   }
@@ -34,6 +40,7 @@ export default class DashboardNav extends Component {
 
   /**
    * This opens the create trip modal.
+   * @param e click event
    */
   startCreateEvent(e) {
     e.preventDefault();
@@ -78,7 +85,7 @@ export default class DashboardNav extends Component {
           />
 
           {/* Logout button */}
-          <Form name="logout" onSubmit={this.handleSubmit}>
+          <Form name="logout" onSubmit={this.handleLogout}>
             <Button className="btn btn-default" type="submit">
               Logout
             </Button>

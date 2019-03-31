@@ -29,23 +29,32 @@ export default class NewTripForm extends Component {
     };
   }
 
+  /**
+   * Updates state to the user's input
+   * @param e click event
+   */
   handleChange(e) {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   }
 
+  /**
+   * If name and description exist, add trip and close modal
+   * @param e click event
+   */
   handleSubmit(e) {
     e.preventDefault();
     this.setState({ attemptedSubmit: true });
-    if (this.state.name) {
+    if (this.state.name && this.state.dscript) {
       this.props.addTrip(this.getTripObj());
+      this.props.close();
     }
   }
   /**************************** Visual component ****************************/
-
   render() {
     return (
       <div>
+        {/* Name */}
         <FormInput
           name="name"
           displayName="Trip Name"
@@ -55,11 +64,13 @@ export default class NewTripForm extends Component {
           value={this.state.name}
         />
 
+        {/* Description */}
         <FormInput
           name="dscript"
           displayName="Description"
           type="text"
           handleChange={this.handleChange}
+          attemptedSubmit={this.state.attemptedSubmit}
           value={this.state.dscript}
         />
 
