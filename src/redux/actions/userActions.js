@@ -83,7 +83,7 @@ export function getUserInfoFromDb() {
     })
       .then((response) => response.json())
       .then((json) => {
-        if (json.length === 0) dispatch(getUserInfoFromDbFailure());
+        if (json.success === false) dispatch(getUserInfoFromDbFailure());
         else dispatch(getUserInfoFromDbSuccess(json.result[0]));
       });
   };
@@ -94,9 +94,7 @@ export function getUserInfoFromDb() {
  * Dispatches updateUserInfoInDb to indicate the beginning of an updateUserInfoInDb process.
  * Dispatches updateUserInfoInDbFailure to indicate the end of a failed updateUserInfoInDb process.
  * Dispatches updateUserInfoInDbSuccess to indicate the end of a successful updateUserInfoInDb process.
- * If updateUserInfoInDb process succeeds, the outdated trip is filtered out of the state list
- * and getTripInfoFromDb is dispatched using the trip_id of the updated trip.
- * @param trip object containing name, dscript, trip_id.
+ * @param user object containing user_id, f_name, l_name, email, and password.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
 export function updateUserInfoInDb(user) {

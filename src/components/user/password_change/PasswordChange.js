@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Form } from 'react-bootstrap';
 
 /**
- * This component simply displays a users information.
+ * This component provides the forms required for a password change.
  */
 export class PasswordChange extends Component {
   /**************************** Visual component ****************************/
