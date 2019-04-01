@@ -43,7 +43,6 @@ export default class OngoingJumbotron extends Component {
       return (
         <div>
           <p>{upcoming.dscript}</p>
-          <p />
         </div>
       );
     }
