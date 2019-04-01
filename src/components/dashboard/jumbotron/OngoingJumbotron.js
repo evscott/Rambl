@@ -54,7 +54,7 @@ export default class OngoingJumbotron extends Component {
    * Creates all HTML for current events (if they exist)
    * @returns {*} HTML for current events
    */
-  getEventsDiv() {
+  getCurrentEventsDiv() {
     if (this.hasCurrEvent()) {
       return (
         <div>
@@ -69,7 +69,7 @@ export default class OngoingJumbotron extends Component {
    * Creates all HTML for upcoming events (if any exist)
    * @returns {*} HTML for upcoming events
    */
-  getUpcomingDiv() {
+  getUpcomingEventsDiv() {
     if (this.hasUpcomingEvent()) {
       return (
         <div>
@@ -86,8 +86,8 @@ export default class OngoingJumbotron extends Component {
       <div>
         <p>You have an ongoing trip!</p>
         <h2>{this.props.trip.name}</h2>
-        {this.getEventsDiv()}
-        {this.getUpcomingDiv()}
+        {this.getCurrentEventsDiv()}
+        {this.getUpcomingEventsDiv()}
 
         <div className="flex-wrap-center">
           {/* Highlights */}
