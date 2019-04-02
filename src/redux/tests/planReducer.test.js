@@ -12,7 +12,7 @@ describe('planReducer', () => {
       lastUpdated: null,
       isFetching: false,
       isSynced: false,
-      plans: []
+      plans: {}
     });
   });
 
