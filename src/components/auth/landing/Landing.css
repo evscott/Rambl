@@ -1,35 +1,78 @@
+/* -----------------------------
+PAGE LAYOUT
+---------------------------------*/
 .landing {
-    padding: 100px 0;
+  padding: 80px 0;
 }
 
 .title{
-    padding: 50px 0;
+  padding: 80px 0;
 }
 
+@media screen and (max-width: 380px){
+  .landing{
+    padding: 30px 0;
+  }
+
+  .title{
+    padding: 40px 0 70px 0;
+  }
+}
+
+/* -----------------------------
+TYPOGRAPHY
+---------------------------------*/
 .title h1{
-    font-size: 50px;
+  font-size: 80px;
 }
 
 span{
-    padding: 0 5px;
+  padding: 0 5px;
 }
 
 .red{
-    color: #f78888;
+  color: #f78888;
 }
 
 .yellow{
-    color: #f3d250;
+  color: #f3d250;
 }
 
 .light-blue{
-    color: #90ccf4;
+  color: #90ccf4;
 }
 
 .dark-blue{
-    color: #5da2d5;
+  color: #5da2d5;
 }
 
-.button-landing{
+/* -----------------------------
+BUTTONS
+---------------------------------*/
 
+.btn-landing{
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.btn-landing:after {
+   content: '';
+   width: 20%;
+   height: 100%;
+   position: absolute;
+   left: auto;
+   top: 0;
+   bottom: 0;
+   right: -20%;
+   background-image:
+           linear-gradient(135deg,
+           rgba(255,255,255,0),
+           rgba(255,255,255,.8),
+           rgba(255,255,255,0)
+           );
+ }
+
+.btn-landing:after:hover {
+  transition: all .4s ease-out;
+  right: 100%;
 }
