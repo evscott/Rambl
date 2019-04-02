@@ -1,0 +1,12 @@
+.return-button {
+    float: right;
+}
+
+.submit-button {
+    margin-left: 2px;
+    float: right;
+}
+
+.buttons {
+    margin-top: 5px;
+}

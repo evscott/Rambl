@@ -3,6 +3,8 @@
  We can edit these styles as needed.
  */
 
+
+
 .cal-container {
   height: 500px;
 }
@@ -218,6 +220,7 @@ button.rbc-input::-moz-focus-inner {
   cursor: pointer;
   width: 100%;
   text-align: left;
+  transition: all 0.4s;
 }
 .rbc-slot-selecting .rbc-event {
   cursor: inherit;
@@ -707,4 +710,42 @@ button.rbc-input::-moz-focus-inner {
   height: 1px;
   background-color: #74ad31;
   pointer-events: none;
+}
+
+
+/*
+Custom styles, subject to change.
+ */
+
+.rbc-event.trans-event {
+  background-color: #f78888;
+  color: #000;
+}
+.rbc-event.trans-event.rbc-selected,
+.rbc-event.trans-event:focus,
+.rbc-event.trans-event:hover {
+  background-color: #a63f3f;
+  color: #FFF;
+}
+
+.rbc-event.plan-event {
+  background-color: #f3d250;
+  color: #000;
+}
+.rbc-event.plan-event.rbc-selected,
+.rbc-event.plan-event:focus,
+.rbc-event.plan-event:hover {
+  background-color: #91751d;
+  color: #FFF;
+}
+
+.rbc-event.accom-event {
+  background-color: #90ccf4;
+  color: #000;
+}
+.rbc-event.accom-event.rbc-selected,
+.rbc-event.accom-event:focus,
+.rbc-event.accom-event:hover {
+  background-color: #466377;
+  color: #FFF;
 }
