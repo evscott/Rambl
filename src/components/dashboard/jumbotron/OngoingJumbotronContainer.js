@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
 import { getActiveEvents } from '../../../redux/getters/getEvents';
-import CurrentJumbotron from './CurrentJumbotron';
+import OngoingJumbotron from './OngoingJumbotron';
 
 const mapStateToProps = (state, ownProps) => {
-  let activeEvents = getActiveEvents(state, ownProps.id);
+  let activeEvents = getActiveEvents(state, ownProps.trip.trip_id);
 
   return {
     currEvents: activeEvents.current,
-    upcomingEvents: activeEvents.upcoming
+    upcomingEvents: activeEvents.upcoming,
+    trip: ownProps.trip
   };
 };
 
@@ -15,9 +16,9 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-const CurrentJumbotronContainer = connect(
+const OngoingJumbotronContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CurrentJumbotron);
+)(OngoingJumbotron);
 
-export default CurrentJumbotronContainer;
+export default OngoingJumbotronContainer;
