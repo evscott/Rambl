@@ -249,7 +249,6 @@ export function getTripsFromDb() {
 export function addTripToDb(trip) {
   return (dispatch) => {
     dispatch(addTripToDbRequest()); // Add trip request process has begun...
-    console.log(trip);
     return fetch(hostUrl + '/trip/add', {
       headers: {
         'Content-Type': 'application/json',
@@ -262,6 +261,7 @@ export function addTripToDb(trip) {
       .then((json) => {
         if (json.success === false) dispatch(addTripToDbFailure());
         else {
+          console.log(json.result);
           dispatch(addTripToDbSuccess());
           dispatch(getTripInfoFromDb(json.result)); // Fetch updated trip
         }

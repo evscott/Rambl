@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Button } from 'react-bootstrap';
 
 /**
  *  PreviousTrips displays a list of all previous
@@ -7,9 +9,17 @@ import { Link } from 'react-router-dom';
  */
 
 export default class PreviousTrips extends Component {
+  constructor(props) {
+    super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
   /**************************** Helper functions ****************************/
   hasPrevious() {
     return this.props.previous && this.props.previous.length;
+  }
+
+  handleDelete(trip) {
+    this.props.deleteTrip(trip);
   }
 
   /**
@@ -23,6 +33,13 @@ export default class PreviousTrips extends Component {
           <p>{trip.name}</p>
         </Link>
         <p>{trip.dscript}</p>
+        <Button
+          variant={'danger'}
+          className={'float-right'}
+          onClick={() => this.handleDelete(trip)}
+        >
+          <FontAwesomeIcon size={'sm'} icon={['fas', 'bomb']} />
+        </Button>
       </div>
     ));
   }

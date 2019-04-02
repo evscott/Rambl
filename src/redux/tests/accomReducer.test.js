@@ -12,7 +12,7 @@ describe('accomReducer', () => {
       lastUpdated: null,
       isFetching: false,
       isSynced: false,
-      accoms: []
+      accoms: {}
     });
   });
 

@@ -5,6 +5,7 @@ export const updateMultiDimensionalArray = (
   elementToBeAdded
 ) => {
   let newArr = Object.assign({}, array);
+  if (newArr[key] === undefined) newArr[key] = {};
   newArr[key][id] = elementToBeAdded;
   return newArr;
 };
