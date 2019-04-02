@@ -249,7 +249,6 @@ export function getTripsFromDb() {
 export function addTripToDb(trip) {
   return (dispatch) => {
     dispatch(addTripToDbRequest()); // Add trip request process has begun...
-    console.log(trip);
     return fetch(hostUrl + '/trip/add', {
       headers: {
         'Content-Type': 'application/json',
@@ -314,7 +313,6 @@ export function updateTripInDb(trip) {
  */
 export function deleteTripInDb(trip) {
   return (dispatch) => {
-    console.log(trip);
     dispatch(deleteTripInDbRequest()); // Delete trip request process has begun...
     return fetch(hostUrl + '/trip/delete', {
       headers: {
