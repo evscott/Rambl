@@ -24,10 +24,10 @@ export default class CountdownTimer extends Component {
       */
     getTimeDiv(){
         var time = this.getTimeLeft()
-        return (<div><p>time.days Days</p>
-                <p>time.hours Hours</p>
-                <p>time.minutes</p>
-                <p>time.seconds </p></div>)
+        return (<div><p>{time.days }Days</p>
+                <p>{time.hours} Hours</p>
+                <p>{time.minutes}</p>
+                <p>{time.seconds} </p></div>)
     }
 
     /**************************** Visual component ****************************/
