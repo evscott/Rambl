@@ -1,20 +1,20 @@
 import { connect } from 'react-redux';
 import CountdownTimer from './CountdownTimer';
-import {getCurrTrip} from "../../../redux/getters/getTrips";
+import { getCurrTrip } from '../../../redux/getters/getTrips';
 
 const mapStateToProps = (state) => {
-    return {
-        currTripInfo: getCurrTrip(state)
-    };
+  return {
+    currTripInfo: getCurrTrip(state)
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+  return {};
 };
 
 const CountdownContainer = connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(CountdownTimer);
 
 export default CountdownContainer;
