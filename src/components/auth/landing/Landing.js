@@ -19,14 +19,14 @@ export default class Home extends Component {
             </h1>
           </div>
           <div className="flex-wrap-center">
-            <Link to="/about" className="btn btn-landing btn-red">
-              About Rambl
-            </Link>
             <Link to="/signup" className="btn btn-landing btn-yellow">
               Sign Up
             </Link>
             <Link to="/login" className="btn btn-landing btn-blue">
-              Login
+              Sign In
+            </Link>
+            <Link to="/about" className="btn btn-landing btn-red">
+              About Rambl
             </Link>
           </div>
         </div>
