@@ -16,6 +16,9 @@ it('Has a store', () => {
   expect(store.getState()).toEqual(mockStore());
 });
 
+/**
+ * Checks if getting the trip duration is correct.
+ */
 it('Can get trip duration', () => {
   const store = makeStore(mockStore());
   const duration = getTripTimes(store.getState(), 1);
@@ -27,69 +30,70 @@ it('Can get trip duration', () => {
   );
 });
 
+/**
+ * Ensures that all of the trips are gotten and sorted appropriately.
+ * Makes sure active ones are not over, and past ones are indeed over.
+ */
 it('Gets all active trips and sorts them appropriately', () => {
+
+  // Get the trips
   const store = makeStore(mockStore());
-  console.log('This test will fail if the date is after May 2019.');
   const sortedTrips = getSortedTrips(store.getState());
 
-  // First, make sure all of the active events are on there!
-  expect(sortedTrips.active).toContainEqual({
-    user_id: 2,
-    trip_id: 3,
-    name: 'test trip4',
-    dscript: 'description...',
-    trip_start: convertDate('2019-01-01T18:32:32.000Z'),
-    trip_end: convertDate('2021-01-01T15:32:34.000Z')
-  });
-  expect(sortedTrips.active).toContainEqual({
-    user_id: 2,
-    trip_id: 1,
-    name: 'Sackville',
-    dscript: 'Test trip',
-    trip_start: convertDate('2019-04-11T15:32:32.000Z'),
-    trip_end: convertDate('2019-05-16T17:35:34.000Z')
-  });
-  expect(sortedTrips.active).toContainEqual({
-    user_id: 2,
-    trip_id: 5,
-    name: 'redux trip blah blah',
-    dscript: '',
-    trip_start: null,
-    trip_end: null
-  });
-  expect(sortedTrips.active).toContainEqual({
-    user_id: 2,
-    trip_id: 4,
-    name: 'updated',
-    dscript: 'blah',
-    trip_start: null,
-    trip_end: null
+  // Get a baseline for ordering the trips
+  let prevDate = sortedTrips.active[0].trip_start;
+
+  // Go through every trip to make sure they're in order
+  // and in the future
+  sortedTrips.active.forEach((trip) => {
+    let startDate = convertDate(trip.trip_start);
+    let endDate = convertDate(trip.trip_end);
+
+    // If prev trip start was null, this one is too
+    if(prevDate == null) expect(startDate).toBeFalsy();
+
+    // If this trip's start date is not null, should start after prev trip
+    else if(startDate !== null) expect(startDate >= prevDate).toBeTruthy();
+
+    // else, we have null and it's in order
+    prevDate = startDate;
+
+    // Make sure it ends in the future, or it never ends
+    expect(endDate >= new Date() || endDate === null).toBeTruthy();
   });
 
-  // Second, make sure all of the active events are on there!
-  expect(sortedTrips.inactive).toContainEqual({
-    user_id: 2,
-    trip_id: 6,
-    name: "Trip that's already over",
-    dscript: '',
-    trip_start: convertDate('2000-01-01T10:32:32.000Z'),
-    trip_end: convertDate('2001-01-01T15:32:34.000Z')
-  });
-  expect(sortedTrips.inactive).toContainEqual({
-    user_id: 2,
-    trip_id: 2,
-    name: 'Bacon Adventure',
-    dscript: 'Gr8 Times!',
-    trip_start: convertDate('2019-01-01T10:32:32.000Z'),
-    trip_end: convertDate('2019-01-02T10:32:32.000Z')
+  prevDate = sortedTrips.inactive[0].trip_start;
+
+  // Go through every trip to make sure they're in order
+  // and in the past
+  sortedTrips.inactive.forEach((trip) => {
+    let startDate = convertDate(trip.trip_start);
+    let endDate = convertDate(trip.trip_end);
+
+    // Should never be null
+    expect(startDate).toBeTruthy();
+
+    // Should start after prev trip
+    expect(startDate >= prevDate).toBeTruthy();
+    prevDate = startDate;
+
+    // Make sure it ends in the past
+    expect(endDate < new Date() || (endDate === null && startDate < new Date())).toBeTruthy();
   });
 });
 
+/**
+ * Gets the current trip, if there is one. Tests to make sure that it is
+ * indeed the current trip.
+ */
 it('Gets the current trip', () => {
   const store = makeStore(mockStore());
-  console.log(
-    'This test is time-dependent, so it needs to be verified in person.\n' +
-      'One could test it more cleverly, but that would take more time.'
-  );
-  console.log(getCurrTrip(store.getState()));
+  let currTrip = getCurrTrip(store.getState());
+  if(currTrip.current) {
+    expect(convertDate(currTrip.trip.trip_start) <= new Date()).toBeTruthy();
+    expect(convertDate(currTrip.trip.trip_end) >= new Date()).toBeTruthy();
+  } else {
+    if(currTrip.trip !== null)
+      expect(convertDate(currTrip.trip.trip_start) > new Date()).toBeTruthy();
+  }
 });
