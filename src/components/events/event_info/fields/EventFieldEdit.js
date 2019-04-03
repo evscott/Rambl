@@ -97,7 +97,6 @@ export default class EventFieldEdit extends Component {
    * @returns {*} the restricted date selection
    */
   renderRestrictedDateSelection() {
-    if (this.state.value === '') alert('PROBLEM');
     let selected = new Date(this.state.value);
     if (this.state.value === '') selected = new Date();
     let maxDate = null;
