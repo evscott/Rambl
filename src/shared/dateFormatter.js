@@ -1,5 +1,5 @@
 export const formatDateForUser = (d) => {
-  if(d === '') return 'unspecified';
+  if (d === '') return 'unspecified';
   let date = new Date(d);
   date = date.toLocaleDateString('en-US', {
     year: 'numeric',

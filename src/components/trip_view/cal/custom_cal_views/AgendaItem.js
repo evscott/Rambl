@@ -17,7 +17,7 @@ export class AgendaItem extends Component {
    */
   incrementPriority(event) {
     event.priority = (event.priority + 1) % 3; // Increment, wrap around
-    switch(event.event_type) {
+    switch (event.event_type) {
       case 'trans':
         this.props.onUpdateTran(event);
         break;
