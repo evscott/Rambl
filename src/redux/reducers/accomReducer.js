@@ -1,5 +1,5 @@
-import { filterMultiDimensionalArray } from '../../shared/filterArray';
-import { updateMultiDimensionalArray } from '../../shared/updateArray';
+import { filterMultiDimensionalDict } from '../../shared/filterDict';
+import { updateMultiDimensionalDict } from '../../shared/updateDict';
 import * as AccomActions from '../actions/accomActions';
 import { LOGOUT_SUCCESS } from '../actions/authActions';
 
@@ -69,7 +69,7 @@ export function accomReducer(state = initialState, action) {
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
-        accoms: updateMultiDimensionalArray(
+        accoms: updateMultiDimensionalDict(
           state.accoms,
           action.accomToAdd.trip_id,
           action.accomToAdd.e_id,
@@ -124,7 +124,7 @@ export function accomReducer(state = initialState, action) {
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
-        accoms: filterMultiDimensionalArray(
+        accoms: filterMultiDimensionalDict(
           state.accoms,
           action.accomToDelete.trip_id,
           action.accomToDelete.e_id

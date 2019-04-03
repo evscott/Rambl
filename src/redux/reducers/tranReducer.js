@@ -1,6 +1,6 @@
 import * as TranActions from '../actions/tranActions';
-import { filterMultiDimensionalArray } from '../../shared/filterArray';
-import { updateMultiDimensionalArray } from '../../shared/updateArray';
+import { filterMultiDimensionalDict } from '../../shared/filterDict';
+import { updateMultiDimensionalDict } from '../../shared/updateDict';
 import { LOGOUT_SUCCESS } from '../actions/authActions';
 
 const initialState = {
@@ -69,7 +69,7 @@ export function tranReducer(state = initialState, action) {
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
-        trans: updateMultiDimensionalArray(
+        trans: updateMultiDimensionalDict(
           state.trans,
           action.tranToAdd.trip_id,
           action.tranToAdd.e_id,
@@ -124,7 +124,7 @@ export function tranReducer(state = initialState, action) {
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
-        trans: filterMultiDimensionalArray(
+        trans: filterMultiDimensionalDict(
           state.trans,
           action.tranToDelete.trip_id,
           action.tranToDelete.e_id
