@@ -63,7 +63,7 @@ let queryDatabase = async (res, query, params, operationString) => {
             result: {}
           });
           reject(err);
-        } else if (sqlRes.length > 0) {
+        } else if (sqlRes.length > 0 || sqlRes.affectedRows > 0) {
           // If found, success
           res.json({
             success: true,

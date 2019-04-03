@@ -4,6 +4,7 @@ import { getTransFromDb } from './tranActions';
 import { getPlansFromDb } from './planActions';
 import { getAccomsFromDb } from './accomActions';
 import { getTripsFromDb } from './tripActions';
+import { getUserInfoFromDb } from './userActions';
 
 export const SIGNUP_REQUEST = 'REQUEST_SIGNUP';
 export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
@@ -14,9 +15,6 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_FAILURE = 'LOGOUT_FAILURE';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
-export const GET_USER_INFO_REQUEST = 'GET_USER_INFO_REQUEST';
-export const GET_USER_INFO_FAILURE = 'GET_USER_INFO_FAILURE';
-export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS';
 
 function requestSignup() {
   return {
@@ -105,59 +103,7 @@ export function logoutSuccess() {
   };
 }
 
-function getUserInfoRequest() {
-  return {
-    type: GET_USER_INFO_REQUEST,
-    lastUpdated: Date.now(),
-    isFetching: true
-  };
-}
-
-function getUserInfoFailure() {
-  return {
-    type: GET_USER_INFO_FAILURE,
-    lastUpdated: Date.now(),
-    isFetching: false
-  };
-}
-
-export function getUserInfoSuccess(user) {
-  return {
-    type: GET_USER_INFO_SUCCESS,
-    lastUpdated: Date.now(),
-    isFetching: false,
-    user: user
-  };
-}
-
 /**************************** Logical functions ****************************/
-
-/**
- * Performs an http GET user info request to server.
- * Dispatches getUserInfoRequest to indicate the beginning of a getInfo process.
- * Dispatches getUserInfoFailure to indicate the end of a failed getInfo process.
- * Dispatches getUserInfoSuccess to indicate the end of a successful getInfo process.
- * If getUserInfo process succeeds, a user object is received and passed into
- * getUserInfoSuccess to be stored into state.
- * @returns {function(*): Promise<Response | never>} dispatch results.
- */
-function getUserInfo() {
-  return (dispatch) => {
-    dispatch(getUserInfoRequest());
-    return fetch(hostUrl + '/user/getinfo', {
-      headers: {
-        'Content-Type': 'application/json',
-        'x-access-token': localStorage.getItem('token')
-      },
-      method: 'get'
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        if (json.length === 0) dispatch(getUserInfoFailure());
-        else dispatch(getUserInfoSuccess(json.result[0]));
-      });
-  };
-}
 
 /**
  * Performs an http POST signup request to server.
@@ -165,7 +111,7 @@ function getUserInfo() {
  * Dispatches signupFailure to indicate the end of a failed signup process.
  * Dispatches signupSuccess to indicate the end of a successful signup process.
  * If signup process succeeds, a json web token is received and stored into
- * users local storage and getUserInfo is dispatched.
+ * users local storage and getUserInfoFromDb is dispatched.
  * @param user object containing email, password, f_name, l_name.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
@@ -185,7 +131,7 @@ export function signup(user) {
         else {
           localStorage.setItem('token', json.token);
           dispatch(signupSuccess());
-          dispatch(getUserInfo());
+          dispatch(getUserInfoFromDb());
         }
       });
   };
@@ -197,7 +143,7 @@ export function signup(user) {
  * Dispatches loginFailure to indicate the end of a failed login process.
  * Dispatches loginSuccess to indicate the end of a successful login process.
  * If login process succeeds, a json web token is received and stored into
- * users local storage and getUserInfo is dispatched.
+ * users local storage and getUserInfoFromDb is dispatched.
  * @param user object containing email, password.
  * @returns {function(*): Promise<Response | never>} dispatch results.
  */
@@ -217,7 +163,7 @@ export function login(user) {
         else {
           localStorage.setItem('token', json.token);
           dispatch(loginSuccess());
-          dispatch(getUserInfo());
+          dispatch(getUserInfoFromDb());
           dispatch(getPlansFromDb());
           dispatch(getTransFromDb());
           dispatch(getAccomsFromDb());

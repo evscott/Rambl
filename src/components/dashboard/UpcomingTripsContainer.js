@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { getSortedTrips } from '../../redux/getters/getTrips';
 import UpcomingTrips from './UpcomingTrips';
+import { deleteTripInDb } from '../../redux/actions/tripActions';
 
 const mapStateToProps = (state) => {
   return {
@@ -9,7 +10,11 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    deleteTrip: (trip) => {
+      dispatch(deleteTripInDb(trip));
+    }
+  };
 };
 
 const UpcomingTripsContainer = connect(

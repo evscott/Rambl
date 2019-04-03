@@ -1,14 +1,16 @@
+import * as UserActions from '../actions/userActions';
 import * as AuthActions from '../actions/authActions';
 
 const initialState = {
   lastUpdated: null,
   isAuthenticated: false,
   isFetching: false,
-  user: {}
+  user: []
 };
 
-export function authReducer(state = initialState, action) {
+export function userReducer(state = initialState, action) {
   switch (action.type) {
+    /**************************** Auth Actions ****************************/
     case AuthActions.SIGNUP_REQUEST:
       return {
         ...state,
@@ -64,19 +66,20 @@ export function authReducer(state = initialState, action) {
         isAuthenticated: action.isAuthenticated,
         user: action.user
       };
-    case AuthActions.GET_USER_INFO_REQUEST:
+    /**************************** User Actions ****************************/
+    case UserActions.GET_USER_INFO_FROM_DB_REQUEST:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching
       };
-    case AuthActions.GET_USER_INFO_FAILURE:
+    case UserActions.GET_USER_INFO_FROM_DB_FAILURE:
       return {
         ...state,
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching
       };
-    case AuthActions.GET_USER_INFO_SUCCESS:
+    case UserActions.GET_USER_INFO_FROM_DB_SUCCESS:
       return {
         ...state,
         lastUpdated: action.lastUpdated,

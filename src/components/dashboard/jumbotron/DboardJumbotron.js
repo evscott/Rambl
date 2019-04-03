@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CurrentJumbotronContainer from './CurrentJumbotronContainer';
+import OngoingJumbotronContainer from './OngoingJumbotronContainer';
 import UpcomingJumbotronContainer from './UpcomingJumbotronContainer';
 
 /**
@@ -24,9 +24,7 @@ export default class DboardJumbotron extends Component {
    */
   selectJumbotron() {
     if (this.displayCurrent()) {
-      return (
-        <CurrentJumbotronContainer id={this.props.currTripInfo.trip.trip_id} />
-      );
+      return <OngoingJumbotronContainer trip={this.props.currTripInfo.trip} />;
     } else if (this.hasActiveTrip()) {
       return <UpcomingJumbotronContainer />;
     }

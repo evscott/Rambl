@@ -25,17 +25,14 @@ export default class SignUp extends Component {
   /**************************** Helper functions ****************************/
 
   stateIsComplete() {
-    if (
-      (this.state.f_name,
+    return (
+      this.state.f_name,
       this.state.l_name,
       this.state.email,
       this.state.confirmEmail,
       this.state.password,
-      this.state.confirmPassword)
-    ) {
-      return true;
-    }
-    return false;
+      this.state.confirmPassword
+    );
   }
 
   credentialsMatch() {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import HighlightsContainer from './HighlightsContainer';
+import Notes from './Notes';
+import CountdownContainer from './CountdownContainer';
 /**
  *  UpcomingJumbotron displays when the user has at least one upcoming
  *  trip and no ongoing trips. It features a countdown to the next trip,
@@ -12,26 +14,22 @@ export default class UpcomingJumbotron extends Component {
   render() {
     return (
       <div>
-        <p>countdown component here</p>
+        <CountdownContainer />
         <p>until</p>
-        <h2>{this.props.trip != null ? this.props.trip.name : false}</h2>
+        <h2>{this.props.trip.name}</h2>
+
         <div className="flex-wrap-center">
+          {/* Highlights */}
           <div className="jumbo-component">
-            <FontAwesomeIcon
-              size="lg"
-              icon={['far', 'star']}
-              className="yellow"
-            />
-            <p>Highlight component here</p>
+            <HighlightsContainer id={this.props.trip.trip_id} />
           </div>
+
+          {/* Notes */}
           <div className="jumbo-component">
-            <FontAwesomeIcon
-              size="lg"
-              icon={['far', 'star']}
-              className="light-blue"
-            />
-            <p>Notes: {this.props.trip ? this.props.trip.dscript : false}</p>
+            <Notes notes={this.props.trip.dscript} />
           </div>
+
+          {/* Stats */}
           <div className="jumbo-component">
             <FontAwesomeIcon size="lg" icon={['far', 'star']} className="red" />
             <p>Stats component here</p>

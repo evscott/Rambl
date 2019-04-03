@@ -7,7 +7,7 @@ const initialState = {
   lastUpdated: null,
   isFetching: false,
   isSynced: false,
-  plans: []
+  plans: {}
 };
 
 export function planReducer(state = initialState, action) {

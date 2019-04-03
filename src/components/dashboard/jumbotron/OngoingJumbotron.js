@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import HighlightsContainer from './HighlightsContainer';
+import Notes from './Notes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 /**
- *  CurrentJumbotron displays information for a trip
+ *  OngoingJumbotron displays information for a trip
  *  that is currently in progress
  */
 
-export default class CurrentJumbotron extends Component {
+export default class OngoingJumbotron extends Component {
   /**************************** Helper functions ****************************/
   hasCurrEvent() {
     return this.props.currEvents && this.props.currEvents.length;
@@ -39,7 +42,6 @@ export default class CurrentJumbotron extends Component {
 
       return (
         <div>
-          <p>{upcoming.name}</p>
           <p>{upcoming.dscript}</p>
         </div>
       );
@@ -51,11 +53,11 @@ export default class CurrentJumbotron extends Component {
    * Creates all HTML for current events (if they exist)
    * @returns {*} HTML for current events
    */
-  getCurrentDiv() {
-    if (this.state.hasCurrEvent) {
+  getCurrentEventsDiv() {
+    if (this.hasCurrEvent()) {
       return (
         <div>
-          <h2>Ongoing Events</h2>
+          <h4>Ongoing Events</h4>
           {this.getCurrentEvents()}
         </div>
       );
@@ -66,11 +68,11 @@ export default class CurrentJumbotron extends Component {
    * Creates all HTML for upcoming events (if any exist)
    * @returns {*} HTML for upcoming events
    */
-  getUpcomingDiv() {
+  getUpcomingEventsDiv() {
     if (this.hasUpcomingEvent()) {
       return (
         <div>
-          <h2>Next Event</h2>
+          <h4>Next Event</h4>
           {this.getUpcomingEvents()}
         </div>
       );
@@ -81,8 +83,28 @@ export default class CurrentJumbotron extends Component {
   render() {
     return (
       <div>
-        {this.getCurrentDiv()}
-        {this.getUpcomingDiv()}
+        <p>You have an ongoing trip!</p>
+        <h2>{this.props.trip.name}</h2>
+        {this.getCurrentEventsDiv()}
+        {this.getUpcomingEventsDiv()}
+
+        <div className="flex-wrap-center">
+          {/* Highlights */}
+          <div className="jumbo-component">
+            <HighlightsContainer id={this.props.trip.trip_id} />
+          </div>
+
+          {/* Notes */}
+          <div className="jumbo-component">
+            <Notes dscript={this.props.trip.dscript} />
+          </div>
+
+          {/* Stats */}
+          <div className="jumbo-component">
+            <FontAwesomeIcon size="lg" icon={['far', 'star']} className="red" />
+            <p>Stats component here</p>
+          </div>
+        </div>
       </div>
     );
   }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Button } from 'react-bootstrap';
 
 /**
  *  UpcomingTrips displays a list of all upcoming
@@ -7,9 +9,17 @@ import { Link } from 'react-router-dom';
  */
 
 export default class UpcomingTrips extends Component {
+  constructor(props) {
+    super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
   /**************************** Helper functions ****************************/
   hasUpcoming() {
     return this.props.upcoming && this.props.upcoming.length;
+  }
+
+  handleDelete(trip) {
+    this.props.deleteTrip(trip);
   }
 
   /**
@@ -23,6 +33,13 @@ export default class UpcomingTrips extends Component {
           <p>{trip.name}</p>
         </Link>
         <p>{trip.dscript}</p>
+        <Button
+          variant={'danger'}
+          className={'float-right'}
+          onClick={() => this.handleDelete(trip)}
+        >
+          <FontAwesomeIcon size={'sm'} icon={['fas', 'bomb']} />
+        </Button>
       </div>
     ));
 
