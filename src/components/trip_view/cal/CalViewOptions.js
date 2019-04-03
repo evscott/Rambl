@@ -79,12 +79,12 @@ export class CalViewOptions extends Component {
     // remove the 'all' filter)
     if (newFilterSet.has('all')) {
       if (oldFilter === 'all') newFilterSet.delete('all');
-      else newFilterSet.clear()
+      else newFilterSet.clear();
     }
 
     // Fix depending on size of newFilterSet
-    if(newFilterSet.size === 0) newFilterSet.add('all');
-    else if(newFilterSet.size === 3) newFilterSet = new Set(['all']);
+    if (newFilterSet.size === 0) newFilterSet.add('all');
+    else if (newFilterSet.size === 3) newFilterSet = new Set(['all']);
 
     // Turn this into a string, only add them if 'all' is not selected.
     // If all is selected, all the others are redundant.
