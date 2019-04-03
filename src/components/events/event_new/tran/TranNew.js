@@ -39,7 +39,6 @@ export default class TranNew extends Component {
    * begin_time, dscript: *, completed: number, priority: number}}
    */
   getTran(tran) {
-    console.log(tran);
     return {
       trip_id: this.props.trip_id,
       method: tran.method,
