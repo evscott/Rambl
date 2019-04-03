@@ -12,7 +12,7 @@ import './PriorityIndicator.css';
 export class PriorityIndicator extends Component {
   render() {
     switch (this.props.priority) {
-      case 1:
+      case 0:
         return (
           <FontAwesomeIcon
             size="lg"
@@ -21,7 +21,7 @@ export class PriorityIndicator extends Component {
             title="Low Priority"
           />
         );
-      case 2:
+      case 1:
         return (
           <FontAwesomeIcon
             size="lg"
@@ -30,7 +30,7 @@ export class PriorityIndicator extends Component {
             title="Medium Priority"
           />
         );
-      case 3:
+      case 2:
         return (
           <FontAwesomeIcon
             size="lg"
@@ -40,12 +40,14 @@ export class PriorityIndicator extends Component {
           />
         );
       default:
+        // This case should never be reached, but it's useful for catching bugs
+        // down the road (in a pretty way).
         return (
           <FontAwesomeIcon
             size="lg"
             icon={['fas', 'star']}
             className="no-priority"
-            title="No Priority"
+            title="Priority Undefined"
           />
         );
     }

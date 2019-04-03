@@ -11,6 +11,28 @@ import { EventTypeIndicator } from '../../../global/EventTypeIndicator';
  * to-do list. It displays the title, priority, and event type (no dates).
  */
 export class ToDoItem extends Component {
+  /**
+   * Adds one to the priority of the event by sending the info to the
+   * redux store/database. If priority exceeds 2, it wraps down to 0.
+   * @param event the event to update priority for.
+   */
+  incrementPriority(event) {
+    event.priority = (event.priority + 1) % 3; // Increment, wrap around
+    switch (event.event_type) {
+      case 'trans':
+        this.props.onUpdateTran(event);
+        break;
+      case 'plan':
+        this.props.onUpdatePlan(event);
+        break;
+      case 'accom':
+        this.props.onUpdateAccom(event);
+        break;
+      default:
+        break;
+    }
+  }
+
   render() {
     let { accessors, event } = this.props;
 
@@ -22,12 +44,20 @@ export class ToDoItem extends Component {
     let eventType = event.event_type; // May be null
 
     return (
-      <Card onClick={() => this.props.onSelectEvent(event)}>
+      <Card>
         <Card.Body>
           <div>
-            <EventTypeIndicator type={eventType} size={'3x'} />
-            {title}
-            <div className="pull-right">
+            <span
+              className={'clickable'}
+              onClick={() => this.props.onSelectEvent(event)}
+            >
+              <EventTypeIndicator type={eventType} size={'3x'} />
+              {title}
+            </span>
+            <div
+              className={'pull-right'}
+              onClick={() => this.incrementPriority(event)}
+            >
               <PriorityIndicator priority={+priority} />
             </div>
           </div>

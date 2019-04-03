@@ -4,7 +4,7 @@ import React from 'react';
 import dates from '../utils/dates';
 import { navigate } from '../utils/constants';
 import { inRange } from '../utils/eventLevels';
-import { AgendaItem } from './AgendaItem';
+import AgendaItemContainer from './AgendaItemContainer';
 import { CreateEventCard } from './CreateEventCard';
 
 /**
@@ -81,7 +81,7 @@ class Agenda extends React.Component {
       return (
         <React.Fragment key={dayKey + '_' + idx}>
           {first}
-          <AgendaItem
+          <AgendaItemContainer
             event={event}
             accessors={accessors}
             localizer={localizer}

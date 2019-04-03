@@ -14,9 +14,9 @@ export default class Highlights extends Component {
    */
   getSomeHighlights() {
     let highlights = this.props.highPriority.slice(0, 3);
-    return highlights.map((event) => (
-      <div>
-        <p>{event.name}</p>
+    return highlights.map((event, idx) => (
+      <div key={idx}>
+        <p>{event.dscript}</p>
       </div>
     ));
   }

@@ -97,6 +97,12 @@ export default class EventFieldEdit extends Component {
    * @returns {*} the restricted date selection
    */
   renderRestrictedDateSelection() {
+    let selected = new Date(this.state.value);
+    if (this.state.value === '') selected = new Date();
+    let maxDate = null;
+    if (this.props.end_time.value !== '') {
+      maxDate = new Date(this.props.end_time.value);
+    }
     return (
       <div>
         <div className={'inputHeader'}>
@@ -105,11 +111,11 @@ export default class EventFieldEdit extends Component {
 
         <DatePicker
           className={'form-control inputWidth marginBottom'}
-          selected={new Date(this.state.value)}
+          selected={selected}
           onChange={this.handleDateChange}
           showTimeInput
           timeInputLabel="Time:"
-          maxDate={new Date(this.props.end_time.value)}
+          maxDate={maxDate}
           placeholderText={formatDateForUser(this.state.value)}
           dateFormat={'M/d/yyyy h:mm aa'}
         />
@@ -122,6 +128,9 @@ export default class EventFieldEdit extends Component {
    * @returns {*} the unrestricted date selection
    */
   renderUnrestrictedDateSelection() {
+    let selected = new Date(this.state.value);
+    if (this.state.value === '') selected = new Date();
+
     return (
       <div>
         <div className={'inputHeader'}>
@@ -130,7 +139,7 @@ export default class EventFieldEdit extends Component {
 
         <DatePicker
           className={'form-control inputWidth marginBottom'}
-          selected={new Date(this.state.value)}
+          selected={selected}
           onChange={this.handleDateChange}
           showTimeInput
           timeInputLabel="Time:"

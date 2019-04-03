@@ -33,13 +33,13 @@ export default class PlanInfo extends Component {
       begin_time: {
         name: 'begin_time',
         type: 'Begins',
-        value: plan.begin_time.toString(),
+        value: plan.begin_time !== null ? plan.begin_time.toString() : '',
         editMode: false
       },
       end_time: {
         name: 'end_time',
         type: 'Ends',
-        value: plan.end_time.toString(),
+        value: plan.end_time !== null ? plan.end_time.toString() : '',
         editMode: false
       },
       cost: {

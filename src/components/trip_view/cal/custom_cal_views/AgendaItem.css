@@ -58,6 +58,12 @@
 
 .card:hover, .card:focus {
     transform: scale3d(1.006, 1.006, 1);
+}
+
+.card-body:hover,
+.card-body:focus,
+.clickable:hover,
+.clickable:focus {
     cursor: pointer;
 }
 
