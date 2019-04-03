@@ -22,8 +22,15 @@ PAGE LAYOUT
 /* -----------------------------
 TYPOGRAPHY
 ---------------------------------*/
-.title h1{
+h1{
   font-size: 80px;
+  text-shadow: 2px 2px 5px #888888;
+}
+
+h2{
+  font-size: 60px;
+  text-shadow: 2px 2px 5px #888888;
+  padding: 20px 0 40px 0;
 }
 
 span{
@@ -45,6 +52,17 @@ span{
 .dark-blue{
   color: #5da2d5;
 }
+/* -----------------------------
+FORM
+---------------------------------*/
+.form{
+  max-width: 600px;
+  min-width: 500px;
+}
+
+.form-input{
+  padding-bottom: 50px;
+}
 
 /* -----------------------------
 BUTTONS
@@ -53,26 +71,15 @@ BUTTONS
 .btn-landing{
   width: 150px;
   margin-bottom: 20px;
+  box-shadow: 5px 10px 10px #888888;
 }
 
-.btn-landing:after {
-   content: '';
-   width: 20%;
-   height: 100%;
-   position: absolute;
-   left: auto;
-   top: 0;
-   bottom: 0;
-   right: -20%;
-   background-image:
-           linear-gradient(135deg,
-           rgba(255,255,255,0),
-           rgba(255,255,255,.8),
-           rgba(255,255,255,0)
-           );
- }
+.btn-landing:hover {
+  box-shadow: 5px 10px 10px #202020;
+  border: none;
+}
 
-.btn-landing:after:hover {
-  transition: all .4s ease-out;
-  right: 100%;
+.btn-contrast:hover{
+  background: #f78888;
+  border: none;
 }

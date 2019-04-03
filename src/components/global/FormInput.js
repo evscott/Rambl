@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
+import './FormInput.css';
 
 /**
  * FormInput is a generic input item for a form element.

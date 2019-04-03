@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import OngoingJumbotronContainer from './OngoingJumbotronContainer';
 import UpcomingJumbotronContainer from './UpcomingJumbotronContainer';
+import './DboardJumbotron.css';
 
 /**
  *  DBoardJumbotron handles the logic for which dashboard jumbotron we are
@@ -38,6 +39,26 @@ export default class DboardJumbotron extends Component {
 
   /**************************** Visual component ****************************/
   render() {
-    return <div>{this.selectJumbotron()}</div>;
+    return (
+      <div className="jumbotron-container">
+        <div className="content">
+          <h1>Hello, {this.props.user.f_name}</h1>
+          {this.selectJumbotron()}
+          <svg
+            id="wave-border"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="-300 0 950 270"
+          >
+            <path
+              d="M-314,267 C105,364 400,100 812,279"
+              fill="none"
+              stroke="#f0f0f0"
+              stroke-width="120"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+      </div>
+    );
   }
 }

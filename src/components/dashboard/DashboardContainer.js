@@ -2,9 +2,7 @@ import { connect } from 'react-redux';
 import Dashboard from './Dashboard';
 
 const mapStateToProps = (state) => {
-  return {
-    user: state.user.user
-  };
+  return {};
 };
 
 const mapDispatchToProps = (dispatch) => {

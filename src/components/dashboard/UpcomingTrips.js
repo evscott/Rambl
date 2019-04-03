@@ -28,16 +28,12 @@ export default class UpcomingTrips extends Component {
    */
   getAllUpcoming() {
     const listItems = this.props.upcoming.map((trip) => (
-      <div key={trip.trip_id}>
-        <Link to={'/trip?id=' + trip.trip_id + '&view=month&filter=all'}>
+      <div key={trip.trip_id} className="trip-box red-trip-box">
+        <Link to={'/trip?id=' + trip.trip_id + '&view=month'}>
           <p>{trip.name}</p>
         </Link>
         <p>{trip.dscript}</p>
-        <Button
-          variant={'danger'}
-          className={'float-right'}
-          onClick={() => this.handleDelete(trip)}
-        >
+        <Button className="btn btn-red" onClick={() => this.handleDelete(trip)}>
           <FontAwesomeIcon size={'sm'} icon={['fas', 'bomb']} />
         </Button>
       </div>

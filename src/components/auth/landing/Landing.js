@@ -9,7 +9,7 @@ export default class Home extends Component {
     } else {
       return (
         <div className="landing">
-          <div className="title">
+          <div className="title fade-in-top">
             <h1>
               <span className="red">R</span>
               <span className="yellow">a</span>
@@ -18,7 +18,7 @@ export default class Home extends Component {
               <span className="dark-blue">l</span>
             </h1>
           </div>
-          <div className="flex-wrap-center">
+          <div className="flex-wrap-center fade-in-static">
             <Link to="/signup" className="btn btn-landing btn-yellow">
               Sign Up
             </Link>

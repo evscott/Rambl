@@ -84,47 +84,51 @@ export default class Login extends Component {
         <div className="container">
           {/* Login Header. TODO: sticky and add <faChevronUp /> */}
           <div className="header">
-            <h1>Login</h1>
+            <h2>Sign In</h2>
           </div>
 
           {/* Sign Up Form */}
-          <Form name="form" onSubmit={this.handleSubmit}>
-            {/* Display errors, if necessary */}
-            {errorDiv}
+          <div className="flex-wrap-center">
+            <Form className="form" onSubmit={this.handleSubmit}>
+              {/* Display errors, if necessary */}
+              {errorDiv}
 
-            {/* Email */}
-            <FormInput
-              name="email"
-              displayName="Email"
-              type="email"
-              handleChange={this.handleChange}
-              attemptedSubmit={this.state.attemptedSubmit}
-              value={this.state.email}
-            />
+              <div className="form-input">
+                {/* Email */}
+                <FormInput
+                  name="email"
+                  displayName="Email"
+                  type="email"
+                  handleChange={this.handleChange}
+                  attemptedSubmit={this.state.attemptedSubmit}
+                  value={this.state.email}
+                />
 
-            {/* Password */}
-            <FormInput
-              name="password"
-              displayName="Password"
-              type="password"
-              handleChange={this.handleChange}
-              attemptedSubmit={this.state.attemptedSubmit}
-              value={this.state.password}
-            />
+                {/* Password */}
+                <FormInput
+                  name="password"
+                  displayName="Password"
+                  type="password"
+                  handleChange={this.handleChange}
+                  attemptedSubmit={this.state.attemptedSubmit}
+                  value={this.state.password}
+                />
+              </div>
 
-            {/* Buttons */}
-            <div className="flex-wrap-center">
-              <Link to="/" className="btn btn-blue">
-                Back
+              {/* Buttons */}
+              <div className="flex-wrap-center">
+                <Link to="/" className="btn btn-landing btn-blue">
+                  Back
+                </Link>
+                <Button className="btn btn-landing btn-blue" type="submit">
+                  Sign In
+                </Button>
+              </div>
+              <Link to="/signup" className="btn btn-default">
+                Sign Up
               </Link>
-              <Button className="btn btn-blue" type="submit">
-                Login
-              </Button>
-            </div>
-            <Link to="/signup" className="btn btn-default">
-              Sign Up
-            </Link>
-          </Form>
+            </Form>
+          </div>
         </div>
       );
     }

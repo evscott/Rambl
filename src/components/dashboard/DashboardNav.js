@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import NewTripModal from './NewTripModal';
+import './DashboardNav.css';
+import UserInfo from '../user/UserInfo';
 
 /**
  *  DashboardNav displays the navigation required on the dashboard,
@@ -53,8 +55,8 @@ export default class DashboardNav extends Component {
       return <Redirect to="/" />;
     } else {
       return (
-        <div>
-          <div className="title">
+        <nav>
+          <div className="name">
             <h3>
               <span className="red">R</span>
               <span className="yellow">a</span>
@@ -63,34 +65,36 @@ export default class DashboardNav extends Component {
               <span className="dark-blue">l</span>
             </h3>
           </div>
-          <a href="#section-upcoming">
-            <Button className="btn btn-light">Upcoming Trips</Button>
-          </a>
-          <br />
-          <a href="#section-previous">
-            <Button className="btn btn-light">Previous Trips</Button>
-          </a>
-          <br />
+          <div className="menu-items">
+            <a className="page-scroll" href="#section-upcoming">
+              Upcoming Trips
+            </a>
+            <a className="page-scroll" href="#section-previous">
+              Previous Trips
+            </a>
 
-          {/* New Trip Control */}
-          <Form name="new-trip" onSubmit={this.startCreateEvent}>
-            <Button className="btn btn-default" type="submit">
-              Add Trip
-            </Button>
-          </Form>
-          <br />
-          <NewTripModal
-            show={this.state.showNewTrip}
-            onHide={this.quitCreateEvent}
-          />
+            {/* New Trip Control */}
+            <Form name="new-trip" onSubmit={this.startCreateEvent}>
+              <Button className="btn btn-default" type="submit">
+                Add Trip
+              </Button>
+            </Form>
+            <NewTripModal
+              show={this.state.showNewTrip}
+              onHide={this.quitCreateEvent}
+            />
 
-          {/* Logout button */}
-          <Form name="logout" onSubmit={this.handleLogout}>
-            <Button className="btn btn-default" type="submit">
-              Logout
-            </Button>
-          </Form>
-        </div>
+            {/* User Info */}
+            <UserInfo/>
+
+            {/* Logout button */}
+            <Form name="logout" onSubmit={this.handleLogout}>
+              <Button className="btn btn-default" type="submit">
+                Logout
+              </Button>
+            </Form>
+          </div>
+        </nav>
       );
     }
   }

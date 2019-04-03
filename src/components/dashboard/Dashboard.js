@@ -4,7 +4,6 @@ import UpcomingTripsContainer from './UpcomingTripsContainer';
 import PreviousTripsContainer from './PreviousTripsContainer';
 import DashboardNavContainer from './DashboardNavContainer';
 import './Dashboard.css';
-import UserInfo from '../user/UserInfo';
 
 /**
  *  Dashboard is a component that holds all of the dashboard helper components
@@ -15,16 +14,12 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div>
-        <UserInfo />
-        <div className="sidebar">
+        <div className="top-bar">
           <DashboardNavContainer />
         </div>
-        <div className="container-right">
-          <h1>Hello, {this.props.user.f_name}</h1>
-          <DboardJumbotronContainer />
-          <UpcomingTripsContainer />
-          <PreviousTripsContainer />
-        </div>
+        <DboardJumbotronContainer />
+        <UpcomingTripsContainer />
+        <PreviousTripsContainer />
       </div>
     );
   }
