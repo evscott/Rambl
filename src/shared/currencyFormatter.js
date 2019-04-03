@@ -9,11 +9,11 @@ export const usdFormatter = new Intl.NumberFormat('en-US', {
 });
 
 /**
- *
+ * Removes the currency symbol from a string.
  * @param currency
- * @returns {string | *}
+ * @returns number
  */
 export const convertToNumber = (currency) => {
   if (currency === 'unspecified') return 0;
-  else return currency.substring(1, currency.length); // Strip out currency symbol
+  else return +currency.substring(1, currency.length); // Strip out currency symbol
 };

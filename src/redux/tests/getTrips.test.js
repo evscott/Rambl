@@ -1,7 +1,7 @@
 import { mockStore } from '../mock-server/mockStore';
-import { getSortedTrips, getCurrTrip } from './getTrips';
-import { getTripTimes } from './getTripTimes';
-import { convertDate } from './convertDate';
+import { getSortedTrips, getCurrTrip } from '../getters/getTrips';
+import { getTripTimes } from '../getters/getTripTimes';
+import { convertDate } from '../getters/convertDate';
 
 // Set up a mock store
 import configureStore from 'redux-mock-store';
@@ -31,6 +31,8 @@ it('Gets all active trips and sorts them appropriately', () => {
   const store = makeStore(mockStore());
   console.log('This test will fail if the date is after May 2019.');
   const sortedTrips = getSortedTrips(store.getState());
+
+  // First, make sure all of the active events are on there!
   expect(sortedTrips.active).toContainEqual({
     user_id: 2,
     trip_id: 3,
@@ -64,6 +66,7 @@ it('Gets all active trips and sorts them appropriately', () => {
     trip_end: null
   });
 
+  // Second, make sure all of the active events are on there!
   expect(sortedTrips.inactive).toContainEqual({
     user_id: 2,
     trip_id: 6,
