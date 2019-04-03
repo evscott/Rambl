@@ -29,7 +29,7 @@ export default class UpcomingTrips extends Component {
   getAllUpcoming() {
     const listItems = this.props.upcoming.map((trip) => (
       <div key={trip.trip_id}>
-        <Link to={'/trip?id=' + trip.trip_id + '&view=month'}>
+        <Link to={'/trip?id=' + trip.trip_id + '&view=month&filter=all'}>
           <p>{trip.name}</p>
         </Link>
         <p>{trip.dscript}</p>
