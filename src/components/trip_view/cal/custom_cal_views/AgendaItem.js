@@ -10,6 +10,11 @@ import { EventTypeIndicator } from '../../../global/EventTypeIndicator';
  * agenda. It displays the title, priority, event type, and dates.
  */
 export class AgendaItem extends Component {
+  /**
+   * Adds one to the priority of the event by sending the info to the
+   * redux store/database. If priority exceeds 2, it wraps down to 0.
+   * @param event the event to update priority for.
+   */
   incrementPriority(event) {
     event.priority = (event.priority + 1) % 3; // Increment, wrap around
     switch(event.event_type) {
