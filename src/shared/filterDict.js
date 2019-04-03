@@ -14,7 +14,7 @@ export const filterMultiDimensionalDict = (dict, key, id) => {
   // dict as well as the new dict, which defeats the purpose of this
   // copy.
   let newArr = Object.assign({}, dict);
-  if(newArr[key] !== undefined && newArr[key][id] !== null) {
+  if (newArr[key] !== undefined && newArr[key][id] !== null) {
     delete newArr[key][id];
   }
   return newArr;

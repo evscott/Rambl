@@ -35,7 +35,6 @@ it('Can get trip duration', () => {
  * Makes sure active ones are not over, and past ones are indeed over.
  */
 it('Gets all active trips and sorts them appropriately', () => {
-
   // Get the trips
   const store = makeStore(mockStore());
   const sortedTrips = getSortedTrips(store.getState());
@@ -50,10 +49,9 @@ it('Gets all active trips and sorts them appropriately', () => {
     let endDate = convertDate(trip.trip_end);
 
     // If prev trip start was null, this one is too
-    if(prevDate == null) expect(startDate).toBeFalsy();
-
+    if (prevDate == null) expect(startDate).toBeFalsy();
     // If this trip's start date is not null, should start after prev trip
-    else if(startDate !== null) expect(startDate >= prevDate).toBeTruthy();
+    else if (startDate !== null) expect(startDate >= prevDate).toBeTruthy();
 
     // else, we have null and it's in order
     prevDate = startDate;
@@ -78,7 +76,9 @@ it('Gets all active trips and sorts them appropriately', () => {
     prevDate = startDate;
 
     // Make sure it ends in the past
-    expect(endDate < new Date() || (endDate === null && startDate < new Date())).toBeTruthy();
+    expect(
+      endDate < new Date() || (endDate === null && startDate < new Date())
+    ).toBeTruthy();
   });
 });
 
@@ -89,11 +89,11 @@ it('Gets all active trips and sorts them appropriately', () => {
 it('Gets the current trip', () => {
   const store = makeStore(mockStore());
   let currTrip = getCurrTrip(store.getState());
-  if(currTrip.current) {
+  if (currTrip.current) {
     expect(convertDate(currTrip.trip.trip_start) <= new Date()).toBeTruthy();
     expect(convertDate(currTrip.trip.trip_end) >= new Date()).toBeTruthy();
   } else {
-    if(currTrip.trip !== null)
+    if (currTrip.trip !== null)
       expect(convertDate(currTrip.trip.trip_start) > new Date()).toBeTruthy();
   }
 });

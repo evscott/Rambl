@@ -2,9 +2,8 @@ import { convertToNumber, usdFormatter } from '../currencyFormatter';
 
 it('Converts dollar number string to number', () => {
   let result = convertToNumber('$529.10');
-  expect(+result).toEqual(529.10); // Convert to number
+  expect(+result).toEqual(529.1); // Convert to number
 });
-
 
 it('Does not convert dollar number string to number if unspecified', () => {
   let result = convertToNumber('unspecified');
