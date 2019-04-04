@@ -16,7 +16,7 @@ export default class NewTripModal extends Component {
           <Modal.Title>Create Trip</Modal.Title>
         </Modal.Header>
         <Modal.Body className={'modal-body'}>
-          <NewTripFormContainer close={this.props.onHide} />;
+          <NewTripFormContainer close={this.props.onHide} />
         </Modal.Body>
       </Modal>
     );

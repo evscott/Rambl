@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import OngoingJumbotronContainer from './OngoingJumbotronContainer';
 import UpcomingJumbotronContainer from './UpcomingJumbotronContainer';
 import './DboardJumbotron.css';
+import NewTripModal from '../../trip_edit/NewTripModal';
+
 
 /**
  *  DBoardJumbotron handles the logic for which dashboard jumbotron we are
@@ -10,6 +12,16 @@ import './DboardJumbotron.css';
  */
 
 export default class DboardJumbotron extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showNewTrip: false
+    };
+
+    this.startCreateEvent = this.startCreateEvent.bind(this);
+    this.quitCreateEvent = this.quitCreateEvent.bind(this);
+  }
   /**************************** Helper functions ****************************/
   displayCurrent() {
     return this.props.currTripInfo.current;
@@ -20,6 +32,22 @@ export default class DboardJumbotron extends Component {
   }
 
   /***************************** Core functions *****************************/
+  /**
+   * This closes the create trip modal.
+   */
+  quitCreateEvent() {
+    this.setState({ showNewTrip: false });
+  }
+
+  /**
+   * This opens the create trip modal.
+   * @param e click event
+   */
+  startCreateEvent(e) {
+    e.preventDefault();
+    this.setState({ showNewTrip: true });
+  }
+
   /**
    * @returns instantiation of appropriate jumbotron component
    */
@@ -32,7 +60,18 @@ export default class DboardJumbotron extends Component {
     return (
       <div>
         <p>You have no upcoming trips</p>
-        <p>Create one now!</p>
+        <p
+          onClick={(e) => {
+            this.startCreateEvent(e);
+          }}
+          className="clickable"
+        >
+          <strong>Create one now!</strong>
+        </p>
+        <NewTripModal
+          show={this.state.showNewTrip}
+          onHide={this.quitCreateEvent}
+        />
       </div>
     );
   }
@@ -42,19 +81,6 @@ export default class DboardJumbotron extends Component {
     return (
       <div className="jumbotron-container">
         <div className="content-top">{this.selectJumbotron()}</div>
-        <svg
-          id="wave-border"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="-300 0 950 270"
-        >
-          <path
-            d="M-314,267 C105,364 400,100 812,279"
-            fill="none"
-            stroke="#f0f0f0"
-            stroke-width="120"
-            stroke-linecap="round"
-          />
-        </svg>
       </div>
     );
   }
