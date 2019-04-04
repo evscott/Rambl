@@ -21,6 +21,15 @@ h2{
   font-size: 30px;
 }
 
+a {
+  color: #0a2e48;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #5da2d5;
+}
+
 .btn-red{
   background: #f78888;
   color: #0a2e48;
@@ -109,4 +118,19 @@ h2{
 
 .red-trip-box{
   background: #f78888;
+}
+
+.fixed-bottom-right{
+  bottom:40px;
+  right:40px;
+  position: fixed;
+  z-index: 1;
+}
+
+.clickable:hover{
+  cursor: pointer;
+}
+
+.lg-icon{
+  font-size: 60px;
 }

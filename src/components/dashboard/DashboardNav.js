@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
-import NewTripModal from './NewTripModal';
 import './DashboardNav.css';
 import UserInfo from '../user/UserInfo';
 
@@ -73,19 +72,8 @@ export default class DashboardNav extends Component {
               Previous Trips
             </a>
 
-            {/* New Trip Control */}
-            <Form name="new-trip" onSubmit={this.startCreateEvent}>
-              <Button className="btn btn-default" type="submit">
-                Add Trip
-              </Button>
-            </Form>
-            <NewTripModal
-              show={this.state.showNewTrip}
-              onHide={this.quitCreateEvent}
-            />
-
             {/* User Info */}
-            <UserInfo/>
+            <UserInfo />
 
             {/* Logout button */}
             <Form name="logout" onSubmit={this.handleLogout}>

@@ -12,3 +12,7 @@ nav {
   display: flex;
   justify-content: flex-end;
 }
+
+a {
+  padding-right: 40px;
+}

@@ -52,7 +52,7 @@ export default class UpcomingTrips extends Component {
       return (
         <div id="section-upcoming">
           <h1>Upcoming Trips</h1>
-          {this.getAllUpcoming()}
+          <div className="flex-wrap-center">{this.getAllUpcoming()}</div>
         </div>
       );
     }
