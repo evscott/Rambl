@@ -10,7 +10,6 @@ import { PriorityButton } from '../../global/PriorityButton';
 export class EventInfoForm extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = props.state;
     this.onEdit = this.onEdit.bind(this);
     this.onCancel = this.onCancel.bind(this);
