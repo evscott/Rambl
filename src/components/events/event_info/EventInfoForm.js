@@ -4,15 +4,19 @@ import { Table, Button } from 'react-bootstrap';
 import EventFieldView from './fields/EventFieldView';
 import EventFieldEdit from './fields/EventFieldEdit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import './fields/EventFieldView.css';
+import { PriorityButton } from '../../global/PriorityButton';
 
 export class EventInfoForm extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = props.state;
     this.onEdit = this.onEdit.bind(this);
     this.onCancel = this.onCancel.bind(this);
     this.onSave = this.onSave.bind(this);
     this.onDelete = this.onDelete.bind(this);
+    this.togglePriority = this.togglePriority.bind(this);
   }
 
   /**
@@ -134,15 +138,26 @@ export class EventInfoForm extends Component {
     this.props.close();
   }
 
+  /**
+   * Toggles the priority of an event.
+   */
+  togglePriority() {
+    let priority = this.state.priority.value;
+    priority = (priority + 1) % 3;
+    this.onSave(this.state.priority.name, this.state.priority.type, priority);
+  }
+
   /**************************** Visual component ****************************/
 
   render() {
     let fields = (
       <Table className="table-hover">
         <tbody>
-          {Object.keys(this.state).map((field) => (
-            <tr key={field}>{this.getField(this.state[field])}</tr>
-          ))}
+          {Object.keys(this.state)
+            .filter((field) => field !== 'priority')
+            .map((field) => (
+              <tr key={field}>{this.getField(this.state[field])}</tr>
+            ))}
         </tbody>
       </Table>
     );
@@ -150,6 +165,10 @@ export class EventInfoForm extends Component {
     return (
       <div>
         {fields}
+        <PriorityButton
+          handleChange={this.togglePriority}
+          priority={this.state.priority.value}
+        />
         <Button
           variant={'danger'}
           className={'float-right'}
