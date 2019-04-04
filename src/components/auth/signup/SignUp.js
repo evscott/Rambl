@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Link, Redirect } from 'react-router-dom';
 import { FormInput } from '../../global/FormInput';
+
 import './SignUp.css';
 
 export default class SignUp extends Component {
@@ -76,7 +77,7 @@ export default class SignUp extends Component {
       if (this.state.attemptedSubmit && !this.props.isFetching) {
         errorDiv = (
           <div className="alert alert-danger">
-            Signup failed with the provided username and password.
+            Sign up failed with the provided username and password.
           </div>
         );
       }
@@ -85,89 +86,91 @@ export default class SignUp extends Component {
         <div className="container">
           {/* Sign Up Header. TODO: sticky and add <faChevronUp /> */}
           <div className="header">
-            <h1>Sign Up</h1>
+            <h2>Sign Up</h2>
           </div>
 
           {/* Sign Up Form */}
-          <Form name="form" onSubmit={this.handleSubmit}>
-            {/* Display errors, if necessary */}
-            {errorDiv}
+          <div className="flex-wrap-center">
+            <Form className="form" onSubmit={this.handleSubmit}>
+              {/* Display errors, if necessary */}
+              {errorDiv}
 
-            {/* First Name */}
-            <FormInput
-              name="f_name"
-              displayName="First Name"
-              type="text"
-              handleChange={this.handleChange}
-              attemptedSubmit={this.state.attemptedSubmit}
-              value={this.state.f_name}
-            />
+              {/* First Name */}
+              <FormInput
+                name="f_name"
+                displayName="First Name"
+                type="text"
+                handleChange={this.handleChange}
+                attemptedSubmit={this.state.attemptedSubmit}
+                value={this.state.f_name}
+              />
 
-            {/* Last Name */}
-            <FormInput
-              name="l_name"
-              displayName="Last Name"
-              type="text"
-              handleChange={this.handleChange}
-              attemptedSubmit={this.state.attemptedSubmit}
-              value={this.state.l_name}
-            />
+              {/* Last Name */}
+              <FormInput
+                name="l_name"
+                displayName="Last Name"
+                type="text"
+                handleChange={this.handleChange}
+                attemptedSubmit={this.state.attemptedSubmit}
+                value={this.state.l_name}
+              />
 
-            {/* Email */}
-            <FormInput
-              name="email"
-              displayName="Email"
-              type="email"
-              handleChange={this.handleChange}
-              attemptedSubmit={this.state.attemptedSubmit}
-              value={this.state.email}
-            />
+              {/* Email */}
+              <FormInput
+                name="email"
+                displayName="Email"
+                type="email"
+                handleChange={this.handleChange}
+                attemptedSubmit={this.state.attemptedSubmit}
+                value={this.state.email}
+              />
 
-            {/* Confirm Email */}
-            <FormInput
-              name="confirmEmail"
-              displayName="Confirm Email"
-              type="email"
-              handleChange={this.handleChange}
-              attemptedSubmit={this.state.attemptedSubmit}
-              value={this.state.confirmEmail}
-              compare={this.state.email}
-            />
+              {/* Confirm Email */}
+              <FormInput
+                name="confirmEmail"
+                displayName="Confirm Email"
+                type="email"
+                handleChange={this.handleChange}
+                attemptedSubmit={this.state.attemptedSubmit}
+                value={this.state.confirmEmail}
+                compare={this.state.email}
+              />
 
-            {/* Password */}
-            <FormInput
-              name="password"
-              displayName="Password"
-              type="password"
-              handleChange={this.handleChange}
-              attemptedSubmit={this.state.attemptedSubmit}
-              value={this.state.password}
-            />
+              {/* Password */}
+              <FormInput
+                name="password"
+                displayName="Password"
+                type="password"
+                handleChange={this.handleChange}
+                attemptedSubmit={this.state.attemptedSubmit}
+                value={this.state.password}
+              />
 
-            {/* Confirm Password */}
-            <FormInput
-              name="confirmPassword"
-              displayName="Confirm Password"
-              type="password"
-              handleChange={this.handleChange}
-              attemptedSubmit={this.state.attemptedSubmit}
-              value={this.state.confirmPassword}
-              compare={this.state.password}
-            />
+              {/* Confirm Password */}
+              <FormInput
+                name="confirmPassword"
+                displayName="Confirm Password"
+                type="password"
+                handleChange={this.handleChange}
+                attemptedSubmit={this.state.attemptedSubmit}
+                value={this.state.confirmPassword}
+                compare={this.state.password}
+              />
 
-            {/* Buttons */}
-            <div className="flex-wrap-center">
-              <Link to="/" className="btn btn-yellow">
-                Back
+              {/* Buttons */}
+              <div className="flex-wrap-center">
+                <Link to="/" className="btn btn-yellow">
+                  Back
+                </Link>
+                <Button className="btn-warning btn-yellow" type="submit">
+                  Sign Up
+                </Button>
+              </div>
+              <Link to="/login" className="btn btn-default">
+                Login
               </Link>
-              <Button className="btn-warning btn-yellow" type="submit">
-                Sign Up
-              </Button>
-            </div>
-            <Link to="/login" className="btn btn-default">
-              Login
-            </Link>
-          </Form>
+            </Form>
+          </div>
         </div>
       );
     }

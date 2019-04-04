@@ -6,7 +6,7 @@
 
 
 .cal-container {
-  height: 500px;
+  height: 80vh;
 }
 
 .rbc-btn {
@@ -14,12 +14,14 @@
   font: inherit;
   margin: 0;
 }
+
 button.rbc-btn {
   overflow: visible;
   text-transform: none;
   -webkit-appearance: button;
   cursor: pointer;
 }
+
 button[disabled].rbc-btn {
   cursor: not-allowed;
 }
@@ -318,9 +320,10 @@ button.rbc-input::-moz-focus-inner {
   -webkit-flex-basis: 0px;
       -ms-flex-preferred-size: 0px;
           flex-basis: 0px;
-  overflow: hidden;
+  overflow: scroll;
   height: 100%;
 }
+
 .rbc-month-row + .rbc-month-row {
   border-top: 1px solid #DDD;
 }

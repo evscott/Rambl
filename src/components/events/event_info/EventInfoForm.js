@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import EventFieldView from './fields/EventFieldView';
 import EventFieldEdit from './fields/EventFieldEdit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -164,17 +164,21 @@ export class EventInfoForm extends Component {
     return (
       <div>
         {fields}
-        <PriorityButton
-          handleChange={this.togglePriority}
-          priority={this.state.priority.value}
-        />
-        <Button
-          variant={'danger'}
-          className={'float-right'}
-          onClick={this.onDelete}
-        >
-          <FontAwesomeIcon size={'sm'} icon={['fas', 'bomb']} />
-        </Button>
+        <div className="flex-wrap-center content-bottom align-center">
+          <OverlayTrigger
+            key="1"
+            placement="left"
+            overlay={<Tooltip>Delete Event</Tooltip>}
+          >
+            <div onClick={() => this.onDelete()}>
+              <FontAwesomeIcon className="clickable med-icon red" icon="bomb" />
+            </div>
+          </OverlayTrigger>
+          <PriorityButton
+            handleChange={this.togglePriority}
+            priority={this.state.priority.value}
+          />
+        </div>
       </div>
     );
   }

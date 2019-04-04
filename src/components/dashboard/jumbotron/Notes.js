@@ -23,11 +23,9 @@ export default class Notes extends Component {
     }
     return (
       <div>
-        <FontAwesomeIcon
-          size="lg"
-          icon={['far', 'star']}
-          className="light-blue"
-        />
+        <div className="icon-padding">
+          <FontAwesomeIcon className="med-icon dark-blue" icon="pencil-alt" />
+        </div>
         {par}
       </div>
     );

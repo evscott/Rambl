@@ -27,7 +27,6 @@ export default class OngoingJumbotron extends Component {
   getCurrentEvents() {
     return this.props.currEvents.map((event) => (
       <div>
-        <p>{event.name}</p>
         <p>{event.dscript}</p>
       </div>
     ));
@@ -58,7 +57,7 @@ export default class OngoingJumbotron extends Component {
     if (this.hasCurrEvent()) {
       return (
         <div>
-          <h4>Ongoing Events</h4>
+          <h3>Ongoing Event</h3>
           {this.getCurrentEvents()}
         </div>
       );
@@ -73,7 +72,7 @@ export default class OngoingJumbotron extends Component {
     if (this.hasUpcomingEvent()) {
       return (
         <div>
-          <h4>Next Event</h4>
+          <h3>Next Event</h3>
           {this.getUpcomingEvents()}
         </div>
       );
@@ -85,9 +84,23 @@ export default class OngoingJumbotron extends Component {
     return (
       <div>
         <p>You have an ongoing trip!</p>
-        <h2>{this.props.trip.name}</h2>
-        {this.getCurrentEventsDiv()}
-        {this.getUpcomingEventsDiv()}
+        <div key={this.props.trip.trip_id}>
+          <Link
+            to={
+              '/trip?id=' + this.props.trip.trip_id + '&view=month&filter=all'
+            }
+          >
+            <h1>{this.props.trip.name}</h1>
+          </Link>
+        </div>
+        <div className="flex-wrap-center">
+          <div className="space-between">
+            {this.getCurrentEventsDiv()}
+          </div>
+          <div className="space-between">
+            {this.getUpcomingEventsDiv()}
+          </div>
+        </div>
 
         <div className="flex-wrap-center">
           {/* Highlights */}
@@ -106,11 +119,27 @@ export default class OngoingJumbotron extends Component {
               <FontAwesomeIcon
                 size="lg"
                 icon={['far', 'star']}
-                className="red"
+                className="med-icon red"
+                icon="chart-bar"
               />
             </Link>
+            <p>Stats component here</p>
           </div>
         </div>
+
+        <svg
+          id="wave-border"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="-300 0 950 270"
+        >
+          <path
+            d="M-314,267 C105,364 400,100 812,279"
+            fill="none"
+            stroke="#f0f0f0"
+            stroke-width="120"
+            stroke-linecap="round"
+          />
+        </svg>
       </div>
     );
   }

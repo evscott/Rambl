@@ -1,25 +1,107 @@
-@import url('https://fonts.googleapis.com/css?family=Cardo:400,700|Oswald:400,700');
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
+
+/*-------------------------
+MENU
+1. Typography
+2. Links
+3. Buttons
+4. Icons
+5. Layout
+6. Animation
+---------------------------*/
 
 .App {
-  margin-top: 15px;
   text-align: center;
-  font-family: 'Cardo', Georgia, "Times New Roman", serif;
+  font-family: 'Oswald', Georgia, "Times New Roman", serif;
+  font-weight: 300;
   font-size: 20px;
   color: #0a2e48;
 }
 
-h1, h2, h3, h4, h5, h6{
+/*-------------------------
+TYPOGRAPHY
+---------------------------*/
+
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Oswald', Helvetica, Arial, sans-serif;
   text-transform: uppercase;
+  font-weight: 400;
+  text-shadow: 2px 2px 5px #888888;
 }
 
 h1{
-  font-size: 40px;
+  font-size: 80px;
 }
 
 h2{
-  font-size: 30px;
+  font-size: 60px;
 }
+
+span{
+  padding: 0 5px;
+}
+
+.red{
+  color: #f78888;
+}
+
+.yellow{
+  color: #f3d250;
+}
+
+.light-blue{
+  color: #90ccf4;
+}
+
+.dark-blue{
+  color: #5da2d5;
+}
+
+.white {
+  color: #f0f0f0;
+}
+
+.black {
+  color: #0a2e48;
+}
+
+/*-------------------------
+LINKS
+---------------------------*/
+
+a {
+  color: #0a2e48;
+}
+
+a:hover {
+  text-decoration: none;
+  text-shadow: 2px 2px 5px #888888;
+  color: #0a2e48;
+}
+
+/*-------------------------
+BACKGROUNDS
+---------------------------*/
+
+.blue-gradient {
+  background-image: linear-gradient(#f0f0f0, #90ccf4);
+}
+
+.pink-gradient {
+  background-image: linear-gradient(#fcd2d2, #f78888);
+}
+
+.yellow-gradient {
+  background-image: linear-gradient(#f9eaac, #f3d250);
+}
+
+.reverse-blue-gradient {
+  background-image: linear-gradient(#90ccf4, #f0f0f0);
+}
+
+/*-------------------------
+BUTTONS
+---------------------------*/
 
 .btn-red{
   background: #f78888;
@@ -51,22 +133,34 @@ h2{
   margin: 0 5px;
 }
 
+/*-------------------------
+ICONS
+---------------------------*/
+
+.lg-icon {
+  font-size: 60px;
+}
+
+.med-icon {
+  font-size: 40px;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+.icon-padding{
+  padding: 15px 0;
+}
+
+/*-------------------------
+LAYOUT
+---------------------------*/
+
 .flex-wrap-center{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-.sidebar{
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: 25%; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-  background-color: #90ccf4; /* Black */
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 20px;
 }
 
 .container-right{
@@ -75,7 +169,158 @@ h2{
   padding: 0 100px;
 }
 
+.container-left {
+  width: 25%;
+  float: left;
+}
+
+.justify-center{
+  display: flex;
+  justify-content: center;
+}
+
+.fixed-bottom-right{
+  bottom: 40px;
+  right: 40px;
+  position: fixed;
+  z-index: 1;
+}
+
+.content {
+  padding: 50px 0;
+}
+
+.content-top {
+  padding: 100px 0;
+}
+
+.content-bottom {
+  margin-bottom: 30px;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.space-between {
+  padding: 0 20px;
+}
+
+.sm-content {
+  padding: 10px;
+}
+
+.section {
+  margin-bottom: 80px;
+}
+
+.align-left {
+  padding-left: 20px;
+  text-align: left;
+}
+
+/*-------------------------
+Navigation
+---------------------------*/
+
+.top-bar{
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  box-shadow: 0 0 10px 3px #90ccf4;
+  display: flex;
+  justify-content: center;
+}
+
+/*-------------------------
+Jumbotron
+---------------------------*/
+
 .jumbo-component{
   width: 250px;
-  padding: 25px;
+  padding: 30px;
+}
+
+/*-------------------------
+ANIMATION
+---------------------------*/
+
+.fade-in-top{
+  animation-name: fade-in-from-top;
+  animation-duration: 3s;
+}
+
+.fade-in-static {
+  animation-name: fade-in;
+  animation-duration: 3s;
+}
+
+.fade-in-short {
+  animation-name: fade-in-short;
+  animation-duration: 1s;
+}
+
+@keyframes fade-in {
+  0% {opacity: 0}
+  100% {opacity: 1}
+}
+
+@keyframes fade-in {
+  0% {opacity: 0}
+  100% {opacity: 1}
+}
+
+@keyframes fade-in-from-top{
+  0% {transform: translate(0, -100px); opacity: 0}
+  100% {transform: translate(0, 0); opacity: 1}
+}
+
+/*-------------------------
+TRIP CARD
+---------------------------*/
+
+.generic-card {
+  margin-left: 40px;
+  width: 300px;
+  border-radius: 8%;
+}
+
+.trip-card {
+  width: 200px;
+  border-radius: 8%;
+}
+
+.trip-card:hover a {
+  text-shadow: none;
+}
+
+.trip-card:hover {
+  box-shadow: 0 0 10px 10px #90ccf4;
+}
+
+.trip-card a {
+  padding: 0;
+}
+
+.trip-card h3 {
+  text-shadow: none;
+}
+
+.show-on-hover {
+  display: none;
+}
+
+.trip-card:hover .show-on-hover {
+  display: flex;
+  animation-name: fade-in;
+  animation-duration: 2s;
+}
+
+.calendar-container {
+  width: 90%;
+  height: 90vh;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before{
+  background-color:black;
 }

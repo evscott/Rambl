@@ -1,0 +1,13 @@
+.jumbotron-container{
+  background-image: linear-gradient(#f0f0f0, #90ccf4);
+  position: relative;
+}
+
+#wave-border {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left:0;
+  width: 100%;
+  height: auto;
+}

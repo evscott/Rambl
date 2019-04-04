@@ -1,31 +1,47 @@
+/* -----------------------------
+PAGE LAYOUT
+---------------------------------*/
 .landing {
-    padding: 100px 0;
+  padding: 80px 0;
 }
 
 .title{
-    padding: 50px 0;
+  padding: 80px 0;
 }
 
-.title h1{
-    font-size: 50px;
+@media screen and (max-width: 380px){
+  .landing{
+    padding: 30px 0;
+  }
+
+  .title{
+    padding: 40px 0 70px 0;
+  }
 }
 
-span{
-    padding: 0 5px;
+/* -----------------------------
+FORM
+---------------------------------*/
+.form{
+  max-width: 600px;
+  min-width: 500px;
 }
 
-.red{
-    color: #f78888;
+.form-input{
+  padding-bottom: 50px;
 }
 
-.yellow{
-    color: #f3d250;
+/* -----------------------------
+BUTTONS
+---------------------------------*/
+
+.btn-landing{
+  width: 150px;
+  margin-bottom: 20px;
+  box-shadow: 5px 10px 10px #888888;
 }
 
-.light-blue{
-    color: #90ccf4;
-}
-
-.dark-blue{
-    color: #5da2d5;
+.btn-landing:hover {
+  box-shadow: 5px 10px 10px #202020;
+  border: none;
 }

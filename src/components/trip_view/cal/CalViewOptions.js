@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import queryString from 'query-string';
 import PropTypes from 'prop-types';
+import Form from 'react-bootstrap/Form';
 
 /**
  * This component has all of the options for routing that allow the
@@ -130,32 +131,46 @@ export class CalViewOptions extends Component {
 
     return (
       <div>
-        <ButtonGroup>
-          {views.map((view) => {
-            return (
-              <Button
-                key={view[0]}
-                onClick={() => this.routeToView(view[0])}
-                active={currView === view[0]}
-              >
-                {view[1]}
-              </Button>
-            );
-          })}
-        </ButtonGroup>
-        <ButtonGroup>
-          {filters.map((filter) => {
-            return (
-              <Button
-                key={filter[0]}
-                onClick={() => this.toggleFilter(filter[0])}
-                active={currFilter.has(filter[0])}
-              >
-                {filter[1]}
-              </Button>
-            );
-          })}
-        </ButtonGroup>
+        <Form>
+          <Form.Group id="cal-views" className="generic-card pink-gradient">
+            <div className="sm-content">
+              <h3>View</h3>
+              <div className="align-left">
+                {views.map((view) => {
+                  return (
+                    <Form.Check
+                      key={view[0]}
+                      type="checkbox"
+                      checked={currView === view[0]}
+                      onClick={() => this.routeToView(view[0])}
+                      label={view[1]}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          </Form.Group>
+        </Form>
+        <Form>
+          <Form.Group id="cal-views" className="generic-card yellow-gradient">
+            <div className="sm-content">
+              <h3>Filters</h3>
+              <div className="align-left">
+                {filters.map((filter) => {
+                  return (
+                    <Form.Check
+                      key={filter[0]}
+                      onClick={() => this.toggleFilter(filter[0])}
+                      checked={currFilter.has(filter[0])}
+                      type="checkbox"
+                      label={filter[1]}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          </Form.Group>
+        </Form>
       </div>
     );
   }

@@ -17,8 +17,11 @@ export default class UpcomingJumbotron extends Component {
     return (
       <div>
         <CountdownContainer />
-        <p>until</p>
-        <h2>{this.props.trip.name}</h2>
+        <Link
+          to={'/trip?id=' + this.props.trip.trip_id + '&view=month&filter=all'}
+        >
+          <h2>{this.props.trip.name}</h2>
+        </Link>
 
         <div className="flex-wrap-center">
           {/* Highlights */}
@@ -28,15 +31,36 @@ export default class UpcomingJumbotron extends Component {
 
           {/* Notes */}
           <div className="jumbo-component">
-            <Notes notes={this.props.trip.dscript} />
+            <Notes dscript={this.props.trip.dscript} />
           </div>
+
 
           {/* Stats */}
           <div className="jumbo-component">
-            <FontAwesomeIcon size="lg" icon={['far', 'star']} className="red" />
-            <Link to="/stats" />
-          </div>
+            <Link to="/stats">
+              <FontAwesomeIcon
+                size="lg"
+                icon={['far', 'star']}
+                className="med-icon red"
+                icon="chart-bar"
+              />
+            </Link>
+            <p>Stats component here</p>
         </div>
+
+        <svg
+          id="wave-border"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="-300 0 950 270"
+        >
+          <path
+            d="M-314,267 C105,364 400,100 812,279"
+            fill="none"
+            stroke="#f0f0f0"
+            stroke-width="120"
+            stroke-linecap="round"
+          />
+        </svg>
       </div>
     );
   }

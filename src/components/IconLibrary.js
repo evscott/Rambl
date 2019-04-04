@@ -20,9 +20,10 @@ import {
   faGrin,
   faLaughWink,
   faLaugh,
-  faLongArrowAltLeft
+  faLongArrowAltLeft,
+  faPlusCircle
 } from '@fortawesome/free-solid-svg-icons';
-import { far, faStar as faStar2 } from '@fortawesome/free-regular-svg-icons';
+import { far, faStar as faStar2, faChartBar } from '@fortawesome/free-regular-svg-icons';
 
 export function createIconLibrary() {
   library.add(
@@ -48,6 +49,8 @@ export function createIconLibrary() {
     faGrin,
     faLaughWink,
     faLaugh,
-    faLongArrowAltLeft
+    faLongArrowAltLeft,
+    faPlusCircle,
+    faChartBar
   );
 }

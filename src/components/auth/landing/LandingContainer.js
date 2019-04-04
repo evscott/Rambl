@@ -1,17 +1,19 @@
 import { connect } from 'react-redux';
-import Dashboard from './Dashboard';
+import Landing from './Landing';
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    isAuthenticated: state.user.isAuthenticated
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-const DashboardContainer = connect(
+const LandingContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Dashboard);
+)(Landing);
 
-export default DashboardContainer;
+export default LandingContainer;

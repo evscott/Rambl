@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button } from 'react-bootstrap';
 import UpdateTripModal from '../trip_edit/UpdateTripModal';
+import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 
 /**
  *  PreviousTrips displays a list of all previous
@@ -56,25 +56,41 @@ export default class PreviousTrips extends Component {
    */
   getAllPrevious() {
     return this.props.previous.map((trip) => (
-      <div key={trip.trip_id}>
-        <Link to={'/trip?id=' + trip.trip_id + '&view=month&filter=all'}>
-          <p>{trip.name}</p>
-        </Link>
-        <p>{trip.dscript}</p>
-        <Button
-          variant={'danger'}
-          className={'float-right'}
-          onClick={() => this.handleDelete(trip)}
-        >
-          <FontAwesomeIcon size={'sm'} icon={['fas', 'bomb']} />
-        </Button>
-        <Button
-          variant={'info'}
-          className={'float-right'}
-          onClick={() => this.openEditTrip(trip)}
-        >
-          <FontAwesomeIcon size={'sm'} icon={['fas', 'pencil-alt']} />
-        </Button>
+      <div className="space-between">
+        <div className="trip-card yellow-gradient">
+          <div className="sm-content">
+            <Link to={'/trip?id=' + trip.trip_id + '&view=month&filter=all'}>
+              <h4>{trip.name}</h4>
+              <p>{trip.dscript}</p>
+            </Link>
+            <div className="flex-wrap-center show-on-hover">
+              <OverlayTrigger
+                key="1"
+                placement="left"
+                overlay={<Tooltip>Delete Trip</Tooltip>}
+              >
+                <div onClick={() => this.handleDelete(trip)}>
+                  <FontAwesomeIcon
+                    className="med-icon clickable black"
+                    icon="bomb"
+                  />
+                </div>
+              </OverlayTrigger>
+              <OverlayTrigger
+                key="1"
+                placement="right"
+                overlay={<Tooltip>Edit Trip</Tooltip>}
+              >
+                <div onClick={() => this.openEditTrip(trip)}>
+                  <FontAwesomeIcon
+                    className="med-icon clickable black"
+                    icon="pencil-alt"
+                  />
+                </div>
+              </OverlayTrigger>
+            </div>
+          </div>
+        </div>
       </div>
     ));
   }
@@ -87,9 +103,11 @@ export default class PreviousTrips extends Component {
   getPreviousDiv() {
     if (this.hasPrevious()) {
       return (
-        <div id="section-previous">
+        <div id="section-previous" className="section">
           <h1>Previous Trips</h1>
-          {this.getAllPrevious()}
+          <div className="flex-wrap-center content">
+            {this.getAllPrevious()}
+          </div>
         </div>
       );
     }
