@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HighlightsContainer from './HighlightsContainer';
 import Notes from './Notes';
 import CountdownContainer from './CountdownContainer';
+
+import { Link } from 'react-router-dom';
 /**
  *  UpcomingJumbotron displays when the user has at least one upcoming
  *  trip and no ongoing trips. It features a countdown to the next trip,
@@ -32,7 +34,7 @@ export default class UpcomingJumbotron extends Component {
           {/* Stats */}
           <div className="jumbo-component">
             <FontAwesomeIcon size="lg" icon={['far', 'star']} className="red" />
-            <p>Stats component here</p>
+            <Link to="/stats" />
           </div>
         </div>
       </div>

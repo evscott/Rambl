@@ -3,6 +3,7 @@ import HighlightsContainer from './HighlightsContainer';
 import Notes from './Notes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { Link } from 'react-router-dom';
 /**
  *  OngoingJumbotron displays information for a trip
  *  that is currently in progress
@@ -101,8 +102,13 @@ export default class OngoingJumbotron extends Component {
 
           {/* Stats */}
           <div className="jumbo-component">
-            <FontAwesomeIcon size="lg" icon={['far', 'star']} className="red" />
-            <p>Stats component here</p>
+            <Link to="/stats">
+              <FontAwesomeIcon
+                size="lg"
+                icon={['far', 'star']}
+                className="red"
+              />
+            </Link>
           </div>
         </div>
       </div>
