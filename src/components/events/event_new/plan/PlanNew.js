@@ -22,7 +22,8 @@ export default class PlanNew extends Component {
       begin_time: this.props.begin_time ? this.props.begin_time : null,
       end_time: this.props.end_time ? this.props.end_time : null,
       cost: null,
-      dscript: null
+      dscript: null,
+      priority: 0
     };
   }
 
@@ -44,7 +45,7 @@ export default class PlanNew extends Component {
         cost: plan.cost,
         dscript: plan.dscript,
         completed: 0,
-        priority: 0
+        priority: plan.priority
       };
     else
       return {

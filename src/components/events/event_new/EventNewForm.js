@@ -8,6 +8,7 @@ import { LocationField } from './fields/LocationField';
 import { ModeOfTranField } from './fields/ModeOfTranField';
 import { CostField } from './fields/CostField';
 import { DescriptionField } from './fields/DescriptionField';
+import { PriorityButton } from '../../global/PriorityButton';
 
 export class EventNewForm extends Component {
   constructor(props) {
@@ -21,6 +22,7 @@ export class EventNewForm extends Component {
     this.toggleUseDates = this.toggleUseDates.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.togglePriorityChange = this.togglePriorityChange.bind(this);
   }
 
   /***************************** Core functions *****************************/
@@ -50,6 +52,12 @@ export class EventNewForm extends Component {
   handleSubmit() {
     this.props.addEvent(this.props.getEvent(this.state));
     this.props.close();
+  }
+
+  togglePriorityChange() {
+    let priority = this.state.priority;
+    priority = (priority + 1) % 3;
+    this.handleChange('priority', priority);
   }
 
   /**************************** Visual component ****************************/
@@ -94,7 +102,16 @@ export class EventNewForm extends Component {
           </Form>
         </div>
         {/*Buttons*/}
-        <Button variant="primary" size="sm" onClick={this.handleSubmit}>
+        <PriorityButton
+          handleChange={this.togglePriorityChange}
+          priority={this.state.priority}
+        />
+        <Button
+          className={'float-right submit-btn'}
+          variant="primary"
+          size="sm"
+          onClick={this.handleSubmit}
+        >
           <b>Submit</b>
         </Button>
       </div>

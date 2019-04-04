@@ -53,6 +53,12 @@ export default class AccomInfo extends Component {
         type: 'Description',
         value: accom.dscript ? accom.dscript : 'unspecified',
         editMode: false
+      },
+      priority: {
+        name: 'priority',
+        type: 'Priority',
+        value: accom.priority,
+        editMode: false
       }
     };
   }
@@ -72,7 +78,7 @@ export default class AccomInfo extends Component {
       cost: convertToNumber(accom.cost.value),
       dscript: accom.dscript.value,
       completed: 0,
-      priority: 0
+      priority: accom.priority.value
     };
   }
 

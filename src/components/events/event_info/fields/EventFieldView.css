@@ -29,3 +29,10 @@
 td:hover .initEditBtn {
     opacity: .4;
 }
+
+.priority-btn {
+    border: none !important;
+    background: none !important;
+    outline:none !important;
+    box-shadow: none !important;
+}
