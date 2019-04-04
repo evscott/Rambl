@@ -36,6 +36,7 @@ export class FormInput extends Component {
           placeholder={this.props.placeholder}
           type={this.props.type}
           name={this.props.name}
+          value={this.props.value}
           onChange={this.props.handleChange}
         />
         <Form.Text>{errorMsg}</Form.Text>

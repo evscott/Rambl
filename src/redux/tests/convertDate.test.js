@@ -1,4 +1,4 @@
-import { convertDate } from './convertDate';
+import { convertDate } from '../getters/convertDate';
 
 it('Can convert dates into Date form', () => {
   // Try converting a date, test in GMT format

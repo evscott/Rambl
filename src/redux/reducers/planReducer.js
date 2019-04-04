@@ -1,5 +1,5 @@
-import { filterMultiDimensionalArray } from '../../shared/filterArray';
-import { updateMultiDimensionalArray } from '../../shared/updateArray';
+import { filterMultiDimensionalDict } from '../../shared/filterDict';
+import { updateMultiDimensionalDict } from '../../shared/updateDict';
 import * as PlanActions from '../actions/planActions';
 import { LOGOUT_SUCCESS } from '../actions/authActions';
 
@@ -69,7 +69,7 @@ export function planReducer(state = initialState, action) {
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
-        plans: updateMultiDimensionalArray(
+        plans: updateMultiDimensionalDict(
           state.plans,
           action.planToAdd.trip_id,
           action.planToAdd.e_id,
@@ -124,7 +124,7 @@ export function planReducer(state = initialState, action) {
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
-        plans: filterMultiDimensionalArray(
+        plans: filterMultiDimensionalDict(
           state.plans,
           action.planToDelete.trip_id,
           action.planToDelete.e_id
