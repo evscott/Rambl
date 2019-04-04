@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { FormInput } from '../global/FormInput';
+import PropTypes from 'prop-types';
 
-export default class NewTripForm extends Component {
+export default class TripForm extends Component {
   constructor(props) {
     super(props);
 
+    let name = this.props.trip !== undefined ? this.props.trip.name : '';
+    let dscript = this.props.trip !== undefined ? this.props.trip.dscript : '';
+
     this.state = {
-      name: '',
-      dscript: '',
+      ...this.props.trip,
+      name: name,
+      dscript: dscript,
       attemptedSubmit: false
     };
 
@@ -20,9 +25,16 @@ export default class NewTripForm extends Component {
   /**************************** Helper functions ****************************/
   /**
    * Gets a trip object formatted for MySql.
-   * @return {{user_id: number, name: string, dscript: *}}
+   * @return {{name: string, dscript: *}}
    */
   getTripObj() {
+    if (this.props.trip !== null) {
+      return {
+        ...this.props.trip,
+        name: this.state.name,
+        dscript: this.state.dscript
+      };
+    }
     return {
       name: this.state.name,
       dscript: this.state.dscript
@@ -84,3 +96,7 @@ export default class NewTripForm extends Component {
     );
   }
 }
+
+TripForm.propTypes = {
+  trip: PropTypes.any // a string name for the trip
+};
