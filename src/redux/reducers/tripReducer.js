@@ -67,7 +67,10 @@ export function tripReducer(state = initialState, action) {
         lastUpdated: action.lastUpdated,
         isFetching: action.isFetching,
         isSynced: action.isSynced,
-        trips: [...state.trips, action.tripToAdd]
+        trips: [
+          ...state.trips.filter((t) => t.trip_id !== action.tripToAdd.trip_id),
+          action.tripToAdd
+        ]
       };
     case TripActions.UPDATE_TRIP_IN_DB_REQUEST:
       return {
