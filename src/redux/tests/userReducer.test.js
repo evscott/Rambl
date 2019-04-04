@@ -1,5 +1,6 @@
 import { userReducer } from '../reducers/userReducer';
 import * as authActions from '../actions/authActions';
+import * as userActions from '../actions/userActions';
 
 describe('userReducer', () => {
   it('should return the initial state', () => {
@@ -11,7 +12,7 @@ describe('userReducer', () => {
       lastUpdated: null,
       isAuthenticated: false,
       isFetching: false,
-      user: {}
+      user: []
     });
   });
 
@@ -22,7 +23,7 @@ describe('userReducer', () => {
     // Perform action
     state = userReducer(
       state,
-      authActions.getUserInfoSuccess([
+      userActions.getUserInfoFromDbSuccess([
         {
           test: 'This is a test'
         }
