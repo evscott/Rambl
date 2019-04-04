@@ -10,7 +10,7 @@ import { EventInfoForm } from '../EventInfoForm';
 export default class PlanInfo extends Component {
   constructor(props) {
     super(props);
-    this.state = this.getState(this.props.plan);
+    this.state = this.getState(props.plan);
     this.getPlan = this.getPlan.bind(this);
   }
 
@@ -53,6 +53,12 @@ export default class PlanInfo extends Component {
         type: 'Description',
         value: plan.dscript ? plan.dscript : 'unspecified',
         editMode: false
+      },
+      priority: {
+        name: 'priority',
+        type: 'Priority',
+        value: plan.priority,
+        editMode: false
       }
     };
   }
@@ -72,7 +78,7 @@ export default class PlanInfo extends Component {
       cost: convertToNumber(plan.cost.value),
       dscript: plan.dscript.value,
       completed: 0,
-      priority: 0
+      priority: plan.priority.value
     };
   }
 
