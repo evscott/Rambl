@@ -65,6 +65,12 @@ export default class TranInfo extends Component {
         type: 'Description',
         value: tran.dscript ? tran.dscript : 'unspecified',
         editMode: false
+      },
+      priority: {
+        name: 'priority',
+        type: 'Priority',
+        value: tran.priority,
+        editMode: false
       }
     };
   }
@@ -86,7 +92,7 @@ export default class TranInfo extends Component {
       cost: convertToNumber(tran.cost.value),
       dscript: tran.dscript.value,
       completed: 0,
-      priority: 0
+      priority: tran.priority.value
     };
   }
 

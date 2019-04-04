@@ -1,4 +1,12 @@
+/**
+ * Formats the date for user consumption.
+ * @param d string representing the date to change.
+ * Similar to '09/13/1999 5:36 PM'
+ * @returns {*} String representing the date, similar
+ * to '09/13/1999, 5:36 PM'
+ */
 export const formatDateForUser = (d) => {
+  if (d === '') return 'unspecified';
   let date = new Date(d);
   date = date.toLocaleDateString('en-US', {
     year: 'numeric',
@@ -10,6 +18,11 @@ export const formatDateForUser = (d) => {
   return date;
 };
 
+/**
+ * Puts the date into the MySQL DateTime format.
+ * @param d the string representing the date to convert.
+ * @returns {string} the MySQL DateTime string format.
+ */
 export const formatDateForMySql = (d) => {
   let date = new Date(d);
   let mysqlDate =

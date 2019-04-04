@@ -46,8 +46,12 @@ export function getTripEvents(state, tripId, filter = null) {
   // Check for nulls, just in case.
   if (!isValid(state)) return [];
 
-  if (filter == null) filter = new Set(['all']);
+  if (filter === null) filter = new Set(['all']);
   else filter = new Set(filter.split(' ')); // Get all of the filters in a set
+
+  // Deal with if filter undefined
+  if (filter.size === 1 && filter.has('undefined')) filter = new Set(['all']);
+
   let plans = state.plans.plans[tripId];
   let accoms = state.accoms.accoms[tripId];
   let trans = state.trans.trans[tripId];

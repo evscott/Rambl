@@ -2,6 +2,10 @@
     font-size: 15px;
 }
 
-.date-width{
+.date-width {
     width: 227px;
+}
+
+.submit-btn {
+    margin-right: 5px;
 }

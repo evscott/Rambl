@@ -10,6 +10,28 @@ import { EventTypeIndicator } from '../../../global/EventTypeIndicator';
  * agenda. It displays the title, priority, event type, and dates.
  */
 export class AgendaItem extends Component {
+  /**
+   * Adds one to the priority of the event by sending the info to the
+   * redux store/database. If priority exceeds 2, it wraps down to 0.
+   * @param event the event to update priority for.
+   */
+  incrementPriority(event) {
+    event.priority = (event.priority + 1) % 3; // Increment, wrap around
+    switch (event.event_type) {
+      case 'trans':
+        this.props.onUpdateTran(event);
+        break;
+      case 'plan':
+        this.props.onUpdatePlan(event);
+        break;
+      case 'accom':
+        this.props.onUpdateAccom(event);
+        break;
+      default:
+        break;
+    }
+  }
+
   render() {
     let { localizer, accessors, event } = this.props;
 
@@ -23,14 +45,17 @@ export class AgendaItem extends Component {
     let eventType = event.event_type; // May be null
 
     return (
-      <Card onClick={() => this.props.onSelectEvent(event)}>
+      <Card>
         <Card.Header>
-          {title}
-          <span className="pull-right">
+          <span className={'clickable'}>{title}</span>
+          <span
+            className={'pull-right clickable'}
+            onClick={() => this.incrementPriority(event)}
+          >
             <PriorityIndicator priority={+priority} />
           </span>
         </Card.Header>
-        <Card.Body>
+        <Card.Body onClick={() => this.props.onSelectEvent(event)}>
           <div>
             <EventTypeIndicator type={eventType} size={'3x'} />
             <div className="start-date">{localizer.format(start, 'LLL')}</div>

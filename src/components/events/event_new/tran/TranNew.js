@@ -15,25 +15,26 @@ export default class TranNew extends Component {
 
   /**
    * Initializes a tran state using begin_time and end_time if provided.
-   * @returns {{loc_begin: null, cost: null, method: null, loc_end: null,
+   * @returns {{loc: null, cost: null, method: null, loc_end: null,
    * end_time: *, begin_time: *, dscript: null}}
    */
   getState() {
     return {
       method: null,
-      loc_begin: null,
+      loc: null, // This indicates the initial loc, but name is loc for consistency.
       loc_end: null,
       begin_time: this.props.begin_time ? this.props.begin_time : null,
       end_time: this.props.end_time ? this.props.end_time : null,
       cost: null,
-      dscript: null
+      dscript: null,
+      priority: 0
     };
   }
 
   /**
    * Gets a tran object formatted for MySql.
    * @param tran object to be formatted.
-   * @returns {{loc: (null|loc_begin|{editMode, name, type, value}),
+   * @returns {{loc: (null|loc|{editMode, name, type, value}),
    * trip_id: String, cost: *, method: *,
    * loc_end: (null|loc_end|{editMode, name, type, value}|string|*), end_time,
    * begin_time, dscript: *, completed: number, priority: number}}
@@ -42,14 +43,14 @@ export default class TranNew extends Component {
     return {
       trip_id: this.props.trip_id,
       method: tran.method,
-      loc: tran.loc_begin,
+      loc: tran.loc,
       loc_end: tran.loc_end,
       begin_time: formatDateForMySql(tran.begin_time),
       end_time: formatDateForMySql(tran.end_time),
       cost: tran.cost,
       dscript: tran.dscript,
       completed: 0,
-      priority: 0
+      priority: tran.priority
     };
   }
 

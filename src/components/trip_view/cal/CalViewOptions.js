@@ -64,26 +64,35 @@ export class CalViewOptions extends Component {
 
     // Find all the filters from before
     let newFilterSet;
-    if (oldFilter == null) newFilterSet = new Set();
+    if (oldFilter === null) newFilterSet = new Set();
     else newFilterSet = new Set(oldFilter.split(' '));
 
     // Get the filter we're looking for and toggle it
     if (newFilterSet.has(filter)) newFilterSet.delete(filter);
-    else {
-      // Should not have 'all' if filtering something specific
-      newFilterSet.delete('all');
-      newFilterSet.add(filter);
+    else newFilterSet.add(filter);
+
+    // Clean up newFilterSet
+    newFilterSet.delete('undefined');
+
+    // If has all, then just erase all the filters (unless we changed FROM all,
+    // in which case we want to filter to something more specific and we should
+    // remove the 'all' filter)
+    if (newFilterSet.has('all')) {
+      if (oldFilter === 'all') newFilterSet.delete('all');
+      else newFilterSet.clear();
     }
+
+    // Fix depending on size of newFilterSet
+    if (newFilterSet.size === 0) newFilterSet.add('all');
+    else if (newFilterSet.size === 3) newFilterSet = new Set(['all']);
 
     // Turn this into a string, only add them if 'all' is not selected.
     // If all is selected, all the others are redundant.
-    let newFilter = 'all';
-    if (!newFilterSet.has('all')) {
-      newFilterSet.forEach((filter) => {
-        if (newFilter === 'all') newFilter = filter;
-        else newFilter += '+' + filter;
-      });
-    }
+    let newFilter = null;
+    newFilterSet.forEach((filter) => {
+      if (newFilter === null) newFilter = filter;
+      else newFilter += '+' + filter;
+    });
 
     let route = {
       pathname: this.getPath(),

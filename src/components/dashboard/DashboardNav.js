@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
-import NewTripModal from './NewTripModal';
+import NewTripModal from '../trip_edit/NewTripModal';
 
 /**
  *  DashboardNav displays the navigation required on the dashboard,

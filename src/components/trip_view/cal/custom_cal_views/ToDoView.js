@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { ToDoItem } from './ToDoItem';
+import ToDoItemContainer from './ToDoItemContainer';
 import { filterTripToDos } from '../../../../redux/getters/getEvents';
 import { CreateEventCard } from './CreateEventCard';
 
@@ -57,7 +57,7 @@ class ToDoList extends React.Component {
     let { accessors, localizer } = this.props;
 
     return (
-      <ToDoItem
+      <ToDoItemContainer
         key={event.event_type + '_' + event.e_id}
         event={event}
         accessors={accessors}
