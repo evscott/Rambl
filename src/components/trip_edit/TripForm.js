@@ -28,7 +28,7 @@ export default class TripForm extends Component {
    * @return {{name: string, dscript: *}}
    */
   getTripObj() {
-    if(this.props.trip !== null) {
+    if (this.props.trip !== null) {
       return {
         ...this.props.trip,
         name: this.state.name,
@@ -98,5 +98,5 @@ export default class TripForm extends Component {
 }
 
 TripForm.propTypes = {
-  trip: PropTypes.any, // a string name for the trip
+  trip: PropTypes.any // a string name for the trip
 };

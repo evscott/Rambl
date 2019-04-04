@@ -16,7 +16,10 @@ export default class UpdateTripModal extends Component {
           <Modal.Title>Edit Trip</Modal.Title>
         </Modal.Header>
         <Modal.Body className={'modal-body'}>
-          <UpdateTripFormContainer close={this.props.onHide} trip={this.props.trip} />
+          <UpdateTripFormContainer
+            close={this.props.onHide}
+            trip={this.props.trip}
+          />
         </Modal.Body>
       </Modal>
     );

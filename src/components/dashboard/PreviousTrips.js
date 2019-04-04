@@ -97,13 +97,15 @@ export default class PreviousTrips extends Component {
 
   /**************************** Visual component ****************************/
   render() {
-    return <div>
-      {this.getPreviousDiv()}
-      <UpdateTripModal
-        show={this.state.showEditTrip}
-        onHide={this.quitEditTrip}
-        trip={this.state.currTrip}
-      />
-    </div>;
+    return (
+      <div>
+        {this.getPreviousDiv()}
+        <UpdateTripModal
+          show={this.state.showEditTrip}
+          onHide={this.quitEditTrip}
+          trip={this.state.currTrip}
+        />
+      </div>
+    );
   }
 }
