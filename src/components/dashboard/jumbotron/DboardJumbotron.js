@@ -4,7 +4,6 @@ import UpcomingJumbotronContainer from './UpcomingJumbotronContainer';
 import './DboardJumbotron.css';
 import NewTripModal from '../../trip_edit/NewTripModal';
 
-
 /**
  *  DBoardJumbotron handles the logic for which dashboard jumbotron we are
  *  displaying (an ongoing trip, countdown to next trip, or no
