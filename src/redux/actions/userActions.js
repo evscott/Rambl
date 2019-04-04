@@ -24,7 +24,7 @@ function getUserInfoFromDbFailure() {
   };
 }
 
-function getUserInfoFromDbSuccess(user) {
+export function getUserInfoFromDbSuccess(user) {
   return {
     type: GET_USER_INFO_FROM_DB_SUCCESS,
     lastUpdated: Date.now(),

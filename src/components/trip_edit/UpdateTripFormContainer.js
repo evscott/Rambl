@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import NewTripForm from './NewTripForm';
-import { addTripToDb } from '../../redux/actions/tripActions';
+import TripForm from './TripForm';
+import { updateTripInDb } from '../../redux/actions/tripActions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -11,14 +11,14 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addTrip: (trip) => {
-      dispatch(addTripToDb(trip));
+      dispatch(updateTripInDb(trip));
     }
   };
 };
 
-const NewTripFormContainer = connect(
+const UpdateTripFormContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(NewTripForm);
+)(TripForm);
 
-export default NewTripFormContainer;
+export default UpdateTripFormContainer;

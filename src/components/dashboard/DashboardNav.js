@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import './DashboardNav.css';
 import UserInfo from '../user/UserInfo';
+import NewTripModal from '../trip_edit/NewTripModal';
 
 /**
  *  DashboardNav displays the navigation required on the dashboard,
