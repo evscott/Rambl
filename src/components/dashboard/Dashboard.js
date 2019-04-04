@@ -4,9 +4,8 @@ import UpcomingTripsContainer from './UpcomingTripsContainer';
 import PreviousTripsContainer from './PreviousTripsContainer';
 import DashboardNavContainer from './DashboardNavContainer';
 import './Dashboard.css';
-import { Button, Form } from 'react-bootstrap';
-import NewTripModal from './NewTripModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import NewTripModal from '../trip_edit/NewTripModal';
 
 /**
  *  Dashboard is a component that holds all of the dashboard helper components
@@ -49,6 +48,7 @@ export default class Dashboard extends Component {
         <DboardJumbotronContainer />
         <UpcomingTripsContainer />
         <PreviousTripsContainer />
+
         {/* New Trip Control */}
         <div className="fixed-bottom-right">
           <FontAwesomeIcon
@@ -58,11 +58,11 @@ export default class Dashboard extends Component {
               this.startCreateEvent(e);
             }}
           />
-          <NewTripModal
-            show={this.state.showNewTrip}
-            onHide={this.quitCreateEvent}
-          />
         </div>
+        <NewTripModal
+          show={this.state.showNewTrip}
+          onHide={this.quitCreateEvent}
+        />
       </div>
     );
   }

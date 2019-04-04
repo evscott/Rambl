@@ -20,39 +20,6 @@ PAGE LAYOUT
 }
 
 /* -----------------------------
-TYPOGRAPHY
----------------------------------*/
-h1{
-  font-size: 80px;
-  text-shadow: 2px 2px 5px #888888;
-}
-
-h2{
-  font-size: 60px;
-  text-shadow: 2px 2px 5px #888888;
-  padding: 20px 0 40px 0;
-}
-
-span{
-  padding: 0 5px;
-}
-
-.red{
-  color: #f78888;
-}
-
-.yellow{
-  color: #f3d250;
-}
-
-.light-blue{
-  color: #90ccf4;
-}
-
-.dark-blue{
-  color: #5da2d5;
-}
-/* -----------------------------
 FORM
 ---------------------------------*/
 .form{
@@ -76,10 +43,5 @@ BUTTONS
 
 .btn-landing:hover {
   box-shadow: 5px 10px 10px #202020;
-  border: none;
-}
-
-.btn-contrast:hover{
-  background: #f78888;
   border: none;
 }

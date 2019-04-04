@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import HighlightsContainer from './HighlightsContainer';
 import Notes from './Notes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 /**
  *  OngoingJumbotron displays information for a trip
@@ -84,7 +85,11 @@ export default class OngoingJumbotron extends Component {
     return (
       <div>
         <p>You have an ongoing trip!</p>
-        <h2>{this.props.trip.name}</h2>
+        <div key={this.props.trip.trip_id}>
+          <Link to={'/trip?id=' + this.props.trip.trip_id + '&view=month'}>
+            <h1>{this.props.trip.name}</h1>
+          </Link>
+        </div>
         {this.getCurrentEventsDiv()}
         {this.getUpcomingEventsDiv()}
 
@@ -101,7 +106,7 @@ export default class OngoingJumbotron extends Component {
 
           {/* Stats */}
           <div className="jumbo-component">
-            <FontAwesomeIcon size="lg" icon={['far', 'star']} className="red" />
+            <FontAwesomeIcon className="lg-icon red" icon="chart-bar" />
             <p>Stats component here</p>
           </div>
         </div>

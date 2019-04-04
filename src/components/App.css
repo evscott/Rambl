@@ -1,25 +1,67 @@
-@import url('https://fonts.googleapis.com/css?family=Cardo:400,700|Oswald:400,700');
+@import url('https://fonts.googleapis.com/css?family=Oswald:300,400');
+
+/*-------------------------
+MENU
+1. Typography
+2. Links
+3. Buttons
+4. Icons
+5. Layout
+6. Animation
+---------------------------*/
 
 .App {
   text-align: center;
-  font-family: 'Cardo', Georgia, "Times New Roman", serif;
+  font-family: 'Oswald', Georgia, "Times New Roman", serif;
+  font-weight: 300;
   font-size: 20px;
   color: #0a2e48;
-  scroll-behavior: smooth;
 }
 
-h1, h2, h3, h4, h5, h6{
+/*-------------------------
+TYPOGRAPHY
+---------------------------*/
+
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Oswald', Helvetica, Arial, sans-serif;
   text-transform: uppercase;
+  font-weight: 400;
 }
 
 h1{
-  font-size: 40px;
+  font-size: 80px;
+  text-shadow: 2px 2px 5px #888888;
 }
 
 h2{
-  font-size: 30px;
+  font-size: 60px;
+  text-shadow: 2px 2px 5px #888888;
+  padding: 20px 0 40px 0;
 }
+
+span{
+  padding: 0 5px;
+}
+
+.red{
+  color: #f78888;
+}
+
+.yellow{
+  color: #f3d250;
+}
+
+.light-blue{
+  color: #90ccf4;
+}
+
+.dark-blue{
+  color: #5da2d5;
+}
+
+/*-------------------------
+LINKS
+---------------------------*/
 
 a {
   color: #0a2e48;
@@ -29,6 +71,10 @@ a:hover {
   text-decoration: none;
   color: #5da2d5;
 }
+
+/*-------------------------
+BUTTONS
+---------------------------*/
 
 .btn-red{
   background: #f78888;
@@ -60,6 +106,22 @@ a:hover {
   margin: 0 5px;
 }
 
+/*-------------------------
+ICONS
+---------------------------*/
+
+.lg-icon {
+  font-size: 60px;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+/*-------------------------
+LAYOUT
+---------------------------*/
+
 .flex-wrap-center{
   display: flex;
   flex-wrap: wrap;
@@ -72,10 +134,34 @@ a:hover {
   padding: 0 100px;
 }
 
+.justify-center{
+  display: flex;
+  justify-content: center;
+}
+
+.fixed-bottom-right{
+  bottom:40px;
+  right:40px;
+  position: fixed;
+  z-index: 1;
+}
+
+.content {
+  padding-bottom: 100px;
+}
+
+/*-------------------------
+Jumbotron
+---------------------------*/
+
 .jumbo-component{
   width: 250px;
   padding: 25px;
 }
+
+/*-------------------------
+ANIMATION
+---------------------------*/
 
 .fade-in-top{
   animation-name: fade-in-from-top;
@@ -107,30 +193,10 @@ a:hover {
   100% {transform: translate(0, 0); opacity: 1}
 }
 
-.center-btn{
-  display: flex;
-  justify-content: center;
-}
-
 .trip-box{
   max-width: 300px;
 }
 
 .red-trip-box{
   background: #f78888;
-}
-
-.fixed-bottom-right{
-  bottom:40px;
-  right:40px;
-  position: fixed;
-  z-index: 1;
-}
-
-.clickable:hover{
-  cursor: pointer;
-}
-
-.lg-icon{
-  font-size: 60px;
 }

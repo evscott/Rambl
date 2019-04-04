@@ -26,18 +26,14 @@ export default class Highlights extends Component {
     if (this.props.highPriority.length === 0) {
       return (
         <div>
-          <FontAwesomeIcon
-            size="lg"
-            icon={['far', 'star']}
-            className="yellow"
-          />
+          <FontAwesomeIcon className="lg-icon yellow" icon={['far', 'star']} />
           <p>You have no high priority events</p>
         </div>
       );
     }
     return (
       <div>
-        <FontAwesomeIcon size="lg" icon={['far', 'star']} className="yellow" />
+        <FontAwesomeIcon className="lg-icon yellow" icon={['far', 'star']} />
         <p>Highlights include:</p>
         {this.getSomeHighlights()}
       </div>

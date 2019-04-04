@@ -93,7 +93,7 @@ export default class Login extends Component {
               {/* Display errors, if necessary */}
               {errorDiv}
 
-              <div className="form-input">
+              <div className="form-input form-blue">
                 {/* Email */}
                 <FormInput
                   name="email"

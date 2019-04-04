@@ -23,11 +23,7 @@ export default class Notes extends Component {
     }
     return (
       <div>
-        <FontAwesomeIcon
-          size="lg"
-          icon={['far', 'star']}
-          className="light-blue"
-        />
+        <FontAwesomeIcon className="lg-icon dark-blue" icon="pencil-alt" />
         {par}
       </div>
     );
