@@ -26,17 +26,15 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Oswald', Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-weight: 400;
+  text-shadow: 2px 2px 5px #888888;
 }
 
 h1{
   font-size: 80px;
-  text-shadow: 2px 2px 5px #888888;
 }
 
 h2{
   font-size: 60px;
-  text-shadow: 2px 2px 5px #888888;
-  padding: 20px 0 40px 0;
 }
 
 span{
@@ -59,6 +57,14 @@ span{
   color: #5da2d5;
 }
 
+.white {
+  color: #f0f0f0;
+}
+
+.black {
+  color: #0a2e48;
+}
+
 /*-------------------------
 LINKS
 ---------------------------*/
@@ -69,7 +75,28 @@ a {
 
 a:hover {
   text-decoration: none;
-  color: #5da2d5;
+  text-shadow: 2px 2px 5px #888888;
+  color: #0a2e48;
+}
+
+/*-------------------------
+BACKGROUNDS
+---------------------------*/
+
+.blue-gradient {
+  background-image: linear-gradient(#f0f0f0, #90ccf4);
+}
+
+.pink-gradient {
+  background-image: linear-gradient(#fcd2d2, #f78888);
+}
+
+.yellow-gradient {
+  background-image: linear-gradient(#f9eaac, #f3d250);
+}
+
+.reverse-blue-gradient {
+  background-image: linear-gradient(#90ccf4, #f0f0f0);
 }
 
 /*-------------------------
@@ -114,8 +141,16 @@ ICONS
   font-size: 60px;
 }
 
+.med-icon {
+  font-size: 40px;
+}
+
 .clickable:hover {
   cursor: pointer;
+}
+
+.icon-padding{
+  padding: 15px 0;
 }
 
 /*-------------------------
@@ -140,14 +175,43 @@ LAYOUT
 }
 
 .fixed-bottom-right{
-  bottom:40px;
-  right:40px;
+  bottom: 40px;
+  right: 40px;
   position: fixed;
   z-index: 1;
 }
 
 .content {
-  padding-bottom: 100px;
+  padding: 50px 0;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.space-between {
+  padding: 0 20px;
+}
+
+.sm-content {
+  padding: 10px;
+}
+
+.section {
+  margin-bottom: 80px;
+}
+
+/*-------------------------
+Navigation
+---------------------------*/
+
+.top-bar{
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  box-shadow: 0 0 10px 3px #90ccf4;
+  display: flex;
+  justify-content: center;
 }
 
 /*-------------------------
@@ -156,7 +220,7 @@ Jumbotron
 
 .jumbo-component{
   width: 250px;
-  padding: 25px;
+  padding: 30px;
 }
 
 /*-------------------------
@@ -193,10 +257,42 @@ ANIMATION
   100% {transform: translate(0, 0); opacity: 1}
 }
 
-.trip-box{
-  max-width: 300px;
+/*-------------------------
+TRIP CARD
+---------------------------*/
+
+.trip-card {
+  width: 200px;
+  border-radius: 8%;
 }
 
-.red-trip-box{
-  background: #f78888;
+.trip-card:hover a {
+  text-shadow: none;
+}
+
+.trip-card:hover {
+  box-shadow: 0 0 10px 10px #90ccf4;
+}
+
+.trip-card a {
+  padding: 0;
+}
+
+.trip-card h3 {
+  text-shadow: none;
+}
+
+.show-on-hover {
+  display: none;
+}
+
+.trip-card:hover .show-on-hover {
+  display: flex;
+  animation-name: fade-in;
+  animation-duration: 2s;
+}
+
+.calendar-container {
+  width: 90%;
+  height: 90vh;
 }

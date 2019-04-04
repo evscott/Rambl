@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UserInfoButton from './user_info_button/UserInfoButton';
+import UserInfoButtonContainer from './user_info_button/UserInfoButtonContainer';
 import { UserModal } from './user_modal/UserModal';
 
 /**
@@ -27,7 +27,7 @@ export default class UserInfo extends Component {
   render() {
     return (
       <div>
-        <UserInfoButton toggleShow={this.toggleShow} />
+        <UserInfoButtonContainer toggleShow={this.toggleShow} />
         <UserModal show={this.state.show} onHide={this.toggleShow} />
       </div>
     );

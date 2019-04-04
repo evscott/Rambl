@@ -17,13 +17,13 @@ export class TripView extends Component {
   render() {
     return (
       <div>
-        <div className="sidebar">
+        <div className="top-bar">
           <TripNavContainer />
         </div>
-        <div className="container-right">
-          <div className="cal-options">
-            <CalViewOptions history={this.props.history} />
-          </div>
+        <div className="cal-options">
+          <CalViewOptions history={this.props.history} />
+        </div>
+        <div className="calendar-container">
           <TripCalContainer location={this.props.location} />
         </div>
       </div>

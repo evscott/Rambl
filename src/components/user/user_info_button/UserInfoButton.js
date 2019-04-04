@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './UserInfoButton.css';
 import PropTypes from 'prop-types';
@@ -49,19 +48,10 @@ export default class UserInfoButton extends Component {
   render() {
     this.userIcon();
     return (
-      <OverlayTrigger
-        key={'1'}
-        placement={'left'}
-        overlay={
-          <Tooltip>
-            About <strong> you </strong>
-          </Tooltip>
-        }
-      >
-        <Button className={'user-info'} onClick={this.props.toggleShow}>
-          <FontAwesomeIcon size={'lg'} icon={['fas', this.userIcon()]} />
-        </Button>
-      </OverlayTrigger>
+      <div className="user-info flex-wrap-center align-center" onClick={this.props.toggleShow}>
+        <div className="small-padding">{this.props.name}</div>
+        <FontAwesomeIcon size={'lg'} icon={['fas', this.userIcon()]} />
+      </div>
     );
   }
 }

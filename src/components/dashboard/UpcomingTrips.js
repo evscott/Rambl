@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Button } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
 import UpdateTripModal from '../trip_edit/UpdateTripModal';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 /**
  *  UpcomingTrips displays a list of all upcoming
@@ -56,21 +58,41 @@ export default class UpcomingTrips extends Component {
    */
   getAllUpcoming() {
     const listItems = this.props.upcoming.map((trip) => (
-      <div key={trip.trip_id} className="trip-box red-trip-box">
-        <Link to={'/trip?id=' + trip.trip_id + '&view=month'}>
-          <p>{trip.name}</p>
-        </Link>
-        <p>{trip.dscript}</p>
-        <Button className="btn btn-red" onClick={() => this.handleDelete(trip)}>
-          <FontAwesomeIcon size={'sm'} icon={['fas', 'bomb']} />
-        </Button>
-        <Button
-          variant={'info'}
-          className={'float-right'}
-          onClick={() => this.openEditTrip(trip)}
-        >
-          <FontAwesomeIcon size={'sm'} icon={['fas', 'pencil-alt']} />
-        </Button>
+      <div className="space-between">
+        <div className="trip-card pink-gradient">
+          <div className="sm-content">
+            <Link to={'/trip?id=' + trip.trip_id + '&view=month'}>
+              <h4>{trip.name}</h4>
+              <p>{trip.dscript}</p>
+            </Link>
+            <div className="flex-wrap-center show-on-hover">
+              <OverlayTrigger
+                key="1"
+                placement="left"
+                overlay={<Tooltip>Delete Trip</Tooltip>}
+              >
+                <div onClick={() => this.handleDelete(trip)}>
+                  <FontAwesomeIcon
+                    className="med-icon clickable black"
+                    icon="bomb"
+                  />
+                </div>
+              </OverlayTrigger>
+              <OverlayTrigger
+                key="1"
+                placement="right"
+                overlay={<Tooltip>Edit Trip</Tooltip>}
+              >
+                <div onClick={() => this.openEditTrip(trip)}>
+                  <FontAwesomeIcon
+                    className="med-icon clickable black"
+                    icon="pencil-alt"
+                  />
+                </div>
+              </OverlayTrigger>
+            </div>
+          </div>
+        </div>
       </div>
     ));
 
@@ -85,9 +107,9 @@ export default class UpcomingTrips extends Component {
   getUpcomingDiv() {
     if (this.hasUpcoming()) {
       return (
-        <div id="section-upcoming">
+        <div id="section-upcoming" className="section">
           <h1>Upcoming Trips</h1>
-          <div className="flex-wrap-center">{this.getAllUpcoming()}</div>
+          <div className="flex-wrap-center content">{this.getAllUpcoming()}</div>
         </div>
       );
     }

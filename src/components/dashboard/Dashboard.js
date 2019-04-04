@@ -3,9 +3,9 @@ import DboardJumbotronContainer from './jumbotron/DboardJumbotronContainer';
 import UpcomingTripsContainer from './UpcomingTripsContainer';
 import PreviousTripsContainer from './PreviousTripsContainer';
 import DashboardNavContainer from './DashboardNavContainer';
-import './Dashboard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NewTripModal from '../trip_edit/NewTripModal';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 /**
  *  Dashboard is a component that holds all of the dashboard helper components
@@ -51,18 +51,31 @@ export default class Dashboard extends Component {
 
         {/* New Trip Control */}
         <div className="fixed-bottom-right">
-          <FontAwesomeIcon
-            className="clickable lg-icon dark-blue"
-            icon="plus-circle"
-            onClick={(e) => {
-              this.startCreateEvent(e);
-            }}
-          />
+          <OverlayTrigger
+            key="1"
+            placement="top"
+            overlay={<Tooltip>Add Trip</Tooltip>}
+          >
+            <FontAwesomeIcon
+              className="clickable lg-icon dark-blue"
+              icon="plus-circle"
+              onClick={(e) => {
+                this.startCreateEvent(e);
+              }}
+            />
+          </OverlayTrigger>
         </div>
         <NewTripModal
           show={this.state.showNewTrip}
           onHide={this.quitCreateEvent}
         />
+        <footer className="reverse-blue-gradient content">
+          <h4>Rambl team</h4><br />
+          <p>Morgan Bender</p>
+          <p>Isaiah Bishop</p>
+          <p>Eliot Scott</p>
+          <p>Graeme Zinc</p>
+        </footer>
       </div>
     );
   }

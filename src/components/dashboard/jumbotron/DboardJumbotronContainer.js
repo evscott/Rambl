@@ -5,8 +5,7 @@ import DboardJumbotron from './DboardJumbotron';
 const mapStateToProps = (state) => {
   return {
     currTripInfo: getCurrTrip(state),
-    allActiveTrips: getSortedTrips(state).active,
-    user: state.user.user
+    allActiveTrips: getSortedTrips(state).active
   };
 };
 

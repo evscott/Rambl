@@ -1,4 +1,9 @@
-.user-info{
-    margin-right: 25px;
-    border-radius: 20px;
+.user-info {
+    padding-right: 40px;
+    color: #f78888;
+    margin: 16px 0;
+}
+
+.small-padding {
+    padding-right: 10px;
 }

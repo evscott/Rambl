@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
+import './TripNav.css';
+import UserInfo from '../user/UserInfo';
 
 /**
- *  TripNav displays the navigation required for any trip view,
+ *  DashboardNav displays the navigation required on the dashboard,
  *  along with appropriate redirections
  */
 
-export default class TripNav extends Component {
+export default class DashboardNav extends Component {
   constructor(props) {
     super(props);
 
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   /***************************** Core functions *****************************/
-  handleSubmit(e) {
+  /**
+   * Logs user out
+   * @param e click event
+   */
+  handleLogout(e) {
     e.preventDefault();
     this.props.onLogout();
   }
@@ -26,28 +31,36 @@ export default class TripNav extends Component {
       return <Redirect to="/" />;
     } else {
       return (
-        <div>
-          <div className="title">
+        <nav>
+          <div className="name">
             <h3>
               <span className="red">R</span>
               <span className="yellow">a</span>
-              <span className="dark-blue">m</span>
+              <span className="light-blue">m</span>
               <span className="red">b</span>
               <span className="dark-blue">l</span>
             </h3>
           </div>
+          <div className="menu-items">
+            <Link to="/dashboard">Dashboard</Link>
 
-          <Link to="/dashboard">
-            <Button className="btn btn-light">Dashboard</Button>
-          </Link>
-
-          {/* Logout button */}
-          <Form name="logout" onSubmit={this.handleSubmit}>
-            <Button className="btn btn-default" type="submit">
-              Logout
-            </Button>
-          </Form>
-        </div>
+            {/* User Info */}
+            <div className="usr-nav">
+              <div className="menu-expand">
+                <UserInfo />
+              </div>
+              <div className="usr-dropdown">
+                {/* Logout button */}
+                <div
+                  className="dropdown-item"
+                  onClick={(e) => this.handleLogout(e)}
+                >
+                  Logout
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
       );
     }
   }

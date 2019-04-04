@@ -13,13 +13,7 @@ export default class DashboardNav extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      showNewTrip: false
-    };
-
     this.handleLogout = this.handleLogout.bind(this);
-    this.startCreateEvent = this.startCreateEvent.bind(this);
-    this.quitCreateEvent = this.quitCreateEvent.bind(this);
   }
 
   /***************************** Core functions *****************************/
@@ -30,22 +24,6 @@ export default class DashboardNav extends Component {
   handleLogout(e) {
     e.preventDefault();
     this.props.onLogout();
-  }
-
-  /**
-   * This closes the create trip modal.
-   */
-  quitCreateEvent() {
-    this.setState({ showNewTrip: false });
-  }
-
-  /**
-   * This opens the create trip modal.
-   * @param e click event
-   */
-  startCreateEvent(e) {
-    e.preventDefault();
-    this.setState({ showNewTrip: true });
   }
 
   /**************************** Visual component ****************************/
@@ -59,7 +37,7 @@ export default class DashboardNav extends Component {
             <h3>
               <span className="red">R</span>
               <span className="yellow">a</span>
-              <span className="dark-blue">m</span>
+              <span className="light-blue">m</span>
               <span className="red">b</span>
               <span className="dark-blue">l</span>
             </h3>
@@ -73,14 +51,20 @@ export default class DashboardNav extends Component {
             </a>
 
             {/* User Info */}
-            <UserInfo />
-
-            {/* Logout button */}
-            <Form name="logout" onSubmit={this.handleLogout}>
-              <Button className="btn btn-default" type="submit">
-                Logout
-              </Button>
-            </Form>
+            <div className="usr-nav">
+              <div className="menu-expand">
+                <UserInfo />
+              </div>
+              <div className="usr-dropdown">
+                {/* Logout button */}
+                <div
+                  className="dropdown-item"
+                  onClick={(e) => this.handleLogout(e)}
+                >
+                  Logout
+                </div>
+              </div>
+            </div>
           </div>
         </nav>
       );

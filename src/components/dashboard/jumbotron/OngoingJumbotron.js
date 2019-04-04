@@ -58,7 +58,7 @@ export default class OngoingJumbotron extends Component {
     if (this.hasCurrEvent()) {
       return (
         <div>
-          <h4>Ongoing Events</h4>
+          <h3>Ongoing Events</h3>
           {this.getCurrentEvents()}
         </div>
       );
@@ -73,7 +73,7 @@ export default class OngoingJumbotron extends Component {
     if (this.hasUpcomingEvent()) {
       return (
         <div>
-          <h4>Next Event</h4>
+          <h3>Next Event</h3>
           {this.getUpcomingEvents()}
         </div>
       );
@@ -106,7 +106,9 @@ export default class OngoingJumbotron extends Component {
 
           {/* Stats */}
           <div className="jumbo-component">
-            <FontAwesomeIcon className="lg-icon red" icon="chart-bar" />
+            <div className="icon-padding">
+              <FontAwesomeIcon className="med-icon red" icon="chart-bar" />
+            </div>
             <p>Stats component here</p>
           </div>
         </div>

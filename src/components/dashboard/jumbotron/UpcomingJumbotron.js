@@ -31,7 +31,9 @@ export default class UpcomingJumbotron extends Component {
 
           {/* Stats */}
           <div className="jumbo-component">
-            <FontAwesomeIcon size="lg" icon={['far', 'star']} className="red" />
+            <div className="icon-padding">
+              <FontAwesomeIcon className="med-icon red" icon="chart-bar" />
+            </div>
             <p>Stats component here</p>
           </div>
         </div>
