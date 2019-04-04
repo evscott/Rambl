@@ -169,6 +169,11 @@ LAYOUT
   padding: 0 100px;
 }
 
+.container-left {
+  width: 25%;
+  float: left;
+}
+
 .justify-center{
   display: flex;
   justify-content: center;
@@ -185,6 +190,14 @@ LAYOUT
   padding: 50px 0;
 }
 
+.content-top {
+  padding: 100px 0;
+}
+
+.content-bottom {
+  margin-bottom: 30px;
+}
+
 .align-center {
   align-items: center;
 }
@@ -199,6 +212,11 @@ LAYOUT
 
 .section {
   margin-bottom: 80px;
+}
+
+.align-left {
+  padding-left: 20px;
+  text-align: left;
 }
 
 /*-------------------------
@@ -261,6 +279,12 @@ ANIMATION
 TRIP CARD
 ---------------------------*/
 
+.generic-card {
+  margin-left: 40px;
+  width: 300px;
+  border-radius: 8%;
+}
+
 .trip-card {
   width: 200px;
   border-radius: 8%;
@@ -295,4 +319,8 @@ TRIP CARD
 .calendar-container {
   width: 90%;
   height: 90vh;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before{
+  background-color:black;
 }

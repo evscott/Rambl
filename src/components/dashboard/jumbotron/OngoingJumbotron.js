@@ -27,7 +27,6 @@ export default class OngoingJumbotron extends Component {
   getCurrentEvents() {
     return this.props.currEvents.map((event) => (
       <div>
-        <p>{event.name}</p>
         <p>{event.dscript}</p>
       </div>
     ));
@@ -58,7 +57,7 @@ export default class OngoingJumbotron extends Component {
     if (this.hasCurrEvent()) {
       return (
         <div>
-          <h3>Ongoing Events</h3>
+          <h3>Ongoing Event</h3>
           {this.getCurrentEvents()}
         </div>
       );
@@ -86,12 +85,22 @@ export default class OngoingJumbotron extends Component {
       <div>
         <p>You have an ongoing trip!</p>
         <div key={this.props.trip.trip_id}>
-          <Link to={'/trip?id=' + this.props.trip.trip_id + '&view=month'}>
+          <Link
+            to={
+              '/trip?id=' + this.props.trip.trip_id + '&view=month&filter=all'
+            }
+          >
             <h1>{this.props.trip.name}</h1>
           </Link>
         </div>
-        {this.getCurrentEventsDiv()}
-        {this.getUpcomingEventsDiv()}
+        <div className="flex-wrap-center">
+          <div className="space-between">
+            {this.getCurrentEventsDiv()}
+          </div>
+          <div className="space-between">
+            {this.getUpcomingEventsDiv()}
+          </div>
+        </div>
 
         <div className="flex-wrap-center">
           {/* Highlights */}

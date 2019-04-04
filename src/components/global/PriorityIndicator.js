@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import './PriorityIndicator.css';
 
 /**
  * The PriorityIndicator is a displayable icon representing the
@@ -15,27 +14,24 @@ export class PriorityIndicator extends Component {
       case 0:
         return (
           <FontAwesomeIcon
-            size="lg"
             icon={['far', 'star']}
-            className="low-priority"
+            className="med-icon red"
             title="Low Priority"
           />
         );
       case 1:
         return (
           <FontAwesomeIcon
-            size="lg"
             icon={['fas', 'star-half-alt']}
-            className="med-priority"
+            className="med-icon dark-blue"
             title="Medium Priority"
           />
         );
       case 2:
         return (
           <FontAwesomeIcon
-            size="lg"
             icon={['fas', 'star']}
-            className="hi-priority"
+            className="med-icon yellow"
             title="High Priority"
           />
         );

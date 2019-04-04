@@ -59,7 +59,7 @@ export default class PreviousTrips extends Component {
       <div className="space-between">
         <div className="trip-card yellow-gradient">
           <div className="sm-content">
-            <Link to={'/trip?id=' + trip.trip_id + '&view=month'}>
+            <Link to={'/trip?id=' + trip.trip_id + '&view=month&filter=all'}>
               <h4>{trip.name}</h4>
               <p>{trip.dscript}</p>
             </Link>

@@ -41,7 +41,7 @@ export default class DboardJumbotron extends Component {
   render() {
     return (
       <div className="jumbotron-container">
-        <div className="content">{this.selectJumbotron()}</div>
+        <div className="content-top">{this.selectJumbotron()}</div>
         <svg
           id="wave-border"
           xmlns="http://www.w3.org/2000/svg"

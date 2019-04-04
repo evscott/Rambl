@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HighlightsContainer from './HighlightsContainer';
 import Notes from './Notes';
 import CountdownContainer from './CountdownContainer';
+import { Link } from 'react-router-dom';
 /**
  *  UpcomingJumbotron displays when the user has at least one upcoming
  *  trip and no ongoing trips. It features a countdown to the next trip,
@@ -15,8 +16,11 @@ export default class UpcomingJumbotron extends Component {
     return (
       <div>
         <CountdownContainer />
-        <p>until</p>
-        <h2>{this.props.trip.name}</h2>
+        <Link
+          to={'/trip?id=' + this.props.trip.trip_id + '&view=month&filter=all'}
+        >
+          <h2>{this.props.trip.name}</h2>
+        </Link>
 
         <div className="flex-wrap-center">
           {/* Highlights */}

@@ -44,19 +44,22 @@ export default class CountdownTimer extends Component {
 
     let time = this.getTimeLeft(start);
     return (
-      <div className="flex-wrap-center">
-        <div className="countdown-elem">
-          <p>{time.days} Days</p>
+      <div>
+        <div className="flex-wrap-center">
+          <div className="countdown-elem">
+            <p>{time.days} Days</p>
+          </div>
+          <div className="countdown-elem">
+            <p>{time.hours} Hours</p>
+          </div>
+          <div className="countdown-elem">
+            <p>{time.minutes} Minutes</p>
+          </div>
+          <div className="countdown-elem">
+            <p>{time.seconds} Seconds</p>
+          </div>
         </div>
-        <div className="countdown-elem">
-          <p>{time.hours} Hours</p>
-        </div>
-        <div className="countdown-elem">
-          <p>{time.minutes} Minutes</p>
-        </div>
-        <div className="countdown-elem">
-          <p>{time.days} Seconds</p>
-        </div>
+        <p>until</p>
       </div>
     );
   }

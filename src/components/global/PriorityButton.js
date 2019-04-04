@@ -14,7 +14,7 @@ export class PriorityButton extends Component {
       <OverlayTrigger
         key={'1'}
         placement={'right'}
-        overlay={<Tooltip>Your events priority!</Tooltip>}
+        overlay={<Tooltip>Event Priority!</Tooltip>}
       >
         <Button className={'priority-btn'} onClick={this.props.handleChange}>
           <PriorityIndicator priority={this.props.priority} />
